@@ -18,9 +18,9 @@ namespace Gameplay.Health
 
         public HealthStatusBarView StatusBarView => _statusBarView;
 
-        public HealthController(HealthConfig healthConfig, ShieldConfig shieldConfig, HealthShieldStatusBarView statusBarView, IDamageableView damageable)
+        public HealthController(HealthConfig healthConfig, ShieldConfig shieldConfig, HealthShieldStatusBarView statusBarView, IDamageableView damageable, float health = 0, float shield = 0)
         {
-            var healthModel = new HealthWithShieldModel(healthConfig, shieldConfig);
+            var healthModel = new HealthWithShieldModel(healthConfig, shieldConfig, health, shield);
             
             statusBarView.HealthBar.Init(0.0f, healthModel.MaximumHealth.Value, healthModel.CurrentHealth.Value);
             statusBarView.ShieldBar.Init(0.0f, healthModel.MaximumShield.Value, healthModel.CurrentShield.Value);
@@ -36,9 +36,9 @@ namespace Gameplay.Health
             _healthModel = healthModel;
         }
         
-        public HealthController(HealthConfig healthConfig, ShieldConfig shieldConfig, IDamageableView damageable)
+        public HealthController(HealthConfig healthConfig, ShieldConfig shieldConfig, IDamageableView damageable, float health = 0, float shield = 0)
         {
-            var healthModel = new HealthWithShieldModel(healthConfig, shieldConfig);
+            var healthModel = new HealthWithShieldModel(healthConfig, shieldConfig, health, shield);
             
             EntryPoint.SubscribeToUpdate(healthModel.UpdateState);
             
@@ -48,9 +48,9 @@ namespace Gameplay.Health
             _healthModel = healthModel;
         }
 
-        public HealthController(HealthConfig healthConfig, HealthStatusBarView statusBarView, IDamageableView damageable)
+        public HealthController(HealthConfig healthConfig, HealthStatusBarView statusBarView, IDamageableView damageable, float health = 0)
         {
-            var healthModel = new HealthOnlyModel(healthConfig);
+            var healthModel = new HealthOnlyModel(healthConfig, health);
             statusBarView.HealthBar.Init(0.0f, healthModel.MaximumHealth.Value, healthModel.CurrentHealth.Value);
             _statusBarView = statusBarView;
 
@@ -61,9 +61,9 @@ namespace Gameplay.Health
             _healthModel = healthModel;
         }
         
-        public HealthController(HealthConfig healthConfig, IDamageableView damageable)
+        public HealthController(HealthConfig healthConfig, IDamageableView damageable, float health = 0)
         {
-            var healthModel = new HealthOnlyModel(healthConfig);
+            var healthModel = new HealthOnlyModel(healthConfig, health);
             
             damageable.DamageTaken += TakeDamage;
             _damageable = damageable;
@@ -92,14 +92,32 @@ namespace Gameplay.Health
 
         }
 
-        private void TakeDamage(DamageModel damageModel)
+        public float GetCurrentHealth()
         {
-            _healthModel.TakeDamage(damageModel.DamageAmount);
+            if (_statusBarView is not null)
+            {
+                return _healthModel.CurrentHealth.Value; 
+            }
+            return 0;
+        }
+
+        public float GetCurrentShield()
+        {
+            if (_healthModel is HealthWithShieldModel healthShieldModel && _statusBarView is HealthShieldStatusBarView)
+            {
+                return healthShieldModel.CurrentShield.Value; 
+            }
+            return 0;
         }
 
         public void DestroyUnit()
         {
             _healthModel.TakeDamage(FatalDamage);
+        }
+
+        private void TakeDamage(DamageModel damageModel)
+        {
+            _healthModel.TakeDamage(damageModel.DamageAmount);
         }
     }
 }
