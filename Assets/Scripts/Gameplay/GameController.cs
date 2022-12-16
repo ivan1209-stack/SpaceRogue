@@ -3,6 +3,7 @@ using Gameplay.Background;
 using Gameplay.Camera;
 using Gameplay.Enemy;
 using Gameplay.GameState;
+using Gameplay.LevelProgress;
 using Gameplay.Player;
 using Gameplay.Space;
 using UI.Game;
@@ -19,6 +20,7 @@ namespace Gameplay
         private readonly BackgroundController _backgroundController;
         private readonly SpaceController _spaceController;
         private readonly EnemyForcesController _enemyForcesController;
+        private readonly LevelProgressController _levelProgressController;
 
         public GameController(CurrentState currentState, Canvas mainUICanvas)
         {
@@ -42,6 +44,9 @@ namespace Gameplay
 
             _enemyForcesController = new(_playerController);
             AddController(_enemyForcesController);
+
+            _levelProgressController = new(_playerController);
+            AddController(_levelProgressController);
         }
 
         private void OnPlayerDestroyed()

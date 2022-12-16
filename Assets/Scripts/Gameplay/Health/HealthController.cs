@@ -8,6 +8,8 @@ namespace Gameplay.Health
 {
     public sealed class HealthController : BaseController
     {
+        private const int FatalDamage = 9999;
+
         private readonly HealthStatusBarView _statusBarView;
         private readonly BaseHealthModel _healthModel;
         private readonly IDamageableView _damageable;
@@ -93,6 +95,11 @@ namespace Gameplay.Health
         private void TakeDamage(DamageModel damageModel)
         {
             _healthModel.TakeDamage(damageModel.DamageAmount);
+        }
+
+        public void DestroyUnit()
+        {
+            _healthModel.TakeDamage(FatalDamage);
         }
     }
 }
