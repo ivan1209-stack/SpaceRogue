@@ -1,6 +1,7 @@
 using Abstracts;
 using Gameplay.Player;
 using Scriptables.Enemy;
+using System.Collections.Generic;
 using UnityEngine;
 using Utilities.Mathematics;
 using Utilities.ResourceManagement;
@@ -13,6 +14,8 @@ namespace Gameplay.Enemy
         private readonly ResourcePath _groupSpawnConfigPath = new(Constants.Configs.Enemy.EnemySpawnConfig);
         private readonly EnemyFactory _enemyFactory;
         private readonly PlayerController _playerController;
+        
+        public List<EnemyView> EnemyViews { get; private set; } = new();
 
         public EnemyForcesController(PlayerController playerController)
         {
@@ -30,9 +33,15 @@ namespace Gameplay.Enemy
                 {
                     var unitSpawnPoint = GetEmptySpawnPoint(enemyGroupSpawn.GroupSpawnPoint, unitSize, spawnCircleRadius);
                     var enemyController = _enemyFactory.CreateEnemy(unitSpawnPoint, _playerController);
+                    EnemyViews.Add(enemyController.View);
                     AddController(enemyController);
                 }
             }
+        }
+
+        protected override void OnDispose()
+        {
+            EnemyViews.Clear();
         }
 
         private static Vector3 GetEmptySpawnPoint(Vector3 spawnPoint, Vector3 unitSize, int spawnCircleRadius)
