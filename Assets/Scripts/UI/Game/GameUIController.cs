@@ -107,11 +107,11 @@ namespace UI.Game
             EnemyHealthBars = null;
         }
             
-        public void AddDestroyPlayerMessage()
+        public void AddDestroyPlayerMessage(float levelsNumber)
         {
             _playerDestroyedMessageView = ResourceLoader.LoadPrefabAsChild<DestroyPlayerMessageView>
                 (_playerDestroyedCanvasPath, _gameCanvasView.transform);
-            _playerDestroyedMessageView.Init(_exitToMenu);
+            _playerDestroyedMessageView.Init(levelsNumber, _exitToMenu);
             AddGameObject(_playerDestroyedMessageView.gameObject);
         }
 

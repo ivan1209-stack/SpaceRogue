@@ -9,13 +9,13 @@ using Gameplay.Space;
 using Scriptables;
 using UI.Game;
 using UnityEngine;
-using Utilities.ResourceManagement;
 
 namespace Gameplay
 {
     public sealed class GameController : BaseController
     {
         private readonly CurrentState _currentState;
+        private readonly GameDataController _gameDataController;
         private readonly GameUIController _gameUIController;
         private readonly PlayerController _playerController;
         private readonly CameraController _cameraController;
@@ -24,14 +24,15 @@ namespace Gameplay
         private readonly EnemyForcesController _enemyForcesController;
         private readonly LevelProgressController _levelProgressController;
 
-        public GameController(CurrentState currentState, Canvas mainUICanvas, LevelProgressConfig levelProgressConfig)
+        public GameController(CurrentState currentState, Canvas mainUICanvas, GameDataController gameDataController)
         {
             _currentState = currentState;
+            _gameDataController = gameDataController;
 
             _gameUIController = new(mainUICanvas, ExitToMenu, NextLevel);
             AddController(_gameUIController);
 
-            _playerController = new(levelProgressConfig.PlayerCurrentHealth, levelProgressConfig.PlayerCurrentShield);
+            _playerController = new(_gameDataController.PlayerCurrentHealth, _gameDataController.PlayerCurrentShield);
             AddController(_playerController);
             _playerController.PlayerDestroyed += OnPlayerDestroyed;
 
@@ -47,14 +48,14 @@ namespace Gameplay
             _enemyForcesController = new(_playerController);
             AddController(_enemyForcesController);
 
-            _levelProgressController = new(levelProgressConfig, _playerController, _enemyForcesController.EnemyViews);
+            _levelProgressController = new(_gameDataController, _playerController, _enemyForcesController.EnemyViews);
             _levelProgressController.LevelComplete += LevelComplete;
             AddController(_levelProgressController);
         }
 
         private void OnPlayerDestroyed()
         {
-            _gameUIController.AddDestroyPlayerMessage();
+            _gameUIController.AddDestroyPlayerMessage(_gameDataController.CompletedLevels);
         }
 
         private void LevelComplete(float levelNumber)
