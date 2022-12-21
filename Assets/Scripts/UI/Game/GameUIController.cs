@@ -39,8 +39,8 @@ namespace UI.Game
             _exitToMenu = exitToMenu;
             _nextLevel = nextLevel;
 
-            EnemyHealthBars = _mainCanvasView.EnemyHealthBars;
-            GameEventIndicators = _mainCanvasView.GameEventIndicators;
+            EnemyHealthBars = _gameCanvasView.EnemyHealthBars;
+            GameEventIndicators = _gameCanvasView.GameEventIndicators;
 
             AddPlayerStatusBar();
             AddPlayerSpeedometer();
