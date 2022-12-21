@@ -33,29 +33,70 @@ namespace Gameplay.Player
         private readonly SubscribedProperty<bool> _primaryFireInput = new();
         private readonly SubscribedProperty<bool> _changeWeaponInput = new ();
 
+        private readonly HealthController _healthController;
+
         private const byte MaxCountOfPlayerSpawnTries = 10;
         private const float PlayerSpawnClearanceRadius = 40.0f;
 
         public event Action PlayerDestroyed = () => { };
+        public event Action OnControllerDispose = () => { };
+        public SubscribedProperty<bool> NextLevelInput = new ();
 
-        public PlayerController(Vector3 playerPosition)
+        public PlayerController(Vector3 playerPosition, float health = 0, float shield = 0)
         {
             _config = ResourceLoader.LoadObject<PlayerConfig>(_configPath);
             _view = LoadView<PlayerView>(_viewPath, playerPosition);
 
-            var inputController = new InputController(_mousePositionInput, _verticalInput, _primaryFireInput, _changeWeaponInput);
+            var inputController = new InputController(_mousePositionInput, _verticalInput, _primaryFireInput, 
+                _changeWeaponInput, NextLevelInput);
             AddController(inputController);
 
             var inventoryController = AddInventoryController(_config.Inventory);
             var movementController = AddMovementController(_config.Movement, _view);
             var frontalGunsController = AddFrontalGunsController(inventoryController.Turrets, _view);
-            var healthController = AddHealthController(_config.HealthConfig, _config.ShieldConfig);
+            _healthController = AddHealthController(_config.HealthConfig, _config.ShieldConfig, health, shield);
             AddCrosshair();
         }
 
-        private HealthController AddHealthController(HealthConfig healthConfig, ShieldConfig shieldConfig)
+        public void DestroyPlayer()
         {
-            var healthController = new HealthController(healthConfig, shieldConfig, GameUIController.PlayerStatusBarView, _view);
+            _healthController.DestroyUnit();
+        }
+
+        public float GetCurrentHealth()
+        {
+            if(_healthController is not null)
+            {
+                return _healthController.GetCurrentHealth();
+            }
+            return 0;
+        }
+
+        public float GetCurrentShield()
+        {
+            if (_healthController is not null)
+            {
+                return _healthController.GetCurrentShield();
+            }
+            return 0;
+        }
+
+        public void OnPlayerDestroyed()
+        {
+            PlayerDestroyed();
+        }
+
+        public void ControllerDispose()
+        {
+            OnControllerDispose();
+            Dispose();
+        }
+
+        private HealthController AddHealthController(HealthConfig healthConfig, ShieldConfig shieldConfig, 
+            float health = 0, float shield = 0)
+        {
+            var healthController = new HealthController
+                (healthConfig, shieldConfig, GameUIController.PlayerStatusBarView, _view, health, shield);
             healthController.SubscribeToOnDestroy(Dispose);
             healthController.SubscribeToOnDestroy(OnPlayerDestroyed);
             AddController(healthController);
@@ -96,9 +137,5 @@ namespace Gameplay.Player
             AddGameObject(crosshair);
         }
 
-        public void OnPlayerDestroyed()
-        {
-            PlayerDestroyed();
-        }
     }
 }
