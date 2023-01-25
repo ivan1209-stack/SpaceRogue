@@ -1,9 +1,10 @@
-﻿using Scriptables.Enemy;
+﻿using Gameplay.Space.Generator;
+using Scriptables.Enemy;
 using Scriptables.Space;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace Gameplay.Space.Generator
+namespace DebugLevelGenerator.Editor
 {
     public sealed class DebugLevelGeneratorView : MonoBehaviour
     {

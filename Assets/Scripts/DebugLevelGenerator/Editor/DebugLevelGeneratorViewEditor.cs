@@ -1,10 +1,10 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Gameplay.Space.Generator
+namespace DebugLevelGenerator.Editor
 {
     [CustomEditor(typeof(DebugLevelGeneratorView))]
-    public sealed class DebugLevelGeneratorViewEditor : Editor
+    public sealed class DebugLevelGeneratorViewEditor : UnityEditor.Editor
     {
         private DebugLevelGenerator _debugLevelGenerator;
 

@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using Gameplay.Space.Generator;
+using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace Gameplay.Space.Generator
+namespace DebugLevelGenerator.Editor
 {
     public sealed class DebugLevelGenerator : SpaceGenerator
     {
