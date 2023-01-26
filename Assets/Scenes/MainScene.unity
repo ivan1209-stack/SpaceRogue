@@ -198,6 +198,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2083485165}
+  - {fileID: 540186442}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -327,6 +328,50 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3ae7e5ccd1fb2241b152fc8a1e9df7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &540186441
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 540186442}
+  - component: {fileID: 540186443}
+  m_Layer: 0
+  m_Name: GameUIInstaller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &540186442
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540186441}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 273910148}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &540186443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540186441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fdf0437d2bb43ed8eba3304522749f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &564741017
@@ -473,7 +518,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
-  _monoInstallers: []
+  _monoInstallers:
+  - {fileID: 540186443}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -556,12 +602,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84702c94750458c4f8312851322a719e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <SpaceView>k__BackingField: {fileID: 4093990979445216966}
-  <SpaceConfig>k__BackingField: {fileID: 11400000, guid: 913a035bb58839842adeca8f1ca6d29a, type: 2}
-  <StarSpawnConfig>k__BackingField: {fileID: 11400000, guid: 11d0fd4111ce69a4abd917f1d52f4186, type: 2}
-  <EnemySpawnConfig>k__BackingField: {fileID: 11400000, guid: 8836c87df1bb56d47bb069702f419b64, type: 2}
-  <StarTilemap>k__BackingField: {fileID: 7345496779150286461}
-  <StarTileBase>k__BackingField: {fileID: 11400000, guid: 7db138e90a873334587535db4265d862, type: 2}
 --- !u!114 &5309711607817013833
 MonoBehaviour:
   m_ObjectHideFlags: 0
