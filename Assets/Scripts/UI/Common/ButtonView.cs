@@ -16,5 +16,10 @@ namespace UI.Common
             _button = GetComponent<Button>();
             _button.onClick.AddListener(new UnityAction(onClickAction));
         }
+
+        public void OnDestroy()
+        {
+            _button.onClick.RemoveAllListeners();
+        }
     }
 }
