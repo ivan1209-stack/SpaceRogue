@@ -30,7 +30,6 @@ public sealed class MainController : BaseController
         
         _currentState.CurrentGameState.Subscribe(OnGameStateChange);
         OnGameStateChange(_currentState.CurrentGameState.Value);
-
     }
 
     protected override void OnDispose()

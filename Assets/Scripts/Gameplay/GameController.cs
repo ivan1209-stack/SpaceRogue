@@ -25,7 +25,7 @@ namespace Gameplay
         private readonly GeneralGameEventsController _generalGameEventsController;
         private readonly LevelProgressController _levelProgressController;
 
-        public GameController(CurrentState currentState, Canvas mainUICanvas, GameDataController gameDataController)
+        public GameController(CurrentState currentState, MainCanvas mainUICanvas, GameDataController gameDataController)
         {
             _currentState = currentState;
             _gameDataController = gameDataController;

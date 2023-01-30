@@ -16,7 +16,7 @@ namespace UI.MainMenu
         
         private MainMenuCanvasView _mainMenuCanvasView;
 
-        public MainMenuController(CurrentState currentState, Canvas mainUICanvas, GameDataController gameDataController)
+        public MainMenuController(CurrentState currentState, MainCanvas mainUICanvas, GameDataController gameDataController)
         {
             _currentState = currentState;
             _gameDataController = gameDataController;

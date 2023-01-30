@@ -31,7 +31,7 @@ namespace UI.Game
         private readonly Action _exitToMenu;
         private readonly Action _nextLevel;
 
-        public GameUIController(Canvas mainCanvas, Action exitToMenu, Action nextLevel)
+        public GameUIController(MainCanvas mainCanvas, Action exitToMenu, Action nextLevel)
         {
             AddGameCanvas(mainCanvas.transform);
             _exitToMenu = exitToMenu;
