@@ -1,4 +1,5 @@
 using UI.Game;
+using UnityEngine;
 using Utilities.ResourceManagement;
 using Zenject;
 
@@ -6,6 +7,8 @@ namespace UI.Installers
 {
     public class GameUIInstaller : MonoInstaller
     {
+        [field: SerializeField] public Transform uiPosition { get; private set; }
+            
         private readonly ResourcePath _gameCanvasPath = new(Constants.Prefabs.Canvas.Game.GameCanvas);
         
         public override void InstallBindings()
@@ -16,8 +19,7 @@ namespace UI.Installers
 
         private void BindGameUICanvas()
         {
-            MainCanvas mainCanvas = Container.Resolve<MainCanvas>();
-            GameCanvasView gameCanvasView = ResourceLoader.LoadPrefabAsChild<GameCanvasView>(_gameCanvasPath, mainCanvas.transform);
+            GameCanvasView gameCanvasView = ResourceLoader.LoadPrefabAsChild<GameCanvasView>(_gameCanvasPath, uiPosition);
 
             Container
                 .Bind<GameCanvasView>()
