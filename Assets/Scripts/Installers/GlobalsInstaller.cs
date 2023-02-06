@@ -11,6 +11,7 @@ namespace Installers
             BindSceneLoader();
             BindGameState();
             BindPlayerData();
+            BindUpdater();
         }
 
         private void BindSceneLoader()
@@ -34,6 +35,14 @@ namespace Installers
         {
             Container
                 .Bind<PlayerDataService>()
+                .AsSingle()
+                .NonLazy();
+        }
+
+        private void BindUpdater()
+        {
+            Container
+                .BindInterfacesAndSelfTo<Updater>()
                 .AsSingle()
                 .NonLazy();
         }
