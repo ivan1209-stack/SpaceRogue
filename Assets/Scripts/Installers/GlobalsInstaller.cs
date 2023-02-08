@@ -34,7 +34,7 @@ namespace Installers
         private void BindPlayerData()
         {
             Container
-                .Bind<PlayerDataService>()
+                .BindInterfacesAndSelfTo<PlayerDataService>()
                 .AsSingle()
                 .NonLazy();
         }

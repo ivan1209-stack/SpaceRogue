@@ -17,8 +17,7 @@ namespace UI.MainMenu
         private readonly InfiniteSprite _midParallax;
         private readonly InfiniteSprite _foreParallax;
         private readonly NebulaEffect _nebulaEffect;
-
-
+        
         public MainMenuBackground(Camera camera, Updater updater, MenuBackgroundView view, MenuBackgroundConfig config)
         {
             _camera = camera;
