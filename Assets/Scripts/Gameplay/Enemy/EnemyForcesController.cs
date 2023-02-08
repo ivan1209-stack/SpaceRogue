@@ -28,10 +28,11 @@ namespace Gameplay.Enemy
 
             var unitSize = groupSpawnConfig.Enemy.Prefab.transform.localScale;
 
-            var count = 0;
+            var countPoints = new List<EnemyGroupSpawn>(groupSpawnConfig.EnemyGroupsSpawnPoints);
             foreach (var spawnPoint in enemySpawnPoints)
             {
-                int spawnCircleRadius = groupSpawnConfig.EnemyGroupsSpawnPoints[count].GroupCount * 2;
+                var count = new System.Random().Next(countPoints.Count);
+                var spawnCircleRadius = groupSpawnConfig.EnemyGroupsSpawnPoints[count].GroupCount * 2;
                 for (int i = 0; i < groupSpawnConfig.EnemyGroupsSpawnPoints[count].GroupCount; i++)
                 {
                     var unitSpawnPoint = GetEmptySpawnPoint(spawnPoint, unitSize, spawnCircleRadius);
@@ -39,8 +40,9 @@ namespace Gameplay.Enemy
                     EnemyViews.Add(enemyController.View);
                     AddController(enemyController);
                 }
-                count++;
+                countPoints.Remove(groupSpawnConfig.EnemyGroupsSpawnPoints[count]);
             }
+            countPoints.Clear();
         }
 
         protected override void OnDispose()
