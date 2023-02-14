@@ -4,23 +4,7 @@ using UnityEngine;
 
 public sealed class EntryPoint : MonoBehaviour
 {
-    [SerializeField] private Transform uiPosition;
-    [SerializeField] private GameState initialGameState = GameState.Game;
 
-    private MainController _mainController;
-    
-    private void Awake()
-    {
-        var gameState = new CurrentState(initialGameState);
-        _mainController = new MainController(gameState, uiPosition);
-    }
-    
-    private void OnDestroy()
-    {
-        _mainController.Dispose();
-    }
-    
-    
     #region UpdateMechanism
 
     private static event Action OnUpdate = () => { };
