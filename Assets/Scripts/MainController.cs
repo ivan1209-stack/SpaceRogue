@@ -1,29 +1,21 @@
 using Abstracts;
 using Gameplay;
 using Gameplay.GameState;
-using Scriptables;
-using UI;
-using UI.MainMenu;
+using UI.Game;
 using UnityEngine;
-using Utilities.ResourceManagement;
 
 public sealed class MainController : BaseController
 {
     private readonly CurrentState _currentState;
-    private readonly MainUIController _mainUIController;
 
     private readonly GameDataController _gameDataController;
 
     private GameController _gameController;
-    private MainMenuController _mainMenuController;
     
 
     public MainController(CurrentState currentState, Transform uiPosition)
     {
         _currentState = currentState;
-
-        _mainUIController = new(uiPosition);
-        AddController(_mainUIController);
 
         _gameDataController = new();
         AddController(_gameDataController);
@@ -45,11 +37,8 @@ public sealed class MainController : BaseController
         
         switch (newState)
         {
-            case GameState.Menu:
-                _mainMenuController = new MainMenuController(_currentState, _mainUIController.MainCanvas, _gameDataController);
-                break;
             case GameState.Game:
-                _gameController = new GameController(_currentState, _mainUIController.MainCanvas, _gameDataController);
+                _gameController = new GameController(_currentState, new MainCanvas(), _gameDataController); /*TODO remove when new code is ready*/
                 break;
             case GameState.None:
             default: break;
@@ -59,7 +48,6 @@ public sealed class MainController : BaseController
     private void DisposeAllControllers()
     {
         _gameController?.Dispose();
-        _mainMenuController?.Dispose();
     }
     
 }
