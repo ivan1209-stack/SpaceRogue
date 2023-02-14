@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d89347037cf7e434ea6d055e5d5de71f, type: 3}
   m_Name: MenuBackgroundConfig
   m_EditorClassIdentifier: 
-  <CameraCoefficient>k__BackingField: 0
-  <BackCoefficient>k__BackingField: 0
-  <MidCoefficient>k__BackingField: 0
-  <ForeCoefficient>k__BackingField: 0
-  <NebulaCoefficient>k__BackingField: 1
+  <CameraCoefficient>k__BackingField: 3
+  <BackCoefficient>k__BackingField: 0.6
+  <MidCoefficient>k__BackingField: 0.5
+  <ForeCoefficient>k__BackingField: 0.4
+  <NebulaCoefficient>k__BackingField: 0.3

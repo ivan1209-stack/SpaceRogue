@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2031979772840345958}
   - component: {fileID: 3689198521934376857}
   - component: {fileID: 7578077460940912574}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: LevelText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: -7523310060932189143}
   - component: {fileID: 371618354768966145}
   - component: {fileID: 4774517280525515804}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: LevelNumberCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 677294395595153767}
   - component: {fileID: 70635963127929044}
   - component: {fileID: 8797870136140911291}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: LevelNumber
   m_TagString: Untagged
   m_Icon: {fileID: 0}

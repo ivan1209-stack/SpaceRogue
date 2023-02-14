@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8151856467356464010}
   - component: {fileID: 2907262094435361910}
   - component: {fileID: 5741165780757709120}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: LevelsNumber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3114876533311615793}
   - component: {fileID: 3009283811938399729}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CompletedLevels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 241037206350333738}
   - component: {fileID: 3546289847818708721}
   - component: {fileID: 1794468851367443592}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: DestroyPlayerCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -383,7 +383,7 @@ GameObject:
   - component: {fileID: 2080159653110701257}
   - component: {fileID: 6233397713443845084}
   - component: {fileID: 2922627273995544265}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CompletedLevelsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -551,7 +551,7 @@ GameObject:
   - component: {fileID: 6327346037512484297}
   - component: {fileID: 4352522576101131398}
   - component: {fileID: 5151208364313929708}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: DestroyPlayerText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -701,7 +701,7 @@ GameObject:
   - component: {fileID: 3631338581502944732}
   - component: {fileID: 5652584864554963868}
   - component: {fileID: 5200081407662711585}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: DestroyPlayerButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -854,7 +854,7 @@ GameObject:
   - component: {fileID: 5172623581010557454}
   - component: {fileID: 394943986333193971}
   - component: {fileID: 762571846049663323}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: DestroyPlayerButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
