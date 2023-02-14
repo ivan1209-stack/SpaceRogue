@@ -38,7 +38,7 @@ namespace UI.Game
 
         public GameUIController(MainCanvas mainCanvas, Action exitToMenu, Action nextLevel)
         {
-            MainCanvas = mainCanvas;
+            MainCanvas = mainCanvas.GetComponent<Canvas>();
             AddGameCanvas(MainCanvas.transform);
             _exitToMenu = exitToMenu;
             _nextLevel = nextLevel;
