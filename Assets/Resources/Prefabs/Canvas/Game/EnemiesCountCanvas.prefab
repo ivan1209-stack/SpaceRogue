@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1629359140468006744}
   - component: {fileID: 7890925997008384371}
   - component: {fileID: 1970167941767620128}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Separator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 2031979772840345958}
   - component: {fileID: 3689198521934376857}
   - component: {fileID: 7578077460940912574}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: EnemiesDestroyedText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -308,7 +308,7 @@ GameObject:
   - component: {fileID: -7523310060932189143}
   - component: {fileID: 371618354768966145}
   - component: {fileID: 490267391968070186}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: EnemiesCountCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -412,7 +412,7 @@ GameObject:
   - component: {fileID: 677294395595153767}
   - component: {fileID: 70635963127929044}
   - component: {fileID: 8797870136140911291}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: EnemiesDestroyedCount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -560,7 +560,7 @@ GameObject:
   - component: {fileID: 8292146837903463083}
   - component: {fileID: 5807456824398685205}
   - component: {fileID: 374697797621593006}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: EnemiesCount
   m_TagString: Untagged
   m_Icon: {fileID: 0}

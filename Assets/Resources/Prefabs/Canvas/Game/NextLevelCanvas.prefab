@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 241037206350333738}
   - component: {fileID: 3546289847818708721}
   - component: {fileID: 3032662123583918909}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: NextLevelCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 6327346037512484297}
   - component: {fileID: 4352522576101131398}
   - component: {fileID: 5151208364313929708}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: LevelNumber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 3631338581502944732}
   - component: {fileID: 5652584864554963868}
   - component: {fileID: 5200081407662711585}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: NextLevelButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,7 +449,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2406904647576125230}
   - component: {fileID: 1413118030678755344}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Message
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -515,7 +515,7 @@ GameObject:
   - component: {fileID: 5172623581010557454}
   - component: {fileID: 394943986333193971}
   - component: {fileID: 762571846049663323}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: NextLevelButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -651,7 +651,7 @@ GameObject:
   - component: {fileID: 3237087887121725196}
   - component: {fileID: 7458602698440829815}
   - component: {fileID: 5072361770886356400}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: NextLevelText
   m_TagString: Untagged
   m_Icon: {fileID: 0}

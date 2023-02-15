@@ -9,7 +9,7 @@ namespace UI.Installers
 {
     public class MainMenuUIInstaller : MonoInstaller
     {
-        [field: SerializeField] public Camera UiCamera { get; private set; }
+        [field: SerializeField] public Camera MainCamera { get; private set; }
         [field: SerializeField] public MainMenuCanvasView MainMenuCanvas { get; private set; }
         [field: SerializeField] public MenuBackgroundConfig MenuBackgroundConfig { get; private set; }
         [field: SerializeField] public MenuBackgroundView MenuBackground { get; private set; }
@@ -43,7 +43,7 @@ namespace UI.Installers
         {
             Container
                 .Bind<Camera>()
-                .FromInstance(UiCamera)
+                .FromInstance(MainCamera)
                 .AsSingle()
                 .NonLazy();
         }

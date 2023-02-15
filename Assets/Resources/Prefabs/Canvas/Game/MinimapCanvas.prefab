@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7139437916503508913}
   - component: {fileID: 3818299511000182754}
   - component: {fileID: 5126202131821587293}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: MinimapCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 7467937212613897701}
   - component: {fileID: 4137038799252673460}
   - component: {fileID: 1090747836537910244}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: MinimapContent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
