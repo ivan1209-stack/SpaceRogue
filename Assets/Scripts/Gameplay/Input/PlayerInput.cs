@@ -2,16 +2,17 @@ using System;
 using Services;
 using UnityEngine;
 
-namespace Gameplay.Services
+namespace Gameplay.Input
 {
     public class PlayerInput : IDisposable
     {
         private readonly Updater _updater;
-        private readonly float _verticalAxisInputMultiplier;
+        private readonly PlayerInputConfig _playerInputConfig;
 
         public event Action<Vector3> MousePositionInput = _ => { };
         
         public event Action<float> VerticalAxisInput = _ => { };
+        public event Action<float> HorizontalAxisInput = _ => { };
 
         public event Action<bool> PrimaryFireInput = _ => { };
         public event Action<bool> ChangeWeaponInput = _ => { };
@@ -19,6 +20,7 @@ namespace Gameplay.Services
         public event Action<bool> MapInput = _ => { };
         
         private const string Vertical = "Vertical";
+        private const string Horizontal = "Horizontal";
         private const KeyCode PrimaryFire = KeyCode.Mouse0;
         private const KeyCode ChangeWeapon = KeyCode.Q;
         private const KeyCode NextLevel = KeyCode.Return;
@@ -26,12 +28,13 @@ namespace Gameplay.Services
         
         
 
-        public PlayerInput(Updater updater, float verticalAxisInputMultiplier)
+        public PlayerInput(Updater updater, PlayerInputConfig playerInputConfig)
         {
             _updater = updater;
-            _verticalAxisInputMultiplier = verticalAxisInputMultiplier;
+            _playerInputConfig = playerInputConfig;
             
             _updater.SubscribeToUpdate(CheckVerticalInput);
+            _updater.SubscribeToUpdate(CheckHorizontalInput);
             _updater.SubscribeToUpdate(CheckFiringInput);
             _updater.SubscribeToUpdate(CheckMousePositionInput);
             _updater.SubscribeToUpdate(CheckChangeWeaponInput);
@@ -42,6 +45,7 @@ namespace Gameplay.Services
         public void Dispose()
         {
             _updater.UnsubscribeFromUpdate(CheckVerticalInput);
+            _updater.UnsubscribeFromUpdate(CheckHorizontalInput);
             _updater.UnsubscribeFromUpdate(CheckFiringInput);
             _updater.UnsubscribeFromUpdate(CheckMousePositionInput);
             _updater.UnsubscribeFromUpdate(CheckChangeWeaponInput);
@@ -52,8 +56,15 @@ namespace Gameplay.Services
         private void CheckVerticalInput()
         {
             float verticalOffset = UnityEngine.Input.GetAxis(Vertical);
-            float inputValue = CalculateInputValue(verticalOffset, _verticalAxisInputMultiplier);
+            float inputValue = CalculateInputValue(verticalOffset, _playerInputConfig.VerticalInputMultiplier);
             VerticalAxisInput(inputValue);
+        }
+        
+        private void CheckHorizontalInput()
+        {
+            float horizontalOffset = UnityEngine.Input.GetAxis(Horizontal);
+            float inputValue = CalculateInputValue(horizontalOffset, _playerInputConfig.HorizontalInputMultiplier);
+            HorizontalAxisInput(inputValue);
         }
 
         private void CheckFiringInput()

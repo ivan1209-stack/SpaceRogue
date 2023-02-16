@@ -1,3 +1,4 @@
+using Gameplay.Input;
 using Gameplay.Services;
 using UnityEngine;
 using Zenject;
@@ -6,7 +7,7 @@ namespace Gameplay.Installers
 {
     public class GameplayServicesInstaller : MonoInstaller
     {
-        [field: SerializeField] public float VerticalAxisInputMultiplier { get; set; }
+        [field: SerializeField] public PlayerInputConfig PlayerInputConfig { get; set; }
         public override void InstallBindings()
         {
             InstallLevelProgressService();
@@ -24,8 +25,8 @@ namespace Gameplay.Installers
         private void InstallPlayerInput()
         {
             Container
-                .Bind<float>()
-                .FromInstance(VerticalAxisInputMultiplier)
+                .Bind<PlayerInputConfig>()
+                .FromInstance(PlayerInputConfig)
                 .AsSingle()
                 .NonLazy();
             

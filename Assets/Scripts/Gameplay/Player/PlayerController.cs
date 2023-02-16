@@ -45,9 +45,9 @@ namespace Gameplay.Player
             _config = ResourceLoader.LoadObject<PlayerConfig>(_configPath);
             _view = LoadView<PlayerView>(_viewPath, playerPosition);
 
-            var inputController = new InputController(_mousePositionInput, _verticalInput, _primaryFireInput, 
+            /*var inputController = new InputController(_mousePositionInput, _verticalInput, _primaryFireInput, 
                 _changeWeaponInput, NextLevelInput, MapInput);
-            AddController(inputController);
+            AddController(inputController);*/
 
             var inventoryController = AddInventoryController(_config.Inventory);
             var movementController = AddMovementController(_config.Movement, _view);
