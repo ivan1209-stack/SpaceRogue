@@ -4,7 +4,7 @@ using Scriptables.Space;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace DebugLevelGenerator.Editor
+namespace DebugLevelGenerator
 {
     public sealed class DebugLevelGeneratorView : MonoBehaviour
     {
