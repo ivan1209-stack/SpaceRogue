@@ -79,7 +79,6 @@ namespace UI.Services
             ReturnToMinimap();
             _updater.UnsubscribeFromUpdate(FollowPlayer);
             _playerTransform = null;
-            _currentLevelProgress.PlayerDestroyed -= OnPlayerDestroyed;
         }
 
         private void MinimapInit(float cameraSize, Color color, float alpha)
