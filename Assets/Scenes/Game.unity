@@ -203,7 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c59f080b87545ddb9b0b1a7529491c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <VerticalAxisInputMultiplier>k__BackingField: 0.1
+  <PlayerInputConfig>k__BackingField: {fileID: 11400000, guid: 2178629364486a942ab557a20e400472, type: 2}
 --- !u!1 &412195272
 GameObject:
   m_ObjectHideFlags: 0
