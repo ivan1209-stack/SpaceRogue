@@ -10,7 +10,7 @@ namespace Abstracts
     {
         [field: SerializeField] public UnitType UnitType { get; private set; }
         
-        public event Action<DamageModel> DamageTaken = (DamageModel _) => { };
+        public event Action<DamageModel> DamageTaken = _ => { };
 
         public void OnTriggerEnter2D(Collider2D other)
         {   
