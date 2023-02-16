@@ -21,7 +21,6 @@ namespace Gameplay
         private readonly BackgroundController _backgroundController;
         private readonly SpaceController _spaceController;
         private readonly PlayerController _playerController;
-        private readonly CameraController _cameraController;
         private readonly EnemyForcesController _enemyForcesController;
         private readonly GeneralGameEventsController _generalGameEventsController;
         private readonly LevelProgressController _levelProgressController;
@@ -44,9 +43,6 @@ namespace Gameplay
             _playerController = new(_spaceController.GetPlayerSpawnPoint(), _gameDataController.PlayerHealthInfo, _gameDataController.PlayerShieldInfo);
             AddController(_playerController);
             _playerController.PlayerDestroyed += OnPlayerDestroyed;
-
-            _cameraController = new(_playerController);
-            AddController(_cameraController);
 
             _enemyForcesController = new(_playerController, _spaceController.GetEnemySpawnPoints());
             AddController(_enemyForcesController);
