@@ -1419,6 +1419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <PlayerViewPrefab>k__BackingField: {fileID: 7505907477607818830, guid: b74d66ef2d8dfd34dad62db252386595, type: 3}
+  <PlayerConfig>k__BackingField: {fileID: 11400000, guid: fc51461f5c09f8e4797ed69e8d185a70, type: 2}
 --- !u!1 &2083485164
 GameObject:
   m_ObjectHideFlags: 0

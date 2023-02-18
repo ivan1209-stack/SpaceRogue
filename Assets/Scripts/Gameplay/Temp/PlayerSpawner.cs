@@ -1,4 +1,4 @@
-using Gameplay.Factories;
+using Gameplay.Player;
 using UnityEngine;
 using Zenject;
 
@@ -6,16 +6,16 @@ namespace Gameplay.Temp
 {
     public class PlayerSpawner : IInitializable
     {
-        private readonly PlayerViewFactory _playerViewFactory;
+        private readonly PlayerFactory _playerFactory;
 
-        public PlayerSpawner(PlayerViewFactory playerViewFactory)
+        public PlayerSpawner(PlayerFactory playerFactory)
         {
-            _playerViewFactory = playerViewFactory;
+            _playerFactory = playerFactory;
         }
 
         public void Initialize()
         {
-            _playerViewFactory.Create(new Vector2(0, 0));
+            _playerFactory.Create(new Vector2(0, 0));
         }
     }
 }
