@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace Gameplay.Movement
 {
-    public sealed class MovementModel
+    public sealed class UnitMovementModel
     {
-        private readonly MovementConfig _config;
+        private readonly UnitMovementConfig _config;
         private float TurnSpeedDifference => _config.maximumTurnSpeed - _config.startingTurnSpeed;
 
         public float MaxSpeed => _config.maximumSpeed;
@@ -15,7 +15,7 @@ namespace Gameplay.Movement
         public float CurrentTurnRate { get; private set; }
         
         
-        public MovementModel(MovementConfig config)
+        public UnitMovementModel(UnitMovementConfig config)
         {
             _config = config;
             CurrentSpeed = 0.0f;

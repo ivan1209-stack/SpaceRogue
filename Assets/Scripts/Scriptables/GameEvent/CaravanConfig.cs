@@ -9,7 +9,7 @@ namespace Scriptables.GameEvent
     public sealed class CaravanConfig : ScriptableObject
     {
         [field: SerializeField] public CaravanView CaravanView { get; private set; }
-        [field: SerializeField] public MovementConfig Movement { get; private set; }
+        [field: SerializeField] public UnitMovementConfig UnitMovement { get; private set; }
         [field: SerializeField] public HealthConfig Health { get; private set; }
         [field: SerializeField] public ShieldConfig Shield { get; private set; }
     }

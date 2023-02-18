@@ -45,15 +45,15 @@ namespace Gameplay.GameEvent
             _caravanView.Init(new(0));
             AddGameObject(_caravanView.gameObject);
 
-            AddCarnavalBehaviourController(_baseCaravanGameEvent.CaravanConfig.Movement, targetPosition);
+            AddCarnavalBehaviourController(_baseCaravanGameEvent.CaravanConfig.UnitMovement, targetPosition);
             AddCaravanHealthUIController(_baseCaravanGameEvent.CaravanConfig.Health, _baseCaravanGameEvent.CaravanConfig.Shield);
 
             AddEnemyGroup(_baseCaravanGameEvent, _caravanView.transform.position, _playerController, _caravanView.transform);
         }
 
-        private void AddCarnavalBehaviourController(MovementConfig movement, Vector3 targetPosition)
+        private void AddCarnavalBehaviourController(UnitMovementConfig unitMovement, Vector3 targetPosition)
         {
-            var behaviourController = new CaravanBehaviourController(new MovementModel(movement), _caravanView, targetPosition);
+            var behaviourController = new CaravanBehaviourController(new UnitMovementModel(unitMovement), _caravanView, targetPosition);
             AddController(behaviourController);
         }
 

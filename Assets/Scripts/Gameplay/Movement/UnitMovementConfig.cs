@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Gameplay.Movement
 {
     [Serializable]
-    public sealed class MovementConfig
+    public sealed class UnitMovementConfig
     {
         [Header("Speed")] 
         [Min(0.1f)]

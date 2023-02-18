@@ -13,7 +13,7 @@ namespace Gameplay.Enemy.Behaviour
     {
         private const float TurnValueAtObstacle = 0.1f;
 
-        private readonly MovementModel _movementModel;
+        private readonly UnitMovementModel _unitMovementModel;
         private readonly EnemyInputController _inputController;
         private readonly Timer _timer;
         
@@ -24,10 +24,10 @@ namespace Gameplay.Enemy.Behaviour
 
         public EnemyRoamingBehaviour(
             SubscribedProperty<EnemyState> enemyState, EnemyView view, PlayerController playerController,
-            MovementModel movementModel, EnemyInputController inputController, EnemyBehaviourConfig config) 
+            UnitMovementModel unitMovementModel, EnemyInputController inputController, EnemyBehaviourConfig config) 
             : base(enemyState, view, playerController, config)
         {
-            _movementModel = movementModel;
+            _unitMovementModel = unitMovementModel;
             _inputController = inputController;
             _timer = new(Config.TimeToPickNewAngle);
             PickRandomDirection();
@@ -98,8 +98,8 @@ namespace Gameplay.Enemy.Behaviour
                 return;
             }
 
-            var quarterMaxSpeed = _movementModel.MaxSpeed / 4;
-            switch (CompareSpeeds(_movementModel.CurrentSpeed, quarterMaxSpeed))
+            var quarterMaxSpeed = _unitMovementModel.MaxSpeed / 4;
+            switch (CompareSpeeds(_unitMovementModel.CurrentSpeed, quarterMaxSpeed))
             {
                 case -1: { _inputController.Accelerate(); return; }
                 case 0: { _inputController.HoldSpeed(); return; }

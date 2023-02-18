@@ -50,7 +50,7 @@ namespace Gameplay.Player
             AddController(inputController);*/
 
             var inventoryController = AddInventoryController(_config.Inventory);
-            var movementController = AddMovementController(_config.Movement, _view);
+            //var movementController = AddMovementController(_config.Movement, _view);
             var frontalGunsController = AddFrontalGunsController(inventoryController.Turrets, _view);
             _healthController = AddHealthController(healthInfo, shieldInfo);
             AddCrosshair();
@@ -106,12 +106,12 @@ namespace Gameplay.Player
             return inventoryController;
         }
 
-        private PlayerMovementController AddMovementController(MovementConfig movementConfig, PlayerView view)
+        /*private PlayerMovementController AddMovementController(MovementConfig movementConfig, PlayerView view)
         {
             var movementController = new PlayerMovementController(_mousePositionInput, _verticalInput, movementConfig, view);
             AddController(movementController);
             return movementController;
-        }
+        }*/
 
         private FrontalGunsController AddFrontalGunsController(List<TurretModuleConfig> turretConfigs, PlayerView view)
         {

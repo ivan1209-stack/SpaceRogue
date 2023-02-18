@@ -1,5 +1,7 @@
 using Gameplay.Factories;
+using Gameplay.Movement;
 using Gameplay.Player;
+using Gameplay.Player.Movement;
 using UnityEngine;
 using Zenject;
 
@@ -8,11 +10,12 @@ namespace Gameplay.Installers
     public class PlayerInstaller : MonoInstaller
     {
         [field: SerializeField] public PlayerView PlayerViewPrefab { get; private set; }
+        [field: SerializeField] public UnitMovementConfig PlayerMovementConfig { get; private set; }
         
         public override void InstallBindings()
         {
             InstallPlayerView();
-            //InstallPlayerMovement();
+            InstallPlayerMovement();
         }
 
         private void InstallPlayerView()
@@ -29,7 +32,9 @@ namespace Gameplay.Installers
 
         private void InstallPlayerMovement()
         {
-            
+            Container
+                .Bind<PlayerMovement>()
+                .AsCached();
         }
     }
 }

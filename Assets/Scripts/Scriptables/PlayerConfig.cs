@@ -9,7 +9,7 @@ namespace Scriptables
     public sealed class PlayerConfig : ScriptableObject
     {
         [field: SerializeField] public PlayerInventoryConfig Inventory { get; private set; }
-        [field: SerializeField] public MovementConfig Movement { get; private set; }
+        [field: SerializeField] public UnitMovementConfig UnitMovement { get; private set; }
         [field: SerializeField] public HealthConfig HealthConfig { get; private set; }
         [field: SerializeField] public ShieldConfig ShieldConfig { get; private set; }
     }

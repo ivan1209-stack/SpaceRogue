@@ -11,7 +11,7 @@ namespace Gameplay.GameEvent
     {
         private const int FatalDamage = 9999;
 
-        private readonly MovementModel _movementModel;
+        private readonly UnitMovementModel _unitMovementModel;
         private readonly CaravanView _view;
         private readonly EnemyInputController _inputController;
         private readonly Vector3 _targetPosition;
@@ -20,9 +20,9 @@ namespace Gameplay.GameEvent
         private Vector3 _currentDirection;
         private float _distance;
 
-        public CaravanBehaviourController(MovementModel movementModel, CaravanView view, Vector3 targetPosition)
+        public CaravanBehaviourController(UnitMovementModel unitMovementModel, CaravanView view, Vector3 targetPosition)
         {
-            _movementModel = movementModel;
+            _unitMovementModel = unitMovementModel;
             _view = view;
             AddGameObject(_view.gameObject);
             _inputController = AddInputController();
@@ -99,7 +99,7 @@ namespace Gameplay.GameEvent
         private EnemyMovementController AddMovementController()
         {
             var (horizontalInput, verticalInput) = _inputController;
-            var movementController = new EnemyMovementController(horizontalInput, verticalInput, _movementModel, _view);
+            var movementController = new EnemyMovementController(horizontalInput, verticalInput, _unitMovementModel, _view);
             AddController(movementController);
             return movementController;
         }

@@ -13,7 +13,7 @@ namespace Gameplay.Player.Movement
         private readonly SubscribedProperty<float> _verticalInput;
 
         private readonly PlayerSpeedometerView _speedometerView;
-        private readonly MovementModel _model;
+        private readonly UnitMovementModel _model;
         private readonly PlayerView _view;
         private readonly Rigidbody2D _rigidbody;
         
@@ -23,14 +23,14 @@ namespace Gameplay.Player.Movement
         public PlayerMovementController(
             SubscribedProperty<Vector3> mousePositionInput,
             SubscribedProperty<float> verticalInput,
-            MovementConfig config,
+            UnitMovementConfig config,
             PlayerView view)
         {
             _mousePositionInput = mousePositionInput;
             _verticalInput = verticalInput;
             _view = view;
             _rigidbody = _view.GetComponent<Rigidbody2D>();
-            _model = new MovementModel(config);
+            _model = new UnitMovementModel(config);
             _speedometerView = GameUIController.PlayerSpeedometerView;
             _speedometerView.Init(GetSpeedometerTextValue(0.0f, _model.MaxSpeed));
 

@@ -1,4 +1,5 @@
 using Gameplay.Input;
+using Gameplay.Movement;
 using Gameplay.Services;
 using UnityEngine;
 using Zenject;
@@ -12,6 +13,7 @@ namespace Gameplay.Installers
         {
             InstallLevelProgressService();
             InstallPlayerInput();
+            InstallUnitMovement();
         }
 
         private void InstallLevelProgressService()
@@ -34,6 +36,13 @@ namespace Gameplay.Installers
                 .BindInterfacesAndSelfTo<PlayerInput>()
                 .AsSingle()
                 .NonLazy();
+        }
+
+        private void InstallUnitMovement()
+        {
+            Container
+                .BindFactory<UnitMovementConfig, UnitMovementModel, UnitMovementModelFactory>()
+                .AsSingle();
         }
     }
 }
