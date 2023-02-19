@@ -54,6 +54,8 @@ namespace Gameplay.Player.Movement
             {
                 _model.StopMoving();
             }
+            
+            Debug.Log(_transform.position);
         }
     }
 }

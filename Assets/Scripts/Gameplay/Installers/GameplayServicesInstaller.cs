@@ -11,17 +11,8 @@ namespace Gameplay.Installers
         [field: SerializeField] public PlayerInputConfig PlayerInputConfig { get; set; }
         public override void InstallBindings()
         {
-            InstallLevelProgressService();
             InstallPlayerInput();
             InstallUnitMovement();
-        }
-
-        private void InstallLevelProgressService()
-        {
-            Container
-                .Bind<CurrentLevelProgress>()
-                .AsSingle()
-                .NonLazy();
         }
 
         private void InstallPlayerInput()

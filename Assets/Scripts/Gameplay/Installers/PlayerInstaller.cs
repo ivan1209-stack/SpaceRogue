@@ -45,6 +45,14 @@ namespace Gameplay.Installers
                 .WhenInjectedInto<PlayerTurning>();
             
             Container
+                .BindFactory<PlayerView, PlayerMovement, PlayerMovementFactory>()
+                .AsSingle();
+            
+            Container
+                .BindFactory<PlayerView, PlayerTurning, PlayerTurningFactory>()
+                .AsSingle();
+            
+            Container
                 .Bind<PlayerMovement>()
                 .AsCached();
 

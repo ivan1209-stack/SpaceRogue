@@ -8,17 +8,18 @@ namespace Gameplay.Player
     {
         private readonly PlayerMovement _playerMovement;
         private readonly PlayerTurning _playerTurning;
-        private readonly PlayerView _playerView;
+        
+        public PlayerView PlayerView { get; }
 
         public Player(
             Vector2 spawnPoint,
             PlayerViewFactory playerViewFactory, 
-            PlayerMovement playerMovement, 
-            PlayerTurning playerTurning)
+            PlayerMovementFactory playerMovementFactory, 
+            PlayerTurningFactory playerTurningFactory)
         {
-            _playerMovement = playerMovement;
-            _playerTurning = playerTurning;
-            _playerView = playerViewFactory.Create(spawnPoint);
+            PlayerView = playerViewFactory.Create(spawnPoint);
+            _playerMovement = playerMovementFactory.Create(PlayerView);
+            _playerTurning = playerTurningFactory.Create(PlayerView);
         }
     }
 }
