@@ -1,6 +1,7 @@
 using Gameplay.Factories;
 using Gameplay.Movement;
 using Gameplay.Player;
+using Gameplay.Player.Inventory;
 using Gameplay.Player.Movement;
 using Scriptables;
 using UnityEngine;
@@ -17,6 +18,7 @@ namespace Gameplay.Installers
         {
             InstallPlayerView();
             InstallPlayerMovement();
+            InstallPlayerInventory();
             InstallPlayer();
         }
 
@@ -58,6 +60,18 @@ namespace Gameplay.Installers
 
             Container
                 .Bind<PlayerTurning>()
+                .AsCached();
+        }
+
+        private void InstallPlayerInventory()
+        {
+            Container
+                .Bind<PlayerInventoryConfig>()
+                .FromInstance(PlayerConfig.Inventory)
+                .WhenInjectedInto<PlayerInventory>();
+            
+            Container
+                .BindInterfacesAndSelfTo<PlayerInventory>()
                 .AsCached();
         }
 

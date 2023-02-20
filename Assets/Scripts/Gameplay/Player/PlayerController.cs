@@ -53,7 +53,7 @@ namespace Gameplay.Player
             //var movementController = AddMovementController(_config.Movement, _view);
             var frontalGunsController = AddFrontalGunsController(inventoryController.Turrets, _view);
             _healthController = AddHealthController(healthInfo, shieldInfo);
-            AddCrosshair();
+            //AddCrosshair();
         }
 
         public void DestroyPlayer()
@@ -120,7 +120,7 @@ namespace Gameplay.Player
             return frontalGunsController;
         }
 
-        private void AddCrosshair()
+        /*private void AddCrosshair()
         {
             var crosshairView = ResourceLoader.LoadPrefab(_crosshairPrefabPath);
             var viewTransform = _view.transform;
@@ -131,7 +131,7 @@ namespace Gameplay.Player
             );
             crosshair.transform.parent = _view.transform;
             AddGameObject(crosshair);
-        }
+        }*/
 
     }
 }
