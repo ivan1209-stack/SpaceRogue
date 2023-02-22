@@ -6,13 +6,23 @@ using Zenject;
 
 namespace Gameplay.Installers
 {
-    public class GameplayServicesInstaller : MonoInstaller
+    public sealed class GameplayServicesInstaller : MonoInstaller
     {
-        [field: SerializeField] public PlayerInputConfig PlayerInputConfig { get; set; }
+        [field: SerializeField] public PlayerInputConfig PlayerInputConfig { get; private set; }
+
         public override void InstallBindings()
         {
+            InstallCurrentGameState();
             InstallPlayerInput();
             InstallUnitMovement();
+        }
+
+        private void InstallCurrentGameState()
+        {
+            Container
+                .Bind<CurrentGameState>()
+                .AsSingle()
+                .NonLazy();
         }
 
         private void InstallPlayerInput()

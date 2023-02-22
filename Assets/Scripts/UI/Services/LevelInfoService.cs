@@ -1,5 +1,5 @@
+using Gameplay.Services;
 using Scriptables;
-using Services;
 using UI.Game;
 using UnityEngine;
 
@@ -13,14 +13,14 @@ namespace UI.Services
 
         public int EnemiesCountToWin { get; private set; }
 
-        public LevelInfoService(PlayerDataService playerDataService, LevelInfoView levelInfoView, 
+        public LevelInfoService(CurrentGameState currentGameState, LevelInfoView levelInfoView, 
             LevelProgressConfig levelProgressConfig)
         {
             _levelNumberView = levelInfoView.LevelNumberView;
             _enemiesCountView = levelInfoView.EnemiesCountView;
             _levelProgressConfig = levelProgressConfig;
 
-            _levelNumberView.InitNumber(playerDataService.CompletedLevels + 1);
+            _levelNumberView.InitNumber(currentGameState.CurrentLevelNumber);
 
             ShowEnemiesCount(false);
 
