@@ -18,7 +18,6 @@ namespace Gameplay
         private readonly CurrentState _currentState;
         private readonly GameDataController _gameDataController;
         private readonly GameUIController _gameUIController;
-        private readonly BackgroundController _backgroundController;
         private readonly SpaceController _spaceController;
         private readonly PlayerController _playerController;
         private readonly EnemyForcesController _enemyForcesController;
@@ -33,9 +32,6 @@ namespace Gameplay
 
             _gameUIController = new(mainUICanvas, ExitToMenu, NextLevel);
             AddController(_gameUIController);
-
-            _backgroundController = new();
-            AddController(_backgroundController);
 
             _spaceController = new();
             AddController(_spaceController);
