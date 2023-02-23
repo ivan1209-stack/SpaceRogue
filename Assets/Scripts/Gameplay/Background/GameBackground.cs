@@ -6,12 +6,12 @@ using UnityEngine;
 
 namespace Gameplay.Background
 {
-    public sealed class Background : IDisposable
+    public sealed class GameBackground : IDisposable
     {
         private const int MaskCoefficient = 1;
 
         private readonly Updater _updater;
-        private readonly BackgroundConfig _config;
+        private readonly GameBackgroundConfig _config;
         private readonly Transform _target;
 
         private readonly InfiniteSprite _backParalax;
@@ -22,7 +22,7 @@ namespace Gameplay.Background
         private readonly NebulaEffect _nebulaForeEffect;
         private readonly NebulaEffect _nebulaMaskEffect;
 
-        public Background(Updater updater, CameraView camera, BackgroundView view, BackgroundConfig config)
+        public GameBackground(Updater updater, CameraView camera, GameBackgroundView view, GameBackgroundConfig config)
         {
             _updater = updater;
             _config = config;

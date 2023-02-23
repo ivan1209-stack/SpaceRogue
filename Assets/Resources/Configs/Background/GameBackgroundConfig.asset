@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51c5207b6aeaa3340886c139a1cfd2f0, type: 3}
-  m_Name: BackgroundConfig
+  m_Name: GameBackgroundConfig
   m_EditorClassIdentifier: 
   <BackCoefficient>k__BackingField: 0.6
   <MidCoefficient>k__BackingField: 0.5

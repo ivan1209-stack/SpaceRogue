@@ -10,8 +10,8 @@ namespace Gameplay.Installers
 {
     public sealed class GameplayServicesInstaller : MonoInstaller
     {
-        [field: SerializeField] public BackgroundConfig BackgroundConfig { get; private set; }
-        [field: SerializeField] public BackgroundView BackgroundView { get; private set; }
+        [field: SerializeField] public GameBackgroundConfig GameBackgroundConfig { get; private set; }
+        [field: SerializeField] public GameBackgroundView GameBackgroundView { get; private set; }
 
         [field: SerializeField] public PlayerInputConfig PlayerInputConfig { get; private set; }
 
@@ -34,19 +34,19 @@ namespace Gameplay.Installers
         private void InstallBackground()
         {
             Container
-                .Bind<BackgroundConfig>()
-                .FromInstance(BackgroundConfig)
+                .Bind<GameBackgroundConfig>()
+                .FromInstance(GameBackgroundConfig)
                 .AsSingle()
                 .NonLazy();
 
             Container
-                .Bind<BackgroundView>()
-                .FromInstance(BackgroundView)
+                .Bind<GameBackgroundView>()
+                .FromInstance(GameBackgroundView)
                 .AsSingle()
                 .NonLazy();
 
             Container
-                .BindInterfacesAndSelfTo<Background.Background>()
+                .BindInterfacesAndSelfTo<GameBackground>()
                 .AsSingle()
                 .NonLazy();
         }
