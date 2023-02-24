@@ -9,6 +9,7 @@ namespace UI.Services
     {
         private readonly LevelNumberView _levelNumberView;
         private readonly EnemiesCountView _enemiesCountView;
+        //TODO Get LevelPreset
         private readonly LevelProgressConfig _levelProgressConfig;
 
         public int EnemiesCountToWin { get; private set; }

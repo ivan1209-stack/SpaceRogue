@@ -37,7 +37,6 @@ namespace Gameplay.Space
 
             _levelGenerator = new(_view, _config, starSpawnConfig, enemySpawnConfig);
             _levelGenerator.Generate();
-            AddObstacleController(_view.ObstacleView, _config.ObstacleForce);
 
             foreach (var starSpawnPoint in _levelGenerator.GetSpawnPoints(CellType.Star))
             {
@@ -71,12 +70,6 @@ namespace Gameplay.Space
             {
                 AddController(planet);
             }
-        }
-
-        private void AddObstacleController(ObstacleView obstacleView, float obstacleForce)
-        {
-            var obstacleController = new ObstacleController(obstacleView, obstacleForce);
-            AddController(obstacleController);
         }
     }
 }
