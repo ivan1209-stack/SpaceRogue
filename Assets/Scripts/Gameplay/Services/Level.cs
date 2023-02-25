@@ -15,26 +15,34 @@ namespace Gameplay.Services
         private readonly StarSpawnConfig _starSpawnConfig;
         private readonly PlanetSpawnConfig _planetSpawnConfig;
         private readonly EnemySpawnConfig _enemySpawnConfig;
-        private readonly LevelGenerator _levelGenerator;
 
         private LevelPreset _currentLevelPreset;
 
         public int CurrentLevelNumber { get; private set; }
 
-        public Level(int currentLevelNumber, SpaceViewFactory spaceViewFactory, LevelPresetsConfig levelPresetsConfig, StarSpawnConfig starSpawnConfig, PlanetSpawnConfig planetSpawnConfig, EnemySpawnConfig enemySpawnConfig, SpaceObstacleFactory spaceObstacleFactory)
+        public Level(int currentLevelNumber,
+                     SpaceViewFactory spaceViewFactory,
+                     LevelPresetsConfig levelPresetsConfig,
+                     StarSpawnConfig starSpawnConfig,
+                     PlanetSpawnConfig planetSpawnConfig,
+                     EnemySpawnConfig enemySpawnConfig,
+                     SpaceObstacleFactory spaceObstacleFactory)
         {
             CurrentLevelNumber = currentLevelNumber;
             _levelPresetsConfig = levelPresetsConfig;
             _starSpawnConfig = starSpawnConfig;
             _planetSpawnConfig = planetSpawnConfig;
             _enemySpawnConfig = enemySpawnConfig;
+            
             PickRandomLevelPreset();
 
             _spaceView = spaceViewFactory.Create();
-            
-            //TODO Remade Generator
-            _levelGenerator = new(_spaceView, _currentLevelPreset.SpaceConfig, starSpawnConfig, enemySpawnConfig);
-            _levelGenerator.Generate();
+
+            MapGenerator map = new(_currentLevelPreset.SpaceConfig);
+            new DrawMap(_spaceView, _currentLevelPreset.SpaceConfig, map.BorderMap, map.NebulaMap);
+
+            //TODO SpawnPointsFinder
+            //var spawnPointsFinder = new SpawnPointsFinder(map.NebulaMap, _spaceView.NebulaTilemap, _currentLevelPreset.SpaceConfig, _starSpawnConfig, _enemySpawnConfig);
 
             spaceObstacleFactory.Create(_spaceView.SpaceObstacleView, _currentLevelPreset.SpaceConfig.ObstacleForce);
 
