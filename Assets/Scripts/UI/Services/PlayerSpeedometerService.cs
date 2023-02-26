@@ -20,7 +20,7 @@ namespace UI.Services
             _playerInput = playerInput;
             _movementFactory = movementFactory;
 
-            _playerSpeedometerView.gameObject.SetActive(false);
+            _playerSpeedometerView.Hide();
 
             _movementFactory.PlayerMovementCreated += OnPlayerMovementCreated;
         }
@@ -35,7 +35,7 @@ namespace UI.Services
         {
             _playerMovement = playerMovement;
 
-            _playerSpeedometerView.gameObject.SetActive(true);
+            _playerSpeedometerView.Show();
             _playerSpeedometerView.Init(GetSpeedometerTextValue(_playerMovement.CurrentSpeed, _playerMovement.MaxSpeed));
 
             _playerInput.VerticalAxisInput += UpdateSpeedometer;

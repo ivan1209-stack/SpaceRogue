@@ -34,11 +34,9 @@ namespace Gameplay.Space.Generator
             _factorSmooth = spaceConfig.FactorSmooth;
             _randomType = spaceConfig.RandomType;
             _chance = spaceConfig.Chance;
-
-            Generate();
         }
 
-        private void Generate()
+        public void Generate()
         {
             BorderMap = CreateBorderMap(_widthMap, _heightMap, _outerBorder);
             NebulaMap = CreateNebulaMap(_widthMap, _heightMap, _innerBorder, NoiseScale, 

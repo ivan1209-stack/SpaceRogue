@@ -7,10 +7,10 @@ namespace Gameplay.Player.Movement
     {
         public event Action<PlayerMovement> PlayerMovementCreated = _ => { };
 
-        public override PlayerMovement Create(PlayerView param)
+        public override PlayerMovement Create(PlayerView playerView)
         {
-            var playerMovement = base.Create(param);
-            PlayerMovementCreated?.Invoke(playerMovement);
+            var playerMovement = base.Create(playerView);
+            PlayerMovementCreated.Invoke(playerMovement);
             return playerMovement;
         }
     }

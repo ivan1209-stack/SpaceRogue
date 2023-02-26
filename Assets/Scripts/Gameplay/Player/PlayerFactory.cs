@@ -9,9 +9,9 @@ namespace Gameplay.Player
     {
         public event Action<PlayerSpawnedEventArgs> PlayerSpawned = _ => { };
 
-        public override Player Create(Vector2 param)
+        public override Player Create(Vector2 spawnPoint)
         {
-            var player = base.Create(param);
+            var player = base.Create(spawnPoint);
             PlayerSpawned.Invoke(new PlayerSpawnedEventArgs
             {
                 Transform = player.PlayerView.transform

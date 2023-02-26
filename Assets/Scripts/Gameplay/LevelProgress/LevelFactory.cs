@@ -4,15 +4,14 @@ using Zenject;
 
 namespace Gameplay.Factories
 {
-    public class LevelFactory : PlaceholderFactory<int, Level>
+    public sealed class LevelFactory : PlaceholderFactory<int, Level>
     {
-        //TODO ?? LevelCreatedEventArgs
-        public event Action LevelCreated;
+        public event Action LevelCreated = () => { };
 
-        public override Level Create(int param)
+        public override Level Create(int levelNumber)
         {
-            LevelCreated?.Invoke();
-            return base.Create(param);
+            LevelCreated.Invoke();
+            return base.Create(levelNumber);
         }
     }
 }

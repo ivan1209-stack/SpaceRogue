@@ -3,7 +3,7 @@ using Zenject;
 
 namespace Gameplay.Factories
 {
-    public class SpaceViewFactory : PlaceholderFactory<SpaceView>
+    public sealed class SpaceViewFactory : PlaceholderFactory<SpaceView>
     {
         private readonly DiContainer _diContainer;
         private readonly SpaceView _spaceViewPrefab;

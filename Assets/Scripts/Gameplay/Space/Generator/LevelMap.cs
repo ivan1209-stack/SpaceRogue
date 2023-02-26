@@ -4,7 +4,7 @@ using UnityEngine.Tilemaps;
 
 namespace Gameplay.Space.Generator
 {
-    public sealed class DrawMap
+    public sealed class LevelMap
     {
         private readonly Tilemap _borderTilemap;
         private readonly Tilemap _borderMaskTilemap;
@@ -19,7 +19,7 @@ namespace Gameplay.Space.Generator
         private readonly int[,] _borderMap;
         private readonly int[,] _nebulaMap;
 
-        public DrawMap(SpaceView spaceView, SpaceConfig spaceConfig, int[,] borderMap, int[,] nebulaMap)
+        public LevelMap(SpaceView spaceView, SpaceConfig spaceConfig, int[,] borderMap, int[,] nebulaMap)
         {
             _borderTilemap = spaceView.BorderTilemap;
             _borderMaskTilemap = spaceView.BorderMaskTilemap;
@@ -33,11 +33,9 @@ namespace Gameplay.Space.Generator
 
             _borderMap = borderMap;
             _nebulaMap = nebulaMap;
-
-            Draw();
         }
 
-        private void Draw()
+        public void Draw()
         {
             DrawLayer(_borderMap, _borderTilemap, _borderTileBase, CellType.Border);
             DrawLayer(_borderMap, _borderMaskTilemap, _borderMaskTileBase, CellType.Border);

@@ -22,10 +22,12 @@ namespace Gameplay.Space.Generator
 
         private List<Point> _availablePoints = new();
 
-        public SpawnPointsFinder(int[,] map, Tilemap tilemap,
-                              SpaceConfig spaceConfig,
-                              StarSpawnConfig starSpawnConfig,
-                              EnemySpawnConfig enemySpawnConfig)
+        public SpawnPointsFinder(
+            int[,] map, 
+            Tilemap tilemap,
+            SpaceConfig spaceConfig,
+            StarSpawnConfig starSpawnConfig,
+            EnemySpawnConfig enemySpawnConfig)
         {
             //TODO REMADE ALL
             _map = map;

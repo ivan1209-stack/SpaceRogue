@@ -8,7 +8,7 @@ using Scriptables.Space;
 
 namespace Gameplay.Services
 {
-    public class Level : IDisposable
+    public sealed class Level : IDisposable
     {
         private readonly SpaceView _spaceView;
         private readonly LevelPresetsConfig _levelPresetsConfig;
@@ -20,13 +20,14 @@ namespace Gameplay.Services
 
         public int CurrentLevelNumber { get; private set; }
 
-        public Level(int currentLevelNumber,
-                     SpaceViewFactory spaceViewFactory,
-                     LevelPresetsConfig levelPresetsConfig,
-                     StarSpawnConfig starSpawnConfig,
-                     PlanetSpawnConfig planetSpawnConfig,
-                     EnemySpawnConfig enemySpawnConfig,
-                     SpaceObstacleFactory spaceObstacleFactory)
+        public Level(
+            int currentLevelNumber,
+            SpaceViewFactory spaceViewFactory,
+            LevelPresetsConfig levelPresetsConfig,
+            StarSpawnConfig starSpawnConfig,
+            PlanetSpawnConfig planetSpawnConfig,
+            EnemySpawnConfig enemySpawnConfig,
+            SpaceObstacleFactory spaceObstacleFactory)
         {
             CurrentLevelNumber = currentLevelNumber;
             _levelPresetsConfig = levelPresetsConfig;
@@ -38,8 +39,11 @@ namespace Gameplay.Services
 
             _spaceView = spaceViewFactory.Create();
 
-            MapGenerator map = new(_currentLevelPreset.SpaceConfig);
-            new DrawMap(_spaceView, _currentLevelPreset.SpaceConfig, map.BorderMap, map.NebulaMap);
+            var map = new MapGenerator(_currentLevelPreset.SpaceConfig);
+            map.Generate();
+            
+            var levelMap = new LevelMap(_spaceView, _currentLevelPreset.SpaceConfig, map.BorderMap, map.NebulaMap);
+            levelMap.Draw();
 
             //TODO SpawnPointsFinder
             //var spawnPointsFinder = new SpawnPointsFinder(map.NebulaMap, _spaceView.NebulaTilemap, _currentLevelPreset.SpaceConfig, _starSpawnConfig, _enemySpawnConfig);
