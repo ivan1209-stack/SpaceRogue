@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Gameplay.Background
 {
-    public sealed class BackgroundView : MonoBehaviour
+    public sealed class GameBackgroundView : MonoBehaviour
     {
         [field: SerializeField] public SpriteRenderer BackSpriteRenderer { get; private set; }
         [field: SerializeField] public SpriteRenderer MidSpriteRenderer { get; private set; }

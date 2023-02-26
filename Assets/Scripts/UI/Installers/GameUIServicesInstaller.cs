@@ -15,6 +15,7 @@ namespace UI.Installers
         public override void InstallBindings()
         {
             InstallPlayerInfoService();
+            InstallPlayerSpeedometerService();
             InstallLevelInfoService();
             InstallMinimapService();
             //TODO For instantiate other UI service
@@ -24,6 +25,14 @@ namespace UI.Installers
         {
             Container
                 .Bind<PlayerInfoService>()
+                .AsSingle()
+                .NonLazy();
+        }
+        
+        private void InstallPlayerSpeedometerService()
+        {
+            Container
+                .Bind<PlayerSpeedometerService>()
                 .AsSingle()
                 .NonLazy();
         }

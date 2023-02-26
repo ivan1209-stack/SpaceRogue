@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Gameplay.Space.Obstacle
 {
     [RequireComponent(typeof(Collider2D))]
-    public sealed class ObstacleView : MonoBehaviour
+    public sealed class SpaceObstacleView : MonoBehaviour
     {
         public event Action<UnitView> OnTriggerEnter = (UnitView _) => {};
         public event Action<UnitView> OnTriggerStay = (UnitView _) => { };

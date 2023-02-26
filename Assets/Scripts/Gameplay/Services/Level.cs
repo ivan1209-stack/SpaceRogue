@@ -1,25 +1,69 @@
 using System;
+using Gameplay.Factories;
+using Gameplay.Space.Generator;
+using Gameplay.Space.Obstacle;
 using Scriptables;
-using UnityEngine;
+using Scriptables.Enemy;
+using Scriptables.Space;
 
 namespace Gameplay.Services
 {
-    public class Level : IDisposable
+    public sealed class Level : IDisposable
     {
-        
-        
-        private int _remainingEnemies;
-        private int _enemiesRequiredToWin;
-        
-        public Level(int number, LevelProgressConfig levelProgressConfig)
+        private readonly SpaceView _spaceView;
+        private readonly LevelPresetsConfig _levelPresetsConfig;
+        private readonly StarSpawnConfig _starSpawnConfig;
+        private readonly PlanetSpawnConfig _planetSpawnConfig;
+        private readonly EnemySpawnConfig _enemySpawnConfig;
+
+        private LevelPreset _currentLevelPreset;
+
+        public int CurrentLevelNumber { get; private set; }
+
+        public Level(
+            int currentLevelNumber,
+            SpaceViewFactory spaceViewFactory,
+            LevelPresetsConfig levelPresetsConfig,
+            StarSpawnConfig starSpawnConfig,
+            PlanetSpawnConfig planetSpawnConfig,
+            EnemySpawnConfig enemySpawnConfig,
+            SpaceObstacleFactory spaceObstacleFactory)
         {
-            _remainingEnemies = 0;
-            _enemiesRequiredToWin = Mathf.Clamp(levelProgressConfig.EnemiesCountToWin, 1, _remainingEnemies);
+            CurrentLevelNumber = currentLevelNumber;
+            _levelPresetsConfig = levelPresetsConfig;
+            _starSpawnConfig = starSpawnConfig;
+            _planetSpawnConfig = planetSpawnConfig;
+            _enemySpawnConfig = enemySpawnConfig;
+            
+            PickRandomLevelPreset();
+
+            _spaceView = spaceViewFactory.Create();
+
+            var map = new MapGenerator(_currentLevelPreset.SpaceConfig);
+            map.Generate();
+            
+            var levelMap = new LevelMap(_spaceView, _currentLevelPreset.SpaceConfig, map.BorderMap, map.NebulaMap);
+            levelMap.Draw();
+
+            //TODO SpawnPointsFinder
+            //var spawnPointsFinder = new SpawnPointsFinder(map.NebulaMap, _spaceView.NebulaTilemap, _currentLevelPreset.SpaceConfig, _starSpawnConfig, _enemySpawnConfig);
+
+            spaceObstacleFactory.Create(_spaceView.SpaceObstacleView, _currentLevelPreset.SpaceConfig.ObstacleForce);
+
+            //TODO
+            //View Factory & Service Factory
+            //SpaceObjectFactory OR StarsFactory & PlanetFactory
         }
 
         public void Dispose()
         {
-            
+            UnityEngine.Object.Destroy(_spaceView);
+        }
+
+        private void PickRandomLevelPreset()
+        {
+            var index = new Random().Next(_levelPresetsConfig.Presets.Count);
+            _currentLevelPreset = _levelPresetsConfig.Presets[index];
         }
     }
 }

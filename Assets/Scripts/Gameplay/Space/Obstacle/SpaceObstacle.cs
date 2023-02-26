@@ -1,22 +1,26 @@
 ﻿using Abstracts;
+using Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 namespace Gameplay.Space.Obstacle
 {
-    public sealed class ObstacleController : BaseController
+    public sealed class SpaceObstacle : IDisposable
     {
         private const int SearchDistance = 10000;
 
-        private readonly ObstacleView _obstacleView;
+        private readonly Updater _updater;
+        private readonly SpaceObstacleView _obstacleView;
         private readonly Collider2D _obstacleCollider;
         private readonly float _obstacleForce;
 
         private readonly Dictionary<UnitView, Vector3> _unitCollection = new();
 
-        public ObstacleController(ObstacleView obstacleView, float obstacleForce)
+        public SpaceObstacle(Updater updater, SpaceObstacleView obstacleView, float obstacleForce)
         {
+            _updater = updater;
             _obstacleView = obstacleView;
             
             if (obstacleView.TryGetComponent<CompositeCollider2D>(out var compositeCollider2D))
@@ -33,19 +37,17 @@ namespace Gameplay.Space.Obstacle
             _obstacleView.OnTriggerEnter += OnObstacleEnter;
             _obstacleView.OnTriggerExit += OnObstacleExit;
 
-            AddGameObject(obstacleView.gameObject);
-
-            EntryPoint.SubscribeToFixedUpdate(Repulsion);
+            _updater.SubscribeToFixedUpdate(Repulsion);
         }
 
-        protected override void OnDispose()
+        public void Dispose()
         {
             _obstacleView.OnTriggerEnter -= OnObstacleEnter;
             _obstacleView.OnTriggerExit -= OnObstacleExit;
 
             _unitCollection.Clear();
 
-            EntryPoint.UnsubscribeFromFixedUpdate(Repulsion);
+            _updater.UnsubscribeFromFixedUpdate(Repulsion);
         }
 
         private void Repulsion()
