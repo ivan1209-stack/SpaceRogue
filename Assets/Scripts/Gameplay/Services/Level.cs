@@ -1,5 +1,6 @@
 using System;
 using Gameplay.Factories;
+using Gameplay.Player;
 using Gameplay.Space.Generator;
 using Gameplay.Space.Obstacle;
 using Scriptables;
@@ -11,6 +12,7 @@ namespace Gameplay.Services
     public sealed class Level : IDisposable
     {
         private readonly SpaceView _spaceView;
+        private readonly PlayerFactory _playerFactory;
         private readonly LevelPresetsConfig _levelPresetsConfig;
         private readonly StarSpawnConfig _starSpawnConfig;
         private readonly PlanetSpawnConfig _planetSpawnConfig;
@@ -23,6 +25,7 @@ namespace Gameplay.Services
         public Level(
             int currentLevelNumber,
             SpaceViewFactory spaceViewFactory,
+            PlayerFactory playerFactory,
             LevelPresetsConfig levelPresetsConfig,
             StarSpawnConfig starSpawnConfig,
             PlanetSpawnConfig planetSpawnConfig,
@@ -30,6 +33,7 @@ namespace Gameplay.Services
             SpaceObstacleFactory spaceObstacleFactory)
         {
             CurrentLevelNumber = currentLevelNumber;
+            _playerFactory = playerFactory;
             _levelPresetsConfig = levelPresetsConfig;
             _starSpawnConfig = starSpawnConfig;
             _planetSpawnConfig = planetSpawnConfig;
@@ -45,10 +49,11 @@ namespace Gameplay.Services
             var levelMap = new LevelMap(_spaceView, _currentLevelPreset.SpaceConfig, map.BorderMap, map.NebulaMap);
             levelMap.Draw();
 
-            //TODO SpawnPointsFinder
-            //var spawnPointsFinder = new SpawnPointsFinder(map.NebulaMap, _spaceView.NebulaTilemap, _currentLevelPreset.SpaceConfig, _starSpawnConfig, _enemySpawnConfig);
+            var spawnPointsFinder = new SpawnPointsFinder(map.NebulaMap, _spaceView.NebulaTilemap);
 
             spaceObstacleFactory.Create(_spaceView.SpaceObstacleView, _currentLevelPreset.SpaceConfig.ObstacleForce);
+
+            _playerFactory.Create(spawnPointsFinder.GetPlayerSpawnPoint());
 
             //TODO
             //View Factory & Service Factory

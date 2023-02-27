@@ -6,7 +6,7 @@ namespace Gameplay.Temp
     {
         public override void InstallBindings()
         {
-            InstallPlayerSpawner();
+            //InstallPlayerSpawner();
         }
 
         private void InstallPlayerSpawner()
