@@ -11,36 +11,21 @@ namespace Gameplay.Space.Generator
         private const int DefaultVonNeumannCount = 2;
         private const float NoiseScale = 0.1f;
 
-        private readonly int _widthMap;
-        private readonly int _heightMap;
-        private readonly int _outerBorder;
-        private readonly int _innerBorder;
-        private readonly SmoothMapType _smoothMapType;
-        private readonly int _factorSmooth;
-        private readonly RandomType _randomType;
-        private readonly float _chance;
+        private readonly SpaceConfig _spaceConfig;
 
         public int[,] BorderMap { get; private set; }
-
         public int[,] NebulaMap { get; private set; }
 
         public MapGenerator(SpaceConfig spaceConfig)
         {
-            _widthMap = spaceConfig.WidthMap;
-            _heightMap = spaceConfig.HeightMap;
-            _outerBorder = spaceConfig.OuterBorder;
-            _innerBorder = spaceConfig.InnerBorder;
-            _smoothMapType = spaceConfig.SmoothMapType;
-            _factorSmooth = spaceConfig.FactorSmooth;
-            _randomType = spaceConfig.RandomType;
-            _chance = spaceConfig.Chance;
+            _spaceConfig = spaceConfig;
         }
 
         public void Generate()
         {
-            BorderMap = CreateBorderMap(_widthMap, _heightMap, _outerBorder);
-            NebulaMap = CreateNebulaMap(_widthMap, _heightMap, _innerBorder, NoiseScale, 
-                _randomType, _chance, _smoothMapType, _factorSmooth);
+            BorderMap = CreateBorderMap(_spaceConfig.WidthMap, _spaceConfig.HeightMap, _spaceConfig.OuterBorder);
+            NebulaMap = CreateNebulaMap(_spaceConfig.WidthMap, _spaceConfig.HeightMap, _spaceConfig.InnerBorder, NoiseScale,
+                _spaceConfig.RandomType, _spaceConfig.Chance, _spaceConfig.SmoothMapType, _spaceConfig.FactorSmooth);
         }
 
         private int[,] CreateBorderMap(int widthMap, int heightMap, int outerBorder)

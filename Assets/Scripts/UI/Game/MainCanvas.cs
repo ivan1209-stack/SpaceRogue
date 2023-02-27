@@ -3,7 +3,7 @@ using UnityEngine;
 namespace UI.Game
 {
     [RequireComponent(typeof(Canvas))]
-    public class MainCanvas : MonoBehaviour
+    public sealed class MainCanvas : MonoBehaviour
     {
     }
 }

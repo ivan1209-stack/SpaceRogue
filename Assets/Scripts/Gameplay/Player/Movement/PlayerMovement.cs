@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Gameplay.Player.Movement
 {
-    public class PlayerMovement : IDisposable
+    public sealed class PlayerMovement : IDisposable
     {
         private readonly PlayerInput _playerInput;
         private readonly UnitMovementModel _model;

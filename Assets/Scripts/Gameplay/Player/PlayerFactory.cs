@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Gameplay.Player
 {
-    public class PlayerFactory : PlaceholderFactory<Vector2, Player>
+    public sealed class PlayerFactory : PlaceholderFactory<Vector2, Player>
     {
         public event Action<PlayerSpawnedEventArgs> PlayerSpawned = _ => { };
 

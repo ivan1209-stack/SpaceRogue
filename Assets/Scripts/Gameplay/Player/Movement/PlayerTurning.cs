@@ -7,7 +7,7 @@ using Utilities.Unity;
 
 namespace Gameplay.Player.Movement
 {
-    public class PlayerTurning : IDisposable
+    public sealed class PlayerTurning : IDisposable
     {
         private readonly PlayerInput _playerInput;
         private readonly UnitMovementModel _model;

@@ -1,13 +1,12 @@
 using System;
 using Gameplay.Events;
-using Gameplay.Player;
 using Gameplay.Services;
 using Services;
 using UnityEngine;
 
 namespace Gameplay.Camera
 {
-    public class GameCamera : IDisposable
+    public sealed class GameCamera : IDisposable
     {
         private readonly Updater _updater;
         private readonly CurrentLevelProgress _gameProgress;

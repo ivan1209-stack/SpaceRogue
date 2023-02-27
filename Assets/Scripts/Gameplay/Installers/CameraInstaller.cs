@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Gameplay.Installers
 {
-    public class CameraInstaller : MonoInstaller
+    public sealed class CameraInstaller : MonoInstaller
     {
         [field: SerializeField] public CameraView GameCameraView { get; private set; }
 
@@ -22,7 +22,7 @@ namespace Gameplay.Installers
                 .NonLazy();
 
             Container
-                .Bind<GameCamera>()
+                .BindInterfacesAndSelfTo<GameCamera>()
                 .AsSingle()
                 .NonLazy();
         }

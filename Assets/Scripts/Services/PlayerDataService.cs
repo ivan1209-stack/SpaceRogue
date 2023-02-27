@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Services
 {
-    public class PlayerDataService : IDisposable
+    public sealed class PlayerDataService : IDisposable
     {
         private const string RecordKey = "RecordCompletedLevels";
         

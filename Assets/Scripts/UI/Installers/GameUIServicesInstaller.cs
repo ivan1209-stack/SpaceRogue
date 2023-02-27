@@ -6,7 +6,7 @@ using Zenject;
 
 namespace UI.Installers
 {
-    public class GameUIServicesInstaller : MonoInstaller
+    public sealed class GameUIServicesInstaller : MonoInstaller
     {
         [field: SerializeField] public LevelProgressConfig LevelProgressConfig { get; private set; }
         [field: SerializeField] public MinimapCamera MinimapCamera { get; private set; }
@@ -24,7 +24,7 @@ namespace UI.Installers
         private void InstallPlayerInfoService()
         {
             Container
-                .Bind<PlayerInfoService>()
+                .BindInterfacesAndSelfTo<PlayerInfoService>()
                 .AsSingle()
                 .NonLazy();
         }
@@ -32,7 +32,7 @@ namespace UI.Installers
         private void InstallPlayerSpeedometerService()
         {
             Container
-                .Bind<PlayerSpeedometerService>()
+                .BindInterfacesAndSelfTo<PlayerSpeedometerService>()
                 .AsSingle()
                 .NonLazy();
         }
@@ -66,7 +66,7 @@ namespace UI.Installers
                 .NonLazy();
             
             Container
-                .Bind<MinimapService>()
+                .BindInterfacesAndSelfTo<MinimapService>()
                 .AsSingle()
                 .NonLazy();
         }

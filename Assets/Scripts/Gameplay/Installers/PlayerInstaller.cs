@@ -9,7 +9,7 @@ using Zenject;
 
 namespace Gameplay.Installers
 {
-    public class PlayerInstaller : MonoInstaller
+    public sealed class PlayerInstaller : MonoInstaller
     {
         [field: SerializeField] public PlayerView PlayerViewPrefab { get; private set; }
         [field: SerializeField] public PlayerConfig PlayerConfig { get; private set; }

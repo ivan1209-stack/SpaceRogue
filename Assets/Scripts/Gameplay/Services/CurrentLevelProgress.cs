@@ -4,7 +4,7 @@ using Gameplay.Player;
 
 namespace Gameplay.Services
 {
-    public class CurrentLevelProgress : IDisposable
+    public sealed class CurrentLevelProgress : IDisposable
     {
         private readonly PlayerFactory _playerFactory;
         

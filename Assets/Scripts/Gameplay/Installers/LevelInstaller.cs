@@ -1,5 +1,4 @@
 using Gameplay.Factories;
-using Gameplay.Player;
 using Gameplay.Services;
 using Gameplay.Space.Generator;
 using Gameplay.Space.Obstacle;
@@ -77,7 +76,7 @@ namespace Gameplay.Installers
         private void InstallLevelProgressService()
         {
             Container
-                .Bind<CurrentLevelProgress>()
+                .BindInterfacesAndSelfTo<CurrentLevelProgress>()
                 .AsSingle()
                 .NonLazy();
         }
