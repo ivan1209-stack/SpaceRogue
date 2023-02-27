@@ -6,14 +6,6 @@ namespace Gameplay.Temp
     {
         public override void InstallBindings()
         {
-            //InstallPlayerSpawner();
-        }
-
-        private void InstallPlayerSpawner()
-        {
-            Container
-                .BindInterfacesAndSelfTo<PlayerSpawner>()
-                .AsSingle();
         }
     }
 }
