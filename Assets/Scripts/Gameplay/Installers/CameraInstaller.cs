@@ -22,7 +22,7 @@ namespace Gameplay.Installers
                 .NonLazy();
 
             Container
-                .Bind<GameCamera>()
+                .BindInterfacesAndSelfTo<GameCamera>()
                 .AsSingle()
                 .NonLazy();
         }
