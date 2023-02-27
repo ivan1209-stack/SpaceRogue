@@ -2,12 +2,13 @@ using Gameplay.Factories;
 
 namespace Gameplay.Services
 {
-    public class CurrentGameState
+    public sealed class CurrentGameState
     {
-        public int CurrentLevelNumber { get; private set; }
+        private readonly LevelFactory _levelFactory;
         
-        private LevelFactory _levelFactory;
         private Level _currentLevel;
+        
+        public int CurrentLevelNumber { get; private set; }
 
         public CurrentGameState(LevelFactory levelFactory)
         {

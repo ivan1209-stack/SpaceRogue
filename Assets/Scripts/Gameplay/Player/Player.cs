@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Gameplay.Player
 {
-    public class Player : IDisposable
+    public sealed class Player : IDisposable
     {
         private readonly PlayerInventory _playerInventory;
         

@@ -4,7 +4,7 @@ using Zenject;
 
 namespace UI.Installers
 {
-    public class GameUIInstaller : MonoInstaller
+    public sealed class GameUIInstaller : MonoInstaller
     {
         [field: Header("GameUICanvas")]
         [field: SerializeField] public MainCanvas MainCanvas { get; private set; }

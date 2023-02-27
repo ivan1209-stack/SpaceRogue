@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace UI.MainMenu
 {
-    public class MainMenuBackground : IDisposable
+    public sealed class MainMenuBackground : IDisposable
     {
         private readonly Camera _camera;
         private readonly Updater _updater;

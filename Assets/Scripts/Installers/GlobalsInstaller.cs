@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Installers
 {
-    public class GlobalsInstaller : MonoInstaller
+    public sealed class GlobalsInstaller : MonoInstaller
     {
         public override void InstallBindings()
         {

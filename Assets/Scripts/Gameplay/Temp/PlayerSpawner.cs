@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Gameplay.Temp
 {
-    public class PlayerSpawner : IInitializable
+    public sealed class PlayerSpawner : IInitializable
     {
         private readonly PlayerFactory _playerFactory;
 

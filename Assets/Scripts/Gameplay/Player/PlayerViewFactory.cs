@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Gameplay.Factories
 {
-    public class PlayerViewFactory : PlaceholderFactory<Vector2, PlayerView>
+    public sealed class PlayerViewFactory : PlaceholderFactory<Vector2, PlayerView>
     {
         private readonly DiContainer _diContainer;
         private readonly PlayerView _playerViewPrefab;

@@ -2,7 +2,7 @@ using Zenject;
 
 namespace Gameplay.Player.Movement
 {
-    public class PlayerTurningFactory : PlaceholderFactory<PlayerView, PlayerTurning>
+    public sealed class PlayerTurningFactory : PlaceholderFactory<PlayerView, PlayerTurning>
     {
     }
 }

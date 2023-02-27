@@ -6,7 +6,7 @@ using Zenject;
 
 namespace UI.Installers
 {
-    public class GameUIServicesInstaller : MonoInstaller
+    public sealed class GameUIServicesInstaller : MonoInstaller
     {
         [field: SerializeField] public LevelProgressConfig LevelProgressConfig { get; private set; }
         [field: SerializeField] public MinimapCamera MinimapCamera { get; private set; }

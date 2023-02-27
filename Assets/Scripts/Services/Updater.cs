@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Services
 {
-    public class Updater : ITickable, IFixedTickable, ILateTickable
+    public sealed class Updater : ITickable, IFixedTickable, ILateTickable
     {
         private event Action OnUpdate = () => { };
         private event Action<float> OnDeltaTimeUpdate = _ => { };

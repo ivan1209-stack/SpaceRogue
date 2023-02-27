@@ -2,7 +2,7 @@ using UnityEngine.SceneManagement;
 
 namespace Services.SceneLoader
 {
-    public class SceneLoader : ISceneLoader
+    public sealed class SceneLoader : ISceneLoader
     {
         private const string GameSceneName = "Game";
         private const string MenuSceneName = "MainMenu";

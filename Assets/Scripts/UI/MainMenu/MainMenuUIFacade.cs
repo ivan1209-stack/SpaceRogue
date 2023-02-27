@@ -4,7 +4,7 @@ using Zenject;
 
 namespace UI.MainMenu
 {
-    public class MainMenuUIFacade : IInitializable
+    public sealed class MainMenuUIFacade : IInitializable
     {
         private readonly GameStateService _gameStateService;
         private readonly PlayerDataService _playerDataService;

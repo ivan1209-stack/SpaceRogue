@@ -2,7 +2,7 @@ using Zenject;
 
 namespace Gameplay.Temp
 {
-    public class TempInstaller : MonoInstaller
+    public sealed class TempInstaller : MonoInstaller
     {
         public override void InstallBindings()
         {

@@ -7,7 +7,7 @@ using Zenject;
 
 namespace UI.Installers
 {
-    public class MainMenuUIInstaller : MonoInstaller
+    public sealed class MainMenuUIInstaller : MonoInstaller
     {
         [field: SerializeField] public Camera MainCamera { get; private set; }
         [field: SerializeField] public MainMenuCanvasView MainMenuCanvas { get; private set; }
