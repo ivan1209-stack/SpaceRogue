@@ -3,6 +3,7 @@ using Gameplay.Enemy.Movement;
 using Gameplay.Mechanics.Timer;
 using Gameplay.Movement;
 using Gameplay.Player;
+using Services;
 using UnityEngine;
 using Utilities.Reactive.SubscriptionProperty;
 using Utilities.Unity;
@@ -29,7 +30,7 @@ namespace Gameplay.Enemy.Behaviour
         {
             _unitMovementModel = unitMovementModel;
             _inputController = inputController;
-            _timer = new(Config.TimeToPickNewAngle);
+            _timer = new(Config.TimeToPickNewAngle, new Updater());
             PickRandomDirection();
         }
         

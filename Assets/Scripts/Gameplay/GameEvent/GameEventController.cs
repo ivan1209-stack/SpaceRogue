@@ -2,6 +2,7 @@ using Abstracts;
 using Gameplay.Mechanics.Timer;
 using Gameplay.Player;
 using Scriptables.GameEvent;
+using Services;
 using UI.Game;
 using UnityEngine;
 using Utilities.Mathematics;
@@ -28,7 +29,7 @@ namespace Gameplay.GameEvent
             _playerController = playerController;
             _playerController.PlayerDestroyed += OnPlayerDestroyed;
             _playerController.OnControllerDispose += OnPlayerDestroyed;
-            _timer = new(_config.ResponseTimeInSeconds);
+            _timer = new(_config.ResponseTimeInSeconds, new Updater());
             _timer.Start();
 
             EntryPoint.SubscribeToUpdate(CheckEvent);

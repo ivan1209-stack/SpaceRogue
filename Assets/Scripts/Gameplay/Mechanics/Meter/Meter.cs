@@ -6,7 +6,7 @@ namespace Gameplay.Mechanics.Meter
     {
         public float FillPercentage => _fill / _maxFill;
         
-        private float _maxFill;
+        private readonly float _maxFill;
         private float _fill;
 
         public Meter(float initialFillValue, float maxFillValue)

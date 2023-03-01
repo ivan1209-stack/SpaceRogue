@@ -1,9 +1,11 @@
 using System;
+using Services;
 
 namespace Gameplay.Mechanics.Timer
 {
     public sealed class Timer : IDisposable
     {
+        private readonly Updater _updater;
         public event Action OnStart = () => { };
         public event Action OnTick = () => { };
         public event Action OnExpire = () => { };
@@ -15,19 +17,21 @@ namespace Gameplay.Mechanics.Timer
         private float _maxValue;
         private float _currentValue;
         
-        public Timer(float value)
+        public Timer(float value, Updater updater)
         {
-            if (value == 0.0f) throw new ArgumentException("Timer cannot be initialized with zero!", nameof(value));
+            if (value <= 0.0f) throw new ArgumentException("Timer cannot be initialized with zero!", nameof(value));
+            
+            _updater = updater;
             
             _maxValue = value;
             _currentValue = 0.0f;
 
-            EntryPoint.SubscribeToUpdate(Tick);
+            _updater.SubscribeToUpdate(Tick);
         }
         
         public void Dispose()
         {
-            EntryPoint.UnsubscribeFromUpdate(Tick);
+            _updater.UnsubscribeFromUpdate(Tick);
         }
 
         public void Start()

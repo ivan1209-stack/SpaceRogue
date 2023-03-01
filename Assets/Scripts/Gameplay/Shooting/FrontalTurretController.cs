@@ -1,6 +1,7 @@
 using Abstracts;
 using Gameplay.Mechanics.Timer;
 using Scriptables.Modules;
+using Services;
 using UnityEngine;
 using Utilities.ResourceManagement;
 
@@ -33,7 +34,7 @@ namespace Gameplay.Shooting
             ProjectileFactory = new ProjectileFactory(Config.ProjectileConfig, Config.ProjectileConfig.Prefab, 
                 turretPoint.transform, unitType);
 
-            CooldownTimer = new Timer(config.SpecificWeapon.Cooldown);
+            CooldownTimer = new Timer(config.SpecificWeapon.Cooldown, new Updater());
             
             AddGameObject(turretPoint);
         }

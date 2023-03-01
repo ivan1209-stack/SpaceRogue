@@ -3,6 +3,7 @@ using Gameplay.Mechanics.Timer;
 using Gameplay.Space.Star;
 using Scriptables.GameEvent;
 using System.Collections.Generic;
+using Services;
 using UnityEngine;
 using Utilities.Reactive.SubscriptionProperty;
 
@@ -37,7 +38,7 @@ namespace Gameplay.GameEvent
             _starViewColor = _spriteRenderer.color;
             _starViewScale = _starView.transform.localScale;
 
-            _explosionTimer = new(_supernovaGameEventConfig.TimeToExplosionInSeconds);
+            _explosionTimer = new(_supernovaGameEventConfig.TimeToExplosionInSeconds, new Updater());
             _explosionTimer.Start();
 
             EntryPoint.SubscribeToUpdate(PrepareSupernova);

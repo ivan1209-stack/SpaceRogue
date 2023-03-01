@@ -9,10 +9,10 @@ namespace Gameplay.Player
     public sealed class Player : IDisposable
     {
         private readonly PlayerInventory _playerInventory;
-        
         private readonly PlayerMovement _playerMovement;
-
         private readonly PlayerTurning _playerTurning;
+
+        public event Action PlayerDestroyed = () => { };
 
         public PlayerView PlayerView { get; }
 
@@ -32,10 +32,18 @@ namespace Gameplay.Player
 
         public void Dispose()
         {
+            PlayerDestroyed.Invoke();
+            
             _playerInventory.Dispose();
             _playerMovement.Dispose();
             _playerTurning.Dispose();
+            
             UnityEngine.Object.Destroy(PlayerView);
+        }
+
+        private void OnDeath()
+        {
+            Dispose();
         }
     }
 }

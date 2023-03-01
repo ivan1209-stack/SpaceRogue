@@ -1,5 +1,6 @@
 using Abstracts;
 using Gameplay.Mechanics.Meter;
+using Gameplay.Mechanics.Timer;
 using Scriptables.Modules;
 using UnityEngine;
 using Utilities.Mathematics;
@@ -20,7 +21,7 @@ namespace Gameplay.Shooting
             var minigunConfig = config.SpecificWeapon as MinigunWeaponConfig;
             _weaponConfig = minigunConfig ? minigunConfig : throw new System.Exception("wrong config type was provided");
 
-            _overheatMeter = new MeterWithCooldown(0.0f, _weaponConfig.TimeToOverheat, _weaponConfig.OverheatCoolDown);
+            _overheatMeter = new MeterWithCooldown(0.0f, _weaponConfig.TimeToOverheat, _weaponConfig.OverheatCoolDown, new TimerFactory());
             _overheatMeter.OnCooldownEnd += ResetSpray;
             _currentSprayAngle = _weaponConfig.SprayAngle;
         }

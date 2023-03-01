@@ -1,5 +1,7 @@
 using Gameplay.Background;
 using Gameplay.Input;
+using Gameplay.Mechanics.Meter;
+using Gameplay.Mechanics.Timer;
 using Gameplay.Movement;
 using Gameplay.Services;
 using Scriptables;
@@ -17,10 +19,22 @@ namespace Gameplay.Installers
 
         public override void InstallBindings()
         {
+            InstallGameplayMechanics();
             InstallCurrentGameState();
             InstallBackground();
             InstallPlayerInput();
             InstallUnitMovement();
+        }
+
+        private void InstallGameplayMechanics()
+        {
+            Container
+                .BindFactory<float, Timer, TimerFactory>()
+                .AsSingle();
+
+            Container
+                .BindFactory<float, float, float, MeterWithCooldown, MeterWithCooldownFactory>()
+                .AsSingle();
         }
 
         private void InstallCurrentGameState()
