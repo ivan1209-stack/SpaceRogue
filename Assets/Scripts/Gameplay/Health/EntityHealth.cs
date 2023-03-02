@@ -1,28 +1,60 @@
 using System;
 using Scriptables.Health;
+using Services;
 
 namespace Gameplay.Health
 {
-    public class EntityHealth
+    public class EntityHealth : IDisposable
     {
+        private readonly Updater _updater;
         private readonly float _healthRegenAmount;
-        private readonly float _damageImmunityFrameDuration;
         
         public event Action UnitDestroyed = () => { };
-        public event Action DamageTaken = () => { };
 
         public float CurrentHealth { get; private set; }
         public float MaximumHealth { get; }
         
         
-        public EntityHealth(IHealthInfo healthInfo)
+        public EntityHealth(IHealthInfo healthInfo, Updater updater)
         {
+            _updater = updater;
             MaximumHealth = healthInfo.MaximumHealth;
             CurrentHealth = healthInfo.StartingHealth;
             _healthRegenAmount = healthInfo.HealthRegen;
-            _damageImmunityFrameDuration = healthInfo.DamageImmunityFrameDuration;
+            _updater.SubscribeToUpdate(RegenerateHealth);
         }
-        
-        //TODO continue model transfer
+
+        public void Dispose()
+        {
+            _updater.UnsubscribeFromUpdate(RegenerateHealth);
+        }
+
+        internal void TakeDamage(float damageAmount)
+        {
+            if (damageAmount < 0) throw new ArgumentException("Damage cannot be less than zero!");
+            if (damageAmount >= CurrentHealth)
+            {
+                CurrentHealth = 0.0f;
+                UnitDestroyed.Invoke();
+                return;
+            }
+
+            CurrentHealth -= damageAmount;
+        }
+
+        internal void Heal(float healingAmount)
+        {
+            if (healingAmount < 0) throw new ArgumentException("Healing cannot be less than zero!");
+            CurrentHealth += healingAmount;
+            if (CurrentHealth > MaximumHealth) CurrentHealth = MaximumHealth;
+        }
+
+        private void RegenerateHealth(float deltaTime)
+        {
+            if (CurrentHealth < MaximumHealth)
+            {
+                Heal(_healthRegenAmount * deltaTime);
+            }
+        }
     }
 }
