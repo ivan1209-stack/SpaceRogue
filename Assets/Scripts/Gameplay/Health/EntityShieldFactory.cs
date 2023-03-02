@@ -1,6 +1,6 @@
 namespace Gameplay.Health
 {
-    public class UnitHealthAndShield
+    public class EntityShieldFactory
     {
         
     }

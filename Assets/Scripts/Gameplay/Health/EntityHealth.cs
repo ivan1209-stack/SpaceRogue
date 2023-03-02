@@ -3,7 +3,7 @@ using Scriptables.Health;
 
 namespace Gameplay.Health
 {
-    public class UnitHealth
+    public class EntityHealth
     {
         private readonly float _healthRegenAmount;
         private readonly float _damageImmunityFrameDuration;
@@ -15,7 +15,7 @@ namespace Gameplay.Health
         public float MaximumHealth { get; }
         
         
-        public UnitHealth(IHealthInfo healthInfo)
+        public EntityHealth(IHealthInfo healthInfo)
         {
             MaximumHealth = healthInfo.MaximumHealth;
             CurrentHealth = healthInfo.StartingHealth;

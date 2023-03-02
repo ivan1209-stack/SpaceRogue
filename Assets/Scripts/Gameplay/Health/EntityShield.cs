@@ -1,8 +1,8 @@
 namespace Gameplay.Health
 {
-    public class UnitShield
+    public class EntityShield
     {
-        public UnitShield()
+        public EntityShield()
         {
             
         }
