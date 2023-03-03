@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Scriptables.Health
 {
-    [CreateAssetMenu(fileName = nameof(ShieldConfig), menuName = "Configs/Health/" + nameof(ShieldConfig))]
+    [CreateAssetMenu(fileName = nameof(ShieldConfig), menuName = "Configs/Survival/" + nameof(ShieldConfig))]
     public sealed class ShieldConfig : ScriptableObject, IShieldInfo
     {
         [field: SerializeField, Min(1f)] public float MaximumShield { get; private set; } = 1.0f;

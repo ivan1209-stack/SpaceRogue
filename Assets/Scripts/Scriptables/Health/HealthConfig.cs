@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Scriptables.Health
 {
-    [CreateAssetMenu(fileName = nameof(HealthConfig), menuName = "Configs/Health/" + nameof(HealthConfig))]
+    [CreateAssetMenu(fileName = nameof(HealthConfig), menuName = "Configs/Survival/" + nameof(HealthConfig))]
     public sealed class HealthConfig : ScriptableObject, IHealthInfo
     {
         [field: SerializeField, Min(1f)] public float MaximumHealth { get; private set; } = 1.0f;

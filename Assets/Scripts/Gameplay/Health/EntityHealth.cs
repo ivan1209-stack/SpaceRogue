@@ -9,7 +9,7 @@ namespace Gameplay.Health
         private readonly Updater _updater;
         private readonly float _healthRegenAmount;
         
-        public event Action UnitDestroyed = () => { };
+        public event Action HealthReachedZero = () => { };
 
         public float CurrentHealth { get; private set; }
         public float MaximumHealth { get; }
@@ -35,7 +35,7 @@ namespace Gameplay.Health
             if (damageAmount >= CurrentHealth)
             {
                 CurrentHealth = 0.0f;
-                UnitDestroyed.Invoke();
+                HealthReachedZero.Invoke();
                 return;
             }
 

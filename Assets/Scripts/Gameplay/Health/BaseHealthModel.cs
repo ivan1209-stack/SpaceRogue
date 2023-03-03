@@ -24,7 +24,7 @@ namespace Gameplay.Health
             MaximumHealth = new SubscribedProperty<float>(healthInfo.MaximumHealth);
             CurrentHealth = new SubscribedProperty<float>(healthInfo.StartingHealth);
             HealthRegenAmount = healthInfo.HealthRegen;
-            DamageImmunityFrameDuration = healthInfo.DamageImmunityFrameDuration;
+            //DamageImmunityFrameDuration = healthInfo.DamageImmunityFrameDuration;
         }
         
         internal abstract void UpdateState();
