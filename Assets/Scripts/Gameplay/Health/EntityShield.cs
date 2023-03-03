@@ -24,6 +24,7 @@ namespace Gameplay.Health
         public void Dispose()
         {
             ShieldCooldownTimer.OnExpire -= RefreshShield;
+            ShieldCooldownTimer.Dispose();
         }
 
         internal void TakeDamage(float damageAmount)
