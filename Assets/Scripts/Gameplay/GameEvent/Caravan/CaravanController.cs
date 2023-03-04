@@ -59,7 +59,7 @@ namespace Gameplay.GameEvent
 
         private EnemyHealthUIController AddCaravanHealthUIController(HealthConfig healthConfig, ShieldConfig shieldConfig)
         {
-            var healthController = shieldConfig is null
+            /*var healthController = shieldConfig is null
                 ? new HealthController(healthConfig,
                 AddHealthStatusBarView(GameUIController.EnemyHealthBars), _caravanView)
                 : new HealthController(healthConfig, shieldConfig,
@@ -67,9 +67,9 @@ namespace Gameplay.GameEvent
 
             healthController.SubscribeToOnDestroy(Dispose);
             healthController.SubscribeToOnDestroy(OnCaravanDestroyed);
-            AddController(healthController);
+            AddController(healthController);*/
 
-            var enemyHealthUIController = new EnemyHealthUIController(healthController, _caravanView);
+            var enemyHealthUIController = new EnemyHealthUIController(/*healthController,*/ _caravanView);
             AddController(enemyHealthUIController);
             return enemyHealthUIController;
         }

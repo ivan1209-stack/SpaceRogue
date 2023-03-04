@@ -50,6 +50,12 @@ namespace Gameplay.Mechanics.Timer
             _currentValue = newCurrentValue;
         }
 
+        public void SetToZero()
+        {
+            _currentValue = 0.0f;
+            OnExpire.Invoke();
+        }
+
         private void Tick(float deltaTime)
         {
             switch (_currentValue)
@@ -57,7 +63,7 @@ namespace Gameplay.Mechanics.Timer
                 case 0:
                     return;
                 case < 0:
-                    _currentValue = 0;
+                    _currentValue = 0.0f;
                     OnExpire.Invoke();
                     return;
                 case > 0:

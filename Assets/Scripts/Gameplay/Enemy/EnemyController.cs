@@ -50,16 +50,16 @@ namespace Gameplay.Enemy
 
         private EnemyHealthUIController AddEnemyHealthUIController(HealthConfig healthConfig, ShieldConfig shieldConfig)
         {
-            var healthController = shieldConfig is null
+            /*var healthController = shieldConfig is null
                 ? new HealthController(healthConfig, 
                 AddHealthStatusBarView(GameUIController.EnemyHealthBars), _view)
                 : new HealthController(healthConfig, shieldConfig, 
                 AddHealthShieldStatusBarView(GameUIController.EnemyHealthBars), _view);
             
             healthController.SubscribeToOnDestroy(Dispose);
-            AddController(healthController);
+            AddController(healthController);*/
 
-            var enemyHealthUIController = new EnemyHealthUIController(healthController, _view);
+            var enemyHealthUIController = new EnemyHealthUIController(/*healthController,*/ _view);
             AddController(enemyHealthUIController);
             return enemyHealthUIController;
         }

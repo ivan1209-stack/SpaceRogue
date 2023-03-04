@@ -17,10 +17,10 @@ namespace Gameplay.Health
 
         private readonly SubscribedProperty<bool> _isVisible = new();
 
-        public EnemyHealthUIController(HealthController healthController, UnitView view)
+        public EnemyHealthUIController(/*HealthController healthController,*/ UnitView view)
         {
             _camera = UnityEngine.Camera.main;
-            _enemyStatusBarView = healthController.StatusBarView;
+            //_enemyStatusBarView = healthController.StatusBarView;
             _enemyStatusBarView.gameObject.SetActive(false);
             _collider = view.GetComponent<Collider2D>();
             _scaleFactor = GameUIController.EnemyHealthBars.GetComponentInParent<Canvas>().scaleFactor;

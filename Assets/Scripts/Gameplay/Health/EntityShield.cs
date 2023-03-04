@@ -27,11 +27,18 @@ namespace Gameplay.Health
             ShieldCooldownTimer.Dispose();
         }
 
-        internal void TakeDamage(float damageAmount)
+        internal void TakeDamage(float damageAmount, out float remainingDamage)
         {
-            CurrentShield = damageAmount > CurrentShield 
-                ? CurrentShield = 0.0f 
-                : CurrentShield - damageAmount;
+            if (damageAmount > CurrentShield)
+            {
+                remainingDamage = damageAmount - CurrentShield;
+                CurrentShield = 0.0f;
+            }
+            else
+            {
+                remainingDamage = 0.0f;
+                CurrentShield -= damageAmount;
+            }
             
             StartShieldCooldown();
         }

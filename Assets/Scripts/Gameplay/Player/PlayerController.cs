@@ -33,7 +33,7 @@ namespace Gameplay.Player
         private readonly SubscribedProperty<bool> _primaryFireInput = new();
         private readonly SubscribedProperty<bool> _changeWeaponInput = new ();
 
-        private readonly HealthController _healthController;
+        //private readonly HealthController _healthController;
 
         public event Action PlayerDestroyed = () => { };
         public event Action OnControllerDispose = () => { };
@@ -52,11 +52,11 @@ namespace Gameplay.Player
             var inventoryController = AddInventoryController(_config.Inventory);
             //var movementController = AddMovementController(_config.Movement, _view);
             var frontalGunsController = AddFrontalGunsController(inventoryController.Turrets, _view);
-            _healthController = AddHealthController(healthInfo, shieldInfo);
+            //_healthController = AddHealthController(healthInfo, shieldInfo);
             //AddCrosshair();
         }
 
-        public void DestroyPlayer()
+        /*public void DestroyPlayer()
         {
             _healthController.DestroyUnit();
         }
@@ -77,7 +77,7 @@ namespace Gameplay.Player
                 return _healthController.GetCurrentShield();
             }
             return 0;
-        }
+        }*/
 
         public void OnPlayerDestroyed()
         {
@@ -90,14 +90,14 @@ namespace Gameplay.Player
             Dispose();
         }
 
-        private HealthController AddHealthController(HealthInfo healthInfo, ShieldInfo shieldInfo)
+        /*private HealthController AddHealthController(HealthInfo healthInfo, ShieldInfo shieldInfo)
         {
             var healthController = new HealthController(healthInfo, shieldInfo, GameUIController.PlayerStatusBarView, _view);
             healthController.SubscribeToOnDestroy(Dispose);
             healthController.SubscribeToOnDestroy(OnPlayerDestroyed);
             AddController(healthController);
             return healthController;
-        }
+        }*/
 
         private PlayerInventoryController AddInventoryController(PlayerInventoryConfig config)
         {

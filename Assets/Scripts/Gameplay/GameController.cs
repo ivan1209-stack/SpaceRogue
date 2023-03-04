@@ -61,8 +61,8 @@ namespace Gameplay
 
         private void LevelComplete(float levelNumber)
         {
-            _levelProgressController.UpdatePlayerHealthAndShieldInfo
-                (_playerController.GetCurrentHealth(), _playerController.GetCurrentShield());
+            /*_levelProgressController.UpdatePlayerHealthAndShieldInfo
+                (_playerController.GetCurrentHealth(), _playerController.GetCurrentShield());*/
             _gameUIController.AddNextLevelMessage(levelNumber);
         }
 
