@@ -10,7 +10,6 @@ namespace Scriptables
     {
         [field: SerializeField] public PlayerInventoryConfig Inventory { get; private set; }
         [field: SerializeField] public UnitMovementConfig UnitMovement { get; private set; }
-        [field: SerializeField] public HealthConfig HealthConfig { get; private set; }
-        [field: SerializeField] public ShieldConfig ShieldConfig { get; private set; }
+        [field: SerializeField] public EntitySurvivalConfig Survival { get; private set; }
     }
 }

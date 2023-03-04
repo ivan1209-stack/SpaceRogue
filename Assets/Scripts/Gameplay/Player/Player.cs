@@ -1,5 +1,6 @@
 using System;
 using Gameplay.Factories;
+using Gameplay.Health;
 using Gameplay.Player.Inventory;
 using Gameplay.Player.Movement;
 using UnityEngine;
@@ -15,19 +16,23 @@ namespace Gameplay.Player
         public event Action PlayerDestroyed = () => { };
 
         public PlayerView PlayerView { get; }
+        public EntitySurvival Survival { get; }
 
         public Player(
             Vector2 spawnPoint,
             PlayerViewFactory playerViewFactory, 
             PlayerMovementFactory playerMovementFactory, 
             PlayerTurningFactory playerTurningFactory,
-            PlayerInventory playerInventory)
+            PlayerInventory playerInventory,
+            PlayerSurvivalFactory playerSurvivalFactory)
         {
             _playerInventory = playerInventory;
             
             PlayerView = playerViewFactory.Create(spawnPoint);
             _playerMovement = playerMovementFactory.Create(PlayerView);
             _playerTurning = playerTurningFactory.Create(PlayerView);
+
+            Survival = playerSurvivalFactory.Create();
         }
 
         public void Dispose()

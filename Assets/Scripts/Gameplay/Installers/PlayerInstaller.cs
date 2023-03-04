@@ -1,9 +1,11 @@
 using Gameplay.Factories;
+using Gameplay.Health;
 using Gameplay.Movement;
 using Gameplay.Player;
 using Gameplay.Player.Inventory;
 using Gameplay.Player.Movement;
 using Scriptables;
+using Scriptables.Health;
 using UnityEngine;
 using Zenject;
 
@@ -19,6 +21,7 @@ namespace Gameplay.Installers
             InstallPlayerView();
             InstallPlayerMovement();
             InstallPlayerInventory();
+            InstallPlayerHealth();
             InstallPlayer();
         }
 
@@ -73,6 +76,17 @@ namespace Gameplay.Installers
             Container
                 .BindInterfacesAndSelfTo<PlayerInventory>()
                 .AsCached();
+        }
+
+        private void InstallPlayerHealth()
+        {
+            Container.Bind<EntitySurvivalConfig>()
+                .FromInstance(PlayerConfig.Survival)
+                .WhenInjectedInto<PlayerSurvivalFactory>();
+            
+            Container
+                .BindFactory<EntitySurvival, PlayerSurvivalFactory>()
+                .AsSingle();
         }
 
         private void InstallPlayer()

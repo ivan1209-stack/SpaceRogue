@@ -24,9 +24,9 @@ public class GameDataController : BaseController
     public GameDataController()
     {
         RecordCompletedLevels = PlayerPrefs.GetInt(RecordKey);
-        _playerHealthInfo = new(ResourceLoader.LoadObject<PlayerConfig>(_playerConfigPath).HealthConfig);
+        //_playerHealthInfo = new(ResourceLoader.LoadObject<PlayerConfig>(_playerConfigPath).HealthConfig);
         _playerDefaultStartingHealth = _playerHealthInfo.StartingHealth;
-        _playerShieldInfo = new(ResourceLoader.LoadObject<PlayerConfig>(_playerConfigPath).ShieldConfig);
+        //_playerShieldInfo = new(ResourceLoader.LoadObject<PlayerConfig>(_playerConfigPath).ShieldConfig);
         _playerDefaultStartingShield = _playerShieldInfo.StartingShield;
     }
 

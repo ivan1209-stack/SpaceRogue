@@ -21,5 +21,4 @@ MonoBehaviour:
     startingTurnSpeed: 3
     maximumTurnSpeed: 10
     turnAccelerationTime: 0.2
-  <HealthConfig>k__BackingField: {fileID: 11400000, guid: b1d5019f03ef14c4c831a0d223b6921a, type: 2}
-  <ShieldConfig>k__BackingField: {fileID: 11400000, guid: 1d988e8c3053fff458704ce6418fdedc, type: 2}
+  <Survival>k__BackingField: {fileID: 11400000, guid: 58b908b7be952f04d8c48e5b455ff03d, type: 2}

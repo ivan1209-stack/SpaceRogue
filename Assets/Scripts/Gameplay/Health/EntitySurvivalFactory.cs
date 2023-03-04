@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Gameplay.Health
 {
-    public class EntitySurvivalFactory : PlaceholderFactory<IHealthInfo, IShieldInfo, IDamageImmunityFrameInfo, EntitySurvival>
+    public class EntitySurvivalFactory : PlaceholderFactory<EntitySurvivalConfig, EntitySurvival>
     {
         private readonly EntityHealthFactory _entityHealthFactory;
         private readonly EntityShieldFactory _entityShieldFactory;
@@ -20,16 +20,16 @@ namespace Gameplay.Health
             _entityDamageImmunityFrameFactory = entityDamageImmunityFrameFactory;
         }
 
-        public override EntitySurvival Create(IHealthInfo healthInfo, IShieldInfo shieldInfo, IDamageImmunityFrameInfo damageImmunityFrameInfo)
+        public override EntitySurvival Create(EntitySurvivalConfig config)
         {
-            if (healthInfo is null) throw new ArgumentNullException(nameof(healthInfo));
-            var entityHealth = _entityHealthFactory.Create(healthInfo);
-            var entityShield = shieldInfo is null 
+            if (config.Health is null) throw new ArgumentNullException(nameof(config.Health));
+            var entityHealth = _entityHealthFactory.Create(config.Health);
+            var entityShield = config.Shield is null 
                 ? null 
-                : _entityShieldFactory.Create(shieldInfo);
-            var entityDamageImmunityFrame = damageImmunityFrameInfo is null
+                : _entityShieldFactory.Create(config.Shield);
+            var entityDamageImmunityFrame = config.DamageImmunityFrame is null
                 ? null
-                : _entityDamageImmunityFrameFactory.Create(damageImmunityFrameInfo);
+                : _entityDamageImmunityFrameFactory.Create(config.DamageImmunityFrame);
 
             return new EntitySurvival(entityHealth, entityShield, entityDamageImmunityFrame);
         }
