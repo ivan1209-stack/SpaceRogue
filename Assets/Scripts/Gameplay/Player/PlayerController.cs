@@ -49,40 +49,13 @@ namespace Gameplay.Player
                 _changeWeaponInput, NextLevelInput, MapInput);
             AddController(inputController);*/
 
-            var inventoryController = AddInventoryController(_config.Inventory);
+            //var inventoryController = AddInventoryController(_config.Inventory);
             //var movementController = AddMovementController(_config.Movement, _view);
-            var frontalGunsController = AddFrontalGunsController(inventoryController.Turrets, _view);
+            var frontalGunsController = AddFrontalGunsController(new List<TurretModuleConfig>(), _view);
             //_healthController = AddHealthController(healthInfo, shieldInfo);
             //AddCrosshair();
         }
-
-        /*public void DestroyPlayer()
-        {
-            _healthController.DestroyUnit();
-        }
-
-        public float GetCurrentHealth()
-        {
-            if(_healthController is not null)
-            {
-                return _healthController.GetCurrentHealth();
-            }
-            return 0;
-        }
-
-        public float GetCurrentShield()
-        {
-            if (_healthController is not null)
-            {
-                return _healthController.GetCurrentShield();
-            }
-            return 0;
-        }*/
-
-        public void OnPlayerDestroyed()
-        {
-            PlayerDestroyed.Invoke();
-        }
+        
 
         public void ControllerDispose()
         {
@@ -90,48 +63,12 @@ namespace Gameplay.Player
             Dispose();
         }
 
-        /*private HealthController AddHealthController(HealthInfo healthInfo, ShieldInfo shieldInfo)
-        {
-            var healthController = new HealthController(healthInfo, shieldInfo, GameUIController.PlayerStatusBarView, _view);
-            healthController.SubscribeToOnDestroy(Dispose);
-            healthController.SubscribeToOnDestroy(OnPlayerDestroyed);
-            AddController(healthController);
-            return healthController;
-        }*/
-
-        private PlayerInventoryController AddInventoryController(PlayerInventoryConfig config)
-        {
-            var inventoryController = new PlayerInventoryController(config);
-            AddController(inventoryController);
-            return inventoryController;
-        }
-
-        /*private PlayerMovementController AddMovementController(MovementConfig movementConfig, PlayerView view)
-        {
-            var movementController = new PlayerMovementController(_mousePositionInput, _verticalInput, movementConfig, view);
-            AddController(movementController);
-            return movementController;
-        }*/
-
         private FrontalGunsController AddFrontalGunsController(List<TurretModuleConfig> turretConfigs, PlayerView view)
         {
             var frontalGunsController = new FrontalGunsController(_primaryFireInput, _changeWeaponInput, turretConfigs, view);
             AddController(frontalGunsController);
             return frontalGunsController;
         }
-
-        /*private void AddCrosshair()
-        {
-            var crosshairView = ResourceLoader.LoadPrefab(_crosshairPrefabPath);
-            var viewTransform = _view.transform;
-            var crosshair = UnityEngine.Object.Instantiate(
-                crosshairView,
-                viewTransform.position + _view.transform.TransformDirection(Vector3.up * (viewTransform.localScale.y + 15f)),
-                viewTransform.rotation
-            );
-            crosshair.transform.parent = _view.transform;
-            AddGameObject(crosshair);
-        }*/
 
     }
 }
