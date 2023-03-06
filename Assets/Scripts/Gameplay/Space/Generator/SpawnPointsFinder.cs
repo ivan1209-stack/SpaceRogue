@@ -28,7 +28,7 @@ namespace Gameplay.Space.Generator
             _availablePoints = GetEmptyPoints(map);
         }
 
-        public Vector3 StarSpawnPoint(float starSize, float orbit)
+        public Vector3 SpaceObjectSpawnPoint(float starSize, float orbit)
         {
             var radius = CalculateStarRadius(starSize, orbit);
             FindAvailablePointOnMap(_availablePoints, CellType.Star, _spaceObjectsMap, 1, radius);
