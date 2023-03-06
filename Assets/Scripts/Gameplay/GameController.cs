@@ -15,7 +15,7 @@ namespace Gameplay
 {
     public sealed class GameController : BaseController
     {
-        private readonly CurrentState _currentState;
+        //private readonly CurrentState _currentState;
         private readonly GameDataController _gameDataController;
         private readonly GameUIController _gameUIController;
         private readonly SpaceController _spaceController;
@@ -25,13 +25,13 @@ namespace Gameplay
         private readonly LevelProgressController _levelProgressController;
         private readonly MinimapController _minimapController;
 
-        public GameController(CurrentState currentState, Canvas mainUICanvas, GameDataController gameDataController)
+        public GameController(/*CurrentState currentState, Canvas mainUICanvas,*/ GameDataController gameDataController)
         {
-            _currentState = currentState;
+            //_currentState = currentState;
             _gameDataController = gameDataController;
 
-            _gameUIController = new(mainUICanvas, ExitToMenu, NextLevel);
-            AddController(_gameUIController);
+            /*_gameUIController = new(mainUICanvas, ExitToMenu, NextLevel);
+            AddController(_gameUIController);*/
 
             _spaceController = new();
             AddController(_spaceController);
@@ -66,7 +66,7 @@ namespace Gameplay
             _gameUIController.AddNextLevelMessage(levelNumber);
         }
 
-        public void ExitToMenu() 
+        /*public void ExitToMenu() 
         {
             _currentState.CurrentGameState.Value = GameState.GameState.Menu;
         }
@@ -74,6 +74,6 @@ namespace Gameplay
         public void NextLevel()
         {
             _currentState.CurrentGameState.Value = GameState.GameState.Game;
-        }
+        }*/
     }
 }
