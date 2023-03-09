@@ -10,7 +10,7 @@ namespace Gameplay.Shooting
 {
     public sealed class FrontalMinigunController : FrontalTurretController
     {
-        private readonly MinigunWeaponConfig _weaponConfig;
+        private readonly MinigunConfig _config;
         
         private readonly MeterWithCooldown _overheatMeter;
         
@@ -18,12 +18,12 @@ namespace Gameplay.Shooting
 
         public FrontalMinigunController(TurretModuleConfig config, Transform gunPointParentTransform, UnitType unitType) : base(config, gunPointParentTransform, unitType)
         {
-            var minigunConfig = config.SpecificWeapon as MinigunWeaponConfig;
-            _weaponConfig = minigunConfig ? minigunConfig : throw new System.Exception("wrong config type was provided");
+            var minigunConfig = config.SpecificWeapon as MinigunConfig;
+            _config = minigunConfig ? minigunConfig : throw new System.Exception("wrong config type was provided");
 
-            _overheatMeter = new MeterWithCooldown(0.0f, _weaponConfig.TimeToOverheat, _weaponConfig.OverheatCoolDown, new TimerFactory());
+            _overheatMeter = new MeterWithCooldown(0.0f, _config.TimeToOverheat, _config.OverheatCoolDown, new TimerFactory());
             _overheatMeter.OnCooldownEnd += ResetSpray;
-            _currentSprayAngle = _weaponConfig.SprayAngle;
+            _currentSprayAngle = _config.SprayAngle;
         }
 
         protected override void OnDispose()
@@ -44,25 +44,25 @@ namespace Gameplay.Shooting
 
         private void AddHeat()
         {
-            _overheatMeter.Fill(_weaponConfig.Cooldown);
+            _overheatMeter.Fill(_config.Cooldown);
             IncreaseSpray();
         }
 
         private void IncreaseSpray()
         {
-            if (_currentSprayAngle >= _weaponConfig.MaxSprayAngle) return;
+            if (_currentSprayAngle >= _config.MaxSprayAngle) return;
             var sprayIncrease = CountSprayIncrease();
             _currentSprayAngle += sprayIncrease;
         }
 
         private float CountSprayIncrease()
         {
-            return (_weaponConfig.MaxSprayAngle - _weaponConfig.SprayAngle) / (_weaponConfig.TimeToOverheat * (1 / _weaponConfig.Cooldown));
+            return (_config.MaxSprayAngle - _config.SprayAngle) / (_config.TimeToOverheat * (1 / _config.Cooldown));
         }
 
         private void ResetSpray()
         {
-            _currentSprayAngle = _weaponConfig.SprayAngle;
+            _currentSprayAngle = _config.SprayAngle;
         }
 
         private void FireSingleProjectile()

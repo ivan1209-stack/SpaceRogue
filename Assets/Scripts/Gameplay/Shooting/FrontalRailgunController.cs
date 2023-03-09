@@ -6,12 +6,12 @@ namespace Gameplay.Shooting
 {
     public sealed class FrontalRailgunController : FrontalTurretController
     {
-        private readonly RailgunWeaponConfig _weaponConfig;
+        private readonly RailgunConfig _config;
 
         public FrontalRailgunController(TurretModuleConfig config, Transform gunPointParentTransform, UnitType unitType) : base(config, gunPointParentTransform, unitType)
         {
-            var railgunConfig = config.SpecificWeapon as RailgunWeaponConfig;
-            _weaponConfig = railgunConfig 
+            var railgunConfig = config.SpecificWeapon as RailgunConfig;
+            _config = railgunConfig 
                 ? railgunConfig 
                 : throw new System.Exception("wrong config type was provided");
         }

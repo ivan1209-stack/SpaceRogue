@@ -8,12 +8,12 @@ namespace Gameplay.Shooting
 {
     public sealed class FrontalShotgunController : FrontalTurretController
     {
-        private readonly ShotgunWeaponConfig _weaponConfig;
+        private readonly ShotgunConfig _config;
 
         public FrontalShotgunController(TurretModuleConfig config, Transform gunPointParentTransform, UnitType unitType) : base(config, gunPointParentTransform, unitType)
         {
-            var shotgunConfig = config.SpecificWeapon as ShotgunWeaponConfig;
-            _weaponConfig = shotgunConfig 
+            var shotgunConfig = config.SpecificWeapon as ShotgunConfig;
+            _config = shotgunConfig 
                 ? shotgunConfig 
                 : throw new System.Exception("Wrong config type was provided");
         }
@@ -25,7 +25,7 @@ namespace Gameplay.Shooting
                 return;
             }
 
-            FireMultipleProjectiles(_weaponConfig.PelletCount, _weaponConfig.SprayAngle);
+            FireMultipleProjectiles(_config.PelletCount, _config.SprayAngle);
 
             CooldownTimer.Start();
         }
