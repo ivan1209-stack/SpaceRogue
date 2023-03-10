@@ -1,4 +1,5 @@
 using Abstracts;
+using Gameplay.Shooting.Scriptables;
 using Scriptables.Modules;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ namespace Gameplay.Shooting
 
         public FrontalBlasterController(TurretModuleConfig config, Transform gunPointParentTransform, UnitType unitType) : base(config, gunPointParentTransform, unitType)
         {
-            var blasterConfig = config.SpecificWeapon as BlasterConfig;
+            var blasterConfig = config.Weapon as BlasterConfig;
             _config = blasterConfig 
                 ? blasterConfig 
                 : throw new System.Exception("Wrong config type was provided");

@@ -1,6 +1,7 @@
 using Abstracts;
 using Gameplay.Mechanics.Meter;
 using Gameplay.Mechanics.Timer;
+using Gameplay.Shooting.Scriptables;
 using Scriptables.Modules;
 using UnityEngine;
 using Utilities.Mathematics;
@@ -18,7 +19,7 @@ namespace Gameplay.Shooting
 
         public FrontalMinigunController(TurretModuleConfig config, Transform gunPointParentTransform, UnitType unitType) : base(config, gunPointParentTransform, unitType)
         {
-            var minigunConfig = config.SpecificWeapon as MinigunConfig;
+            var minigunConfig = config.Weapon as MinigunConfig;
             _config = minigunConfig ? minigunConfig : throw new System.Exception("wrong config type was provided");
 
             _overheatMeter = new MeterWithCooldown(0.0f, _config.TimeToOverheat, _config.OverheatCoolDown, new TimerFactory());

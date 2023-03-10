@@ -2,7 +2,7 @@ using System;
 using Abstracts;
 using UnityEngine;
 
-namespace Gameplay.Shooting
+namespace Gameplay.Shooting.Scriptables
 {
     [CreateAssetMenu(fileName = nameof(ProjectileConfig), menuName = "Configs/Projectiles/" + nameof(ProjectileConfig))]
     public sealed class ProjectileConfig : ScriptableObject, IIdentityItem<string>

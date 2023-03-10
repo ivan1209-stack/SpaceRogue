@@ -1,4 +1,5 @@
 using Abstracts;
+using Gameplay.Shooting.Scriptables;
 using UnityEngine;
 
 namespace Gameplay.Shooting

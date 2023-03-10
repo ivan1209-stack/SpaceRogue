@@ -1,9 +1,9 @@
 using UnityEngine;
 
-namespace Gameplay.Shooting
+namespace Gameplay.Shooting.Scriptables
 {
     [CreateAssetMenu(fileName = nameof(MinigunConfig), menuName = "Configs/Weapons/" + nameof(MinigunConfig))]
-    public sealed class MinigunConfig : SpecificWeaponConfig
+    public sealed class MinigunConfig : WeaponConfig
     {
         [field: SerializeField] public ProjectileConfig MinigunProjectile { get; private set; }
         [field: SerializeField, Range(0, 180)] public float SprayAngle { get; internal set; } = 1.0f;

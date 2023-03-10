@@ -34,7 +34,7 @@ namespace Gameplay.Shooting
             ProjectileFactory = new ProjectileFactory(Config.ProjectileConfig, Config.ProjectileConfig.Prefab, 
                 turretPoint.transform, unitType);
 
-            CooldownTimer = new Timer(config.SpecificWeapon.Cooldown, new Updater());
+            CooldownTimer = new Timer(config.Weapon.Cooldown, new Updater());
             
             AddGameObject(turretPoint);
         }

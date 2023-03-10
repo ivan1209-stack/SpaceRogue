@@ -1,4 +1,5 @@
 using Abstracts;
+using Gameplay.Shooting.Scriptables;
 using Scriptables.Modules;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ namespace Gameplay.Shooting
 
         public FrontalRailgunController(TurretModuleConfig config, Transform gunPointParentTransform, UnitType unitType) : base(config, gunPointParentTransform, unitType)
         {
-            var railgunConfig = config.SpecificWeapon as RailgunConfig;
+            var railgunConfig = config.Weapon as RailgunConfig;
             _config = railgunConfig 
                 ? railgunConfig 
                 : throw new System.Exception("wrong config type was provided");

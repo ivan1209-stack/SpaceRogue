@@ -1,4 +1,5 @@
 using Abstracts;
+using Gameplay.Shooting.Scriptables;
 using Scriptables.Modules;
 using UnityEngine;
 using Utilities.Mathematics;
@@ -12,7 +13,7 @@ namespace Gameplay.Shooting
 
         public FrontalShotgunController(TurretModuleConfig config, Transform gunPointParentTransform, UnitType unitType) : base(config, gunPointParentTransform, unitType)
         {
-            var shotgunConfig = config.SpecificWeapon as ShotgunConfig;
+            var shotgunConfig = config.Weapon as ShotgunConfig;
             _config = shotgunConfig 
                 ? shotgunConfig 
                 : throw new System.Exception("Wrong config type was provided");

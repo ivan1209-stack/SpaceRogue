@@ -1,5 +1,6 @@
 using Abstracts;
 using Gameplay.Damage;
+using Gameplay.Shooting.Scriptables;
 using UnityEngine;
 
 namespace Gameplay.Shooting
