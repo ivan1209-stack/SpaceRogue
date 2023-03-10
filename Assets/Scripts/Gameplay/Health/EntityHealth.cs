@@ -10,6 +10,7 @@ namespace Gameplay.Health
         private readonly float _healthRegenAmount;
         
         public event Action HealthReachedZero = () => { };
+        public event Action HealthChanged = () => { };
 
         public float CurrentHealth { get; private set; }
         public float MaximumHealth { get; }
@@ -31,6 +32,7 @@ namespace Gameplay.Health
 
         internal void TakeDamage(float damageAmount)
         {
+            HealthChanged.Invoke();
             if (damageAmount < 0) throw new ArgumentException("Damage cannot be less than zero!");
             if (damageAmount >= CurrentHealth)
             {
@@ -54,6 +56,7 @@ namespace Gameplay.Health
             if (CurrentHealth < MaximumHealth)
             {
                 Heal(_healthRegenAmount * deltaTime);
+                HealthChanged.Invoke();
             }
         }
     }

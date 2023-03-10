@@ -1,14 +1,16 @@
 using Gameplay.Health;
-using Scriptables;
 using Scriptables.Health;
+using System;
 using Zenject;
 
 namespace Gameplay.Player
 {
-    public class PlayerSurvivalFactory : PlaceholderFactory<EntitySurvival>
+    public sealed class PlayerSurvivalFactory : PlaceholderFactory<EntitySurvival>
     {
         private readonly EntitySurvivalFactory _entitySurvivalFactory;
         private readonly EntitySurvivalConfig _playerSurvivalConfig;
+
+        public event Action<EntitySurvival> PlayerSurvivalCreated = _ => { };
 
         public PlayerSurvivalFactory(EntitySurvivalFactory entitySurvivalFactory, EntitySurvivalConfig playerSurvivalConfig)
         {
@@ -18,7 +20,9 @@ namespace Gameplay.Player
 
         public override EntitySurvival Create()
         {
-            return _entitySurvivalFactory.Create(_playerSurvivalConfig);
+            var playerSurvival = _entitySurvivalFactory.Create(_playerSurvivalConfig);
+            PlayerSurvivalCreated.Invoke(playerSurvival);
+            return playerSurvival;
         }
     }
 }

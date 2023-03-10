@@ -15,6 +15,7 @@ namespace UI.Installers
         public override void InstallBindings()
         {
             InstallPlayerInfoService();
+            InstallPlayerStatusBarService();
             InstallPlayerSpeedometerService();
             InstallLevelInfoService();
             InstallMinimapService();
@@ -25,6 +26,14 @@ namespace UI.Installers
         {
             Container
                 .BindInterfacesAndSelfTo<PlayerInfoService>()
+                .AsSingle()
+                .NonLazy();
+        }
+        
+        private void InstallPlayerStatusBarService()
+        {
+            Container
+                .BindInterfacesAndSelfTo<PlayerStatusBarService>()
                 .AsSingle()
                 .NonLazy();
         }
