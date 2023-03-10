@@ -2,7 +2,7 @@ using System;
 
 namespace Gameplay.Health
 {
-    public class EntitySurvival : IDisposable
+    public sealed class EntitySurvival : IDisposable
     {
         private readonly EntityDamageImmunityFrame _entityDamageImmunityFrame;
 

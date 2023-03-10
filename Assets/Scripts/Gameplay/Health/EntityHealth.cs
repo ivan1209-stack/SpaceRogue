@@ -4,7 +4,7 @@ using Services;
 
 namespace Gameplay.Health
 {
-    public class EntityHealth : IDisposable
+    public sealed class EntityHealth : IDisposable
     {
         private readonly Updater _updater;
         private readonly float _healthRegenAmount;

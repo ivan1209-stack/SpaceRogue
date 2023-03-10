@@ -4,7 +4,7 @@ using Scriptables.Health;
 
 namespace Gameplay.Health
 {
-    public class EntityShield : IDisposable
+    public sealed class EntityShield : IDisposable
     {
         public event Action ShieldChanged = () => { };
 

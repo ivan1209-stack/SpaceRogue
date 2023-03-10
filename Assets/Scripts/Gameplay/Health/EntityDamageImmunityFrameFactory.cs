@@ -3,7 +3,7 @@ using Zenject;
 
 namespace Gameplay.Health
 {
-    public class EntityDamageImmunityFrameFactory : PlaceholderFactory<IDamageImmunityFrameInfo, EntityDamageImmunityFrame>
+    public sealed class EntityDamageImmunityFrameFactory : PlaceholderFactory<IDamageImmunityFrameInfo, EntityDamageImmunityFrame>
     {
     }
 }
