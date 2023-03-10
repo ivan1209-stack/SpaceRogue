@@ -1,22 +1,23 @@
 using System;
 using Abstracts;
-using Scriptables.Modules;
-using UnityEngine;
+using Gameplay.Shooting.Scriptables;
+using Zenject;
 
 namespace Gameplay.Shooting
 {
-    public static class WeaponFactory
+    public class WeaponFactory : PlaceholderFactory<WeaponConfig, UnitType, Weapon>
     {
-        public static FrontalTurretController CreateFrontalTurret(TurretModuleConfig config, Transform gunPointParentTransform, UnitType unitType)
+        public override Weapon Create(WeaponConfig weaponConfig, UnitType unitType)
         {
-            return config.WeaponType switch
+            return weaponConfig.Type switch
             {
-                WeaponType.None => new FrontalNullGunController(config, gunPointParentTransform, unitType),
-                WeaponType.Blaster => new FrontalBlasterController(config, gunPointParentTransform, unitType),
-                WeaponType.Shotgun => new FrontalShotgunController(config, gunPointParentTransform, unitType),
-                WeaponType.Minigun => new FrontalMinigunController(config, gunPointParentTransform, unitType),
-                WeaponType.Railgun => new FrontalRailgunController(config, gunPointParentTransform, unitType),
-                _ => throw new ArgumentOutOfRangeException(nameof(config.WeaponType), config.WeaponType, "A not-existent weapon type is provided")
+                /*WeaponType.None => expr,
+                WeaponType.Blaster => expr,
+                WeaponType.Shotgun => expr,
+                WeaponType.Minigun => expr,
+                WeaponType.Railgun => expr, TODO uncomment when realizing weapon types */
+                _ => throw new ArgumentOutOfRangeException(nameof(weaponConfig.Type), weaponConfig.Type,
+                    "A not-existent weapon type is provided")
             };
         }
     }

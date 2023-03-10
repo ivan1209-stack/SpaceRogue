@@ -65,9 +65,9 @@ namespace Gameplay.Player.FrontalGuns
 
         private void InitializeTurret(TurretModuleConfig turretConfig, Transform transform)
         {
-            var turretController = WeaponFactory.CreateFrontalTurret(turretConfig, transform, UnitType.Player);
+            /*var turretController = WeaponFactory.CreateFrontalTurret(turretConfig, transform, UnitType.Player);
             AddController(turretController);
-            _turretControllers.Add(turretController);
+            _turretControllers.Add(turretController);*/
         }
     }
 }

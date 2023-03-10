@@ -38,7 +38,7 @@ namespace Gameplay.Enemy
             _config = config;
             _view = view;
             AddGameObject(_view.gameObject);
-            _turret = WeaponFactory.CreateFrontalTurret(PickTurret(_config.TurretConfigs, _random), _view.transform, UnitType.Enemy);
+            //_turret = WeaponFactory.CreateFrontalTurret(PickTurret(_config.TurretConfigs, _random), _view.transform, UnitType.Enemy);
             AddController(_turret);
             
             var movementModel = new UnitMovementModel(_config.UnitMovement);

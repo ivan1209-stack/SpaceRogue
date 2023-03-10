@@ -7,5 +7,6 @@ namespace Gameplay.Shooting.Scriptables
     {
         [field: SerializeField] public ProjectileConfig BlasterProjectile { get; private set; }
         [field: SerializeField, Range(0, 180)] public int SprayAngle { get; private set; } = 0;
+        public BlasterConfig() => Type = WeaponType.Blaster;
     }
 }

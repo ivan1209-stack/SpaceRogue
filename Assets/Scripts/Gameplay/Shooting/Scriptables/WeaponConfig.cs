@@ -8,5 +8,6 @@ namespace Gameplay.Shooting.Scriptables
     {
         [field: SerializeField] public string Id { get; private set; } = Guid.NewGuid().ToString();
         [field: SerializeField, Min(0.1f)] public float Cooldown { get; private set; }
+        [field: HideInInspector] public WeaponType Type { get; protected set; } = WeaponType.None;
     }
 }

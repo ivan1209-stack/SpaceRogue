@@ -6,5 +6,6 @@ namespace Gameplay.Shooting.Scriptables
     public sealed class RailgunConfig : WeaponConfig
     {
         [field: SerializeField] public ProjectileConfig RailgunProjectile { get; private set; }
+        public RailgunConfig() => Type = WeaponType.Railgun;
     }
 }
