@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace SpaceObjects
 {
-    [CreateAssetMenu(fileName = nameof(PlanetSystemConfig), menuName = "Configs/Space/" + nameof(PlanetSystemConfig))]
+    [CreateAssetMenu(fileName = nameof(PlanetSystemConfig), menuName = "Configs/Space/SpaceObjectEffects/" + nameof(PlanetSystemConfig))]
     public class PlanetSystemConfig : SpaceObjectEffectConfig
     {
         [field: SerializeField, Min(0), Header("Planets")] public int MinPlanetCount { get; private set; } = 0;

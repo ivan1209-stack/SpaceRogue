@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace SpaceObjects
 {
-    public class DamageAuraView : MonoBehaviour
+    public class AreaEffectView : MonoBehaviour
     {
 
     }

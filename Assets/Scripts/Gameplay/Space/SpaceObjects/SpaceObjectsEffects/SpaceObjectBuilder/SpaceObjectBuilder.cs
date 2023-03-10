@@ -4,27 +4,21 @@ using UnityEngine;
 
 namespace SpaceObjects
 {
-    public class SpaceObjectBuilder : ISpaceObjectBuilder
+    public class SpaceObjectBuilder 
     {
-        //private SpaceObject _spaceObject;
-
-        //private readonly IEnumerable<>
-
-        public ISpaceObjectBuilder BuildPlanetSystem()
+        public void AddPlanetSystem()
         {
 
-            return this;
         }
 
-        public ISpaceObjectBuilder BuildGravityAura()
+        public void AddGravityAura()
         {
-            return this;
+
         }
 
-        public ISpaceObjectBuilder BuildDamageAura()
+        public void AddDamageAura()
         {
 
-            return this;
         }
     }
 }
