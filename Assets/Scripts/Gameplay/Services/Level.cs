@@ -22,6 +22,7 @@ namespace Gameplay.Services
 
         public int CurrentLevelNumber { get; private set; }
         public int EnemiesCreatedCount { get; private set; }
+        public float MapCameraSize { get; private set; }
 
         public Level(
             int currentLevelNumber,
@@ -49,6 +50,8 @@ namespace Gameplay.Services
             
             var levelMap = new LevelMap(_spaceView, CurrentLevelPreset.SpaceConfig, map.BorderMap, map.NebulaMap);
             levelMap.Draw();
+
+            MapCameraSize = levelMap.GetMapCameraSize();
 
             var spawnPointsFinder = new SpawnPointsFinder(map.NebulaMap, _spaceView.NebulaTilemap);
 
