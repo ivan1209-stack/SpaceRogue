@@ -6,12 +6,13 @@ namespace Gameplay.Factories
 {
     public sealed class LevelFactory : PlaceholderFactory<int, Level>
     {
-        public event Action LevelCreated = () => { };
+        public event Action<Level> LevelCreated = (_) => { };
 
         public override Level Create(int levelNumber)
         {
-            LevelCreated.Invoke();
-            return base.Create(levelNumber);
+            var level = base.Create(levelNumber);
+            LevelCreated.Invoke(level);
+            return level;
         }
     }
 }

@@ -1,44 +1,53 @@
 using Gameplay.Services;
-using Scriptables;
+using System;
 using UI.Game;
 using UnityEngine;
 
 namespace UI.Services
 {
-    public sealed class LevelInfoService
+    public sealed class LevelInfoService : IDisposable
     {
         private readonly LevelNumberView _levelNumberView;
         private readonly EnemiesCountView _enemiesCountView;
-        //TODO Get LevelPreset
-        private readonly LevelProgressConfig _levelProgressConfig;
+        private readonly CurrentLevelProgress _currentLevelProgress;
 
-        public int EnemiesCountToWin { get; private set; }
-
-        public LevelInfoService(CurrentGameState currentGameState, LevelInfoView levelInfoView, 
-            LevelProgressConfig levelProgressConfig)
+        public LevelInfoService(LevelInfoView levelInfoView, CurrentLevelProgress currentLevelProgress)
         {
             _levelNumberView = levelInfoView.LevelNumberView;
             _enemiesCountView = levelInfoView.EnemiesCountView;
-            _levelProgressConfig = levelProgressConfig;
+            _currentLevelProgress = currentLevelProgress;
+            
 
-            _levelNumberView.InitNumber(currentGameState.CurrentLevelNumber);
-
-            ShowEnemiesCount(false);
-
-            //TODO Get value from SpaceGenerator
-            //SetEnemiesSpawnedCount
+            _levelNumberView.Hide();
+            _enemiesCountView.Hide();
+            _currentLevelProgress.LevelCreated += InitLevelInfoView;
+            _currentLevelProgress.DefeatedEnemiesCountChange += UpdateDefeatedEnemiesCount;
         }
 
-        public void SetEnemiesSpawnedCount(int enemiesCount)
+        public void Dispose()
         {
-            ShowEnemiesCount(true);
-            EnemiesCountToWin = Mathf.Clamp(_levelProgressConfig.EnemiesCountToWin, 1, enemiesCount);
-            _enemiesCountView.Init(0, EnemiesCountToWin);
+            _currentLevelProgress.LevelCreated -= InitLevelInfoView;
+            _currentLevelProgress.DefeatedEnemiesCountChange -= UpdateDefeatedEnemiesCount;
         }
 
-        private void ShowEnemiesCount(bool enable)
+        private void InitLevelInfoView(Level level)
         {
-            _enemiesCountView.gameObject.SetActive(enable);
+            _levelNumberView.InitNumber(level.CurrentLevelNumber);
+            _levelNumberView.Show();
+
+            SetNeededToDefeatCount(level.EnemiesCountToWin, level.EnemiesCreatedCount);
+        }
+
+        private void SetNeededToDefeatCount(int enemiesCountToWin, int enemiesCount)
+        {
+            var countToWin = Mathf.Clamp(enemiesCountToWin, 1, enemiesCount);
+            _enemiesCountView.Init(0, countToWin);
+            _enemiesCountView.Show();
+        }
+
+        private void UpdateDefeatedEnemiesCount(int defeatedEnemiesCount)
+        {
+            _enemiesCountView.UpdateCounter(defeatedEnemiesCount);
         }
     }
 }

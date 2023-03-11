@@ -8,13 +8,13 @@ namespace UI.Installers
 {
     public sealed class GameUIServicesInstaller : MonoInstaller
     {
-        [field: SerializeField] public LevelProgressConfig LevelProgressConfig { get; private set; }
         [field: SerializeField] public MinimapCamera MinimapCamera { get; private set; }
         [field: SerializeField] public MinimapConfig MinimapConfig { get; private set; }
 
         public override void InstallBindings()
         {
             InstallPlayerInfoService();
+            InstallPlayerStatusBarService();
             InstallPlayerSpeedometerService();
             InstallLevelInfoService();
             InstallMinimapService();
@@ -25,6 +25,14 @@ namespace UI.Installers
         {
             Container
                 .BindInterfacesAndSelfTo<PlayerInfoService>()
+                .AsSingle()
+                .NonLazy();
+        }
+        
+        private void InstallPlayerStatusBarService()
+        {
+            Container
+                .BindInterfacesAndSelfTo<PlayerStatusBarService>()
                 .AsSingle()
                 .NonLazy();
         }
@@ -40,13 +48,7 @@ namespace UI.Installers
         private void InstallLevelInfoService()
         {
             Container
-                .Bind<LevelProgressConfig>()
-                .FromInstance(LevelProgressConfig)
-                .AsSingle()
-                .NonLazy();
-            
-            Container
-                .Bind<LevelInfoService>()
+                .BindInterfacesAndSelfTo<LevelInfoService>()
                 .AsSingle()
                 .NonLazy();
         }

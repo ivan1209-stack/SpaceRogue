@@ -22,14 +22,14 @@ namespace UI.Services
         private readonly MinimapView _minimapView;
         private readonly MinimapConfig _minimapConfig;
 
-        private readonly float _mapCameraSize;
         private readonly Transform _minimapCameraTransform;
         private readonly RectTransform _minimapRectTransform;
-        private Transform _playerTransform;
 
         private readonly float _anchoredPositionX;
         private readonly float _anchoredPositionY;
 
+        private float _mapCameraSize;
+        private Transform _playerTransform;
         private bool _isButtonPressed;
 
         public MinimapService(Updater updater, CurrentLevelProgress currentLevelProgress, PlayerInput playerInput,
@@ -43,10 +43,6 @@ namespace UI.Services
             _minimapView = minimapView;
             _minimapConfig = minimapConfig;
 
-            //TODO Get value from SpaceGenerator
-            //mapCameraSize
-            _mapCameraSize = 512;
-
             _minimapCameraTransform = _minimapCamera.transform;
             _minimapRectTransform = (RectTransform)_minimapView.transform;
             _anchoredPositionX = _minimapRectTransform.anchoredPosition.x;
@@ -54,17 +50,23 @@ namespace UI.Services
 
             MinimapInit(_minimapConfig.MinimapCameraSize, _minimapConfig.MinimapColor, _minimapConfig.MinimapAlpha);
 
-            //For Test
-            //OnPlayerSpawned(new() { Transform = _minimapCamera.transform });
+
+            _currentLevelProgress.LevelCreated += OnLevelCreated;
             _currentLevelProgress.PlayerSpawned += OnPlayerSpawned;
             _currentLevelProgress.PlayerDestroyed += OnPlayerDestroyed;
         }
 
         public void Dispose()
         {
-            _updater.UnsubscribeFromUpdate(FollowPlayer);
+            _currentLevelProgress.LevelCreated -= OnLevelCreated;
             _currentLevelProgress.PlayerSpawned -= OnPlayerSpawned;
             _currentLevelProgress.PlayerDestroyed -= OnPlayerDestroyed;
+            _updater.UnsubscribeFromUpdate(FollowPlayer);
+        }
+
+        private void OnLevelCreated(Level level)
+        {
+            _mapCameraSize = level.MapCameraSize;
         }
 
         private void OnPlayerSpawned(PlayerSpawnedEventArgs eventArgs)

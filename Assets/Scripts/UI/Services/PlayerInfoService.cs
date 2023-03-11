@@ -8,13 +8,11 @@ namespace UI.Services
     public sealed class PlayerInfoService : IDisposable
     {
         private readonly CurrentLevelProgress _currentLevelProgress;
-        public PlayerStatusBarView PlayerStatusBarView { get; private set; }
         public PlayerWeaponView PlayerWeaponView { get; private set; }
 
         public PlayerInfoService(CurrentLevelProgress currentLevelProgress, PlayerInfoView playerInfoView)
         {
             _currentLevelProgress = currentLevelProgress;
-            PlayerStatusBarView = playerInfoView.PlayerStatusBarView;
             PlayerWeaponView = playerInfoView.PlayerWeaponView;
 
             ShowPlayerInfo(false);
@@ -34,7 +32,6 @@ namespace UI.Services
 
         private void ShowPlayerInfo(bool enable)
         {
-            PlayerStatusBarView.gameObject.SetActive(enable);
             PlayerWeaponView.gameObject.SetActive(enable);
         }
     }

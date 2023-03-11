@@ -8,6 +8,9 @@ namespace UI.Game
         [field: SerializeField] public TextView EnemiesDestroyedCount { get; private set; }
         [field: SerializeField] public TextView EnemiesCount { get; private set; }
 
+        public void Show() => gameObject.SetActive(true);
+        public void Hide() => gameObject.SetActive(false);
+
         public void Init(float enemiesDestroyedCount, float enemiesCount)
         {
             EnemiesDestroyedCount.Init(enemiesDestroyedCount.ToString());
