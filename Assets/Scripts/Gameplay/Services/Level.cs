@@ -18,9 +18,10 @@ namespace Gameplay.Services
         private readonly PlanetSpawnConfig _planetSpawnConfig;
         private readonly EnemySpawnConfig _enemySpawnConfig;
 
-        private LevelPreset _currentLevelPreset;
+        public LevelPreset CurrentLevelPreset { get; private set; }
 
         public int CurrentLevelNumber { get; private set; }
+        public int EnemiesCreatedCount { get; private set; }
 
         public Level(
             int currentLevelNumber,
@@ -43,18 +44,19 @@ namespace Gameplay.Services
 
             _spaceView = spaceViewFactory.Create();
 
-            var map = new MapGenerator(_currentLevelPreset.SpaceConfig);
+            var map = new MapGenerator(CurrentLevelPreset.SpaceConfig);
             map.Generate();
             
-            var levelMap = new LevelMap(_spaceView, _currentLevelPreset.SpaceConfig, map.BorderMap, map.NebulaMap);
+            var levelMap = new LevelMap(_spaceView, CurrentLevelPreset.SpaceConfig, map.BorderMap, map.NebulaMap);
             levelMap.Draw();
 
             var spawnPointsFinder = new SpawnPointsFinder(map.NebulaMap, _spaceView.NebulaTilemap);
 
-            spaceObstacleFactory.Create(_spaceView.SpaceObstacleView, _currentLevelPreset.SpaceConfig.ObstacleForce);
+            spaceObstacleFactory.Create(_spaceView.SpaceObstacleView, CurrentLevelPreset.SpaceConfig.ObstacleForce);
 
             _playerFactory.Create(spawnPointsFinder.GetPlayerSpawnPoint());
 
+            EnemiesCreatedCount = 1000;
             //TODO
             //View Factory & Service Factory
             //SpaceObjectFactory OR StarsFactory & PlanetFactory
@@ -68,7 +70,7 @@ namespace Gameplay.Services
         private void PickRandomLevelPreset()
         {
             var index = new Random().Next(_levelPresetsConfig.Presets.Count);
-            _currentLevelPreset = _levelPresetsConfig.Presets[index];
+            CurrentLevelPreset = _levelPresetsConfig.Presets[index];
         }
     }
 }
