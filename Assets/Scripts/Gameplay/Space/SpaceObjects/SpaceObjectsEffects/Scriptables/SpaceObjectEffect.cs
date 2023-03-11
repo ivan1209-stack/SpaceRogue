@@ -1,6 +1,7 @@
 using UnityEngine;
+using SpaceObjects;
 
-namespace SpaceObjects
+namespace Scriptables.Space
 {
     [CreateAssetMenu(fileName = nameof(SpaceObjectEffect), menuName = "Configs/Space/" + nameof(SpaceObjectEffect))]
     public class SpaceObjectEffect : ScriptableObject

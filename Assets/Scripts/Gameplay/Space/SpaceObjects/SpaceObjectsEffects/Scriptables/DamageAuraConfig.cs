@@ -1,6 +1,7 @@
 using UnityEngine;
+using SpaceObjects;
 
-namespace SpaceObjects
+namespace Scriptables.Space
 {
     [CreateAssetMenu(fileName = nameof(DamageAuraConfig), menuName = "Configs/Space/SpaceObjectEffects/" + nameof(DamageAuraConfig))]
     public class DamageAuraConfig : SpaceObjectEffectConfig

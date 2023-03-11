@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SpaceObjects
+namespace Scriptables.Space
 {
     public abstract class SpaceObjectEffectConfig : ScriptableObject
     {

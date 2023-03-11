@@ -1,6 +1,7 @@
 using UnityEngine;
+using SpaceObjects;
 
-namespace SpaceObjects
+namespace Scriptables.Space
 {
     [CreateAssetMenu(fileName = nameof(GravitationAuraConfig), menuName = "Configs/Space/SpaceObjectEffects/" + nameof(GravitationAuraConfig))]
     public class GravitationAuraConfig : SpaceObjectEffectConfig

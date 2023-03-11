@@ -1,6 +1,7 @@
 using UnityEngine;
+using System.Collections.Generic;
 
-namespace SpaceObjects
+namespace Scriptables.Space
 {
     [CreateAssetMenu(fileName = nameof(PlanetSystemConfig), menuName = "Configs/Space/SpaceObjectEffects/" + nameof(PlanetSystemConfig))]
     public class PlanetSystemConfig : SpaceObjectEffectConfig
@@ -10,5 +11,7 @@ namespace SpaceObjects
 
         [field: SerializeField, Min(0.1f), Header("Planet Orbits")] public float MinOrbit { get; private set; } = 0.1f;
         [field: SerializeField, Min(1f)] public float MaxOrbit { get; private set; } = 1f;
+
+        [field: SerializeField] public List<WeightConfig<PlanetConfig>> WeightConfigs { get; private set; }
     }
 }

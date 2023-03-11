@@ -5,6 +5,7 @@ namespace SpaceObjects
         None,
         PlanetSystem,
         DamageAura,
-        GravitationAura
+        GravitationAura,
+        DamageOnTouch
     }
 }
