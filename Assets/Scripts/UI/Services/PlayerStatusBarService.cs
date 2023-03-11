@@ -34,9 +34,7 @@ namespace UI.Services
         }
 
         private void OnPlayerSurvivalCreated(EntitySurvival entitySurvival)
-        {
-            _playerStatusBarView.Show();
-            
+        {   
             _playerSurvival = entitySurvival;
 
             _playerStatusBarView.HealthBar.Init(0f, entitySurvival.EntityHealth.MaximumHealth, 
@@ -46,6 +44,8 @@ namespace UI.Services
 
             _playerSurvival.EntityHealth.HealthChanged += UpdateHealthBar;
             _playerSurvival.EntityShield.ShieldChanged += UpdateShieldBar;
+            
+            _playerStatusBarView.Show();
         }
 
         private void UpdateHealthBar()

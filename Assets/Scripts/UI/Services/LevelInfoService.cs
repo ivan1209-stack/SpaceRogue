@@ -21,32 +21,31 @@ namespace UI.Services
             _levelNumberView.Hide();
             _enemiesCountView.Hide();
             _currentLevelProgress.LevelCreated += InitLevelInfoView;
-            _currentLevelProgress.DefeatedEnemiesCountChange += UpdateEnemiesSpawnedCount;
+            _currentLevelProgress.DefeatedEnemiesCountChange += UpdateDefeatedEnemiesCount;
         }
 
         public void Dispose()
         {
             _currentLevelProgress.LevelCreated -= InitLevelInfoView;
-            _currentLevelProgress.DefeatedEnemiesCountChange -= UpdateEnemiesSpawnedCount;
+            _currentLevelProgress.DefeatedEnemiesCountChange -= UpdateDefeatedEnemiesCount;
         }
 
         private void InitLevelInfoView(Level level)
         {
             _levelNumberView.InitNumber(level.CurrentLevelNumber);
             _levelNumberView.Show();
-            
-            var preset = level.CurrentLevelPreset;
-            SetEnemiesSpawnedCount(preset.EnemiesCountToWin, level.EnemiesCreatedCount);
+
+            SetNeededToDefeatCount(level.EnemiesCountToWin, level.EnemiesCreatedCount);
         }
 
-        private void SetEnemiesSpawnedCount(int enemiesCountToWin, int enemiesCount)
+        private void SetNeededToDefeatCount(int enemiesCountToWin, int enemiesCount)
         {
             var countToWin = Mathf.Clamp(enemiesCountToWin, 1, enemiesCount);
             _enemiesCountView.Init(0, countToWin);
             _enemiesCountView.Show();
         }
 
-        private void UpdateEnemiesSpawnedCount(int defeatedEnemiesCount)
+        private void UpdateDefeatedEnemiesCount(int defeatedEnemiesCount)
         {
             _enemiesCountView.UpdateCounter(defeatedEnemiesCount);
         }

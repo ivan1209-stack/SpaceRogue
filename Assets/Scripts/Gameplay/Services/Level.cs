@@ -18,9 +18,10 @@ namespace Gameplay.Services
         private readonly PlanetSpawnConfig _planetSpawnConfig;
         private readonly EnemySpawnConfig _enemySpawnConfig;
 
-        public LevelPreset CurrentLevelPreset { get; private set; }
+        private LevelPreset _currentLevelPreset;
 
         public int CurrentLevelNumber { get; private set; }
+        public int EnemiesCountToWin { get; private set; }
         public int EnemiesCreatedCount { get; private set; }
         public float MapCameraSize { get; private set; }
 
@@ -42,20 +43,21 @@ namespace Gameplay.Services
             _enemySpawnConfig = enemySpawnConfig;
             
             PickRandomLevelPreset();
+            EnemiesCountToWin = _currentLevelPreset.EnemiesCountToWin;
 
             _spaceView = spaceViewFactory.Create();
 
-            var map = new MapGenerator(CurrentLevelPreset.SpaceConfig);
+            var map = new MapGenerator(_currentLevelPreset.SpaceConfig);
             map.Generate();
             
-            var levelMap = new LevelMap(_spaceView, CurrentLevelPreset.SpaceConfig, map.BorderMap, map.NebulaMap);
+            var levelMap = new LevelMap(_spaceView, _currentLevelPreset.SpaceConfig, map.BorderMap, map.NebulaMap);
             levelMap.Draw();
 
             MapCameraSize = levelMap.GetMapCameraSize();
 
             var spawnPointsFinder = new SpawnPointsFinder(map.NebulaMap, _spaceView.NebulaTilemap);
 
-            spaceObstacleFactory.Create(_spaceView.SpaceObstacleView, CurrentLevelPreset.SpaceConfig.ObstacleForce);
+            spaceObstacleFactory.Create(_spaceView.SpaceObstacleView, _currentLevelPreset.SpaceConfig.ObstacleForce);
 
             _playerFactory.Create(spawnPointsFinder.GetPlayerSpawnPoint());
 
@@ -73,7 +75,7 @@ namespace Gameplay.Services
         private void PickRandomLevelPreset()
         {
             var index = new Random().Next(_levelPresetsConfig.Presets.Count);
-            CurrentLevelPreset = _levelPresetsConfig.Presets[index];
+            _currentLevelPreset = _levelPresetsConfig.Presets[index];
         }
     }
 }

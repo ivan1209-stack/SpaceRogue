@@ -32,16 +32,17 @@ namespace Gameplay.Health
 
         internal void TakeDamage(float damageAmount)
         {
-            HealthChanged.Invoke();
             if (damageAmount < 0) throw new ArgumentException("Damage cannot be less than zero!");
             if (damageAmount >= CurrentHealth)
             {
                 CurrentHealth = 0.0f;
+                HealthChanged.Invoke();
                 HealthReachedZero.Invoke();
                 return;
             }
 
             CurrentHealth -= damageAmount;
+            HealthChanged.Invoke();
         }
 
         internal void Heal(float healingAmount)
@@ -49,6 +50,7 @@ namespace Gameplay.Health
             if (healingAmount < 0) throw new ArgumentException("Healing cannot be less than zero!");
             CurrentHealth += healingAmount;
             if (CurrentHealth > MaximumHealth) CurrentHealth = MaximumHealth;
+            HealthChanged.Invoke();
         }
 
         private void RegenerateHealth(float deltaTime)
@@ -56,7 +58,6 @@ namespace Gameplay.Health
             if (CurrentHealth < MaximumHealth)
             {
                 Heal(_healthRegenAmount * deltaTime);
-                HealthChanged.Invoke();
             }
         }
     }
