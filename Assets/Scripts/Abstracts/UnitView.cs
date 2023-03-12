@@ -8,7 +8,7 @@ namespace Abstracts
     [RequireComponent(typeof(Rigidbody2D))]
     public abstract class UnitView : MonoBehaviour, IDamageableView
     {
-        [field: SerializeField] public UnitType UnitType { get; private set; }
+        [field: SerializeField] public UnitType UnitType { get; protected set; }
         
         public event Action<DamageModel> DamageTaken = _ => { };
 

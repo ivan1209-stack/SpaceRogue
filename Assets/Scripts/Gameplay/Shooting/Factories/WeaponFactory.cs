@@ -6,7 +6,7 @@ using Zenject;
 
 namespace Gameplay.Shooting.Factories
 {
-    public sealed class WeaponFactory : PlaceholderFactory<WeaponConfig, UnitType, Weapon>
+    public sealed class WeaponFactory : IFactory<WeaponConfig, UnitType, Weapon>
     {
         private readonly ProjectileFactory _projectileFactory;
         private readonly TimerFactory _timerFactory;
@@ -17,7 +17,7 @@ namespace Gameplay.Shooting.Factories
             _timerFactory = timerFactory;
         }
         
-        public override Weapon Create(WeaponConfig weaponConfig, UnitType unitType)
+        public Weapon Create(WeaponConfig weaponConfig, UnitType unitType)
         {
             return weaponConfig.Type switch
             {

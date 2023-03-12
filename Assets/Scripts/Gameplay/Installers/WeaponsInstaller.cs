@@ -5,7 +5,6 @@ using Gameplay.Shooting.Factories;
 using Gameplay.Shooting.Scriptables;
 using UnityEngine;
 using Zenject;
-using ProjectileFactory = Gameplay.Shooting.Factories.ProjectileFactory;
 
 namespace Gameplay.Installers
 {
@@ -70,12 +69,12 @@ namespace Gameplay.Installers
         private void InstallWeaponFactories()
         {
             Container
-                .BindFactory<WeaponConfig, UnitType, Weapon, WeaponFactory>()
-                .AsSingle();
+                .BindIFactory<WeaponConfig, UnitType, Weapon>()
+                .FromFactory<WeaponFactory>();
 
             Container
-                .BindFactory<WeaponMountConfig, UnitView, MountedWeapon, MountedWeaponFactory>()
-                .AsSingle();
+                .BindIFactory<MountedWeaponConfig, UnitView, MountedWeapon>()
+                .FromFactory<MountedWeaponFactory>();
         }
     }
 }

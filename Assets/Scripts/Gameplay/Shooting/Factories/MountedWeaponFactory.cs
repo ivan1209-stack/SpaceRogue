@@ -5,20 +5,20 @@ using Zenject;
 
 namespace Gameplay.Shooting.Factories
 {
-    public class MountedWeaponFactory : PlaceholderFactory<WeaponMountConfig, UnitView, MountedWeapon>
+    public class MountedWeaponFactory : IFactory<MountedWeaponConfig, UnitView, MountedWeapon>
     {
-        private readonly WeaponFactory _weaponFactory;
+        private readonly IFactory<WeaponConfig, UnitType, Weapon> _weaponFactory;
         private readonly GunPointViewFactory _gunPointViewFactory;
         private readonly TurretViewFactory _turretViewFactory;
 
-        public MountedWeaponFactory(WeaponFactory weaponFactory, GunPointViewFactory gunPointViewFactory, TurretViewFactory turretViewFactory)
+        public MountedWeaponFactory(IFactory<WeaponConfig, UnitType, Weapon> weaponFactory, GunPointViewFactory gunPointViewFactory, TurretViewFactory turretViewFactory)
         {
             _weaponFactory = weaponFactory;
             _gunPointViewFactory = gunPointViewFactory;
             _turretViewFactory = turretViewFactory;
         }
 
-        public override MountedWeapon Create(WeaponMountConfig config, UnitView unitView)
+        public MountedWeapon Create(MountedWeaponConfig config, UnitView unitView)
         {
             return config.WeaponMountType switch
             {
@@ -29,6 +29,6 @@ namespace Gameplay.Shooting.Factories
             };
         }
         
-        private Weapon CreateWeapon(WeaponMountConfig config, UnitView unitView) => _weaponFactory.Create(config.MountedWeapon, unitView.UnitType);
+        private Weapon CreateWeapon(MountedWeaponConfig config, UnitView unitView) => _weaponFactory.Create(config.MountedWeapon, unitView.UnitType);
     }
 }
