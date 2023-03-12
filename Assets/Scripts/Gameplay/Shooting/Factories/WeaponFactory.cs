@@ -3,16 +3,16 @@ using Abstracts;
 using Gameplay.Shooting.Scriptables;
 using Zenject;
 
-namespace Gameplay.Shooting
+namespace Gameplay.Shooting.Factories
 {
-    public class WeaponFactory : PlaceholderFactory<WeaponConfig, UnitType, Weapon>
+    public sealed class WeaponFactory : PlaceholderFactory<WeaponConfig, UnitType, Weapon>
     {
         public override Weapon Create(WeaponConfig weaponConfig, UnitType unitType)
         {
             return weaponConfig.Type switch
             {
-                /*WeaponType.None => expr,
-                WeaponType.Blaster => expr,
+                WeaponType.None => new NullGun(),
+                /*WeaponType.Blaster => expr,
                 WeaponType.Shotgun => expr,
                 WeaponType.Minigun => expr,
                 WeaponType.Railgun => expr, TODO uncomment when realizing weapon types */

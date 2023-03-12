@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Gameplay.Shooting
 {
+    [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(Collider))]
     public sealed class ProjectileView : MonoBehaviour, IDamagingView
     {
