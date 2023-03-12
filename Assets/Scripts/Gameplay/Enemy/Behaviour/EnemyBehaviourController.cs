@@ -14,7 +14,7 @@ namespace Gameplay.Enemy.Behaviour
         private readonly UnitMovementModel _unitMovementModel;
         private readonly EnemyInputController _inputController;
         private readonly EnemyMovementController _movementController;
-        private readonly FrontalTurretController _turretController;
+        private readonly Weapon _turretController;
         private readonly PlayerController _playerController;
         private readonly Transform _target;
         private readonly EnemyBehaviourConfig _enemyConfig;
@@ -23,7 +23,7 @@ namespace Gameplay.Enemy.Behaviour
         
         private EnemyBehaviour _currentBehaviour;
 
-        public EnemyBehaviourController(UnitMovementModel unitMovementModel, EnemyView view, FrontalTurretController turretController,
+        public EnemyBehaviourController(UnitMovementModel unitMovementModel, EnemyView view, Weapon turretController,
             PlayerController playerController, EnemyBehaviourConfig config, Transform target)
         {
             _view = view;

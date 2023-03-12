@@ -22,7 +22,7 @@ namespace Gameplay.Enemy
 
         private readonly EnemyView _view;
         private readonly EnemyConfig _config;
-        private readonly FrontalTurretController _turret;
+        private readonly Weapon _turret;
         private readonly EnemyBehaviourController _behaviourController;
         private readonly PlayerController _playerController;
         private readonly System.Random _random = new();
@@ -39,7 +39,7 @@ namespace Gameplay.Enemy
             _view = view;
             AddGameObject(_view.gameObject);
             //_turret = WeaponFactory.CreateFrontalTurret(PickTurret(_config.TurretConfigs, _random), _view.transform, UnitType.Enemy);
-            AddController(_turret);
+            //AddController(_turret);
             
             var movementModel = new UnitMovementModel(_config.UnitMovement);
             _behaviourController = new(movementModel, _view, _turret, _playerController, _config.Behaviour, target);

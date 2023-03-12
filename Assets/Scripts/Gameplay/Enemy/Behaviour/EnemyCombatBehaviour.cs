@@ -10,7 +10,7 @@ namespace Gameplay.Enemy.Behaviour
     public class EnemyCombatBehaviour : EnemyBehaviour
     {
         private readonly EnemyInputController _inputController;
-        private readonly FrontalTurretController _frontalTurret;
+        private readonly Weapon _frontalTurret;
         private readonly float _firingAngle;
 
         private Vector3 _targetDirection;
@@ -22,7 +22,7 @@ namespace Gameplay.Enemy.Behaviour
 
         public EnemyCombatBehaviour(
             SubscribedProperty<EnemyState> enemyState, EnemyView view, PlayerController playerController,
-            EnemyInputController inputController, FrontalTurretController frontalTurret, EnemyBehaviourConfig config) 
+            EnemyInputController inputController, Weapon frontalTurret, EnemyBehaviourConfig config) 
             : base(enemyState, view, playerController, config)
         {
             _inputController = inputController;
@@ -59,7 +59,7 @@ namespace Gameplay.Enemy.Behaviour
 
             if (UnityHelper.DirectionInsideAngle(_targetDirection, _currentDirection, _firingAngle))
             {
-                _frontalTurret.CommenceFiring();
+                //_frontalTurret.CommenceFiring();
             }
         }
 

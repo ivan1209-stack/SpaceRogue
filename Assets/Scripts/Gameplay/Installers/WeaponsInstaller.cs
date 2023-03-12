@@ -1,6 +1,8 @@
+using Abstracts;
 using Gameplay.Pooling;
 using Gameplay.Shooting;
 using Gameplay.Shooting.Factories;
+using Gameplay.Shooting.Scriptables;
 using UnityEngine;
 using Zenject;
 using ProjectileFactory = Gameplay.Shooting.Factories.ProjectileFactory;
@@ -19,6 +21,7 @@ namespace Gameplay.Installers
             InstallProjectileFactory();
             InstallTurretFactory();
             InstallGunPointFactory();
+            InstallWeaponFactories();
         }
 
         private void InstallProjectilePool()
@@ -61,6 +64,17 @@ namespace Gameplay.Installers
             
             Container
                 .BindFactory<Vector2, Quaternion, Transform, GunPointView, GunPointViewFactory>()
+                .AsSingle();
+        }
+
+        private void InstallWeaponFactories()
+        {
+            Container
+                .BindFactory<WeaponConfig, UnitType, Weapon, WeaponFactory>()
+                .AsSingle();
+
+            Container
+                .BindFactory<WeaponMountConfig, UnitView, MountedWeapon, MountedWeaponFactory>()
                 .AsSingle();
         }
     }

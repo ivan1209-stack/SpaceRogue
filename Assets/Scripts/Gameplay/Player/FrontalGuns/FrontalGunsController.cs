@@ -14,7 +14,7 @@ namespace Gameplay.Player.FrontalGuns
         private readonly SubscribedProperty<bool> _primaryFireInput;
         private readonly SubscribedProperty<bool> _changeWeaponInput;
         private readonly List<TurretModuleConfig> _turretConfigs;
-        private readonly List<FrontalTurretController> _turretControllers;
+        //private readonly List<FrontalTurretController> _turretControllers;
 
         private readonly PlayerWeaponView _playerWeaponView;
 
@@ -26,7 +26,7 @@ namespace Gameplay.Player.FrontalGuns
             _changeWeaponInput = changeWeaponInput;
             _turretConfigs = turretConfigs;
             
-            _turretControllers = new List<FrontalTurretController>();
+            //_turretControllers = new List<FrontalTurretController>();
             
             foreach (var config in _turretConfigs)
             {
@@ -50,7 +50,7 @@ namespace Gameplay.Player.FrontalGuns
         {
             if (isFiring)
             {
-                _turretControllers[_currentTurret].CommenceFiring(); 
+                //_turretControllers[_currentTurret].CommenceFiring(); 
             }
         }
 
