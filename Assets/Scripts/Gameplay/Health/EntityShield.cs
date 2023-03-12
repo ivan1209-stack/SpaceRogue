@@ -4,8 +4,10 @@ using Scriptables.Health;
 
 namespace Gameplay.Health
 {
-    public class EntityShield : IDisposable
+    public sealed class EntityShield : IDisposable
     {
+        public event Action ShieldChanged = () => { };
+
         public float CurrentShield { get; private set; }
         public float MaximumShield { get; }
 
@@ -29,6 +31,7 @@ namespace Gameplay.Health
 
         internal void TakeDamage(float damageAmount, out float remainingDamage)
         {
+            ShieldChanged.Invoke();
             if (damageAmount > CurrentShield)
             {
                 remainingDamage = damageAmount - CurrentShield;
@@ -51,6 +54,7 @@ namespace Gameplay.Health
         private void RefreshShield()
         {
             CurrentShield = MaximumShield;
+            ShieldChanged.Invoke();
         }
     }
 }

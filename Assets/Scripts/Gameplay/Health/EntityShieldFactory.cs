@@ -3,7 +3,7 @@ using Zenject;
 
 namespace Gameplay.Health
 {
-    public class EntityShieldFactory : PlaceholderFactory<IShieldInfo, EntityShield>
+    public sealed class EntityShieldFactory : PlaceholderFactory<IShieldInfo, EntityShield>
     {
     }
 }

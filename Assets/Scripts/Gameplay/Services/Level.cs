@@ -21,6 +21,9 @@ namespace Gameplay.Services
         private LevelPreset _currentLevelPreset;
 
         public int CurrentLevelNumber { get; private set; }
+        public int EnemiesCountToWin { get; private set; }
+        public int EnemiesCreatedCount { get; private set; }
+        public float MapCameraSize { get; private set; }
 
         public Level(
             int currentLevelNumber,
@@ -40,6 +43,7 @@ namespace Gameplay.Services
             _enemySpawnConfig = enemySpawnConfig;
             
             PickRandomLevelPreset();
+            EnemiesCountToWin = _currentLevelPreset.EnemiesCountToWin;
 
             _spaceView = spaceViewFactory.Create();
 
@@ -49,12 +53,15 @@ namespace Gameplay.Services
             var levelMap = new LevelMap(_spaceView, _currentLevelPreset.SpaceConfig, map.BorderMap, map.NebulaMap);
             levelMap.Draw();
 
+            MapCameraSize = levelMap.GetMapCameraSize();
+
             var spawnPointsFinder = new SpawnPointsFinder(map.NebulaMap, _spaceView.NebulaTilemap);
 
             spaceObstacleFactory.Create(_spaceView.SpaceObstacleView, _currentLevelPreset.SpaceConfig.ObstacleForce);
 
             _playerFactory.Create(spawnPointsFinder.GetPlayerSpawnPoint());
 
+            EnemiesCreatedCount = 1000;
             //TODO
             //View Factory & Service Factory
             //SpaceObjectFactory OR StarsFactory & PlanetFactory

@@ -19,6 +19,13 @@ namespace Gameplay.Space.Generator
             _nebulaMap = nebulaMap;
         }
 
+        public float GetMapCameraSize()
+        {
+            var maxCellCount = Mathf.Max(_spaceConfig.WidthMap, _spaceConfig.HeightMap);
+            var maxCellSize = Mathf.Max(_spaceView.NebulaTilemap.cellSize.x, _spaceView.NebulaTilemap.cellSize.y);
+            return maxCellCount * maxCellSize / 2;
+        }
+
         public void Draw()
         {
             DrawLayer(_borderMap, _spaceView.BorderTilemap, _spaceConfig.BorderTileBase, CellType.Border);
