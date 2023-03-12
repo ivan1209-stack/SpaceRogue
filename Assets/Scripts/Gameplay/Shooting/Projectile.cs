@@ -1,6 +1,7 @@
 using System;
 using Gameplay.Mechanics.Timer;
 using Gameplay.Shooting.Scriptables;
+using UnityEngine;
 
 namespace Gameplay.Shooting
 {
@@ -9,7 +10,7 @@ namespace Gameplay.Shooting
         private readonly ProjectileView _projectileView;
         private readonly Timer _lifeTime;
         
-        public Projectile(ProjectileConfig config, ProjectileView projectileView, TimerFactory timerFactory)
+        public Projectile(ProjectileConfig config, ProjectileView projectileView, TimerFactory timerFactory) //TODO fix injection
         {
             _projectileView = projectileView;
 
