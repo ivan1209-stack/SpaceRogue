@@ -27,6 +27,11 @@ namespace Abstracts
             DamageTaken(damageComponent.DamageModel);
         }
 
+        public void TakeDamage(DamageModel damageComponent)
+        {
+            DamageTaken(damageComponent);
+        }
+
         private void CollisionEnter(GameObject go)
         {
             var damageComponent = go.GetComponent<IDamagingView>();

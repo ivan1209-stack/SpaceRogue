@@ -6,7 +6,7 @@ namespace Gameplay.Shooting
     {
         public override void CommenceFiring(Vector2 bulletPosition, Quaternion turretDirection)
         {
-            Debug.Log($"Null-gun has fired, bullet position {bulletPosition}, direction {turretDirection.eulerAngles}!");
+            Debug.Log($"None-gun has fired, bullet position {bulletPosition}, direction {turretDirection.eulerAngles}!");
         }
     }
 }
