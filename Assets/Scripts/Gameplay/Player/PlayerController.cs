@@ -1,23 +1,14 @@
 using Abstracts;
-using Gameplay.Health;
-using Gameplay.Input;
-using Gameplay.Movement;
-using Gameplay.Player.FrontalGuns;
-using Gameplay.Player.Inventory;
-using Gameplay.Player.Movement;
 using Scriptables;
 using Scriptables.Health;
-using Scriptables.Modules;
 using System;
-using System.Collections.Generic;
-using UI.Game;
 using UnityEngine;
 using Utilities.Reactive.SubscriptionProperty;
 using Utilities.ResourceManagement;
 
 namespace Gameplay.Player
 {
-    public sealed class PlayerController : BaseController
+    public sealed class PlayerController : BaseController //TODO Remove (legacy)
     {
         public PlayerView View => _view;
 
@@ -51,7 +42,7 @@ namespace Gameplay.Player
 
             //var inventoryController = AddInventoryController(_config.Inventory);
             //var movementController = AddMovementController(_config.Movement, _view);
-            var frontalGunsController = AddFrontalGunsController(new List<TurretModuleConfig>(), _view);
+            //var frontalGunsController = AddFrontalGunsController(new List<TurretModuleConfig>(), _view);
             //_healthController = AddHealthController(healthInfo, shieldInfo);
             //AddCrosshair();
         }
@@ -61,13 +52,6 @@ namespace Gameplay.Player
         {
             OnControllerDispose.Invoke();
             Dispose();
-        }
-
-        private FrontalGunsController AddFrontalGunsController(List<TurretModuleConfig> turretConfigs, PlayerView view)
-        {
-            var frontalGunsController = new FrontalGunsController(_primaryFireInput, _changeWeaponInput, turretConfigs, view);
-            AddController(frontalGunsController);
-            return frontalGunsController;
         }
 
     }

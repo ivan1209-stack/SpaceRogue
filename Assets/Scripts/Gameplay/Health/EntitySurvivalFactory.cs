@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Gameplay.Health
 {
-    public class EntitySurvivalFactory : PlaceholderFactory<EntitySurvivalConfig, EntitySurvival>
+    public sealed class EntitySurvivalFactory : PlaceholderFactory<EntitySurvivalConfig, EntitySurvival>
     {
         private readonly EntityHealthFactory _entityHealthFactory;
         private readonly EntityShieldFactory _entityShieldFactory;

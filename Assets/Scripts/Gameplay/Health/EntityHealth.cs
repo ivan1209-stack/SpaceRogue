@@ -4,12 +4,13 @@ using Services;
 
 namespace Gameplay.Health
 {
-    public class EntityHealth : IDisposable
+    public sealed class EntityHealth : IDisposable
     {
         private readonly Updater _updater;
         private readonly float _healthRegenAmount;
         
         public event Action HealthReachedZero = () => { };
+        public event Action HealthChanged = () => { };
 
         public float CurrentHealth { get; private set; }
         public float MaximumHealth { get; }
@@ -35,11 +36,13 @@ namespace Gameplay.Health
             if (damageAmount >= CurrentHealth)
             {
                 CurrentHealth = 0.0f;
+                HealthChanged.Invoke();
                 HealthReachedZero.Invoke();
                 return;
             }
 
             CurrentHealth -= damageAmount;
+            HealthChanged.Invoke();
         }
 
         internal void Heal(float healingAmount)
@@ -47,6 +50,7 @@ namespace Gameplay.Health
             if (healingAmount < 0) throw new ArgumentException("Healing cannot be less than zero!");
             CurrentHealth += healingAmount;
             if (CurrentHealth > MaximumHealth) CurrentHealth = MaximumHealth;
+            HealthChanged.Invoke();
         }
 
         private void RegenerateHealth(float deltaTime)

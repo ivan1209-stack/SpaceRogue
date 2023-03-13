@@ -2,8 +2,10 @@ using Gameplay.Factories;
 using Gameplay.Health;
 using Gameplay.Movement;
 using Gameplay.Player;
-using Gameplay.Player.Inventory;
 using Gameplay.Player.Movement;
+using Gameplay.Player.Weapon;
+using Gameplay.Shooting;
+using Gameplay.Shooting.Scriptables;
 using Scriptables;
 using Scriptables.Health;
 using UnityEngine;
@@ -20,8 +22,8 @@ namespace Gameplay.Installers
         {
             InstallPlayerView();
             InstallPlayerMovement();
-            InstallPlayerInventory();
             InstallPlayerHealth();
+            InstallPlayerWeapon();
             InstallPlayer();
         }
 
@@ -66,18 +68,6 @@ namespace Gameplay.Installers
                 .AsCached();
         }
 
-        private void InstallPlayerInventory()
-        {
-            Container
-                .Bind<PlayerInventoryConfig>()
-                .FromInstance(PlayerConfig.Inventory)
-                .WhenInjectedInto<PlayerInventory>();
-            
-            Container
-                .BindInterfacesAndSelfTo<PlayerInventory>()
-                .AsCached();
-        }
-
         private void InstallPlayerHealth()
         {
             Container.Bind<EntitySurvivalConfig>()
@@ -87,6 +77,22 @@ namespace Gameplay.Installers
             Container
                 .BindFactory<EntitySurvival, PlayerSurvivalFactory>()
                 .AsSingle();
+        }
+
+        private void InstallPlayerWeapon()
+        {
+            Container
+                .Bind<MountedWeaponConfig>()
+                .FromInstance(PlayerConfig.StartingWeapon)
+                .WhenInjectedInto<PlayerWeaponFactory>();
+
+            Container
+                .BindFactory<PlayerView, PlayerWeapon, PlayerWeaponFactory>()
+                .AsSingle();
+
+            Container
+                .Bind<PlayerWeapon>()
+                .AsCached();
         }
 
         private void InstallPlayer()

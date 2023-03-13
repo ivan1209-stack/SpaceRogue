@@ -4,7 +4,7 @@ using Scriptables.Health;
 
 namespace Gameplay.Health
 {
-    public class EntityDamageImmunityFrame : IDisposable
+    public sealed class EntityDamageImmunityFrame : IDisposable
     {
         public Timer DamageImmunityFrameTimer { get; }
         public Timer DamageImmunityCooldownTimer { get; }

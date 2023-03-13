@@ -1,17 +1,17 @@
 using System;
 using Gameplay.Factories;
 using Gameplay.Health;
-using Gameplay.Player.Inventory;
 using Gameplay.Player.Movement;
+using Gameplay.Player.Weapon;
 using UnityEngine;
 
 namespace Gameplay.Player
 {
     public sealed class Player : IDisposable
     {
-        private readonly PlayerInventory _playerInventory;
         private readonly PlayerMovement _playerMovement;
         private readonly PlayerTurning _playerTurning;
+        private readonly PlayerWeapon _playerWeapon;
 
         public event Action PlayerDestroyed = () => { };
 
@@ -23,14 +23,13 @@ namespace Gameplay.Player
             PlayerViewFactory playerViewFactory, 
             PlayerMovementFactory playerMovementFactory, 
             PlayerTurningFactory playerTurningFactory,
-            PlayerInventory playerInventory,
-            PlayerSurvivalFactory playerSurvivalFactory)
+            PlayerSurvivalFactory playerSurvivalFactory,
+            PlayerWeaponFactory playerWeaponFactory)
         {
-            _playerInventory = playerInventory;
-            
             PlayerView = playerViewFactory.Create(spawnPoint);
             _playerMovement = playerMovementFactory.Create(PlayerView);
             _playerTurning = playerTurningFactory.Create(PlayerView);
+            _playerWeapon = playerWeaponFactory.Create(PlayerView);
 
             Survival = playerSurvivalFactory.Create();
         }
@@ -39,9 +38,9 @@ namespace Gameplay.Player
         {
             PlayerDestroyed.Invoke();
             
-            _playerInventory.Dispose();
             _playerMovement.Dispose();
             _playerTurning.Dispose();
+            _playerWeapon.Dispose();
             
             UnityEngine.Object.Destroy(PlayerView);
         }
