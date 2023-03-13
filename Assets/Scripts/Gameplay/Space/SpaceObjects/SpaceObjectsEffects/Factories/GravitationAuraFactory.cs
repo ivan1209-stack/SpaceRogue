@@ -13,8 +13,7 @@ namespace SpaceObjects
 
         public GravitationAuraEffect CreateGravitationAuraEffect(GravitationAuraConfig config)
         {
-            var gravitationAuraEffect = new GravitationAuraEffect();
-            return gravitationAuraEffect;
+            return base.Create(config);
         }
 
     }

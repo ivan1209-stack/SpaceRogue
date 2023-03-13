@@ -13,8 +13,7 @@ namespace SpaceObjects
 
         public DamageOnTouchEffect CreateDamageOnTouchEffect(DamageOnTouchEffectConfig config)
         {
-            var damageOnTouchEffect = new DamageOnTouchEffect();
-            return damageOnTouchEffect;
+            return base.Create(config);
         }
     }
 }

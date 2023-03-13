@@ -13,8 +13,7 @@ namespace SpaceObjects
 
         public DamageAuraEffect CreateDamageAuraEffect(DamageAuraConfig config)
         {
-            var damageAuraEffect = new DamageAuraEffect();
-            return damageAuraEffect;
+            return base.Create(config);
         }
     }
 }

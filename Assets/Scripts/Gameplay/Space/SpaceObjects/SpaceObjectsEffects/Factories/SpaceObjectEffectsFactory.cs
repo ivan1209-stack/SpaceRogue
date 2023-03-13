@@ -12,7 +12,7 @@ namespace SpaceObjects
 
         }
 
-        public SpaceObjectEffect CreateDamageAuraEffect(ApplicableSpaceObjectEffect config)
+        public SpaceObjectEffect CreateSpaceObjectEffect(ApplicableSpaceObjectEffect config)
         {
             return config.Type switch
             {

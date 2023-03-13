@@ -13,8 +13,7 @@ namespace SpaceObjects
 
         public PlanetSystemEffect CreatePlanetSystemEffect(PlanetSystemConfig config)
         {
-            var planetSystemEffect = new PlanetSystemEffect();
-            return planetSystemEffect;
+            return base.Create(config);
         }
     }
 }
