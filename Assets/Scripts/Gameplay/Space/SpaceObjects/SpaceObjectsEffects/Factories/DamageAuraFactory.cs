@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Scriptables.Space;
+using Zenject;
 
 namespace SpaceObjects
 {
-    public class DamageAuraFactory
+    public class DamageAuraFactory : PlaceholderFactory<DamageAuraConfig, DamageAuraEffect>
     {
-        public DamageAuraFactory(DamageAuraConfig config)
+        public DamageAuraFactory()
         {
 
         }
 
-        public DamageAuraEffect CreateDamageAuraEffect()
+        public DamageAuraEffect CreateDamageAuraEffect(DamageAuraConfig config)
         {
             var damageAuraEffect = new DamageAuraEffect();
             return damageAuraEffect;

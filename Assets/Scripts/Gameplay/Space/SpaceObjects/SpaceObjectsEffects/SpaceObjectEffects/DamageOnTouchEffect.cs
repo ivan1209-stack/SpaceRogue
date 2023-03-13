@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace SpaceObjects
 {
-    public class DamageOnTouchEffect : AbstractSpaceObjectEffect
+    public class DamageOnTouchEffect : SpaceObjectEffect
     {
 
     }

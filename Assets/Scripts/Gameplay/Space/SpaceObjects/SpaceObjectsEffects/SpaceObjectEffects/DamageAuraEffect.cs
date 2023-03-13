@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace SpaceObjects
 {
-    public class DamageAuraEffect : AbstractSpaceObjectEffect
+    public class DamageAuraEffect : SpaceObjectEffect
     {
 
     }

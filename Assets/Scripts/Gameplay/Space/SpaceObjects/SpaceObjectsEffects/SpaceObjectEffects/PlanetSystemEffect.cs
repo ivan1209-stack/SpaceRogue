@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace SpaceObjects
 {
-    public class PlanetSystemEffect : AbstractSpaceObjectEffect
+    public class PlanetSystemEffect : SpaceObjectEffect
     {
 
     }

@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
+using Zenject;
 using UnityEngine;
 using Scriptables.Space;
 
 namespace SpaceObjects
 {
-    public class GravitationAuraFactory 
+    public class GravitationAuraFactory : PlaceholderFactory<GravitationAuraConfig, GravitationAuraEffect>
     {
-        public GravitationAuraFactory(GravitationAuraConfig config)
+        public GravitationAuraFactory()
         {
 
         }
 
-        public GravitationAuraEffect CreateGravitationAuraEffect()
+        public GravitationAuraEffect CreateGravitationAuraEffect(GravitationAuraConfig config)
         {
             var gravitationAuraEffect = new GravitationAuraEffect();
             return gravitationAuraEffect;

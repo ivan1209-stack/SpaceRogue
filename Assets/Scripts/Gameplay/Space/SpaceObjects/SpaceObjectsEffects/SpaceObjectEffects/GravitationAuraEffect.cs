@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace SpaceObjects
 {
-    public class GravitationAuraEffect : AbstractSpaceObjectEffect
+    public class GravitationAuraEffect : SpaceObjectEffect
     {
 
     }

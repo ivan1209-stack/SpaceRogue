@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Scriptables.Space;
+using Zenject;
 
 namespace SpaceObjects
 {
-    public class DamageOnTouchFactory
+    public class DamageOnTouchFactory : PlaceholderFactory<DamageOnTouchEffectConfig, DamageOnTouchEffect>
     {
-        public DamageOnTouchFactory(DamageOnTouchEffectConfig config)
+        public DamageOnTouchFactory()
         {
 
         }
 
-        public DamageOnTouchEffect CreateDamageOnTouchEffect()
+        public DamageOnTouchEffect CreateDamageOnTouchEffect(DamageOnTouchEffectConfig config)
         {
             var damageOnTouchEffect = new DamageOnTouchEffect();
             return damageOnTouchEffect;
