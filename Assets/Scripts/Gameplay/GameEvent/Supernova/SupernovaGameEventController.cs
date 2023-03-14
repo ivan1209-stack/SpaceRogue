@@ -1,10 +1,10 @@
+using System.Collections.Generic;
 using Gameplay.Player;
 using Gameplay.Space.Star;
 using Scriptables.GameEvent;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace Gameplay.GameEvent
+namespace Gameplay.GameEvent.Supernova
 {
     public sealed class SupernovaGameEventController : GameEventController
     {

@@ -7,7 +7,7 @@ using UnityEngine;
 using Utilities.Mathematics;
 using Object = UnityEngine.Object;
 
-namespace Gameplay.Space
+namespace Gameplay.Space.Factories
 {
     public sealed class SpaceObjectFactory
     {

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Abstracts;
+using Gameplay.Space.Factories;
 using Gameplay.Space.Generator;
 using Gameplay.Space.Obstacle;
 using Gameplay.Space.Planet;

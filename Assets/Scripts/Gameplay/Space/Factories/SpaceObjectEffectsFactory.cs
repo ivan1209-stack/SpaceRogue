@@ -1,11 +1,10 @@
-using Zenject;
-using UnityEngine;
 using System;
 using Gameplay.Space.SpaceObjects;
 using Gameplay.Space.SpaceObjects.Scriptables;
 using Gameplay.Space.SpaceObjects.SpaceObjectsEffects;
+using Zenject;
 
-namespace SpaceObjects
+namespace Gameplay.Space.Factories
 {
     public class SpaceObjectEffectsFactory : PlaceholderFactory<ApplicableSpaceObjectEffect, SpaceObjectEffect>
     {

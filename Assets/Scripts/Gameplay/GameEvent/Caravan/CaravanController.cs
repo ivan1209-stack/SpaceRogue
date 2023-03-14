@@ -1,10 +1,10 @@
 using Abstracts;
 using Gameplay.Enemy;
-using Gameplay.Health;
 using Gameplay.Movement;
 using Gameplay.Player;
 using Scriptables.GameEvent;
 using Scriptables.Health;
+using UI;
 using UI.Game;
 using UnityEngine;
 using Utilities.Mathematics;
@@ -12,7 +12,7 @@ using Utilities.Reactive.SubscriptionProperty;
 using Utilities.ResourceManagement;
 using Utilities.Unity;
 
-namespace Gameplay.GameEvent
+namespace Gameplay.GameEvent.Caravan
 {
     public sealed class CaravanController : BaseController
     {

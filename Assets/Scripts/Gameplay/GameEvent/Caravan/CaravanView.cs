@@ -2,7 +2,7 @@ using Abstracts;
 using Gameplay.Damage;
 using UnityEngine;
 
-namespace Gameplay.GameEvent
+namespace Gameplay.GameEvent.Caravan
 {
     [RequireComponent(typeof(BoxCollider2D))]
     public sealed class CaravanView : UnitView, IDamagingView

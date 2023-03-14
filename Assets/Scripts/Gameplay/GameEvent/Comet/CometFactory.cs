@@ -1,7 +1,6 @@
-using Scriptables.GameEvent;
 using UnityEngine;
 
-namespace Gameplay.GameEvent
+namespace Gameplay.GameEvent.Comet
 {
     public sealed class CometFactory
     {

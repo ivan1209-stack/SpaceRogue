@@ -1,8 +1,8 @@
-using Gameplay.Services;
 using System;
+using Gameplay.Services;
 using Zenject;
 
-namespace Gameplay.Factories
+namespace Gameplay.LevelProgress
 {
     public sealed class LevelFactory : PlaceholderFactory<int, Level>
     {

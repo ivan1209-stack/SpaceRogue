@@ -1,4 +1,4 @@
-using Gameplay.Factories;
+using Gameplay.LevelProgress;
 using Gameplay.Services;
 using Gameplay.Space.Factories;
 using Gameplay.Space.Generator;

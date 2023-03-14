@@ -1,9 +1,8 @@
 using Gameplay.Space.SpaceObjects.Scriptables;
 using Gameplay.Space.SpaceObjects.SpaceObjectsEffects;
-using UnityEngine;
 using Zenject;
 
-namespace SpaceObjects
+namespace Gameplay.Space.Factories
 {
     public class DamageAuraFactory : PlaceholderFactory<DamageAuraConfig, DamageAuraEffect>
     {

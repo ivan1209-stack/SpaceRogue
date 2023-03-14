@@ -9,6 +9,7 @@ using Scriptables.Enemy;
 using Scriptables.Health;
 using Scriptables.Modules;
 using System.Collections.Generic;
+using UI;
 using UI.Game;
 using UnityEngine;
 using Utilities.Mathematics;

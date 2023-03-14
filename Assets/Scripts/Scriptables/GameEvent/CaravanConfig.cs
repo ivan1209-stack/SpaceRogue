@@ -1,4 +1,5 @@
 using Gameplay.GameEvent;
+using Gameplay.GameEvent.Caravan;
 using Gameplay.Movement;
 using Scriptables.Health;
 using UnityEngine;

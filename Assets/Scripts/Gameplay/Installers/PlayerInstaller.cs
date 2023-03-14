@@ -1,4 +1,3 @@
-using Gameplay.Factories;
 using Gameplay.Health;
 using Gameplay.Movement;
 using Gameplay.Player;

@@ -1,4 +1,4 @@
-namespace Gameplay.Space.SpaceObjects.SpaceObjectsEffects
+namespace Gameplay.Space.SpaceObjects
 {
     public class SpaceObjectBuilder 
     {

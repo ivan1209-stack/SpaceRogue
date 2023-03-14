@@ -1,9 +1,8 @@
 using Gameplay.Space.SpaceObjects.Scriptables;
 using Gameplay.Space.SpaceObjects.SpaceObjectsEffects;
 using Zenject;
-using UnityEngine;
 
-namespace SpaceObjects
+namespace Gameplay.Space.Factories
 {
     public class GravitationAuraFactory : PlaceholderFactory<GravitationAuraConfig, GravitationAuraEffect>
     {
