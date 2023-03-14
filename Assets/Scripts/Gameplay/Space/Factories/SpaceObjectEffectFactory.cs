@@ -6,9 +6,9 @@ using Zenject;
 
 namespace Gameplay.Space.Factories
 {
-    public class SpaceObjectEffectsFactory : PlaceholderFactory<SpaceObjectEffectConfig, SpaceObjectEffect>
+    public class SpaceObjectEffectFactory : PlaceholderFactory<SpaceObjectEffectConfig, SpaceObjectEffect>
     {
-        public SpaceObjectEffectsFactory()
+        public SpaceObjectEffectFactory()
         {
             //TODO init factories
         }
