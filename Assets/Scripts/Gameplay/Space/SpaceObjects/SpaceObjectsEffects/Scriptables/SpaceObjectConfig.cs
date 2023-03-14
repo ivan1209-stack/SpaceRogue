@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
+using SpaceObjects;
 
-namespace SpaceObjects
+namespace Scriptables.Space
 {
     [CreateAssetMenu(fileName = nameof(SpaceObjectConfig), menuName = "Configs/Space/" + nameof(SpaceObjectConfig))]
     public class SpaceObjectConfig : ScriptableObject
@@ -11,6 +12,6 @@ namespace SpaceObjects
         [field: SerializeField, Min(0.1f), Header("Size")] public float MinSize { get; private set; } = 0.1f;
         [field: SerializeField, Min(1f)] public float MaxSize { get; private set; } = 1f;
 
-        [field: SerializeField, Header("SpaceObjectEffects")] public List<SpaceObjectEffectConfig> Effects;
+        [field: SerializeField, Header("SpaceObjectEffects")] public List<SpaceObjectEffectConfig> Effects { get; private set; }
     }
 }

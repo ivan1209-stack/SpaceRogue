@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace SpaceObjects
 {
-    public abstract class AbstractSpaceObject
+    public class SpaceObject
     {
 
     }
