@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SpaceObjects
+namespace Gameplay.Space.SpaceObjects.SpaceObjectsEffects
 {
     public class SpaceObjectView : MonoBehaviour
     {

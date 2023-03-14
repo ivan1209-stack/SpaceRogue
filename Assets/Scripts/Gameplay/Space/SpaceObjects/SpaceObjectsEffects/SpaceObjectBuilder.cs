@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace SpaceObjects
+namespace Gameplay.Space.SpaceObjects.SpaceObjectsEffects
 {
     public class SpaceObjectBuilder 
     {

@@ -1,6 +1,7 @@
 using System;
 using Gameplay.Factories;
 using Gameplay.Player;
+using Gameplay.Space.Factories;
 using Gameplay.Space.Generator;
 using Gameplay.Space.Obstacle;
 using Scriptables;

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Gameplay.Space.SpaceObjects.SpaceObjectsEffects;
 using SpaceObjects;
 
 namespace Scriptables.Space

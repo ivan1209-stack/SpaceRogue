@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SpaceObjects
+namespace Abstracts
 {
     public class AreaEffectView : MonoBehaviour
     {

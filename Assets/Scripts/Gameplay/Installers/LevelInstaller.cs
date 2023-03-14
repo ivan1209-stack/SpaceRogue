@@ -1,5 +1,6 @@
 using Gameplay.Factories;
 using Gameplay.Services;
+using Gameplay.Space.Factories;
 using Gameplay.Space.Generator;
 using Gameplay.Space.Obstacle;
 using Scriptables;

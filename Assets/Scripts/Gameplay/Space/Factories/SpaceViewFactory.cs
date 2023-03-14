@@ -1,7 +1,7 @@
 using Gameplay.Space.Generator;
 using Zenject;
 
-namespace Gameplay.Factories
+namespace Gameplay.Space.Factories
 {
     public sealed class SpaceViewFactory : PlaceholderFactory<SpaceView>
     {
@@ -16,8 +16,7 @@ namespace Gameplay.Factories
 
         public override SpaceView Create()
         {
-            return _diContainer
-                .InstantiatePrefabForComponent<SpaceView>(_spaceViewPrefab);
+            return _diContainer.InstantiatePrefabForComponent<SpaceView>(_spaceViewPrefab);
         }
     }
 }
