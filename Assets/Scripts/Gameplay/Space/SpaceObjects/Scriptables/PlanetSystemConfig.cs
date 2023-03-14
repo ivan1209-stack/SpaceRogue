@@ -1,7 +1,8 @@
-using UnityEngine;
 using System.Collections.Generic;
+using Scriptables;
+using UnityEngine;
 
-namespace Scriptables.Space
+namespace Gameplay.Space.SpaceObjects.Scriptables
 {
     [CreateAssetMenu(fileName = nameof(PlanetSystemConfig), menuName = "Configs/Space/SpaceObjectEffects/" + nameof(PlanetSystemConfig))]
     public class PlanetSystemConfig : SpaceObjectEffectConfig

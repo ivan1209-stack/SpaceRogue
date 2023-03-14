@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using Gameplay.Space.Planet;
+using Gameplay.Space.SpaceObjects.Scriptables;
 using Gameplay.Space.Star;
 using Scriptables;
-using Scriptables.Space;
 using UnityEngine;
 using Utilities.Mathematics;
 using Object = UnityEngine.Object;

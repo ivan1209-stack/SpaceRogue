@@ -1,9 +1,8 @@
-using UnityEngine;
 using System.Collections.Generic;
 using Gameplay.Space.SpaceObjects.SpaceObjectsEffects;
-using SpaceObjects;
+using UnityEngine;
 
-namespace Scriptables.Space
+namespace Gameplay.Space.SpaceObjects.Scriptables
 {
     [CreateAssetMenu(fileName = nameof(SpaceObjectConfig), menuName = "Configs/Space/" + nameof(SpaceObjectConfig))]
     public class SpaceObjectConfig : ScriptableObject

@@ -1,4 +1,4 @@
-﻿using Scriptables.Space;
+﻿using Gameplay.Space.SpaceObjects.Scriptables;
 using UnityEngine;
 using Utilities.Mathematics;
 using Random = System.Random;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Scriptables.Space
+namespace Gameplay.Space.SpaceObjects.Scriptables
 {
     [CreateAssetMenu(fileName = nameof(DamageOnTouchEffectConfig), menuName = "Configs/Space/SpaceObjectEffects/" + nameof(DamageOnTouchEffectConfig))]
     public class DamageOnTouchEffectConfig : SpaceObjectEffectConfig

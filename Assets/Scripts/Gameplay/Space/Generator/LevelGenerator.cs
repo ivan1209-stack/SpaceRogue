@@ -1,6 +1,6 @@
 ﻿using Scriptables.Enemy;
-using Scriptables.Space;
 using System.Collections.Generic;
+using Gameplay.Space.SpaceObjects.Scriptables;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 

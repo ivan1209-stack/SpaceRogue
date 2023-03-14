@@ -1,7 +1,8 @@
 using System.Collections.Generic;
+using Scriptables;
 using UnityEngine;
 
-namespace Scriptables.Space
+namespace Gameplay.Space.SpaceObjects.Scriptables
 {
     [CreateAssetMenu(fileName = nameof(StarSpawnConfig), menuName = "Configs/Space/" + nameof(StarSpawnConfig))]
     public sealed class StarSpawnConfig : ScriptableObject

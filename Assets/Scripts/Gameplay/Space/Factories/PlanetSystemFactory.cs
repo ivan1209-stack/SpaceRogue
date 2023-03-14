@@ -1,7 +1,7 @@
+using Gameplay.Space.SpaceObjects.Scriptables;
 using Gameplay.Space.SpaceObjects.SpaceObjectsEffects;
 using Zenject;
 using UnityEngine;
-using Scriptables.Space;
 
 namespace SpaceObjects
 {

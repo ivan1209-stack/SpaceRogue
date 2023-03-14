@@ -1,7 +1,7 @@
 using Gameplay.Space.Star;
 using UnityEngine;
 
-namespace Scriptables.Space
+namespace Gameplay.Space.SpaceObjects.Scriptables
 {
     [CreateAssetMenu(fileName = nameof(StarConfig), menuName = "Configs/Space/" + nameof(StarConfig))]
     public sealed class StarConfig : ScriptableObject

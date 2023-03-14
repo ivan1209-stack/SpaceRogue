@@ -1,5 +1,5 @@
-using Scriptables.Space;
 using System;
+using Gameplay.Space.SpaceObjects.Scriptables;
 using UnityEngine;
 
 namespace Scriptables

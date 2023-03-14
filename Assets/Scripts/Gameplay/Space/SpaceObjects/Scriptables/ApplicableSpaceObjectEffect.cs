@@ -1,8 +1,7 @@
 using Gameplay.Space.SpaceObjects.SpaceObjectsEffects;
 using UnityEngine;
-using SpaceObjects;
 
-namespace Scriptables.Space
+namespace Gameplay.Space.SpaceObjects.Scriptables
 {
     [CreateAssetMenu(fileName = nameof(ApplicableSpaceObjectEffect), menuName = "Configs/Space/SpaceObjectEffects/" + nameof(ApplicableSpaceObjectEffect))]
     public class ApplicableSpaceObjectEffect : ScriptableObject

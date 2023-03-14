@@ -4,8 +4,8 @@ using Abstracts;
 using Gameplay.Space.Generator;
 using Gameplay.Space.Obstacle;
 using Gameplay.Space.Planet;
+using Gameplay.Space.SpaceObjects.Scriptables;
 using Scriptables.Enemy;
-using Scriptables.Space;
 using UnityEngine;
 using Utilities.ResourceManagement;
 

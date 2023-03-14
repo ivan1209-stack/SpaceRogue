@@ -4,9 +4,9 @@ using Gameplay.Player;
 using Gameplay.Space.Factories;
 using Gameplay.Space.Generator;
 using Gameplay.Space.Obstacle;
+using Gameplay.Space.SpaceObjects.Scriptables;
 using Scriptables;
 using Scriptables.Enemy;
-using Scriptables.Space;
 
 namespace Gameplay.Services
 {

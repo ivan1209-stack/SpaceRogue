@@ -2,7 +2,7 @@ using Gameplay.Space.Generator;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace Scriptables.Space
+namespace Gameplay.Space.SpaceObjects.Scriptables
 {
     [CreateAssetMenu(fileName = nameof(SpaceConfig), menuName = "Configs/Space/" + nameof(SpaceConfig))]
     public sealed class SpaceConfig : ScriptableObject

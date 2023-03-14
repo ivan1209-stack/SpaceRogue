@@ -1,7 +1,7 @@
 using Gameplay.Space.Planet;
 using UnityEngine;
 
-namespace Scriptables.Space
+namespace Gameplay.Space.SpaceObjects.Scriptables
 {
     [CreateAssetMenu(fileName = nameof(PlanetConfig), menuName = "Configs/Space/" + nameof(PlanetConfig))]
     public sealed class PlanetConfig : ScriptableObject
