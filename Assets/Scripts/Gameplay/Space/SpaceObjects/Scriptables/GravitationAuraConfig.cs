@@ -9,5 +9,7 @@ namespace Gameplay.Space.SpaceObjects.Scriptables
         [field: SerializeField] public AreaEffectView Prefab { get; private set; }
         [field: SerializeField, Min(0.1f)] public float Radius { get; private set; } = 0.1f;
         [field: SerializeField, Min(0.1f)] public float GravityForce { get; private set; } = 0.1f;
+        
+        public GravitationAuraConfig() => Type = SpaceObjectEffectType.GravitationAura;
     }
 }

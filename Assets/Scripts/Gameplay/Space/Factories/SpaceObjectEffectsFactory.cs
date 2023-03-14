@@ -6,14 +6,14 @@ using Zenject;
 
 namespace Gameplay.Space.Factories
 {
-    public class SpaceObjectEffectsFactory : PlaceholderFactory<ApplicableSpaceObjectEffect, SpaceObjectEffect>
+    public class SpaceObjectEffectsFactory : PlaceholderFactory<SpaceObjectEffectConfig, SpaceObjectEffect>
     {
         public SpaceObjectEffectsFactory()
         {
-
+            //TODO init factories
         }
 
-        public SpaceObjectEffect CreateSpaceObjectEffect(ApplicableSpaceObjectEffect config)
+        public override SpaceObjectEffect Create(SpaceObjectEffectConfig config)
         {
             return config.Type switch
             {

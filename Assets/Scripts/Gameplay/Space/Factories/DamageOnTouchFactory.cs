@@ -4,14 +4,14 @@ using Zenject;
 
 namespace Gameplay.Space.Factories
 {
-    public class DamageOnTouchFactory : PlaceholderFactory<DamageOnTouchEffectConfig, DamageOnTouchEffect>
+    public class DamageOnTouchFactory : PlaceholderFactory<DamageOnTouchConfig, DamageOnTouchEffect>
     {
         public DamageOnTouchFactory()
         {
 
         }
 
-        public DamageOnTouchEffect CreateDamageOnTouchEffect(DamageOnTouchEffectConfig config)
+        public DamageOnTouchEffect CreateDamageOnTouchEffect(DamageOnTouchConfig config)
         {
             return base.Create(config);
         }

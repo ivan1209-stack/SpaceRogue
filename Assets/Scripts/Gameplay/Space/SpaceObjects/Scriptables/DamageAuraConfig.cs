@@ -10,5 +10,7 @@ namespace Gameplay.Space.SpaceObjects.Scriptables
         [field: SerializeField, Min(0.1f), Header("Radius")] public float Radius { get; private set; } = 0.1f;
         [field: SerializeField, Min(0.1f), Header("AuraDamage")] public float Damage { get; private set; } = 0.1f;
         [field: SerializeField, Min(0.1f)] public float DamageInterval { get; private set; } = 0.1f;
+
+        public DamageAuraConfig() => Type = SpaceObjectEffectType.DamageAura;
     }
 }

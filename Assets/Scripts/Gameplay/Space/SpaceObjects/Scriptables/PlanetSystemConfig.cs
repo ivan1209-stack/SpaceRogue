@@ -14,5 +14,7 @@ namespace Gameplay.Space.SpaceObjects.Scriptables
         [field: SerializeField, Min(1f)] public float MaxOrbit { get; private set; } = 1f;
 
         [field: SerializeField] public List<WeightConfig<PlanetConfig>> WeightConfigs { get; private set; }
+        
+        public PlanetSystemConfig() => Type = SpaceObjectEffectType.PlanetSystem;
     }
 }
