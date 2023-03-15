@@ -59,7 +59,10 @@ namespace Gameplay.Services
 
             spaceObstacleFactory.Create(_spaceView.SpaceObstacleView, _currentLevelPreset.SpaceConfig.ObstacleForce);
 
-            _playerFactory.Create(spawnPointsFinder.GetPlayerSpawnPoint());
+            if (spawnPointsFinder.TryGetPlayerSpawnPoint(out var playerSpawnPoint))
+            {
+                _playerFactory.Create(playerSpawnPoint); 
+            }
 
             EnemiesCreatedCount = 1000;
             //TODO
