@@ -4,7 +4,7 @@ using UnityEngine;
 using Utilities.Reactive.SubscriptionProperty;
 using Utilities.Unity;
 
-namespace Gameplay.Health
+namespace UI
 {
     public sealed class EnemyHealthUIController : BaseController
     {

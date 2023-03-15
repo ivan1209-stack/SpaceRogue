@@ -1,6 +1,7 @@
 using Abstracts;
+using Gameplay.Survival.Health;
+using Gameplay.Survival.Shield;
 using Scriptables;
-using Scriptables.Health;
 using UnityEngine;
 using Utilities.ResourceManagement;
 

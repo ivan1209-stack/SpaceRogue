@@ -1,6 +1,6 @@
 using Gameplay.Movement;
 using Gameplay.Shooting.Scriptables;
-using Scriptables.Health;
+using Gameplay.Survival;
 using UnityEngine;
 
 namespace Scriptables

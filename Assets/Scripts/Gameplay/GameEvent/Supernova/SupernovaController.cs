@@ -1,13 +1,13 @@
+using System.Collections.Generic;
 using Abstracts;
 using Gameplay.Mechanics.Timer;
 using Gameplay.Space.Star;
 using Scriptables.GameEvent;
-using System.Collections.Generic;
 using Services;
 using UnityEngine;
 using Utilities.Reactive.SubscriptionProperty;
 
-namespace Gameplay.GameEvent
+namespace Gameplay.GameEvent.Supernova
 {
     public sealed class SupernovaController : BaseController
     {

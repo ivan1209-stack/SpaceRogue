@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Gameplay.Enemy.Behaviour
 {
-    [Serializable]
-    public sealed class EnemyBehaviourConfig
+    [CreateAssetMenu(fileName = nameof(EnemyBehaviourConfig), menuName = "Configs/Enemy/" + nameof(EnemyBehaviourConfig))]
+    public sealed class EnemyBehaviourConfig : ScriptableObject
     {
         [field: SerializeField] public EnemyState StartEnemyState { get; private set; } = EnemyState.PassiveRoaming;
         [field: SerializeField] public float PlayerDetectionRadius { get; private set; }

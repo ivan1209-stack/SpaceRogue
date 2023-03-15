@@ -5,7 +5,7 @@ using UnityEngine;
 using Utilities.Mathematics;
 using Utilities.Unity;
 
-namespace Gameplay.GameEvent
+namespace Gameplay.GameEvent.Caravan
 {
     public sealed class CaravanBehaviourController : BaseController
     {

@@ -1,13 +1,12 @@
-using Scriptables.Space;
-using System;
+using Gameplay.Space.SpaceObjects.Scriptables;
 using UnityEngine;
 
 namespace Scriptables
 {
-    [Serializable]
-    public sealed class LevelPreset
+    [CreateAssetMenu(fileName = nameof(LevelPreset), menuName = "Configs/Level/" + nameof(LevelPreset))]
+    public sealed class LevelPreset : ScriptableObject
     {
-        [field: SerializeField] public SpaceConfig SpaceConfig{ get; private set; }
+        [field: SerializeField] public SpaceConfig SpaceConfig { get; private set; }
         [field: SerializeField] public int EnemiesCountToWin { get; private set; } = 10;
     }
 }

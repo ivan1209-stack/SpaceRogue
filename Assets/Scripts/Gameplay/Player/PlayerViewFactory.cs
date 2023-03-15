@@ -1,8 +1,7 @@
-using Gameplay.Player;
 using UnityEngine;
 using Zenject;
 
-namespace Gameplay.Factories
+namespace Gameplay.Player
 {
     public sealed class PlayerViewFactory : PlaceholderFactory<Vector2, PlayerView>
     {

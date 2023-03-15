@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2819c277a5c40229c36459665f5aba3, type: 3}
+  m_Script: {fileID: 11500000, guid: e58113c4970d0de4c81393d9af2d870c, type: 3}
   m_Name: DefaultPlanetSpawn
   m_EditorClassIdentifier: 
   <WeightConfigs>k__BackingField:
