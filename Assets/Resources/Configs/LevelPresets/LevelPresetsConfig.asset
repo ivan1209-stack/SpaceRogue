@@ -13,7 +13,5 @@ MonoBehaviour:
   m_Name: LevelPresetsConfig
   m_EditorClassIdentifier: 
   <Presets>k__BackingField:
-  - <SpaceConfig>k__BackingField: {fileID: 11400000, guid: 913a035bb58839842adeca8f1ca6d29a, type: 2}
-    <EnemiesCountToWin>k__BackingField: 30
-  - <SpaceConfig>k__BackingField: {fileID: 11400000, guid: 00c5c5b9e87037a4c9fb20b404afe0e0, type: 2}
-    <EnemiesCountToWin>k__BackingField: 2
+  - {fileID: 11400000, guid: d2f3fef87a4fad04c8c59895eed15ac2, type: 2}
+  - {fileID: 11400000, guid: 57cbd752eb95e6143ae2f3b37af52677, type: 2}
