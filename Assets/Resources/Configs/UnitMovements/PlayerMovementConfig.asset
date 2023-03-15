@@ -9,9 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3af1f81ad8d4e0a98951f4f5e6f0ad2, type: 3}
-  m_Name: BaseShieldConfig
+  m_Script: {fileID: 11500000, guid: 6db7017ec4a149909820b38cda780f62, type: 3}
+  m_Name: PlayerMovementConfig
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: base-shield-00
-  <ShieldAmount>k__BackingField: 100
-  <Cooldown>k__BackingField: 1
+  maximumSpeed: 15
+  maximumBackwardSpeed: 3
+  accelerationTime: 2
+  stoppingSpeed: 0.1
+  startingTurnSpeed: 3
+  maximumTurnSpeed: 10
+  turnAccelerationTime: 0.2

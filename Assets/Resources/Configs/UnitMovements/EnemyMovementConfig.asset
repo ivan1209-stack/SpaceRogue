@@ -9,14 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca29fb7a0d824cccb398a1a867f7dcd8, type: 3}
-  m_Name: BaseEngineConfig
+  m_Script: {fileID: 11500000, guid: 6db7017ec4a149909820b38cda780f62, type: 3}
+  m_Name: EnemyMovementConfig
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: base-engine-00
   maximumSpeed: 20
   maximumBackwardSpeed: 8
-  accelerationTime: 15
-  stoppingSpeed: 1
-  startingTurnSpeed: 1
-  maximumTurnSpeed: 10
-  turnAccelerationTime: 0.1
+  accelerationTime: 1
+  stoppingSpeed: 0.1
+  startingTurnSpeed: 5
+  maximumTurnSpeed: 15
+  turnAccelerationTime: 3
