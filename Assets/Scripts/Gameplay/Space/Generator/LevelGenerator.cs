@@ -1,5 +1,5 @@
-﻿using Scriptables.Enemy;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Gameplay.Enemy.Scriptables;
 using Gameplay.Space.SpaceObjects.Scriptables;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -16,8 +16,8 @@ namespace Gameplay.Space.Generator
         public LevelGenerator(SpaceView spaceView,
                               SpaceConfig spaceConfig,
                               StarSpawnConfig starSpawnConfig,
-                              EnemySpawnConfig enemySpawnConfig) 
-            : base(spaceView, spaceConfig, starSpawnConfig, enemySpawnConfig)
+                              LegacyEnemySpawnConfig legacyEnemySpawnConfig) 
+            : base(spaceView, spaceConfig, starSpawnConfig, legacyEnemySpawnConfig)
         {
             _borderTilemap = spaceView.BorderTilemap;
             _borderMaskTilemap = spaceView.BorderMaskTilemap;

@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using Abstracts;
+using Gameplay.Enemy.Scriptables;
 using Gameplay.Space.Factories;
 using Gameplay.Space.Generator;
 using Gameplay.Space.Obstacle;
 using Gameplay.Space.Planet;
 using Gameplay.Space.SpaceObjects.Scriptables;
-using Scriptables.Enemy;
 using UnityEngine;
 using Utilities.ResourceManagement;
 
@@ -32,7 +32,7 @@ namespace Gameplay.Space
             _config = ResourceLoader.LoadObject<SpaceConfig>(_configPath);
             var starSpawnConfig = ResourceLoader.LoadObject<StarSpawnConfig>(_starSpawnConfigPath);
             var planetSpawnConfig = ResourceLoader.LoadObject<PlanetSpawnConfig>(_planetSpawnConfigPath);
-            var enemySpawnConfig = ResourceLoader.LoadObject<EnemySpawnConfig>(_groupSpawnConfigPath);
+            var enemySpawnConfig = ResourceLoader.LoadObject<LegacyEnemySpawnConfig>(_groupSpawnConfigPath);
 
             //_spaceObjectFactory = new SpaceObjectFactory(starSpawnConfig, planetSpawnConfig);
 

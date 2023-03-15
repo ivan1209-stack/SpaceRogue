@@ -1,3 +1,4 @@
+using Gameplay.Enemy.Scriptables;
 using Gameplay.LevelProgress;
 using Gameplay.Services;
 using Gameplay.Space.Factories;
@@ -5,7 +6,6 @@ using Gameplay.Space.Generator;
 using Gameplay.Space.Obstacle;
 using Gameplay.Space.SpaceObjects.Scriptables;
 using Scriptables;
-using Scriptables.Enemy;
 using UnityEngine;
 using Zenject;
 
@@ -18,7 +18,7 @@ namespace Gameplay.Installers
 
         [field: SerializeField] public StarSpawnConfig StarSpawnConfig { get; private set; }
         [field: SerializeField] public PlanetSpawnConfig PlanetSpawnConfig { get; private set; }
-        [field: SerializeField] public EnemySpawnConfig EnemySpawnConfig { get; private set; }
+        [field: SerializeField] public LegacyEnemySpawnConfig LegacyEnemySpawnConfig { get; private set; }
 
         public override void InstallBindings()
         {
@@ -58,8 +58,8 @@ namespace Gameplay.Installers
                 .WhenInjectedInto<Level>();
             
             Container
-                .Bind<EnemySpawnConfig>()
-                .FromInstance(EnemySpawnConfig)
+                .Bind<LegacyEnemySpawnConfig>()
+                .FromInstance(LegacyEnemySpawnConfig)
                 .WhenInjectedInto<Level>();
 
             Container

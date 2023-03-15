@@ -1,11 +1,11 @@
 using System;
+using Gameplay.Enemy.Scriptables;
 using Gameplay.Player;
 using Gameplay.Space.Factories;
 using Gameplay.Space.Generator;
 using Gameplay.Space.Obstacle;
 using Gameplay.Space.SpaceObjects.Scriptables;
 using Scriptables;
-using Scriptables.Enemy;
 
 namespace Gameplay.Services
 {
@@ -16,7 +16,7 @@ namespace Gameplay.Services
         private readonly LevelPresetsConfig _levelPresetsConfig;
         private readonly StarSpawnConfig _starSpawnConfig;
         private readonly PlanetSpawnConfig _planetSpawnConfig;
-        private readonly EnemySpawnConfig _enemySpawnConfig;
+        private readonly LegacyEnemySpawnConfig _legacyEnemySpawnConfig;
 
         private LevelPreset _currentLevelPreset;
 
@@ -32,7 +32,7 @@ namespace Gameplay.Services
             LevelPresetsConfig levelPresetsConfig,
             StarSpawnConfig starSpawnConfig,
             PlanetSpawnConfig planetSpawnConfig,
-            EnemySpawnConfig enemySpawnConfig,
+            LegacyEnemySpawnConfig legacyEnemySpawnConfig,
             SpaceObstacleFactory spaceObstacleFactory)
         {
             CurrentLevelNumber = currentLevelNumber;
@@ -40,7 +40,7 @@ namespace Gameplay.Services
             _levelPresetsConfig = levelPresetsConfig;
             _starSpawnConfig = starSpawnConfig;
             _planetSpawnConfig = planetSpawnConfig;
-            _enemySpawnConfig = enemySpawnConfig;
+            _legacyEnemySpawnConfig = legacyEnemySpawnConfig;
             
             PickRandomLevelPreset();
             EnemiesCountToWin = _currentLevelPreset.EnemiesCountToWin;

@@ -1,7 +1,7 @@
 using Abstracts;
 using Gameplay.Player;
-using Scriptables.Enemy;
 using System.Collections.Generic;
+using Gameplay.Enemy.Scriptables;
 using UnityEngine;
 using Utilities.Mathematics;
 using Utilities.ResourceManagement;
@@ -22,13 +22,13 @@ namespace Gameplay.Enemy
         public EnemyForcesController(PlayerController playerController, List<Vector3> enemySpawnPoints)
         {
             _playerController = playerController;
-            var groupSpawnConfig = ResourceLoader.LoadObject<EnemySpawnConfig>(_groupSpawnConfigPath);
+            var groupSpawnConfig = ResourceLoader.LoadObject<LegacyEnemySpawnConfig>(_groupSpawnConfigPath);
 
-            _enemyFactory = new EnemyFactory(groupSpawnConfig.Enemy);
+            _enemyFactory = new EnemyFactory(groupSpawnConfig.LegacyEnemy);
 
-            var unitSize = groupSpawnConfig.Enemy.Prefab.transform.localScale;
+            var unitSize = groupSpawnConfig.LegacyEnemy.Prefab.transform.localScale;
 
-            var countPoints = new List<EnemyGroupSpawn>(groupSpawnConfig.EnemyGroupsSpawnPoints);
+            var countPoints = new List<LegacyEnemyGroupSpawn>(groupSpawnConfig.EnemyGroupsSpawnPoints);
             foreach (var spawnPoint in enemySpawnPoints)
             {
                 var count = new System.Random().Next(countPoints.Count);
