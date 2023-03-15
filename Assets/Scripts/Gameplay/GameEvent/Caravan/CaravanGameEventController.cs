@@ -1,12 +1,10 @@
 using Gameplay.Player;
 using Scriptables.GameEvent;
-using UI.Game;
 using UnityEngine;
 using Utilities.Mathematics;
-using Utilities.ResourceManagement;
 using Utilities.Unity;
 
-namespace Gameplay.GameEvent
+namespace Gameplay.GameEvent.Caravan
 {
     public class CaravanGameEventController : GameEventController
     {

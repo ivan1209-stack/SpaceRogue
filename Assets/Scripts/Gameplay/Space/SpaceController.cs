@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using Abstracts;
+using Gameplay.Enemy.Scriptables;
+using Gameplay.Space.Factories;
 using Gameplay.Space.Generator;
 using Gameplay.Space.Obstacle;
 using Gameplay.Space.Planet;
-using Scriptables.Enemy;
-using Scriptables.Space;
+using Gameplay.Space.SpaceObjects.Scriptables;
 using UnityEngine;
 using Utilities.ResourceManagement;
 
@@ -22,7 +23,7 @@ namespace Gameplay.Space
 
         private readonly SpaceView _view;
         private readonly SpaceConfig _config;
-        private readonly SpaceObjectFactory _spaceObjectFactory;
+        //private readonly Space _spaceObjectFactory;
         private readonly LevelGenerator _levelGenerator;
 
         public SpaceController()
@@ -31,18 +32,18 @@ namespace Gameplay.Space
             _config = ResourceLoader.LoadObject<SpaceConfig>(_configPath);
             var starSpawnConfig = ResourceLoader.LoadObject<StarSpawnConfig>(_starSpawnConfigPath);
             var planetSpawnConfig = ResourceLoader.LoadObject<PlanetSpawnConfig>(_planetSpawnConfigPath);
-            var enemySpawnConfig = ResourceLoader.LoadObject<EnemySpawnConfig>(_groupSpawnConfigPath);
+            var enemySpawnConfig = ResourceLoader.LoadObject<LegacyEnemySpawnConfig>(_groupSpawnConfigPath);
 
-            _spaceObjectFactory = new SpaceObjectFactory(starSpawnConfig, planetSpawnConfig);
+            //_spaceObjectFactory = new SpaceObjectFactory(starSpawnConfig, planetSpawnConfig);
 
             _levelGenerator = new(_view, _config, starSpawnConfig, enemySpawnConfig);
             _levelGenerator.Generate();
 
             foreach (var starSpawnPoint in _levelGenerator.GetSpawnPoints(CellType.Star))
             {
-                var (star, planetControllers) = _spaceObjectFactory.CreateStarSystem(starSpawnPoint, _view.Stars);
+                /*var (star, planetControllers) = _spaceObjectFactory.CreateStarSystem(starSpawnPoint, _view.Stars);
                 AddController(star);
-                AddPlanetControllers(planetControllers);
+                AddPlanetControllers(planetControllers);*/
             }
         }
 

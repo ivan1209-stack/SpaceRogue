@@ -1,7 +1,6 @@
-using Gameplay.GameEvent;
 using UnityEngine;
 
-namespace Scriptables.GameEvent
+namespace Gameplay.GameEvent.Comet
 {
     [CreateAssetMenu(fileName = nameof(CometConfig), menuName = "Configs/Comet/" + nameof(CometConfig))]
     public sealed class CometConfig : ScriptableObject

@@ -1,7 +1,7 @@
-﻿using Scriptables.Enemy;
-using Scriptables.Space;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
+using Gameplay.Enemy.Scriptables;
+using Gameplay.Space.SpaceObjects.Scriptables;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Utilities.Mathematics;
@@ -44,7 +44,7 @@ namespace Gameplay.Space.Generator
         public SpaceGenerator(SpaceView spaceView,
                               SpaceConfig spaceConfig,
                               StarSpawnConfig starSpawnConfig,
-                              EnemySpawnConfig enemySpawnConfig)
+                              LegacyEnemySpawnConfig legacyEnemySpawnConfig)
         {
             _borderTileBase = spaceConfig.BorderTileBase;
             _borderMaskTileBase = spaceConfig.BorderMaskTileBase;
@@ -71,8 +71,8 @@ namespace Gameplay.Space.Generator
                 _starRadius = spaceConfig.ManualRadius;
             }
 
-            _enemyCount = enemySpawnConfig.EnemyGroupsSpawnPoints.Count;
-            _enemyRadius = GetEnemyRadius(enemySpawnConfig, spaceView.NebulaMaskTilemap);
+            _enemyCount = legacyEnemySpawnConfig.EnemyGroupsSpawnPoints.Count;
+            _enemyRadius = GetEnemyRadius(legacyEnemySpawnConfig, spaceView.NebulaMaskTilemap);
 
             _borderMap = new int[_widthMap + 2 * _outerBorder, _heightMap + 2 * _outerBorder];
             _nebulaMap = new int[_widthMap, _heightMap];
@@ -110,11 +110,11 @@ namespace Gameplay.Space.Generator
             return Mathf.CeilToInt(radius);
         }
 
-        private int GetEnemyRadius(EnemySpawnConfig enemySpawnConfig, Tilemap tilemap)
+        private int GetEnemyRadius(LegacyEnemySpawnConfig legacyEnemySpawnConfig, Tilemap tilemap)
         {
             var maxCount = default(int);
 
-            foreach (var item in enemySpawnConfig.EnemyGroupsSpawnPoints)
+            foreach (var item in legacyEnemySpawnConfig.EnemyGroupsSpawnPoints)
             {
                 maxCount = Mathf.Max(maxCount, item.GroupCount);
             }

@@ -1,10 +1,11 @@
 using Abstracts;
 using Gameplay.Enemy;
-using Gameplay.Health;
 using Gameplay.Movement;
 using Gameplay.Player;
+using Gameplay.Survival.Health;
+using Gameplay.Survival.Shield;
 using Scriptables.GameEvent;
-using Scriptables.Health;
+using UI;
 using UI.Game;
 using UnityEngine;
 using Utilities.Mathematics;
@@ -12,7 +13,7 @@ using Utilities.Reactive.SubscriptionProperty;
 using Utilities.ResourceManagement;
 using Utilities.Unity;
 
-namespace Gameplay.GameEvent
+namespace Gameplay.GameEvent.Caravan
 {
     public sealed class CaravanController : BaseController
     {
@@ -134,8 +135,8 @@ namespace Gameplay.GameEvent
         private void AddEnemyGroup(BaseCaravanGameEventConfig config, Vector3 spawnPoint, 
             PlayerController playerController, Transform target)
         {
-            var enemyFactory = new EnemyFactory(config.EnemyConfig);
-            var unitSize = config.EnemyConfig.Prefab.transform.localScale;
+            var enemyFactory = new EnemyFactory(config.LegacyEnemyConfig);
+            var unitSize = config.LegacyEnemyConfig.Prefab.transform.localScale;
             
             var spawnCircleRadius = config.EnemyCount * 2;
             for (int i = 0; i < config.EnemyCount; i++)

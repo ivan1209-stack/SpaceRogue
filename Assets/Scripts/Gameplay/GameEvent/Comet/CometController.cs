@@ -1,10 +1,9 @@
 using Abstracts;
 using Gameplay.Damage;
-using Scriptables.GameEvent;
 using UnityEngine;
 using Utilities.Mathematics;
 
-namespace Gameplay.GameEvent
+namespace Gameplay.GameEvent.Comet
 {
     public sealed class CometController : BaseController
     {

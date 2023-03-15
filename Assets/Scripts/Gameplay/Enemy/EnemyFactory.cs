@@ -1,14 +1,14 @@
+using Gameplay.Enemy.Scriptables;
 using Gameplay.Player;
-using Scriptables.Enemy;
 using UnityEngine;
 
 namespace Gameplay.Enemy
 {
     public sealed class EnemyFactory
     {
-        private readonly EnemyConfig _config;
+        private readonly LegacyEnemyConfig _config;
         
-        public EnemyFactory(EnemyConfig config)
+        public EnemyFactory(LegacyEnemyConfig config)
         {
             _config = config;
         }

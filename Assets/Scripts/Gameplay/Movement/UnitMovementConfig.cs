@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Gameplay.Movement
 {
-    [Serializable]
-    public sealed class UnitMovementConfig
+    [CreateAssetMenu(fileName = nameof(UnitMovementConfig), menuName = "Configs/Movement/" + nameof(UnitMovementConfig))]
+    public sealed class UnitMovementConfig : ScriptableObject
     {
         [Header("Speed")] 
         [Min(0.1f)]

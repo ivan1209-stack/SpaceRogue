@@ -1,6 +1,6 @@
 using System;
 using Gameplay.Events;
-using Gameplay.Factories;
+using Gameplay.LevelProgress;
 using Gameplay.Player;
 
 namespace Gameplay.Services

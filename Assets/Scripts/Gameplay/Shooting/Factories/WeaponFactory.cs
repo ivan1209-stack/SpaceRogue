@@ -2,6 +2,7 @@ using System;
 using Abstracts;
 using Gameplay.Mechanics.Timer;
 using Gameplay.Shooting.Scriptables;
+using Gameplay.Shooting.Weapons;
 using Zenject;
 
 namespace Gameplay.Shooting.Factories

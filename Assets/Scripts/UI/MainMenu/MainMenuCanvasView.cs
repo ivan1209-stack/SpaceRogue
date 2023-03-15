@@ -3,7 +3,7 @@ using System.Globalization;
 using UI.Common;
 using UnityEngine;
 
-namespace UI.Game
+namespace UI.MainMenu
 {
     public sealed class MainMenuCanvasView : MonoBehaviour
     {

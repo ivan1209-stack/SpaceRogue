@@ -1,4 +1,4 @@
-using Gameplay.Factories;
+using Gameplay.LevelProgress;
 
 namespace Gameplay.Services
 {

@@ -1,5 +1,7 @@
-using Gameplay.Health;
-using Scriptables.Health;
+using Gameplay.Survival;
+using Gameplay.Survival.DamageImmunityFrame;
+using Gameplay.Survival.Health;
+using Gameplay.Survival.Shield;
 using Zenject;
 
 namespace Gameplay.Installers

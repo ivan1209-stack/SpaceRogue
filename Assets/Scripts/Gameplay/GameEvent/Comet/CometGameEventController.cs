@@ -1,11 +1,11 @@
+using System.Collections.Generic;
 using Gameplay.Player;
 using Scriptables.GameEvent;
-using System.Collections.Generic;
 using UnityEngine;
 using Utilities.Mathematics;
 using Utilities.Unity;
 
-namespace Gameplay.GameEvent
+namespace Gameplay.GameEvent.Comet
 {
     public sealed class CometGameEventController : GameEventController
     {

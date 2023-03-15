@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb8e7515764a400fb603311f85a27222, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e48dc60a6bc7544aa490fc782048d76, type: 3}
   m_Name: DefaultStarSpawn
   m_EditorClassIdentifier: 
   <WeightConfigs>k__BackingField:

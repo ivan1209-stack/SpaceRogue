@@ -1,6 +1,6 @@
 using System;
 using Gameplay.Damage;
-using Gameplay.Health;
+using Gameplay.Survival;
 using UnityEngine;
 
 namespace Abstracts

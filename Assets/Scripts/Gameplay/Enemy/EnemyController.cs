@@ -1,17 +1,14 @@
 using Abstracts;
 using Gameplay.Enemy.Behaviour;
-using Gameplay.Health;
 using Gameplay.Movement;
 using Gameplay.Player;
 using Gameplay.Shooting;
-using Scriptables;
-using Scriptables.Enemy;
-using Scriptables.Health;
-using Scriptables.Modules;
-using System.Collections.Generic;
+using Gameplay.Enemy.Scriptables;
+using Gameplay.Survival.Health;
+using Gameplay.Survival.Shield;
+using UI;
 using UI.Game;
 using UnityEngine;
-using Utilities.Mathematics;
 using Utilities.ResourceManagement;
 
 namespace Gameplay.Enemy
@@ -21,7 +18,7 @@ namespace Gameplay.Enemy
         public EnemyView View => _view;
 
         private readonly EnemyView _view;
-        private readonly EnemyConfig _config;
+        private readonly LegacyEnemyConfig _config;
         private readonly Weapon _turret;
         private readonly EnemyBehaviourController _behaviourController;
         private readonly PlayerController _playerController;
@@ -32,7 +29,7 @@ namespace Gameplay.Enemy
         private readonly ResourcePath _enemyHealthShieldStatusBarCanvasPath = 
             new(Constants.Prefabs.Canvas.Game.EnemyHealthShieldStatusBarCanvas);
 
-        public EnemyController(EnemyConfig config, EnemyView view, PlayerController playerController, Transform target)
+        public EnemyController(LegacyEnemyConfig config, EnemyView view, PlayerController playerController, Transform target)
         {
             _playerController = playerController;
             _config = config;
@@ -78,8 +75,5 @@ namespace Gameplay.Enemy
             AddGameObject(enemyStatusBarView.gameObject);
             return enemyStatusBarView;
         }
-
-        private TurretModuleConfig PickTurret(List<WeightConfig<TurretModuleConfig>> weaponConfigs, System.Random random) =>
-            RandomPicker.PickOneElementByWeights(weaponConfigs, random);
     }
 }

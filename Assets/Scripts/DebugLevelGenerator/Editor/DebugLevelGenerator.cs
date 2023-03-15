@@ -18,7 +18,7 @@ namespace DebugLevelGenerator.Editor
             : base(debugLevelGeneratorView.SpaceView,
                    debugLevelGeneratorView.SpaceConfig,
                    debugLevelGeneratorView.StarSpawnConfig,
-                   debugLevelGeneratorView.EnemySpawnConfig)
+                   debugLevelGeneratorView.LegacyEnemySpawnConfig)
         {
             _borderTilemap = debugLevelGeneratorView.SpaceView.BorderTilemap;
             _borderMaskTilemap = debugLevelGeneratorView.SpaceView.BorderMaskTilemap;
