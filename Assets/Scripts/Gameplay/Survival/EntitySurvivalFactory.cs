@@ -1,8 +1,10 @@
 using System;
-using Scriptables.Health;
+using Gameplay.Survival.DamageImmunityFrame;
+using Gameplay.Survival.Health;
+using Gameplay.Survival.Shield;
 using Zenject;
 
-namespace Gameplay.Health
+namespace Gameplay.Survival
 {
     public sealed class EntitySurvivalFactory : PlaceholderFactory<EntitySurvivalConfig, EntitySurvival>
     {

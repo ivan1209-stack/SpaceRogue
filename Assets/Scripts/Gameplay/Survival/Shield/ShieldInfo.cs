@@ -1,6 +1,6 @@
 using System;
 
-namespace Scriptables.Health
+namespace Gameplay.Survival.Shield
 {
     public sealed class ShieldInfo : IShieldInfo
     {

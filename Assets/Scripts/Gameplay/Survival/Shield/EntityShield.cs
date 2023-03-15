@@ -1,8 +1,7 @@
 using System;
 using Gameplay.Mechanics.Timer;
-using Scriptables.Health;
 
-namespace Gameplay.Health
+namespace Gameplay.Survival.Shield
 {
     public sealed class EntityShield : IDisposable
     {

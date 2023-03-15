@@ -1,4 +1,4 @@
-namespace Scriptables.Health
+namespace Gameplay.Survival.Health
 {
     public interface IHealthInfo
     {

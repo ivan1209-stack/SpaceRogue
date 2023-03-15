@@ -1,12 +1,11 @@
-using Gameplay.Health;
 using Gameplay.Movement;
 using Gameplay.Player;
 using Gameplay.Player.Movement;
 using Gameplay.Player.Weapon;
 using Gameplay.Shooting;
 using Gameplay.Shooting.Scriptables;
+using Gameplay.Survival;
 using Scriptables;
-using Scriptables.Health;
 using UnityEngine;
 using Zenject;
 

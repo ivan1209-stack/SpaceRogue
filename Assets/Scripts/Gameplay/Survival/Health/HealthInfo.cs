@@ -1,6 +1,6 @@
 using System;
 
-namespace Scriptables.Health
+namespace Gameplay.Survival.Health
 {
     public sealed class HealthInfo : IHealthInfo
     {

@@ -1,4 +1,4 @@
-namespace Scriptables.Health
+namespace Gameplay.Survival.DamageImmunityFrame
 {
     public interface IDamageImmunityFrameInfo
     {

@@ -1,8 +1,7 @@
 using System;
-using Scriptables.Health;
 using Services;
 
-namespace Gameplay.Health
+namespace Gameplay.Survival.Health
 {
     public sealed class EntityHealth : IDisposable
     {

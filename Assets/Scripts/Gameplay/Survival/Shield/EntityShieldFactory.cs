@@ -1,7 +1,6 @@
-using Scriptables.Health;
 using Zenject;
 
-namespace Gameplay.Health
+namespace Gameplay.Survival.Shield
 {
     public sealed class EntityShieldFactory : PlaceholderFactory<IShieldInfo, EntityShield>
     {

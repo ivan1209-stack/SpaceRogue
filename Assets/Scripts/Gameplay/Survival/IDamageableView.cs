@@ -1,7 +1,7 @@
 using System;
 using Gameplay.Damage;
 
-namespace Gameplay.Health
+namespace Gameplay.Survival
 {
     public interface IDamageableView
     {

@@ -1,6 +1,5 @@
-using Gameplay.Health;
-using Scriptables.Health;
 using System;
+using Gameplay.Survival;
 using Zenject;
 
 namespace Gameplay.Player

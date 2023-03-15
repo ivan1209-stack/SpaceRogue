@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Scriptables.Health
+namespace Gameplay.Survival.Health
 {
     [CreateAssetMenu(fileName = nameof(HealthConfig), menuName = "Configs/Survival/" + nameof(HealthConfig))]
     public sealed class HealthConfig : ScriptableObject, IHealthInfo

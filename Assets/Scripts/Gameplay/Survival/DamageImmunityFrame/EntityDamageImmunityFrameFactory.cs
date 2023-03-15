@@ -1,7 +1,6 @@
-using Scriptables.Health;
 using Zenject;
 
-namespace Gameplay.Health
+namespace Gameplay.Survival.DamageImmunityFrame
 {
     public sealed class EntityDamageImmunityFrameFactory : PlaceholderFactory<IDamageImmunityFrameInfo, EntityDamageImmunityFrame>
     {

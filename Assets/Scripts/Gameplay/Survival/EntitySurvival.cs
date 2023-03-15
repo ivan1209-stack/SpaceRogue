@@ -1,6 +1,9 @@
 using System;
+using Gameplay.Survival.DamageImmunityFrame;
+using Gameplay.Survival.Health;
+using Gameplay.Survival.Shield;
 
-namespace Gameplay.Health
+namespace Gameplay.Survival
 {
     public sealed class EntitySurvival : IDisposable
     {

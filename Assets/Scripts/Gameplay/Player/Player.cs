@@ -1,7 +1,7 @@
 using System;
-using Gameplay.Health;
 using Gameplay.Player.Movement;
 using Gameplay.Player.Weapon;
+using Gameplay.Survival;
 using UnityEngine;
 
 namespace Gameplay.Player

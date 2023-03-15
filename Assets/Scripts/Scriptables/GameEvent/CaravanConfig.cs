@@ -1,7 +1,8 @@
 using Gameplay.GameEvent;
 using Gameplay.GameEvent.Caravan;
 using Gameplay.Movement;
-using Scriptables.Health;
+using Gameplay.Survival.Health;
+using Gameplay.Survival.Shield;
 using UnityEngine;
 
 namespace Scriptables.GameEvent

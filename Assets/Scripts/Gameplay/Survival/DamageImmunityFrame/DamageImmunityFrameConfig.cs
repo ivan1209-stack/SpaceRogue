@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Scriptables.Health
+namespace Gameplay.Survival.DamageImmunityFrame
 {
     [CreateAssetMenu(fileName = nameof(DamageImmunityFrameConfig), menuName = "Configs/Survival/" + nameof(DamageImmunityFrameConfig))]
     public sealed class DamageImmunityFrameConfig : ScriptableObject, IDamageImmunityFrameInfo

@@ -4,8 +4,9 @@ using Abstracts;
 using Gameplay.Enemy.Behaviour;
 using Gameplay.Movement;
 using Gameplay.Shooting.Scriptables;
+using Gameplay.Survival.Health;
+using Gameplay.Survival.Shield;
 using Scriptables;
-using Scriptables.Health;
 using UnityEngine;
 
 namespace Gameplay.Enemy.Scriptables
