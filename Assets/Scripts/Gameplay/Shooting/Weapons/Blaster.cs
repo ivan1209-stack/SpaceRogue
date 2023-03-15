@@ -4,7 +4,7 @@ using Gameplay.Shooting.Factories;
 using Gameplay.Shooting.Scriptables;
 using UnityEngine;
 
-namespace Gameplay.Shooting
+namespace Gameplay.Shooting.Weapons
 {
     public class Blaster : Weapon
     {

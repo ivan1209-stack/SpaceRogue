@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Gameplay.Shooting
+namespace Gameplay.Shooting.Weapons
 {
     public sealed class NullGun : Weapon
     {

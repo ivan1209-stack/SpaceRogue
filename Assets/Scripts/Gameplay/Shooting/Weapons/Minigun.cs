@@ -7,7 +7,7 @@ using Gameplay.Shooting.Scriptables;
 using UnityEngine;
 using Utilities.Mathematics;
 
-namespace Gameplay.Shooting
+namespace Gameplay.Shooting.Weapons
 {
     public class Minigun : Weapon, IDisposable
     {
