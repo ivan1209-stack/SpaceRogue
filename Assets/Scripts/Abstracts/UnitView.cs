@@ -1,6 +1,6 @@
 using System;
 using Gameplay.Damage;
-using Gameplay.Health;
+using Gameplay.Survival;
 using UnityEngine;
 
 namespace Abstracts
@@ -8,9 +8,9 @@ namespace Abstracts
     [RequireComponent(typeof(Rigidbody2D))]
     public abstract class UnitView : MonoBehaviour, IDamageableView
     {
-        [field: SerializeField] public UnitType UnitType { get; private set; }
+        [field: SerializeField] public UnitType UnitType { get; protected set; }
         
-        public event Action<DamageModel> DamageTaken = (DamageModel _) => { };
+        public event Action<DamageModel> DamageTaken = _ => { };
 
         public void OnTriggerEnter2D(Collider2D other)
         {   

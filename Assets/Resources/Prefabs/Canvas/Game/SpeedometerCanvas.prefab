@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 371618354768966145}
   - component: {fileID: 765502829446719124}
   - component: {fileID: 4058419116612853598}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SpeedometerCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 6535634610957260634}
   - component: {fileID: 1298114358194800757}
   - component: {fileID: 5553246118752528595}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SpeedometerText
   m_TagString: Untagged
   m_Icon: {fileID: 0}

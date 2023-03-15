@@ -8,5 +8,6 @@
         Star = 2,
         Enemy = 3,
         Player = 4,
+        Spawned = 5,
     }
 }

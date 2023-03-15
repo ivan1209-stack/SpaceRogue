@@ -1,6 +1,7 @@
 using Abstracts;
+using Gameplay.Survival.Health;
+using Gameplay.Survival.Shield;
 using Scriptables;
-using Scriptables.Health;
 using UnityEngine;
 using Utilities.ResourceManagement;
 
@@ -24,9 +25,9 @@ public class GameDataController : BaseController
     public GameDataController()
     {
         RecordCompletedLevels = PlayerPrefs.GetInt(RecordKey);
-        _playerHealthInfo = new(ResourceLoader.LoadObject<PlayerConfig>(_playerConfigPath).HealthConfig);
+        //_playerHealthInfo = new(ResourceLoader.LoadObject<PlayerConfig>(_playerConfigPath).HealthConfig);
         _playerDefaultStartingHealth = _playerHealthInfo.StartingHealth;
-        _playerShieldInfo = new(ResourceLoader.LoadObject<PlayerConfig>(_playerConfigPath).ShieldConfig);
+        //_playerShieldInfo = new(ResourceLoader.LoadObject<PlayerConfig>(_playerConfigPath).ShieldConfig);
         _playerDefaultStartingShield = _playerShieldInfo.StartingShield;
     }
 

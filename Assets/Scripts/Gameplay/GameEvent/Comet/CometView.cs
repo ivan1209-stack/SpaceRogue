@@ -1,10 +1,10 @@
+using System;
 using Gameplay.Damage;
 using Gameplay.Space.Planet;
 using Gameplay.Space.Star;
-using System;
 using UnityEngine;
 
-namespace Gameplay.GameEvent
+namespace Gameplay.GameEvent.Comet
 {
     [RequireComponent(typeof(Rigidbody2D), typeof(CircleCollider2D), typeof(TrailRenderer))]
     public sealed class CometView : MonoBehaviour, IDamagingView

@@ -3,7 +3,7 @@ using Services.SceneLoader;
 
 namespace Services
 {
-    public class GameStateService
+    public sealed class GameStateService
     {
         private readonly ISceneLoader _sceneLoader;
         public GameState CurrentState { get; private set; }

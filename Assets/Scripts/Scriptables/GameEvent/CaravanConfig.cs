@@ -1,6 +1,8 @@
 using Gameplay.GameEvent;
+using Gameplay.GameEvent.Caravan;
 using Gameplay.Movement;
-using Scriptables.Health;
+using Gameplay.Survival.Health;
+using Gameplay.Survival.Shield;
 using UnityEngine;
 
 namespace Scriptables.GameEvent
@@ -9,7 +11,7 @@ namespace Scriptables.GameEvent
     public sealed class CaravanConfig : ScriptableObject
     {
         [field: SerializeField] public CaravanView CaravanView { get; private set; }
-        [field: SerializeField] public MovementConfig Movement { get; private set; }
+        [field: SerializeField] public UnitMovementConfig UnitMovement { get; private set; }
         [field: SerializeField] public HealthConfig Health { get; private set; }
         [field: SerializeField] public ShieldConfig Shield { get; private set; }
     }

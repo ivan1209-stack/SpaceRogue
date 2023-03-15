@@ -1,8 +1,9 @@
 using System;
+using System.Globalization;
 using UI.Common;
 using UnityEngine;
 
-namespace UI.Game
+namespace UI.MainMenu
 {
     public sealed class MainMenuCanvasView : MonoBehaviour
     {
@@ -17,12 +18,7 @@ namespace UI.Game
             ResetRecordButton.Init(resetRecordButton);
             ExitGameButton.Init(exitGameButton);
 
-            RecordNumber.Init(recordNumber.ToString());
-        }
-
-        public void UpdateRecordNumber(float recordNumber)
-        {
-            RecordNumber.UpdateText(recordNumber.ToString());
+            RecordNumber.Init(recordNumber.ToString(CultureInfo.InvariantCulture));
         }
     }
 }

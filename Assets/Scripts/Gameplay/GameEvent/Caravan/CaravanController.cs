@@ -1,10 +1,11 @@
 using Abstracts;
 using Gameplay.Enemy;
-using Gameplay.Health;
 using Gameplay.Movement;
 using Gameplay.Player;
+using Gameplay.Survival.Health;
+using Gameplay.Survival.Shield;
 using Scriptables.GameEvent;
-using Scriptables.Health;
+using UI;
 using UI.Game;
 using UnityEngine;
 using Utilities.Mathematics;
@@ -12,7 +13,7 @@ using Utilities.Reactive.SubscriptionProperty;
 using Utilities.ResourceManagement;
 using Utilities.Unity;
 
-namespace Gameplay.GameEvent
+namespace Gameplay.GameEvent.Caravan
 {
     public sealed class CaravanController : BaseController
     {
@@ -45,21 +46,21 @@ namespace Gameplay.GameEvent
             _caravanView.Init(new(0));
             AddGameObject(_caravanView.gameObject);
 
-            AddCarnavalBehaviourController(_baseCaravanGameEvent.CaravanConfig.Movement, targetPosition);
+            AddCarnavalBehaviourController(_baseCaravanGameEvent.CaravanConfig.UnitMovement, targetPosition);
             AddCaravanHealthUIController(_baseCaravanGameEvent.CaravanConfig.Health, _baseCaravanGameEvent.CaravanConfig.Shield);
 
             AddEnemyGroup(_baseCaravanGameEvent, _caravanView.transform.position, _playerController, _caravanView.transform);
         }
 
-        private void AddCarnavalBehaviourController(MovementConfig movement, Vector3 targetPosition)
+        private void AddCarnavalBehaviourController(UnitMovementConfig unitMovement, Vector3 targetPosition)
         {
-            var behaviourController = new CaravanBehaviourController(new MovementModel(movement), _caravanView, targetPosition);
+            var behaviourController = new CaravanBehaviourController(new UnitMovementModel(unitMovement), _caravanView, targetPosition);
             AddController(behaviourController);
         }
 
         private EnemyHealthUIController AddCaravanHealthUIController(HealthConfig healthConfig, ShieldConfig shieldConfig)
         {
-            var healthController = shieldConfig is null
+            /*var healthController = shieldConfig is null
                 ? new HealthController(healthConfig,
                 AddHealthStatusBarView(GameUIController.EnemyHealthBars), _caravanView)
                 : new HealthController(healthConfig, shieldConfig,
@@ -67,9 +68,9 @@ namespace Gameplay.GameEvent
 
             healthController.SubscribeToOnDestroy(Dispose);
             healthController.SubscribeToOnDestroy(OnCaravanDestroyed);
-            AddController(healthController);
+            AddController(healthController);*/
 
-            var enemyHealthUIController = new EnemyHealthUIController(healthController, _caravanView);
+            var enemyHealthUIController = new EnemyHealthUIController(/*healthController,*/ _caravanView);
             AddController(enemyHealthUIController);
             return enemyHealthUIController;
         }
@@ -134,8 +135,8 @@ namespace Gameplay.GameEvent
         private void AddEnemyGroup(BaseCaravanGameEventConfig config, Vector3 spawnPoint, 
             PlayerController playerController, Transform target)
         {
-            var enemyFactory = new EnemyFactory(config.EnemyConfig);
-            var unitSize = config.EnemyConfig.Prefab.transform.localScale;
+            var enemyFactory = new EnemyFactory(config.LegacyEnemyConfig);
+            var unitSize = config.LegacyEnemyConfig.Prefab.transform.localScale;
             
             var spawnCircleRadius = config.EnemyCount * 2;
             for (int i = 0; i < config.EnemyCount; i++)

@@ -12,14 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19b250957b824a3ab44cbb4d9d4187ca, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
-  <Inventory>k__BackingField: {fileID: 11400000, guid: 03ce0e0863b4ca143be37e58bbb847be, type: 2}
-  <Movement>k__BackingField:
-    maximumSpeed: 15
-    maximumBackwardSpeed: 3
-    accelerationTime: 2
-    stoppingSpeed: 0.1
-    startingTurnSpeed: 3
-    maximumTurnSpeed: 10
-    turnAccelerationTime: 0.2
-  <HealthConfig>k__BackingField: {fileID: 11400000, guid: b1d5019f03ef14c4c831a0d223b6921a, type: 2}
-  <ShieldConfig>k__BackingField: {fileID: 11400000, guid: 1d988e8c3053fff458704ce6418fdedc, type: 2}
+  <StartingWeapon>k__BackingField: {fileID: 11400000, guid: bd59d7739e2b32e4293a2171ce60a6aa, type: 2}
+  <UnitMovement>k__BackingField: {fileID: 11400000, guid: b1516abb4cd09b045b0b72999cecf42f, type: 2}
+  <Survival>k__BackingField: {fileID: 11400000, guid: 58b908b7be952f04d8c48e5b455ff03d, type: 2}

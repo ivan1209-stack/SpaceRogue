@@ -13,13 +13,6 @@ MonoBehaviour:
   m_Name: CaravanConfig
   m_EditorClassIdentifier: 
   <CaravanView>k__BackingField: {fileID: -9105522871961982859, guid: ab210e69498e4e54f8688cf31a4c6cff, type: 3}
-  <Movement>k__BackingField:
-    maximumSpeed: 8
-    maximumBackwardSpeed: 5
-    accelerationTime: 1
-    stoppingSpeed: 2
-    startingTurnSpeed: 1
-    maximumTurnSpeed: 5
-    turnAccelerationTime: 1
+  <UnitMovement>k__BackingField: {fileID: 11400000, guid: 29a8a417d53531840821e4d34b972a6d, type: 2}
   <Health>k__BackingField: {fileID: 11400000, guid: ed28b2b11fe5f75478b6e9d8534e1a24, type: 2}
   <Shield>k__BackingField: {fileID: 11400000, guid: bf7f665c236485347817b7390319f34e, type: 2}

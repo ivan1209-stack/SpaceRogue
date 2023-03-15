@@ -11,7 +11,7 @@ namespace Gameplay.Enemy.Movement
         private readonly SubscribedProperty<float> _horizontalInput;
         private readonly SubscribedProperty<float> _verticalInput;
 
-        private readonly MovementModel _model;
+        private readonly UnitMovementModel _model;
         private readonly UnitView _view;
         private readonly Rigidbody2D _rigidbody;
 
@@ -19,7 +19,7 @@ namespace Gameplay.Enemy.Movement
         public EnemyMovementController(
             SubscribedProperty<float> horizontalInput, 
             SubscribedProperty<float> verticalInput,
-            MovementModel model,
+            UnitMovementModel model,
             UnitView view)
         {
             _horizontalInput = horizontalInput;

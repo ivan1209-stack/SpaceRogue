@@ -11,10 +11,10 @@ namespace Gameplay.Enemy.Behaviour
     public sealed class EnemyBehaviourController : BaseController
     {
         private readonly EnemyView _view;
-        private readonly MovementModel _movementModel;
+        private readonly UnitMovementModel _unitMovementModel;
         private readonly EnemyInputController _inputController;
         private readonly EnemyMovementController _movementController;
-        private readonly FrontalTurretController _turretController;
+        private readonly Weapon _turretController;
         private readonly PlayerController _playerController;
         private readonly Transform _target;
         private readonly EnemyBehaviourConfig _enemyConfig;
@@ -23,11 +23,11 @@ namespace Gameplay.Enemy.Behaviour
         
         private EnemyBehaviour _currentBehaviour;
 
-        public EnemyBehaviourController(MovementModel movementModel, EnemyView view, FrontalTurretController turretController,
+        public EnemyBehaviourController(UnitMovementModel unitMovementModel, EnemyView view, Weapon turretController,
             PlayerController playerController, EnemyBehaviourConfig config, Transform target)
         {
             _view = view;
-            _movementModel = movementModel;
+            _unitMovementModel = unitMovementModel;
             _inputController = AddInputController();
             _movementController = AddMovementController();
 
@@ -58,10 +58,13 @@ namespace Gameplay.Enemy.Behaviour
                     _currentBehaviour = new EnemyIdleBehaviour(_enemyCurrentState, _view, _playerController, _enemyConfig);
                     break;
                 case EnemyState.PassiveRoaming:
-                    _currentBehaviour = new EnemyRoamingBehaviour(_enemyCurrentState, _view, _playerController, _movementModel, _inputController, _enemyConfig);
+                    _currentBehaviour = new EnemyRoamingBehaviour(_enemyCurrentState, _view, _playerController, _unitMovementModel, _inputController, _enemyConfig);
                     break;
                 case EnemyState.InCombat:
-                    _currentBehaviour = new EnemyCombatBehaviour(_enemyCurrentState, _view, _playerController, _inputController, _turretController, _enemyConfig, lastEnemyState);
+                    _currentBehaviour = new EnemyCombatBehaviour(_enemyCurrentState, _view, _playerController, _inputController, _turretController, _enemyConfig);
+                    break;
+                case EnemyState.InCombatWithRetreat:
+                    _currentBehaviour = new EnemyCombatWithRetreatBehaviour(_enemyCurrentState, _view, _playerController, _inputController, _turretController, _enemyConfig, lastEnemyState);
                     break;
                 case EnemyState.Escort:
                     _currentBehaviour = new EnemyEscortBehaviour(_enemyCurrentState, _view, _playerController, _inputController, _enemyConfig, _target);
@@ -80,7 +83,7 @@ namespace Gameplay.Enemy.Behaviour
         private EnemyMovementController AddMovementController()
         {
             var (horizontalInput, verticalInput) = _inputController;
-            var movementController = new EnemyMovementController(horizontalInput, verticalInput, _movementModel, _view);
+            var movementController = new EnemyMovementController(horizontalInput, verticalInput, _unitMovementModel, _view);
             AddController(movementController);
             return movementController;
         }

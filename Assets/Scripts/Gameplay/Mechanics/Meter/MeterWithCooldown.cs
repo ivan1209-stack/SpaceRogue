@@ -1,4 +1,5 @@
 using System;
+using Gameplay.Mechanics.Timer;
 
 namespace Gameplay.Mechanics.Meter
 {
@@ -15,13 +16,13 @@ namespace Gameplay.Mechanics.Meter
         private float _maxFill;
         private float _fill;
 
-        public MeterWithCooldown(float initialFillValue, float maxFillValue, float cooldown)
+        public MeterWithCooldown(float initialFillValue, float maxFillValue, float cooldown, TimerFactory timerFactory)
         {
             if (maxFillValue == 0.0f) throw new ArgumentException("Meter maximum cannot be initialized with zero!", nameof(maxFillValue));
             _fill = initialFillValue;
             _maxFill = maxFillValue;
 
-            _cooldownTimer = new Timer.Timer(cooldown);
+            _cooldownTimer = timerFactory.Create(cooldown);
             _cooldownTimer.OnStart += CooldownStarted;
             _cooldownTimer.OnExpire += CooldownFinished;
         }
@@ -47,7 +48,7 @@ namespace Gameplay.Mechanics.Meter
         
         public void SetMaxValue(float newMaxValue)
         {
-            if (newMaxValue == 0.0f) throw new ArgumentException("Meter maximum cannot be initialized with zero!", nameof(newMaxValue));
+            if (newMaxValue <= 0.0f) throw new ArgumentException("Meter maximum cannot be initialized with zero!", nameof(newMaxValue));
             
             float newCurrentValue = newMaxValue * FillPercentage;
             _fill = newMaxValue;

@@ -1,12 +1,13 @@
+using System.Collections.Generic;
 using Abstracts;
 using Gameplay.Mechanics.Timer;
 using Gameplay.Space.Star;
 using Scriptables.GameEvent;
-using System.Collections.Generic;
+using Services;
 using UnityEngine;
 using Utilities.Reactive.SubscriptionProperty;
 
-namespace Gameplay.GameEvent
+namespace Gameplay.GameEvent.Supernova
 {
     public sealed class SupernovaController : BaseController
     {
@@ -37,7 +38,7 @@ namespace Gameplay.GameEvent
             _starViewColor = _spriteRenderer.color;
             _starViewScale = _starView.transform.localScale;
 
-            _explosionTimer = new(_supernovaGameEventConfig.TimeToExplosionInSeconds);
+            _explosionTimer = new(_supernovaGameEventConfig.TimeToExplosionInSeconds, new Updater());
             _explosionTimer.Start();
 
             EntryPoint.SubscribeToUpdate(PrepareSupernova);
@@ -105,6 +106,9 @@ namespace Gameplay.GameEvent
                     {
                         ChangeColor(_spriteRenderer, ref _currentColor, _spriteRenderer.color, Color.clear,
                                 _supernovaGameEventConfig.ShockwaveSpeed * Time.deltaTime);
+                        ChangeColor(_starView.MinimapIconSpriteRenderer, 
+                            ref _currentColor, _starView.MinimapIconSpriteRenderer.color, Color.clear,
+                            _supernovaGameEventConfig.ShockwaveSpeed * Time.deltaTime);
                     }
                     ChangeScale(_starView.transform, ref _currentScale, _starView.transform.localScale,
                                 Vector3.one * (_supernovaGameEventConfig.ShockwaveRadius + 1),
@@ -116,6 +120,7 @@ namespace Gameplay.GameEvent
                 _starView.transform.localScale = Vector3.one * _supernovaGameEventConfig.ShockwaveRadius;
                 _spriteRenderer.color = Color.clear;
                 _starCircleCollider.enabled = false;
+                _starView.MinimapIconSpriteRenderer.enabled = false;
 
                 EntryPoint.UnsubscribeFromUpdate(StartSupernova);
                 OnDestroy.Value = true;

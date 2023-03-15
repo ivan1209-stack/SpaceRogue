@@ -4,13 +4,14 @@ using Zenject;
 
 namespace Installers
 {
-    public class GlobalsInstaller : MonoInstaller
+    public sealed class GlobalsInstaller : MonoInstaller
     {
         public override void InstallBindings()
         {
             BindSceneLoader();
             BindGameState();
             BindPlayerData();
+            BindUpdater();
         }
 
         private void BindSceneLoader()
@@ -33,7 +34,15 @@ namespace Installers
         private void BindPlayerData()
         {
             Container
-                .Bind<PlayerDataService>()
+                .BindInterfacesAndSelfTo<PlayerDataService>()
+                .AsSingle()
+                .NonLazy();
+        }
+
+        private void BindUpdater()
+        {
+            Container
+                .BindInterfacesAndSelfTo<Updater>()
                 .AsSingle()
                 .NonLazy();
         }
