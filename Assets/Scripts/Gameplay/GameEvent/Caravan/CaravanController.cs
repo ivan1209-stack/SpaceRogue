@@ -17,8 +17,6 @@ namespace Gameplay.GameEvent.Caravan
 {
     public sealed class CaravanController : BaseController
     {
-        private const byte MaxCountSpawnTries = 10;
-
         private readonly BaseCaravanGameEventConfig _baseCaravanGameEvent;
         private readonly PlayerController _playerController;
         private readonly PlayerView _playerView;
@@ -141,25 +139,10 @@ namespace Gameplay.GameEvent.Caravan
             var spawnCircleRadius = config.EnemyCount * 2;
             for (int i = 0; i < config.EnemyCount; i++)
             {
-                var unitSpawnPoint = GetEmptySpawnPoint(spawnPoint, unitSize, spawnCircleRadius);
+                var unitSpawnPoint = UnityHelper.GetEmptySpawnPoint(spawnPoint, unitSize, spawnCircleRadius);
                 var enemyController = enemyFactory.CreateEnemy(unitSpawnPoint, playerController, target);
                 AddController(enemyController);
             }
-        }
-
-        private Vector3 GetEmptySpawnPoint(Vector3 spawnPoint, Vector3 unitSize, int spawnCircleRadius)
-        {
-            var unitSpawnPoint = spawnPoint + (Vector3)(Random.insideUnitCircle * spawnCircleRadius);
-            var unitMaxSize = unitSize.MaxVector3CoordinateOnPlane();
-
-            var tryCount = 0;
-            while (UnityHelper.IsAnyObjectAtPosition(unitSpawnPoint, unitMaxSize) && tryCount <= MaxCountSpawnTries)
-            {
-                unitSpawnPoint = spawnPoint + (Vector3)(Random.insideUnitCircle * spawnCircleRadius);
-                tryCount++;
-            }
-
-            return unitSpawnPoint;
         }
     }
 }
