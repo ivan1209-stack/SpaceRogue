@@ -1,24 +1,14 @@
 using System;
 using Gameplay.Enemy;
-using Gameplay.Player;
-using Gameplay.Space.Factories;
 using Gameplay.Space.Generator;
-using Gameplay.Space.Obstacle;
-using Gameplay.Space.SpaceObjects.Scriptables;
-using Scriptables;
 
 namespace Gameplay.Services
 {
     public sealed class Level : IDisposable
     {
         private readonly SpaceView _spaceView;
-        private readonly PlayerFactory _playerFactory;
-        private readonly LevelPresetsConfig _levelPresetsConfig;
-        private readonly StarSpawnConfig _starSpawnConfig;
-        private readonly PlanetSpawnConfig _planetSpawnConfig;
-        private readonly EnemyForcesFactory _enemyForcesFactory;
-
-        private LevelPreset _currentLevelPreset;
+        private readonly Player.Player _player;
+        private readonly EnemyForces _enemyForces;
 
         public int CurrentLevelNumber { get; private set; }
         public int EnemiesCountToWin { get; private set; }
@@ -27,60 +17,24 @@ namespace Gameplay.Services
 
         public Level(
             int currentLevelNumber,
-            SpaceViewFactory spaceViewFactory,
-            PlayerFactory playerFactory,
-            LevelPresetsConfig levelPresetsConfig,
-            StarSpawnConfig starSpawnConfig,
-            PlanetSpawnConfig planetSpawnConfig,
-            EnemyForcesFactory enemyForcesFactory,
-            SpaceObstacleFactory spaceObstacleFactory)
+            int enemiesCountToWin,
+            SpaceView spaceView,
+            float mapCameraSize,
+            Player.Player player,
+            EnemyForces enemyForces)
         {
             CurrentLevelNumber = currentLevelNumber;
-            _playerFactory = playerFactory;
-            _levelPresetsConfig = levelPresetsConfig;
-            _starSpawnConfig = starSpawnConfig;
-            _planetSpawnConfig = planetSpawnConfig;
-            _enemyForcesFactory = enemyForcesFactory;
-            
-            PickRandomLevelPreset();
-            EnemiesCountToWin = _currentLevelPreset.EnemiesCountToWin;
-
-            _spaceView = spaceViewFactory.Create();
-
-            var map = new MapGenerator(_currentLevelPreset.SpaceConfig);
-            map.Generate();
-            
-            var levelMap = new LevelMap(_spaceView, _currentLevelPreset.SpaceConfig, map.BorderMap, map.NebulaMap);
-            levelMap.Draw();
-
-            MapCameraSize = levelMap.GetMapCameraSize();
-
-            var spawnPointsFinder = new SpawnPointsFinder(map.NebulaMap, _spaceView.NebulaTilemap);
-
-            spaceObstacleFactory.Create(_spaceView.SpaceObstacleView, _currentLevelPreset.SpaceConfig.ObstacleForce);
-
-            if (spawnPointsFinder.TryGetPlayerSpawnPoint(out var playerSpawnPoint))
-            {
-                _playerFactory.Create(playerSpawnPoint); 
-            }
-
-            var enemyForces = _enemyForcesFactory.Create(_currentLevelPreset.SpaceConfig.EnemyGroupCount, spawnPointsFinder);
-
-            EnemiesCreatedCount = enemyForces.Enemies.Count;
-            //TODO
-            //View Factory & Service Factory
-            //SpaceObjectFactory OR StarsFactory & PlanetFactory
+            EnemiesCountToWin = enemiesCountToWin;
+            _spaceView = spaceView;
+            MapCameraSize = mapCameraSize;
+            _player = player;
+            _enemyForces = enemyForces;
+            EnemiesCreatedCount = _enemyForces.Enemies.Count;
         }
 
         public void Dispose()
         {
-            UnityEngine.Object.Destroy(_spaceView);
-        }
-
-        private void PickRandomLevelPreset()
-        {
-            var index = new Random().Next(_levelPresetsConfig.Presets.Count);
-            _currentLevelPreset = _levelPresetsConfig.Presets[index];
+            UnityEngine.Object.Destroy(_spaceView.gameObject);
         }
     }
 }

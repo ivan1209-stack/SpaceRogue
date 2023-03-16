@@ -45,17 +45,17 @@ namespace Gameplay.Installers
             Container
                 .Bind<LevelPresetsConfig>()
                 .FromInstance(LevelPresetsConfig)
-                .WhenInjectedInto<Level>();
+                .WhenInjectedInto<LevelFactory>();
 
             Container
                 .Bind<StarSpawnConfig>()
                 .FromInstance(StarSpawnConfig)
-                .WhenInjectedInto<Level>();
+                .WhenInjectedInto<LevelFactory>();
 
             Container
                 .Bind<PlanetSpawnConfig>()
                 .FromInstance(PlanetSpawnConfig)
-                .WhenInjectedInto<Level>();
+                .WhenInjectedInto<LevelFactory>();
 
             Container
                 .BindFactory<int, Level, LevelFactory>()
