@@ -1,23 +1,26 @@
 using Gameplay.Damage;
-using Gameplay.Health;
-using Scriptables.Health;
+using Gameplay.Survival;
+using Gameplay.Survival.Health;
 using Services;
 
-public class AsteroidModel
+namespace Asteroids
 {
-    public DamageModel DamageModel { get; private set; }
-    public EntityHealth EntityHealth { get; private set; }
-
-    public AsteroidModel(AsteroidConfig config)
+    public class AsteroidModel
     {
-        DamageModel = new(config.DamageConfig.DamageAmount, config.DamageConfig.UnitType);
-        EntityHealth = new(new HealthInfo(config.HealthConfig), new Updater());
-    }
+        private DamageModel _damageModel;
+        private EntityHealth _entityHealth;
 
-    public void DealDamage(IDamageableView victim)
-    {
-        victim.TakeDamage(DamageModel);
-    }
+        public AsteroidModel(AsteroidConfig config)
+        {
+            _damageModel = new(config.DamageConfig.DamageAmount, config.DamageConfig.UnitType);
+            _entityHealth = new(new HealthInfo(config.HealthConfig), new Updater());
+        }
 
-    public void DestroyAsteroid() => EntityHealth.TakeDamage(EntityHealth.MaximumHealth + 1);
+        public void DealDamage(IDamageableView victim)
+        {
+            victim.TakeDamage(_damageModel);
+        }
+
+        public void DestroyAsteroid() => _entityHealth.TakeDamage(_entityHealth.MaximumHealth + 1);
+    }
 }
