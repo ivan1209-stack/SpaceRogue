@@ -2,6 +2,7 @@ using Gameplay.Enemy.Scriptables;
 using Gameplay.Space.Generator;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Utilities.Mathematics;
 using Utilities.Unity;
@@ -33,7 +34,7 @@ namespace Gameplay.Enemy
             for (int i = 0; i < _enemyGroupCount; i++)
             {
                 var group = RandomPicker.PickOneElementByWeights(_enemySpawnConfig.Groups, _random);
-                var enemyCount = CalculateEnemyCount(group.Squads);
+                var enemyCount = group.Squads.Sum(x => x.EnemyCount);
 
                 if (!_spawnPointsFinder.TryGetEnemySpawnPoint(enemyCount, out var spawnPoint))
                 {
@@ -41,15 +42,13 @@ namespace Gameplay.Enemy
                     continue;
                 }
 
-                for (int j = 0; j < group.Squads.Count; j++)
+                foreach (var squadConfig in group.Squads)
                 {
-                    var squad = group.Squads[j];
-
-                    for (int k = 0; k < squad.EnemyCount; k++)
+                    for (int j = 0; j < squadConfig.EnemyCount; j++)
                     {
-                        var enemyConfig = RandomPicker.PickOneElementByWeights(squad.EnemyTypes, _random);
+                        var enemyConfig = RandomPicker.PickOneElementByWeights(squadConfig.EnemyTypes, _random);
                         var unitSize = enemyConfig.Prefab.transform.localScale;
-                        var spawnCircleRadius = squad.EnemyCount * 2;
+                        var spawnCircleRadius = squadConfig.EnemyCount * 2;
 
                         var unitSpawnPoint = GetEmptySpawnPoint(spawnPoint, unitSize, spawnCircleRadius);
 
@@ -58,18 +57,6 @@ namespace Gameplay.Enemy
                     }
                 }
             }
-        }
-
-        private int CalculateEnemyCount(List<EnemySquadConfig> squads)
-        {
-            var count = 0;
-            
-            for (int i = 0; i < squads.Count; i++)
-            {
-                count = squads[i].EnemyCount;
-            }
-
-            return count;
         }
 
         public void Dispose()
