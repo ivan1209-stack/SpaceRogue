@@ -1,25 +1,10 @@
 using Gameplay.Enemy.Scriptables;
-using Gameplay.Player;
 using UnityEngine;
+using Zenject;
 
 namespace Gameplay.Enemy
 {
-    public sealed class EnemyFactory
+    public sealed class EnemyFactory : PlaceholderFactory<Vector2, EnemyConfig, Enemy>
     {
-        private readonly LegacyEnemyConfig _config;
-        
-        public EnemyFactory(LegacyEnemyConfig config)
-        {
-            _config = config;
-        }
-
-        public EnemyController CreateEnemy(Vector3 spawnPosition, PlayerController playerController) 
-            => new(_config, CreateEnemyView(spawnPosition), playerController, playerController.View.transform);
-
-        public EnemyController CreateEnemy(Vector3 spawnPosition, PlayerController playerController, Transform target) 
-            => new(_config, CreateEnemyView(spawnPosition), playerController, target);
-
-        private EnemyView CreateEnemyView(Vector3 spawnPosition) =>
-            Object.Instantiate(_config.Prefab, spawnPosition, Quaternion.identity);
     }
 }

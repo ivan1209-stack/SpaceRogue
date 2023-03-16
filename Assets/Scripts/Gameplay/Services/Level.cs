@@ -1,5 +1,5 @@
 using System;
-using Gameplay.Enemy.Scriptables;
+using Gameplay.Enemy;
 using Gameplay.Player;
 using Gameplay.Space.Factories;
 using Gameplay.Space.Generator;
@@ -16,7 +16,7 @@ namespace Gameplay.Services
         private readonly LevelPresetsConfig _levelPresetsConfig;
         private readonly StarSpawnConfig _starSpawnConfig;
         private readonly PlanetSpawnConfig _planetSpawnConfig;
-        private readonly LegacyEnemySpawnConfig _legacyEnemySpawnConfig;
+        private readonly EnemyForcesFactory _enemyForcesFactory;
 
         private LevelPreset _currentLevelPreset;
 
@@ -32,7 +32,7 @@ namespace Gameplay.Services
             LevelPresetsConfig levelPresetsConfig,
             StarSpawnConfig starSpawnConfig,
             PlanetSpawnConfig planetSpawnConfig,
-            LegacyEnemySpawnConfig legacyEnemySpawnConfig,
+            EnemyForcesFactory enemyForcesFactory,
             SpaceObstacleFactory spaceObstacleFactory)
         {
             CurrentLevelNumber = currentLevelNumber;
@@ -40,7 +40,7 @@ namespace Gameplay.Services
             _levelPresetsConfig = levelPresetsConfig;
             _starSpawnConfig = starSpawnConfig;
             _planetSpawnConfig = planetSpawnConfig;
-            _legacyEnemySpawnConfig = legacyEnemySpawnConfig;
+            _enemyForcesFactory = enemyForcesFactory;
             
             PickRandomLevelPreset();
             EnemiesCountToWin = _currentLevelPreset.EnemiesCountToWin;
@@ -64,7 +64,9 @@ namespace Gameplay.Services
                 _playerFactory.Create(playerSpawnPoint); 
             }
 
-            EnemiesCreatedCount = 1000;
+            var enemyForces = _enemyForcesFactory.Create(_currentLevelPreset.SpaceConfig.EnemyGroupCount, spawnPointsFinder);
+
+            EnemiesCreatedCount = enemyForces.Enemies.Count;
             //TODO
             //View Factory & Service Factory
             //SpaceObjectFactory OR StarsFactory & PlanetFactory

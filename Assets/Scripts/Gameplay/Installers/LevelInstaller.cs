@@ -1,3 +1,4 @@
+using Gameplay.Enemy;
 using Gameplay.Enemy.Scriptables;
 using Gameplay.LevelProgress;
 using Gameplay.Services;
@@ -18,7 +19,6 @@ namespace Gameplay.Installers
 
         [field: SerializeField] public StarSpawnConfig StarSpawnConfig { get; private set; }
         [field: SerializeField] public PlanetSpawnConfig PlanetSpawnConfig { get; private set; }
-        [field: SerializeField] public LegacyEnemySpawnConfig LegacyEnemySpawnConfig { get; private set; }
 
         public override void InstallBindings()
         {
@@ -56,11 +56,6 @@ namespace Gameplay.Installers
                 .Bind<PlanetSpawnConfig>()
                 .FromInstance(PlanetSpawnConfig)
                 .WhenInjectedInto<Level>();
-            
-            Container
-                .Bind<LegacyEnemySpawnConfig>()
-                .FromInstance(LegacyEnemySpawnConfig)
-                .WhenInjectedInto<Level>();
 
             Container
                 .BindFactory<int, Level, LevelFactory>()
@@ -73,7 +68,7 @@ namespace Gameplay.Installers
                 .BindFactory<SpaceObstacleView, float, SpaceObstacle, SpaceObstacleFactory>()
                 .AsSingle();
         }
-        
+
         private void InstallLevelProgressService()
         {
             Container

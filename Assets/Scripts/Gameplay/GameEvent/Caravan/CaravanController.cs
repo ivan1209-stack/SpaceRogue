@@ -135,7 +135,7 @@ namespace Gameplay.GameEvent.Caravan
         private void AddEnemyGroup(BaseCaravanGameEventConfig config, Vector3 spawnPoint, 
             PlayerController playerController, Transform target)
         {
-            var enemyFactory = new EnemyFactory(config.LegacyEnemyConfig);
+            var enemyFactory = new LegacyEnemyFactory(config.LegacyEnemyConfig);
             var unitSize = config.LegacyEnemyConfig.Prefab.transform.localScale;
             
             var spawnCircleRadius = config.EnemyCount * 2;

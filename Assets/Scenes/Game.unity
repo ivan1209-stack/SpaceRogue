@@ -159,6 +159,7 @@ Transform:
   - {fileID: 1216238812}
   - {fileID: 2080335986}
   - {fileID: 1007999631}
+  - {fileID: 1176755960}
   - {fileID: 1973976291}
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -806,7 +807,6 @@ MonoBehaviour:
   <LevelPresetsConfig>k__BackingField: {fileID: 11400000, guid: 71ff8f4c0e88cd248b16693493d690dd, type: 2}
   <StarSpawnConfig>k__BackingField: {fileID: 11400000, guid: f5799163415ac4547bbffad62b6be47c, type: 2}
   <PlanetSpawnConfig>k__BackingField: {fileID: 11400000, guid: 770cb7ced69c1ab45b256b2ec71ae789, type: 2}
-  <LegacyEnemySpawnConfig>k__BackingField: {fileID: 11400000, guid: 8836c87df1bb56d47bb069702f419b64, type: 2}
 --- !u!1001 &1024208118
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1336,6 +1336,96 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e8112ed1ca464d4088c74ed5b82253c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1035763332
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1035763334}
+  - component: {fileID: 1035763333}
+  m_Layer: 0
+  m_Name: EnemyPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1035763333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035763332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70ccdc541124c114189f1661cda34d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1035763334
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035763332}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1176755959
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1176755960}
+  - component: {fileID: 1176755961}
+  m_Layer: 0
+  m_Name: EnemyInstaller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1176755960
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176755959}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 273910148}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1176755961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176755959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ac1b7954fc64594f8f687baeb4790ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <EnemyPool>k__BackingField: {fileID: 1035763333}
+  <EnemyGroupConfig>k__BackingField: {fileID: 11400000, guid: c52a07c0302e3dc45b80205f9749b1d4, type: 2}
 --- !u!1 &1216238811
 GameObject:
   m_ObjectHideFlags: 0
@@ -1491,7 +1581,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 273910148}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1973976292
 MonoBehaviour:
@@ -1684,6 +1774,7 @@ MonoBehaviour:
   - {fileID: 1216238813}
   - {fileID: 2080335987}
   - {fileID: 1007999632}
+  - {fileID: 1176755961}
   - {fileID: 1973976292}
   _installerPrefabs: []
   _autoRun: 1
