@@ -8,6 +8,7 @@ using Gameplay.Space.Obstacle;
 using Gameplay.Space.SpaceObjects.Scriptables;
 using Scriptables;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using Zenject;
 
 namespace Gameplay.Installers
@@ -24,6 +25,7 @@ namespace Gameplay.Installers
         {
             InstallSpaceView();
             InstallLevel();
+            InstallLevelGenerator();
             InstallSpaceObstacle();
             InstallLevelProgressService();
         }
@@ -62,6 +64,21 @@ namespace Gameplay.Installers
                 .AsSingle();
         }
 
+        private void InstallLevelGenerator()
+        {
+            Container
+                .BindFactory<SpaceConfig, MapGenerator, MapGeneratorFactory>()
+                .AsSingle();
+            
+            Container
+                .BindFactory<SpaceView, SpaceConfig, int[,], int[,], LevelMap, LevelMapFactory>()
+                .AsSingle();
+            
+            Container
+                .BindFactory<int[,], Tilemap, SpawnPointsFinder, SpawnPointsFinderFactory>()
+                .AsSingle();
+        }
+        
         private void InstallSpaceObstacle()
         {
             Container

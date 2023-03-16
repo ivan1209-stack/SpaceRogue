@@ -15,6 +15,9 @@ namespace Gameplay.LevelProgress
     {
         private readonly LevelPresetsConfig _levelPresetsConfig;
         private readonly SpaceViewFactory _spaceViewFactory;
+        private readonly MapGeneratorFactory _mapGeneratorFactory;
+        private readonly LevelMapFactory _levelMapFactory;
+        private readonly SpawnPointsFinderFactory _spawnPointsFinderFactory;
         private readonly SpaceObstacleFactory _spaceObstacleFactory;
         private readonly PlayerFactory _playerFactory;
         private readonly StarSpawnConfig _starSpawnConfig;
@@ -29,6 +32,9 @@ namespace Gameplay.LevelProgress
         public LevelFactory(
             LevelPresetsConfig levelPresetsConfig,
             SpaceViewFactory spaceViewFactory,
+            MapGeneratorFactory mapGeneratorFactory,
+            LevelMapFactory levelMapFactory,
+            SpawnPointsFinderFactory spawnPointsFinderFactory,
             SpaceObstacleFactory spaceObstacleFactory,
             PlayerFactory playerFactory,
             StarSpawnConfig starSpawnConfig,
@@ -38,6 +44,9 @@ namespace Gameplay.LevelProgress
         {
             _levelPresetsConfig = levelPresetsConfig;
             _spaceViewFactory = spaceViewFactory;
+            _mapGeneratorFactory = mapGeneratorFactory;
+            _levelMapFactory = levelMapFactory;
+            _spawnPointsFinderFactory = spawnPointsFinderFactory;
             _spaceObstacleFactory = spaceObstacleFactory;
             _playerFactory = playerFactory;
             _starSpawnConfig = starSpawnConfig;
@@ -51,14 +60,14 @@ namespace Gameplay.LevelProgress
             PickRandomLevelPreset();
             var spaceView = _spaceViewFactory.Create();
 
-            var map = new MapGenerator(_currentLevelPreset.SpaceConfig);
+            var map = _mapGeneratorFactory.Create(_currentLevelPreset.SpaceConfig);
             map.Generate();
 
-            var levelMap = new LevelMap(spaceView, _currentLevelPreset.SpaceConfig, map.BorderMap, map.NebulaMap);
+            var levelMap = _levelMapFactory.Create(spaceView, _currentLevelPreset.SpaceConfig, map.BorderMap, map.NebulaMap);
             levelMap.Draw();
             var mapCameraSize = levelMap.GetMapCameraSize();
 
-            var spawnPointsFinder = new SpawnPointsFinder(map.NebulaMap, spaceView.NebulaTilemap);
+            var spawnPointsFinder = _spawnPointsFinderFactory.Create(map.NebulaMap, spaceView.NebulaTilemap);
 
             _spaceObstacleFactory.Create(spaceView.SpaceObstacleView, _currentLevelPreset.SpaceConfig.ObstacleForce);
 
