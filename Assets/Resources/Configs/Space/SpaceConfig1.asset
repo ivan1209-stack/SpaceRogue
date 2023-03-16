@@ -18,13 +18,12 @@ MonoBehaviour:
   <NebulaMaskTileBase>k__BackingField: {fileID: 11400000, guid: ab5bfea862654ad4f99c93531db99a2e, type: 2}
   <WidthMap>k__BackingField: 128
   <HeightMap>k__BackingField: 128
+  <SpaceObjectCount>k__BackingField: 20
+  <EnemyGroupCount>k__BackingField: 20
+  <ObstacleForce>k__BackingField: 1.5
   <OuterBorder>k__BackingField: 3
   <InnerBorder>k__BackingField: 4
   <SmoothMapType>k__BackingField: 0
   <FactorSmooth>k__BackingField: 4
   <RandomType>k__BackingField: 0
   <Chance>k__BackingField: 0.475
-  <StarCount>k__BackingField: 20
-  <AutoRadius>k__BackingField: 1
-  <ManualRadius>k__BackingField: 5
-  <ObstacleForce>k__BackingField: 1.5

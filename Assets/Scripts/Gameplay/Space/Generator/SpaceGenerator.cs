@@ -60,16 +60,8 @@ namespace Gameplay.Space.Generator
             _randomType = spaceConfig.RandomType;
             _chance = spaceConfig.Chance;
 
-            _starCount = spaceConfig.StarCount;
-
-            if (spaceConfig.AutoRadius)
-            {
-                _starRadius = GetStarRadius(starSpawnConfig, spaceView.NebulaTilemap);
-            }
-            else
-            {
-                _starRadius = spaceConfig.ManualRadius;
-            }
+            _starCount = spaceConfig.SpaceObjectCount;
+            _starRadius = 5;
 
             _enemyCount = legacyEnemySpawnConfig.EnemyGroupsSpawnPoints.Count;
             _enemyRadius = GetEnemyRadius(legacyEnemySpawnConfig, spaceView.NebulaMaskTilemap);
@@ -90,25 +82,6 @@ namespace Gameplay.Space.Generator
         }
 
         protected abstract void Draw();
-
-        private int GetStarRadius(StarSpawnConfig starSpawnConfig, Tilemap tilemap)
-        {
-            var maxStarSize = default(float);
-            var maxOrbit = default(float);
-
-            foreach (var item in starSpawnConfig.WeightConfigs)
-            {
-                maxStarSize = Mathf.Max(maxStarSize, item.Config.MaxSize);
-                maxOrbit = Mathf.Max(maxOrbit, item.Config.MaxOrbit);
-            }
-
-            var radius = (maxStarSize / 2 + maxOrbit)
-                / Mathf.Max(tilemap.cellSize.x * tilemap.transform.localScale.x,
-                            tilemap.cellSize.y * tilemap.transform.localScale.y);
-            Debug.Log($"Radius: {Mathf.CeilToInt(radius)}");
-
-            return Mathf.CeilToInt(radius);
-        }
 
         private int GetEnemyRadius(LegacyEnemySpawnConfig legacyEnemySpawnConfig, Tilemap tilemap)
         {

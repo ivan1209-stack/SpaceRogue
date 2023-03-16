@@ -8,6 +8,8 @@ namespace Gameplay.Space.Generator
 {
     public sealed class SpawnPointsFinder
     {
+        private const byte MaxCountSpawnTries = 10;
+
         private readonly int[,] _map;
         private readonly Tilemap _tilemap;
         private readonly int[,] _spaceObjectsMap;
@@ -28,24 +30,21 @@ namespace Gameplay.Space.Generator
             _availablePoints = GetEmptyPoints(map);
         }
 
-        public Vector3 SpaceObjectSpawnPoint(float starSize, float orbit)
+        public bool TryGetSpaceObjectSpawnPoint(float starSize, float orbit, out Vector3 spawnPoint)
         {
-            var radius = CalculateStarRadius(starSize, orbit);
-            FindAvailablePointOnMap(_availablePoints, CellType.Star, _spaceObjectsMap, 1, radius);
-            return GetSpawnPoint(CellType.Star);
-        }
-        
-        public Vector3 GetPlayerSpawnPoint()
-        {
-            FindAvailablePointOnMap(_availablePoints, CellType.Player, _spaceObjectsMap, 1, 1);
-            return GetSpawnPoint(CellType.Player);
+            var occupiedRadius = starSize / 2 + orbit;
+            return TryGetSpawnPoint(CellType.Star, occupiedRadius, out spawnPoint);
         }
 
-        public Vector3 EnemySpawnPoint(int groupCount)
+        public bool TryGetPlayerSpawnPoint(out Vector3 spawnPoint)
         {
-            var radius = CalculateEnemyRadius(groupCount);
-            FindAvailablePointOnMap(_availablePoints, CellType.Enemy, _spaceObjectsMap, 1, radius);
-            return GetSpawnPoint(CellType.Enemy);
+            return TryGetSpawnPoint(CellType.Player, 1, out spawnPoint);
+        }
+
+        public bool TryGetEnemySpawnPoint(int groupCount, out Vector3 spawnPoint)
+        {
+            var occupiedRadius = groupCount * 2;
+            return TryGetSpawnPoint(CellType.Enemy, occupiedRadius, out spawnPoint);
         }
 
         private List<Point> GetEmptyPoints(int[,] map)
@@ -66,44 +65,56 @@ namespace Gameplay.Space.Generator
             return points;
         }
 
-        private int CalculateStarRadius(float starSize, float orbit)
+        private bool TryGetSpawnPoint(CellType cellType, float occupiedRadius, out Vector3 spawnPoint)
         {
-            var radius = (starSize / 2 + orbit) / _maxRealCellSize;
-            Debug.Log($"StarRadius: {Mathf.CeilToInt(radius)}");
-            return Mathf.CeilToInt(radius);
+            spawnPoint = default;
+            var correctOccupiedRadius = CalculateCorrectOccupiedRadius(occupiedRadius);
+            var isFound = TryFindAvailablePointOnMap(_availablePoints, cellType, _spaceObjectsMap, 1, correctOccupiedRadius);
+
+            if (isFound)
+            {
+                spawnPoint = GetSpawnPoint(cellType);
+                Debug.Log($"{cellType}Radius: {Mathf.CeilToInt(correctOccupiedRadius)}");
+            }
+
+            return isFound;
         }
 
-        private int CalculateEnemyRadius(int groupCount)
+        private int CalculateCorrectOccupiedRadius(float radius)
         {
-            var radius = groupCount / _maxRealCellSize;
-            Debug.Log($"EnemyRadius: {Mathf.CeilToInt(radius)}");
-            return Mathf.CeilToInt(radius);
+            var occupiedRadius = radius / _maxRealCellSize;
+            return Mathf.CeilToInt(occupiedRadius);
         }
 
-        private void FindAvailablePointOnMap(List<Point> points, CellType cellType, int[,] map, int cellCount, int radius)
+        private bool TryFindAvailablePointOnMap(List<Point> points, CellType cellType, int[,] map, int cellCount, int radius)
         {
             var count = 0;
+            var tryCount = 0;
             var pseudoRandom = new Random();
-
+            
             while (count < cellCount)
             {
-                if (points.Count == 0)
+                if (points.Count == 0 || tryCount > MaxCountSpawnTries)
                 {
                     Debug.LogWarning($"Not enough space for all \"{cellType}\" | Count = {count}");
-                    break;
+                    return false;
                 }
 
                 var i = pseudoRandom.Next(points.Count);
 
                 if (СheckNeighborsInRadius(points, points[i].X, points[i].Y, radius))
                 {
+                    tryCount++;
                     continue;
                 }
 
                 map[points[i].X, points[i].Y] = (int)cellType;
                 RemovePoints(points, points[i].X, points[i].Y, radius);
                 count++;
+                tryCount = 0;
             }
+
+            return true;
         }
 
         private bool СheckNeighborsInRadius(List<Point> points, int gridX, int gridY, int radius)

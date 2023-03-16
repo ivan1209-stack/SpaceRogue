@@ -1,10 +1,12 @@
-using Unity.VisualScripting;
 using UnityEngine;
+using Utilities.Mathematics;
 
 namespace Utilities.Unity
 {
     public static class UnityHelper
     {
+        public const byte MaxCountSpawnTries = 10;
+
         public static bool IsAnyObjectAtPosition(Vector3 position, float radius)
         {
             var collider = Physics2D.OverlapCircle(position, radius);
@@ -30,6 +32,21 @@ namespace Utilities.Unity
         public static bool IsObjectVisible(this Camera camera, Bounds bounds)
         {
             return GeometryUtility.TestPlanesAABB(GeometryUtility.CalculateFrustumPlanes(camera), bounds);
+        }
+
+        public static Vector3 GetEmptySpawnPoint(Vector3 spawnPoint, Vector3 unitSize, int spawnCircleRadius)
+        {
+            var unitSpawnPoint = spawnPoint + (Vector3)(Random.insideUnitCircle * spawnCircleRadius);
+            var unitMaxSize = unitSize.MaxVector3CoordinateOnPlane();
+
+            var tryCount = 0;
+            while (IsAnyObjectAtPosition(unitSpawnPoint, unitMaxSize) && tryCount <= MaxCountSpawnTries)
+            {
+                unitSpawnPoint = spawnPoint + (Vector3)(Random.insideUnitCircle * spawnCircleRadius);
+                tryCount++;
+            }
+
+            return unitSpawnPoint;
         }
     }
 }

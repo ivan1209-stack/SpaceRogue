@@ -14,7 +14,7 @@ namespace Gameplay.Enemy
         private const byte MaxCountSpawnTries = 10;
         
         private readonly ResourcePath _groupSpawnConfigPath = new(Constants.Configs.Enemy.EnemySpawnConfig);
-        private readonly EnemyFactory _enemyFactory;
+        private readonly LegacyEnemyFactory _enemyFactory;
         private readonly PlayerController _playerController;
         
         public List<EnemyView> EnemyViews { get; private set; } = new();
@@ -24,7 +24,7 @@ namespace Gameplay.Enemy
             _playerController = playerController;
             var groupSpawnConfig = ResourceLoader.LoadObject<LegacyEnemySpawnConfig>(_groupSpawnConfigPath);
 
-            _enemyFactory = new EnemyFactory(groupSpawnConfig.LegacyEnemy);
+            _enemyFactory = new LegacyEnemyFactory(groupSpawnConfig.LegacyEnemy);
 
             var unitSize = groupSpawnConfig.LegacyEnemy.Prefab.transform.localScale;
 

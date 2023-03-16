@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 694ceacab6744eef97141c26f1442bf1, type: 3}
-  m_Name: EnemySpawnConfig
+  m_Script: {fileID: 11500000, guid: ac9ccb4c34af4366b0f5380e2ce68935, type: 3}
+  m_Name: EnemyDamageImmunityFrameConfig
   m_EditorClassIdentifier: 
-  <Groups>k__BackingField:
-  - <Weight>k__BackingField: 500
-    <Config>k__BackingField: {fileID: 11400000, guid: c52a07c0302e3dc45b80205f9749b1d4, type: 2}
+  <SecondHitDelay>k__BackingField: 0.3
+  <Duration>k__BackingField: 0.5
+  <Cooldown>k__BackingField: 2
