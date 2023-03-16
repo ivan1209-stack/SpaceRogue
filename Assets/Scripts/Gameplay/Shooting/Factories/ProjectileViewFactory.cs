@@ -1,6 +1,7 @@
 using Gameplay.Damage;
 using Gameplay.Pooling;
 using UnityEngine;
+using Utilities.Mathematics;
 using Zenject;
 
 namespace Gameplay.Shooting.Factories
@@ -21,10 +22,17 @@ namespace Gameplay.Shooting.Factories
             var (position, rotation, config, unitType) = spawnParams;
             var projectileView = _diContainer.InstantiatePrefabForComponent<ProjectileView>(config.Prefab, position, rotation, _projectilePoolTransform);
             projectileView.Init(new DamageModel(config.DamageAmount, unitType));
-            projectileView.GetComponent<Rigidbody2D>().velocity = rotation.eulerAngles * config.Speed;
-            Debug.Log(rotation.eulerAngles); //TODO fix initial impulse
-            Debug.Log(projectileView.GetComponent<Rigidbody2D>().velocity);
+            var direction = CalculateProjectileDirection(position, rotation);
+            projectileView.GetComponent<Rigidbody2D>().velocity = direction * config.Speed;
             return projectileView;
+        }
+
+        private Vector2 CalculateProjectileDirection(Vector2 position, Quaternion rotation)
+        {
+            var unitCircleDirection = (Vector2)MathExtensions.ToVector3(rotation.eulerAngles.z + 90);
+            var globalScaleDestination = new Vector2(position.x + unitCircleDirection.x, position.y + unitCircleDirection.y);
+            var direction = globalScaleDestination - position;
+            return direction;
         }
     }
 }
