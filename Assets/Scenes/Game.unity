@@ -1425,7 +1425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <EnemyPool>k__BackingField: {fileID: 1035763333}
-  <EnemyGroupConfig>k__BackingField: {fileID: 11400000, guid: c52a07c0302e3dc45b80205f9749b1d4, type: 2}
+  <EnemySpawnConfig>k__BackingField: {fileID: 11400000, guid: 483c19a6c4188ae4c9ed221faa5c885a, type: 2}
 --- !u!1 &1216238811
 GameObject:
   m_ObjectHideFlags: 0

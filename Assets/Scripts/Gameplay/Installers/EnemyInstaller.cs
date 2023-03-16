@@ -10,7 +10,7 @@ namespace Gameplay.Installers
     public sealed class EnemyInstaller : MonoInstaller
     {
         [field: SerializeField] public EnemyPool EnemyPool { get; private set; }
-        [field: SerializeField] public EnemyGroupConfig EnemyGroupConfig { get; private set; }
+        [field: SerializeField] public EnemySpawnConfig EnemySpawnConfig{ get; private set; }
 
         public override void InstallBindings()
         {
@@ -22,8 +22,8 @@ namespace Gameplay.Installers
         private void InstallEnemyForces()
         {
             Container
-                .Bind<EnemyGroupConfig>()
-                .FromInstance(EnemyGroupConfig)
+                .Bind<EnemySpawnConfig>()
+                .FromInstance(EnemySpawnConfig)
                 .WhenInjectedInto<EnemyForcesFactory>();
 
             Container

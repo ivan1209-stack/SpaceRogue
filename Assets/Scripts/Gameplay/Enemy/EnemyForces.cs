@@ -15,43 +15,61 @@ namespace Gameplay.Enemy
         private const byte MaxCountSpawnTries = 10;
 
         private readonly int _enemyGroupCount;
-        private readonly EnemyGroupConfig _enemyGroupConfig;
+        private readonly EnemySpawnConfig _enemySpawnConfig;
         private readonly SpawnPointsFinder _spawnPointsFinder;
         private readonly EnemyFactory _enemyFactory;
         private readonly System.Random _random;
 
         public List<Enemy> Enemies { get; private set; } = new();
 
-        public EnemyForces(int enemyGroupCount,  EnemyGroupConfig enemyGroupConfig, SpawnPointsFinder spawnPointsFinder, EnemyFactory enemyFactory)
+        public EnemyForces(int enemyGroupCount, EnemySpawnConfig enemySpawnConfig, SpawnPointsFinder spawnPointsFinder, EnemyFactory enemyFactory)
         {
             _enemyGroupCount = enemyGroupCount;
-            _enemyGroupConfig = enemyGroupConfig;
+            _enemySpawnConfig = enemySpawnConfig;
             _spawnPointsFinder = spawnPointsFinder;
             _enemyFactory = enemyFactory;
             _random = new System.Random();
 
             for (int i = 0; i < _enemyGroupCount; i++)
             {
-                var squad = RandomPicker.PickOneElementByWeights(_enemyGroupConfig.Squads, _random);
-                
-                if (!_spawnPointsFinder.TryGetEnemySpawnPoint(squad.EnemyCount, out var spawnPoint))
+                var group = RandomPicker.PickOneElementByWeights(_enemySpawnConfig.Groups, _random);
+                var enemyCount = CalculateEnemyCount(group.Squads);
+
+                if (!_spawnPointsFinder.TryGetEnemySpawnPoint(enemyCount, out var spawnPoint))
                 {
                     Debug.Log("Not Found point");
                     continue;
                 }
 
-                for (int j = 0; j < squad.EnemyCount; j++)
+                for (int j = 0; j < group.Squads.Count; j++)
                 {
-                    var enemyConfig = RandomPicker.PickOneElementByWeights(squad.EnemyTypes, _random);
-                    var unitSize = enemyConfig.Prefab.transform.localScale;
-                    var spawnCircleRadius = squad.EnemyCount * 2;
+                    var squad = group.Squads[j];
 
-                    var unitSpawnPoint = GetEmptySpawnPoint(spawnPoint, unitSize, spawnCircleRadius);
+                    for (int k = 0; k < squad.EnemyCount; k++)
+                    {
+                        var enemyConfig = RandomPicker.PickOneElementByWeights(squad.EnemyTypes, _random);
+                        var unitSize = enemyConfig.Prefab.transform.localScale;
+                        var spawnCircleRadius = squad.EnemyCount * 2;
 
-                    var enemy = _enemyFactory.Create(unitSpawnPoint, enemyConfig);
-                    Enemies.Add(enemy);
+                        var unitSpawnPoint = GetEmptySpawnPoint(spawnPoint, unitSize, spawnCircleRadius);
+
+                        var enemy = _enemyFactory.Create(unitSpawnPoint, enemyConfig);
+                        Enemies.Add(enemy);
+                    }
                 }
             }
+        }
+
+        private int CalculateEnemyCount(List<EnemySquadConfig> squads)
+        {
+            var count = 0;
+            
+            for (int i = 0; i < squads.Count; i++)
+            {
+                count = squads[i].EnemyCount;
+            }
+
+            return count;
         }
 
         public void Dispose()
