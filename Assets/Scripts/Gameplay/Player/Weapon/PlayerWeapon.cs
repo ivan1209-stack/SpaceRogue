@@ -12,7 +12,6 @@ namespace Gameplay.Player.Weapon
 
         public PlayerWeapon(MountedWeapon mountedWeapon, PlayerInput playerInput)
         {
-            Debug.Log("playerWeapon ok");
             _playerInput = playerInput;
             _mountedWeapon = mountedWeapon;
 
