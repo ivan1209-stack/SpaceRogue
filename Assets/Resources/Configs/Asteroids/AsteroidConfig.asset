@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c568d461dd05a04cab9ea3c3e19df7e, type: 3}
   m_Name: AsteroidConfig
   m_EditorClassIdentifier: 
+  <AsteroidPrefab>k__BackingField: {fileID: -855076941684117732, guid: ae4d463454dcd3f4f8546cef1366ff03, type: 3}
   <AsteroidType>k__BackingField: 1
   <DamageConfig>k__BackingField:
     <DamageAmount>k__BackingField: 30
