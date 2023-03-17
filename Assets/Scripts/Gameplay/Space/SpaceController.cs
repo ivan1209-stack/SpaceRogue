@@ -39,7 +39,7 @@ namespace Gameplay.Space
             _levelGenerator = new(_view, _config, starSpawnConfig, enemySpawnConfig);
             _levelGenerator.Generate();
 
-            foreach (var starSpawnPoint in _levelGenerator.GetSpawnPoints(CellType.Star))
+            foreach (var starSpawnPoint in _levelGenerator.GetSpawnPoints(CellType.SpaceObjects))
             {
                 /*var (star, planetControllers) = _spaceObjectFactory.CreateStarSystem(starSpawnPoint, _view.Stars);
                 AddController(star);

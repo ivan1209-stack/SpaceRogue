@@ -293,7 +293,7 @@ namespace Gameplay.Space.Generator
 
             var pseudoRandom = new Random();
             _availablePoints = CheckAvailablePoints(map, radius);
-            TrySetCellOnMap(spaceObjectsMap, starCount, radius, pseudoRandom, CellType.Star);
+            TrySetCellOnMap(spaceObjectsMap, starCount, radius, pseudoRandom, CellType.SpaceObjects);
         }
 
         private void PlayerSpawnPoint(int[,] spaceObjectsMap)
