@@ -14,9 +14,18 @@ namespace Gameplay.Installers
 
         public override void InstallBindings()
         {
+            InstallEnemyPool();
             InstallEnemyForces();
             InstallEnemy();
             InstallEnemyView();
+        }
+
+        private void InstallEnemyPool()
+        {
+            Container
+                .Bind<EnemyPool>()
+                .FromInstance(EnemyPool)
+                .AsSingle();
         }
 
         private void InstallEnemyForces()
@@ -40,11 +49,6 @@ namespace Gameplay.Installers
 
         private void InstallEnemyView()
         {
-            Container
-                .Bind<EnemyPool>()
-                .FromInstance(EnemyPool)
-                .WhenInjectedInto<EnemyViewFactory>();
-
             Container
                 .BindFactory<Vector2, EnemyConfig, EnemyView, EnemyViewFactory>()
                 .AsSingle();

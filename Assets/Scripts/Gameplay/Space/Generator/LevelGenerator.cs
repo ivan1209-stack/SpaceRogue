@@ -13,11 +13,11 @@ namespace Gameplay.Space.Generator
         private readonly Tilemap _nebulaTilemap;
         private readonly Tilemap _nebulaMaskTilemap;
 
-        public LevelGenerator(SpaceView spaceView,
-                              SpaceConfig spaceConfig,
-                              StarSpawnConfig starSpawnConfig,
-                              LegacyEnemySpawnConfig legacyEnemySpawnConfig) 
-            : base(spaceView, spaceConfig, starSpawnConfig, legacyEnemySpawnConfig)
+        public LevelGenerator(
+            SpaceView spaceView,
+            SpaceConfig spaceConfig,
+            StarSpawnConfig starSpawnConfig,
+            LegacyEnemySpawnConfig legacyEnemySpawnConfig) : base(spaceView, spaceConfig, starSpawnConfig, legacyEnemySpawnConfig)
         {
             _borderTilemap = spaceView.BorderTilemap;
             _borderMaskTilemap = spaceView.BorderMaskTilemap;

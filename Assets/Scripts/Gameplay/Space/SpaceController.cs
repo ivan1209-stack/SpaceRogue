@@ -5,7 +5,7 @@ using Gameplay.Enemy.Scriptables;
 using Gameplay.Space.Factories;
 using Gameplay.Space.Generator;
 using Gameplay.Space.Obstacle;
-using Gameplay.Space.Planet;
+using Gameplay.Space.Planets;
 using Gameplay.Space.SpaceObjects.Scriptables;
 using UnityEngine;
 using Utilities.ResourceManagement;

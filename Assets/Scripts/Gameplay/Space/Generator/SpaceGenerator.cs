@@ -41,10 +41,11 @@ namespace Gameplay.Space.Generator
 
         private List<Point> _availablePoints = new();
 
-        public SpaceGenerator(SpaceView spaceView,
-                              SpaceConfig spaceConfig,
-                              StarSpawnConfig starSpawnConfig,
-                              LegacyEnemySpawnConfig legacyEnemySpawnConfig)
+        public SpaceGenerator(
+            SpaceView spaceView,
+            SpaceConfig spaceConfig,
+            StarSpawnConfig starSpawnConfig,
+            LegacyEnemySpawnConfig legacyEnemySpawnConfig)
         {
             _borderTileBase = spaceConfig.BorderTileBase;
             _borderMaskTileBase = spaceConfig.BorderMaskTileBase;
