@@ -71,11 +71,7 @@ namespace Gameplay.LevelProgress
 
             _spaceObstacleFactory.Create(spaceView.SpaceObstacleView, _currentLevelPreset.SpaceConfig.ObstacleForce);
 
-            var player = default(Player.Player);
-            if (spawnPointsFinder.TryGetPlayerSpawnPoint(out var playerSpawnPoint))
-            {
-                player = _playerFactory.Create(playerSpawnPoint);
-            }
+            var player = _playerFactory.Create(spawnPointsFinder.GetPlayerSpawnPoint());
 
             //_spaceObjectFactory
 
