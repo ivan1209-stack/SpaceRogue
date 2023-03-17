@@ -1,15 +1,9 @@
 using Abstracts;
-using Gameplay.Background;
-using Gameplay.Camera;
 using Gameplay.Enemy;
 using Gameplay.GameEvent;
-using Gameplay.GameState;
 using Gameplay.LevelProgress;
-using Gameplay.Minimap;
 using Gameplay.Player;
-using Gameplay.Space;
 using UI.Game;
-using UnityEngine;
 
 namespace Gameplay
 {
@@ -17,7 +11,6 @@ namespace Gameplay
     {
         private readonly GameDataController _gameDataController;
         private readonly GameUIController _gameUIController;
-        private readonly SpaceController _spaceController;
         private readonly PlayerController _playerController;
         private readonly EnemyForcesController _enemyForcesController;
         private readonly GeneralGameEventsController _generalGameEventsController;
@@ -27,14 +20,11 @@ namespace Gameplay
         {
             _gameDataController = gameDataController;
 
-            _spaceController = new();
-            AddController(_spaceController);
-
-            _playerController = new(_spaceController.GetPlayerSpawnPoint(), _gameDataController.PlayerHealthInfo, _gameDataController.PlayerShieldInfo);
+            _playerController = new(new(), _gameDataController.PlayerHealthInfo, _gameDataController.PlayerShieldInfo);
             AddController(_playerController);
             _playerController.PlayerDestroyed += OnPlayerDestroyed;
 
-            _enemyForcesController = new(_playerController, _spaceController.GetEnemySpawnPoints());
+            _enemyForcesController = new(_playerController, new() { new() });
             AddController(_enemyForcesController);
 
             _generalGameEventsController = new(_playerController);
