@@ -5,19 +5,16 @@ using Gameplay.Space.SpaceObjects.SpaceObjectsEffects;
 using UnityEngine;
 using Utilities.Mathematics;
 using Zenject;
-using Random = System.Random;
 
 namespace Gameplay.Space.Factories
 {
     public class PlanetSystemEffectFactory : PlaceholderFactory<Vector3, PlanetSystemConfig, PlanetSystemEffect>
     {
         private readonly PlanetFactory _planetFactory;
-        private readonly Random _random;
 
         public PlanetSystemEffectFactory(PlanetFactory planetFactory)
         {
             _planetFactory = planetFactory;
-            _random = new Random();
         }
 
         public override PlanetSystemEffect Create(Vector3 spaceObjectScale, PlanetSystemConfig config)

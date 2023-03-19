@@ -5,21 +5,18 @@ using Gameplay.Space.SpaceObjects.Scriptables;
 using UnityEngine;
 using Utilities.Mathematics;
 using Zenject;
-using Random = System.Random;
 
 namespace Gameplay.Space.Factories
 {
     public class PlanetViewFactory : PlaceholderFactory<Vector2, PlanetConfig, PlanetView>
     {
         private readonly DiContainer _diContainer;
-        private readonly Random _random;
         private readonly Transform _spaceObjectsPoolTransform;
 
         public PlanetViewFactory(DiContainer diContainer, SpaceObjectsPool spaceObjectsPool)
         {
             _diContainer = diContainer;
             _spaceObjectsPoolTransform = spaceObjectsPool.transform;
-            _random = new Random();
         }
         
         public override PlanetView Create(Vector2 position, PlanetConfig config)
