@@ -1,6 +1,9 @@
+using Gameplay.Enemy.Scriptables;
+using Gameplay.Enemy;
 using UI.Game;
 using UnityEngine;
 using Zenject;
+using Gameplay.Survival;
 
 namespace UI.Installers
 {
@@ -17,6 +20,8 @@ namespace UI.Installers
 
         [field: Header("For instantiate other UI")]
         [field: SerializeField] public EnemyHealthBarsView EnemyHealthBarsView { get; private set; }
+        [field: SerializeField] public HealthShieldStatusBarView HealthShieldStatusBarView { get; private set; }
+        [field: SerializeField] public HealthStatusBarView HealthStatusBarView { get; private set; }
         [field: SerializeField] public GameEventIndicatorsView GameEventIndicatorsView { get; private set; }
 
         public override void InstallBindings()
@@ -25,8 +30,7 @@ namespace UI.Installers
             BindPlayerInfo();
             BindLevelInfo();
             BindMinimap();
-            //TODO
-            //BindOtherUI();
+            BindOtherUI();
         }
 
         private void BindGameUICanvas()
@@ -78,6 +82,20 @@ namespace UI.Installers
                 .FromInstance(EnemyHealthBarsView)
                 .AsSingle()
                 .NonLazy();
+
+            Container
+                .Bind<HealthShieldStatusBarView>()
+                .FromInstance(HealthShieldStatusBarView)
+                .WhenInjectedInto<EnemyStatusBarViewFactory>();
+
+            Container
+                .Bind<HealthStatusBarView>()
+                .FromInstance(HealthStatusBarView)
+                .WhenInjectedInto<EnemyStatusBarViewFactory>();
+
+            Container
+                .BindFactory<EntitySurvival, EnemyHealthBarsView, HealthStatusBarView, EnemyStatusBarViewFactory>()
+                .AsSingle();
 
             Container
                 .Bind<GameEventIndicatorsView>()
