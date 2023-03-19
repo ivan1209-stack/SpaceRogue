@@ -9,21 +9,15 @@ namespace Utilities.Mathematics
 {
     public static class RandomPicker
     {
-        private static readonly Random _random;
-
-        static RandomPicker()
-        {
-            _random = new Random();
-        }
-        
         public static T PickOneElementByWeights<T>(IEnumerable<WeightConfig<T>> weights)
         {
+            var random = new Random();
             var orderedWeights = weights
                 .OrderBy(x => x.Weight)
                 .ToArray();
             int weightSum = orderedWeights.Sum(x => x.Weight);
             double[] chances = orderedWeights.Select(x => x.Weight / (double)weightSum).ToArray();
-            double randomDouble = _random.NextDouble();
+            double randomDouble = random.NextDouble();
             
             if (randomDouble < chances[0]) return orderedWeights[0].Config;
             for (int i = 1; i < chances.Length; i++)
@@ -43,11 +37,12 @@ namespace Utilities.Mathematics
 
         public static float PickRandomBetweenTwoValues(float minValue, float maxValue)
         {
+            var random = new Random();
             float difference = maxValue - minValue;
-            return (float)Math.Round(_random.NextDouble() * difference + minValue, 2);
+            return (float)Math.Round(random.NextDouble() * difference + minValue, 2);
         }
 
-        public static int PickRandomBetweenTwoValues(int minValue, int maxValue) => _random.Next(minValue, maxValue + 1);
+        public static int PickRandomBetweenTwoValues(int minValue, int maxValue) => new Random().Next(minValue, maxValue + 1);
 
         public static Vector3 PickRandomAngle(int leftAngle, int rightAngle) => PickRandomBetweenTwoValues(-leftAngle, rightAngle + 1).ToVector3();
 
