@@ -10,11 +10,13 @@ namespace Gameplay.Space.Factories
     public class SpaceObjectEffectFactory : IFactory<Transform, SpaceObjectEffectConfig, SpaceObjectEffect>
     {
         private readonly PlanetSystemEffectFactory _planetSystemEffectFactory;
+        private readonly GravitationAuraFactory _gravitationAuraFactory;
 
         public SpaceObjectEffectFactory(
-            PlanetSystemEffectFactory planetSystemEffectFactory)
+            PlanetSystemEffectFactory planetSystemEffectFactory, GravitationAuraFactory gravitationAuraFactory)
         {
             _planetSystemEffectFactory = planetSystemEffectFactory;
+            _gravitationAuraFactory = gravitationAuraFactory;
             //TODO init other factories
         }
 
@@ -25,7 +27,7 @@ namespace Gameplay.Space.Factories
                 SpaceObjectEffectType.None => new SpaceObjectEmptyEffect(),
                 SpaceObjectEffectType.PlanetSystem => _planetSystemEffectFactory.Create(spaceObjectTransform, config as PlanetSystemConfig),
                 SpaceObjectEffectType.DamageAura => new DamageAuraEffect(),
-                SpaceObjectEffectType.GravitationAura => new GravitationAuraEffect(),
+                SpaceObjectEffectType.GravitationAura => _gravitationAuraFactory.Create(spaceObjectTransform, config as GravitationAuraConfig),
                 SpaceObjectEffectType.DamageOnTouch => new DamageOnTouchEffect(),
                 _ => throw new ArgumentOutOfRangeException(nameof(config.Type), config.Type, "A not-existent game event type is provided")
             };
