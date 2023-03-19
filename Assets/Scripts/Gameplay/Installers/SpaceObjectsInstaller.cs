@@ -49,6 +49,8 @@ namespace Gameplay.Installers
 
         private void InstallSpaceObjectEffectFactories()
         {
+            InstallGravitationFactories();
+
             Container
                 .BindFactory<Transform, PlanetSystemConfig, PlanetSystemEffect, PlanetSystemEffectFactory>()
                 .AsSingle();
@@ -56,6 +58,17 @@ namespace Gameplay.Installers
             Container
                 .BindIFactory<Transform, SpaceObjectEffectConfig, SpaceObjectEffect>()
                 .FromFactory<SpaceObjectEffectFactory>();
+        }
+
+        private void InstallGravitationFactories()
+        {
+            Container
+                .BindFactory<Transform, GravitationAuraConfig, GravitationAuraEffect, GravitationAuraFactory>()
+                .AsSingle();
+
+            Container
+                .BindFactory<GravitationAuraConfig, Transform, GravitationAuraEffectView, GravitationAuraViewFactory>()
+                .AsSingle();
         }
 
         private void InstallSpaceObjectFactories()

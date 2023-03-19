@@ -16,10 +16,10 @@ namespace Gameplay.Space.Factories
             _diContainer = diContainer;
         }
 
-        public override GravitationAuraEffectView Create(GravitationAuraConfig config, Transform position)
+        public override GravitationAuraEffectView Create(GravitationAuraConfig config, Transform transform)
         {
-            var view = _diContainer.InstantiatePrefabForComponent<GravitationAuraEffectView>(config.Prefab, position);
-            var size = config.Radius; //TO DO +parentObject
+            var view = _diContainer.InstantiatePrefabForComponent<GravitationAuraEffectView>(config.Prefab, transform);
+            var size = config.Radius; // transform.localScale.x / 2; //TO DO +parentObject  +
             view.transform.localScale = new Vector3(size, size, 1);
             return view;
         }
