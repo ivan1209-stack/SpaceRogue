@@ -1,4 +1,3 @@
-using UnityEngine;
 using Zenject;
 using Gameplay.Survival;
 
@@ -19,14 +18,14 @@ namespace UI.Game
 
         public override HealthStatusBarView Create(EntitySurvival survival, EnemyHealthBarsView barsView)
         {
-            var statusBar = _healthStatusBarView;
-
             if (survival.EntityShield != null)
             {
-                statusBar = _healthShieldStatusBarView;
+                return _diContainer
+                    .InstantiatePrefabForComponent<HealthStatusBarView>(_healthShieldStatusBarView, barsView.transform);
             }
 
-            return _diContainer.InstantiatePrefabForComponent<HealthStatusBarView>(statusBar, barsView.transform);
+            return _diContainer
+                .InstantiatePrefabForComponent<HealthStatusBarView>(_healthStatusBarView, barsView.transform);
         }
     }
 }

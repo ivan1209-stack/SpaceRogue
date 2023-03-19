@@ -19,7 +19,7 @@ namespace UI.Installers
             InstallLevelInfoService();
             InstallMinimapService();
             
-            InstallEnemyService();
+            InstallEnemyStatusBarService();
             //TODO GameEventUIService
         }
 
@@ -75,7 +75,7 @@ namespace UI.Installers
                 .NonLazy();
         }
 
-        private void InstallEnemyService()
+        private void InstallEnemyStatusBarService()
         {
             Container
                 .BindInterfacesAndSelfTo<EnemyStatusBarService>()
