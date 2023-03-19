@@ -25,8 +25,8 @@ namespace Gameplay.Space.Factories
         public override PlanetView Create(Vector2 position, PlanetConfig config)
         {
             var view = _diContainer.InstantiatePrefabForComponent<PlanetView>(config.Prefab, position, Quaternion.identity, _spaceObjectsPoolTransform);
-            var planetSize = RandomPicker.PickRandomBetweenTwoValues(config.MinSize, config.MaxSize, _random);
-            var planetDamage = RandomPicker.PickRandomBetweenTwoValues(config.MinDamage, config.MaxDamage, _random);
+            var planetSize = RandomPicker.PickRandomBetweenTwoValues(config.MinSize, config.MaxSize);
+            var planetDamage = RandomPicker.PickRandomBetweenTwoValues(config.MinDamage, config.MaxDamage);
             view.transform.localScale = new Vector3(planetSize, planetSize, 1);
             view.Init(new DamageModel(planetDamage));
             return view;

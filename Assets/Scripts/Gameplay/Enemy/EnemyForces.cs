@@ -15,11 +15,9 @@ namespace Gameplay.Enemy
 
         public EnemyForces(int enemyGroupCount, EnemySpawnConfig enemySpawnConfig, SpawnPointsFinder spawnPointsFinder, EnemyFactory enemyFactory)
         {
-            var random = new System.Random();
-
             for (int i = 0; i < enemyGroupCount; i++)
             {
-                var group = RandomPicker.PickOneElementByWeights(enemySpawnConfig.Groups, random);
+                var group = RandomPicker.PickOneElementByWeights(enemySpawnConfig.Groups);
                 var enemyCount = group.Squads.Sum(x => x.EnemyCount);
 
                 if (!spawnPointsFinder.TryGetEnemySpawnPoint(enemyCount, out var spawnPoint))
@@ -32,7 +30,7 @@ namespace Gameplay.Enemy
                 {
                     for (int j = 0; j < squadConfig.EnemyCount; j++)
                     {
-                        var enemyConfig = RandomPicker.PickOneElementByWeights(squadConfig.EnemyTypes, random);
+                        var enemyConfig = RandomPicker.PickOneElementByWeights(squadConfig.EnemyTypes);
                         var unitSize = enemyConfig.Prefab.transform.localScale;
                         var spawnCircleRadius = squadConfig.EnemyCount * 2;
 

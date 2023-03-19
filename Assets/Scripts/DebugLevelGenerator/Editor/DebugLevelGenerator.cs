@@ -34,12 +34,10 @@ namespace DebugLevelGenerator.Editor
 
             var spawnPointsFinder = new SpawnPointsFinder(map.NebulaMap, _debugLevelGeneratorView.SpaceView.NebulaTilemap);
 
-            var random = new System.Random();
-
             for (int i = 0; i < _debugLevelGeneratorView.SpaceConfig.SpaceObjectCount; i++)
             {
-                var config = RandomPicker.PickOneElementByWeights(_debugLevelGeneratorView.SpaceObjectSpawnConfig.SpaceObjectWeights, random);
-                var starSize = RandomPicker.PickRandomBetweenTwoValues(config.MinSize, config.MaxSize, random);
+                var config = RandomPicker.PickOneElementByWeights(_debugLevelGeneratorView.SpaceObjectSpawnConfig.SpaceObjectWeights);
+                var starSize = RandomPicker.PickRandomBetweenTwoValues(config.MinSize, config.MaxSize);
                 var effectConfig = config.Effects.First(x => x is PlanetSystemConfig planetSystemConfig);
                 
                 var orbit = DefaultOrbit;

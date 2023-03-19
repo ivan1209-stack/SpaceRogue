@@ -25,7 +25,7 @@ namespace Gameplay.GameEvent.Comet
             _view = view;
             AddGameObject(_view.gameObject);
             _rigidbody = _view.GetComponent<Rigidbody2D>();
-            _speed = RandomPicker.PickRandomBetweenTwoValues(_config.MinSpeed, _config.MaxSpeed, new());
+            _speed = RandomPicker.PickRandomBetweenTwoValues(_config.MinSpeed, _config.MaxSpeed);
             _remainingLifeTime = config.LifeTimeInSeconds;
 
             var damageModel = new DamageModel(config.Damage);

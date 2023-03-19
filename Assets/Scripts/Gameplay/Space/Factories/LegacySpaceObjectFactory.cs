@@ -25,22 +25,22 @@ namespace Gameplay.Space.Factories
         public (StarController, PlanetController[]) CreateStarSystem(Vector3 starSpawnPosition, Transform starsParent)
         {
             var config = PickStar(_starSpawnConfig.WeightConfigs, _random);
-            float starSize = RandomPicker.PickRandomBetweenTwoValues(config.MinSize, config.MaxSize, _random);
+            float starSize = RandomPicker.PickRandomBetweenTwoValues(config.MinSize, config.MaxSize);
             var starView = CreateStarView(config.Prefab, starSize, starSpawnPosition);
             
-            int planetCount = RandomPicker.PickRandomBetweenTwoValues(config.MinPlanetCount, config.MaxPlanetCount, _random);
+            int planetCount = RandomPicker.PickRandomBetweenTwoValues(config.MinPlanetCount, config.MaxPlanetCount);
             var planets = new PlanetController[planetCount];
             
             if (planetCount <= 0) return (new StarController(starView, starsParent), planets);
 
-            float[] planetOrbits = GetPlanetOrbitList(planetCount, config.MinOrbit, config.MaxOrbit, starSize, _random);
+            float[] planetOrbits = GetPlanetOrbitList(planetCount, config.MinOrbit, config.MaxOrbit, starSize);
 
             for (int i = 0; i < planets.Length; i++)
             {
                 var planetConfig = PickPlanet(_planetSpawnConfig.WeightConfigs, _random);
-                float planetSize = RandomPicker.PickRandomBetweenTwoValues(planetConfig.MinSize, planetConfig.MaxSize, _random);
-                float planetSpeed = RandomPicker.PickRandomBetweenTwoValues(planetConfig.MinSpeed, planetConfig.MaxSpeed, _random);
-                float planetDamage = RandomPicker.PickRandomBetweenTwoValues(planetConfig.MinDamage, planetConfig.MaxDamage, _random);
+                float planetSize = RandomPicker.PickRandomBetweenTwoValues(planetConfig.MinSize, planetConfig.MaxSize);
+                float planetSpeed = RandomPicker.PickRandomBetweenTwoValues(planetConfig.MinSpeed, planetConfig.MaxSpeed);
+                float planetDamage = RandomPicker.PickRandomBetweenTwoValues(planetConfig.MinDamage, planetConfig.MaxDamage);
                 bool isPlanetMovingRetrograde = RandomPicker.TakeChance(planetConfig.RetrogradeMovementChance, _random);
                 var planetView = CreatePlanetView(planetConfig.Prefab, planetSize, starSize, planetOrbits[i], starSpawnPosition);
                 planets[i] = new PlanetController(planetView, starView, planetSpeed, isPlanetMovingRetrograde, planetDamage);
@@ -63,7 +63,7 @@ namespace Gameplay.Space.Factories
             return viewGo;
         }
 
-        private static float[] GetPlanetOrbitList(int planetCount, float minOrbit, float maxOrbit, float starSize, System.Random random)
+        private static float[] GetPlanetOrbitList(int planetCount, float minOrbit, float maxOrbit, float starSize)
         {
             var orbits = new float[planetCount];
             float realMinOrbit = starSize / 2 + minOrbit;
@@ -71,7 +71,7 @@ namespace Gameplay.Space.Factories
 
             if (planetCount == 1)
             {
-                orbits[0] = RandomPicker.PickRandomBetweenTwoValues(realMinOrbit, realMaxOrbit, random);
+                orbits[0] = RandomPicker.PickRandomBetweenTwoValues(realMinOrbit, realMaxOrbit);
                 return orbits;
             }
 
@@ -81,17 +81,17 @@ namespace Gameplay.Space.Factories
             {
                 float minChunkOrbit = realMinOrbit + i * orbitChunk;
                 float maxChunkOrbit = realMinOrbit + (i + 1) * orbitChunk;
-                orbits[i] = RandomPicker.PickRandomBetweenTwoValues(minChunkOrbit, maxChunkOrbit, random);
+                orbits[i] = RandomPicker.PickRandomBetweenTwoValues(minChunkOrbit, maxChunkOrbit);
             }
 
             return orbits;
         }
 
         private static StarConfig PickStar(List<WeightConfig<StarConfig>> weightConfigs, System.Random random) 
-            => RandomPicker.PickOneElementByWeights(weightConfigs, random);
+            => RandomPicker.PickOneElementByWeights(weightConfigs);
 
         private static PlanetConfig PickPlanet(List<WeightConfig<PlanetConfig>> weightConfigs, System.Random random) => 
-            RandomPicker.PickOneElementByWeights(weightConfigs, random);
+            RandomPicker.PickOneElementByWeights(weightConfigs);
 
     }
 }

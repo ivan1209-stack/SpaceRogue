@@ -51,7 +51,7 @@ namespace Gameplay.Installers
                 .AsSingle();
             
             Container
-                .BindIFactory<SpaceObjectEffectConfig, SpaceObjectEffect>()
+                .BindIFactory<Vector3, SpaceObjectEffectConfig, SpaceObjectEffect>()
                 .FromFactory<SpaceObjectEffectFactory>();
             
             Container

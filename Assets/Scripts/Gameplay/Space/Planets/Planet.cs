@@ -8,6 +8,8 @@ namespace Gameplay.Space.Planets
         private readonly PlanetView _planetView;
         private readonly PlanetMovement _planetMovement;
 
+        public event Action<Planet> PlanetDestroyed = (_) => { };
+
         public Planet(PlanetView planetView, PlanetMovement planetMovement)
         {
             _planetView = planetView;
@@ -18,6 +20,8 @@ namespace Gameplay.Space.Planets
 
         public void Dispose()
         {
+            PlanetDestroyed.Invoke(this);
+            
             _planetView.CollisionEnter -= Dispose;
             
             _planetMovement.Dispose();
