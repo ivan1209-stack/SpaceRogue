@@ -7,7 +7,7 @@ using Zenject;
 
 namespace Gameplay.Space.Factories
 {
-    public class GravitationAuraViewFactory : PlaceholderFactory<Vector2, GravitationAuraConfig, GravitationAuraEffectView>
+    public class GravitationAuraViewFactory : PlaceholderFactory<GravitationAuraConfig, Transform, GravitationAuraEffectView>
     {
         private readonly DiContainer _diContainer;
 
@@ -16,12 +16,10 @@ namespace Gameplay.Space.Factories
             _diContainer = diContainer;
         }
 
-        public GravitationAuraEffectView Create(GravitationAuraConfig config, Transform position)
+        public override GravitationAuraEffectView Create(GravitationAuraConfig config, Transform position)
         {
-
-
             var view = _diContainer.InstantiatePrefabForComponent<GravitationAuraEffectView>(config.Prefab, position);
-            var size = config.Radius; //+ transform.localScale.x; //+parentObject
+            var size = config.Radius; //TO DO +parentObject
             view.transform.localScale = new Vector3(size, size, 1);
             return view;
         }

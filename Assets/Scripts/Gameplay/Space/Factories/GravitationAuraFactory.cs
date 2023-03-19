@@ -8,7 +8,7 @@ using Zenject;
 
 namespace Gameplay.Space.Factories
 {
-    public class GravitationAuraFactory : PlaceholderFactory<GravitationAuraConfig, GravitationAuraEffect>
+    public class GravitationAuraFactory : PlaceholderFactory<Transform, GravitationAuraConfig, GravitationAuraEffect>
     {
         private readonly GravitationAuraViewFactory _viewFactory;
         private readonly GravitationAuraConfig _gravityConfig;
