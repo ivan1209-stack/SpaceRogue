@@ -9,6 +9,7 @@ namespace Gameplay.Services
         private readonly SpaceView _spaceView;
         private readonly Player.Player _player;
         private readonly EnemyForces _enemyForces;
+        private readonly Space.Space _space;
 
         public int CurrentLevelNumber { get; private set; }
         public int EnemiesCountToWin { get; private set; }
@@ -21,7 +22,8 @@ namespace Gameplay.Services
             SpaceView spaceView,
             float mapCameraSize,
             Player.Player player,
-            EnemyForces enemyForces)
+            EnemyForces enemyForces,
+            Space.Space space)
         {
             CurrentLevelNumber = currentLevelNumber;
             EnemiesCountToWin = enemiesCountToWin;
@@ -29,11 +31,15 @@ namespace Gameplay.Services
             MapCameraSize = mapCameraSize;
             _player = player;
             _enemyForces = enemyForces;
+            _space = space;
             EnemiesCreatedCount = _enemyForces.Enemies.Count;
         }
 
         public void Dispose()
         {
+            _player.Dispose();
+            _enemyForces.Dispose();
+            _space.Dispose();
             UnityEngine.Object.Destroy(_spaceView.gameObject);
         }
     }

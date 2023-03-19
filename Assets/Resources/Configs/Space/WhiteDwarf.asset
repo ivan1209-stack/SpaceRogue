@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 458fe88dffedd2040976413acbda2678, type: 3}
-  m_Name: SpaceObjectConfig
+  m_Name: WhiteDwarf
   m_EditorClassIdentifier: 
-  <Prefab>k__BackingField: {fileID: 0}
-  <MinSize>k__BackingField: 40
-  <MaxSize>k__BackingField: 90
+  <Prefab>k__BackingField: {fileID: 6855208022390396238, guid: 24d9fea718d6f4e4bad61bfe540417a2, type: 3}
+  <MinSize>k__BackingField: 25
+  <MaxSize>k__BackingField: 50
   <Effects>k__BackingField:
   - {fileID: 11400000, guid: 02102cc1672243749993ecc4d5cc27cd, type: 2}

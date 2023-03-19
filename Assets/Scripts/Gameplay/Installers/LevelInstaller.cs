@@ -1,5 +1,3 @@
-using Gameplay.Enemy;
-using Gameplay.Enemy.Scriptables;
 using Gameplay.LevelProgress;
 using Gameplay.Services;
 using Gameplay.Space.Factories;
@@ -18,9 +16,6 @@ namespace Gameplay.Installers
         [field: SerializeField] public SpaceView SpaceViewPrefab { get; private set; }
         [field: SerializeField] public LevelPresetsConfig LevelPresetsConfig { get; private set; }
 
-        [field: SerializeField] public StarSpawnConfig StarSpawnConfig { get; private set; }
-        [field: SerializeField] public PlanetSpawnConfig PlanetSpawnConfig { get; private set; }
-
         public override void InstallBindings()
         {
             InstallSpaceView();
@@ -35,7 +30,7 @@ namespace Gameplay.Installers
             Container
                 .Bind<SpaceView>()
                 .FromInstance(SpaceViewPrefab)
-                .WhenInjectedInto<SpaceViewFactory>();
+                .AsSingle();
 
             Container
                 .BindFactory<SpaceView, SpaceViewFactory>()
@@ -47,17 +42,7 @@ namespace Gameplay.Installers
             Container
                 .Bind<LevelPresetsConfig>()
                 .FromInstance(LevelPresetsConfig)
-                .WhenInjectedInto<LevelFactory>();
-
-            Container
-                .Bind<StarSpawnConfig>()
-                .FromInstance(StarSpawnConfig)
-                .WhenInjectedInto<LevelFactory>();
-
-            Container
-                .Bind<PlanetSpawnConfig>()
-                .FromInstance(PlanetSpawnConfig)
-                .WhenInjectedInto<LevelFactory>();
+                .AsSingle();
 
             Container
                 .BindFactory<int, Level, LevelFactory>()

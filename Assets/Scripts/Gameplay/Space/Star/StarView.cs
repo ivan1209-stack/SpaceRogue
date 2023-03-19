@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Gameplay.Space.Star
 {
     [RequireComponent(typeof(CircleCollider2D), typeof(SpriteRenderer))]
-    public sealed class StarView : MonoBehaviour, IDamagingView
+    public sealed class StarView : MonoBehaviour, IDamagingView //TODO Remove (legacy)
     {
         [field: SerializeField] public SpriteRenderer MinimapIconSpriteRenderer { get; private set; }
 

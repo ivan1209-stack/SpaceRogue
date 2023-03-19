@@ -850,8 +850,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <SpaceViewPrefab>k__BackingField: {fileID: 8134777773951076555, guid: b0b0f72076491a44b9f53e44a5ba7a7b, type: 3}
   <LevelPresetsConfig>k__BackingField: {fileID: 11400000, guid: 71ff8f4c0e88cd248b16693493d690dd, type: 2}
-  <StarSpawnConfig>k__BackingField: {fileID: 11400000, guid: f5799163415ac4547bbffad62b6be47c, type: 2}
-  <PlanetSpawnConfig>k__BackingField: {fileID: 11400000, guid: 770cb7ced69c1ab45b256b2ec71ae789, type: 2}
 --- !u!1001 &1024208118
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1629,6 +1627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d989c37bd78b3584489c7fb689b43026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <SpaceObjectSpawnConfig>k__BackingField: {fileID: 11400000, guid: cc520d608852c1840a2ef511394a126d, type: 2}
   <SpaceObjectsPool>k__BackingField: {fileID: 647429411}
 --- !u!114 &1854316519 stripped
 MonoBehaviour:

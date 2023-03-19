@@ -5,7 +5,6 @@ using Gameplay.Services;
 using Gameplay.Space.Factories;
 using Gameplay.Space.Generator;
 using Gameplay.Space.Obstacle;
-using Gameplay.Space.SpaceObjects.Scriptables;
 using Scriptables;
 using Zenject;
 
@@ -20,9 +19,7 @@ namespace Gameplay.LevelProgress
         private readonly SpawnPointsFinderFactory _spawnPointsFinderFactory;
         private readonly SpaceObstacleFactory _spaceObstacleFactory;
         private readonly PlayerFactory _playerFactory;
-        private readonly StarSpawnConfig _starSpawnConfig;
-        private readonly PlanetSpawnConfig _planetSpawnConfig;
-        private readonly SpaceObjectFactory _spaceObjectFactory;
+        private readonly SpaceFactory _spaceFactory;
         private readonly EnemyForcesFactory _enemyForcesFactory;
         
         private LevelPreset _currentLevelPreset;
@@ -37,9 +34,7 @@ namespace Gameplay.LevelProgress
             SpawnPointsFinderFactory spawnPointsFinderFactory,
             SpaceObstacleFactory spaceObstacleFactory,
             PlayerFactory playerFactory,
-            StarSpawnConfig starSpawnConfig,
-            PlanetSpawnConfig planetSpawnConfig,
-            SpaceObjectFactory spaceObjectFactory,
+            SpaceFactory spaceFactory,
             EnemyForcesFactory enemyForcesFactory)
         {
             _levelPresetsConfig = levelPresetsConfig;
@@ -49,9 +44,7 @@ namespace Gameplay.LevelProgress
             _spawnPointsFinderFactory = spawnPointsFinderFactory;
             _spaceObstacleFactory = spaceObstacleFactory;
             _playerFactory = playerFactory;
-            _starSpawnConfig = starSpawnConfig;
-            _planetSpawnConfig = planetSpawnConfig;
-            _spaceObjectFactory = spaceObjectFactory;
+            _spaceFactory = spaceFactory;
             _enemyForcesFactory = enemyForcesFactory;
         }
 
@@ -73,11 +66,11 @@ namespace Gameplay.LevelProgress
 
             var player = _playerFactory.Create(spawnPointsFinder.GetPlayerSpawnPoint());
 
-            //_spaceObjectFactory
+            var space = _spaceFactory.Create(_currentLevelPreset.SpaceConfig.SpaceObjectCount, spawnPointsFinder);
 
             var enemyForces = _enemyForcesFactory.Create(_currentLevelPreset.SpaceConfig.EnemyGroupCount, spawnPointsFinder);
 
-            var level = new Level(levelNumber, _currentLevelPreset.EnemiesCountToWin, spaceView, mapCameraSize, player, enemyForces);
+            var level = new Level(levelNumber, _currentLevelPreset.EnemiesCountToWin, spaceView, mapCameraSize, player, enemyForces, space);
             LevelCreated.Invoke(level);
             return level;
         }

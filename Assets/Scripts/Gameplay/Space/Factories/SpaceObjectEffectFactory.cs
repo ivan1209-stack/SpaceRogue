@@ -7,19 +7,23 @@ using Zenject;
 
 namespace Gameplay.Space.Factories
 {
-    public class SpaceObjectEffectFactory : IFactory<Vector3, SpaceObjectEffectConfig, SpaceObjectEffect>
+    public class SpaceObjectEffectFactory : IFactory<Transform, SpaceObjectEffectConfig, SpaceObjectEffect>
     {
-        public SpaceObjectEffectFactory()
+        private readonly PlanetSystemEffectFactory _planetSystemEffectFactory;
+
+        public SpaceObjectEffectFactory(
+            PlanetSystemEffectFactory planetSystemEffectFactory)
         {
-            //TODO init factories
+            _planetSystemEffectFactory = planetSystemEffectFactory;
+            //TODO init other factories
         }
 
-        public SpaceObjectEffect Create(Vector3 spaceObjectScale, SpaceObjectEffectConfig config)
+        public SpaceObjectEffect Create(Transform spaceObjectTransform, SpaceObjectEffectConfig config)
         {
             return config.Type switch
             {
                 SpaceObjectEffectType.None => new SpaceObjectEmptyEffect(),
-                SpaceObjectEffectType.PlanetSystem => new PlanetSystemEffect(),
+                SpaceObjectEffectType.PlanetSystem => _planetSystemEffectFactory.Create(spaceObjectTransform, config as PlanetSystemConfig),
                 SpaceObjectEffectType.DamageAura => new DamageAuraEffect(),
                 SpaceObjectEffectType.GravitationAura => new GravitationAuraEffect(),
                 SpaceObjectEffectType.DamageOnTouch => new DamageOnTouchEffect(),

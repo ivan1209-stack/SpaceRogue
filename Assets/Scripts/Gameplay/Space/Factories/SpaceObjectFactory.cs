@@ -10,9 +10,9 @@ namespace Gameplay.Space.Factories
     public class SpaceObjectFactory : PlaceholderFactory<Vector2, SpaceObjectConfig, SpaceObject>
     {
         private readonly SpaceObjectViewFactory _viewFactory;
-        private readonly IFactory<Vector3, SpaceObjectEffectConfig, SpaceObjectEffect> _spaceObjectEffectFactory;
+        private readonly IFactory<Transform, SpaceObjectEffectConfig, SpaceObjectEffect> _spaceObjectEffectFactory;
 
-        public SpaceObjectFactory(SpaceObjectViewFactory viewFactory, IFactory<Vector3, SpaceObjectEffectConfig, SpaceObjectEffect> spaceObjectEffectFactory)
+        public SpaceObjectFactory(SpaceObjectViewFactory viewFactory, IFactory<Transform, SpaceObjectEffectConfig, SpaceObjectEffect> spaceObjectEffectFactory)
         {
             _viewFactory = viewFactory;
             _spaceObjectEffectFactory = spaceObjectEffectFactory;
@@ -24,7 +24,7 @@ namespace Gameplay.Space.Factories
             List<SpaceObjectEffect> effects = new();
             foreach (var effectConfig in config.Effects)
             {
-                effects.Add(_spaceObjectEffectFactory.Create(view.transform.localScale, effectConfig));
+                effects.Add(_spaceObjectEffectFactory.Create(view.transform, effectConfig));
             }
             return new SpaceObject(view, effects);
         }
