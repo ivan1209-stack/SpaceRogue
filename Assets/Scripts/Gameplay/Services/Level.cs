@@ -1,12 +1,10 @@
 using System;
 using Gameplay.Enemy;
-using Gameplay.Space.Generator;
 
 namespace Gameplay.Services
 {
     public sealed class Level : IDisposable
     {
-        private readonly SpaceView _spaceView;
         private readonly Player.Player _player;
         private readonly EnemyForces _enemyForces;
         private readonly Space.Space _space;
@@ -19,7 +17,6 @@ namespace Gameplay.Services
         public Level(
             int currentLevelNumber,
             int enemiesCountToWin,
-            SpaceView spaceView,
             float mapCameraSize,
             Player.Player player,
             EnemyForces enemyForces,
@@ -27,7 +24,6 @@ namespace Gameplay.Services
         {
             CurrentLevelNumber = currentLevelNumber;
             EnemiesCountToWin = enemiesCountToWin;
-            _spaceView = spaceView;
             MapCameraSize = mapCameraSize;
             _player = player;
             _enemyForces = enemyForces;
@@ -40,7 +36,6 @@ namespace Gameplay.Services
             _player.Dispose();
             _enemyForces.Dispose();
             _space.Dispose();
-            UnityEngine.Object.Destroy(_spaceView.gameObject);
         }
     }
 }
