@@ -15,18 +15,31 @@ namespace Gameplay.Space.Planets
             _planetView = planetView;
             _planetMovement = planetMovement;
 
-            _planetView.CollisionEnter += Dispose;
+            _planetView.CollidedSpaceObject += OnSpaceObjectCollision;
+            _planetView.CollidedPlanet += OnPlanetCollision;
         }
 
         public void Dispose()
         {
             PlanetDestroyed.Invoke(this);
             
-            _planetView.CollisionEnter -= Dispose;
+            _planetView.CollidedSpaceObject -= OnSpaceObjectCollision;
+            _planetView.CollidedPlanet -= OnPlanetCollision;
             
             _planetMovement.Dispose();
             
             Object.Destroy(_planetView.gameObject);
+        }
+        
+        private void OnSpaceObjectCollision()
+        {
+            Dispose();
+        }
+
+        private void OnPlanetCollision()
+        {
+            //TODO implement asteroid cloud when ready
+            Dispose();
         }
     }
 }
