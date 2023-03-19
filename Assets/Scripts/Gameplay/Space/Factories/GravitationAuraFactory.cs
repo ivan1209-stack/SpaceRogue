@@ -11,7 +11,6 @@ namespace Gameplay.Space.Factories
     public class GravitationAuraFactory : PlaceholderFactory<Transform, GravitationAuraConfig, GravitationAuraEffect>
     {
         private readonly GravitationAuraViewFactory _viewFactory;
-        private readonly GravitationAuraConfig _gravityConfig;
 
         public GravitationAuraFactory(GravitationAuraViewFactory viewFactory)
         {
@@ -20,7 +19,7 @@ namespace Gameplay.Space.Factories
 
         public override GravitationAuraEffect Create(Transform transform, GravitationAuraConfig config)
         {
-            var view = _viewFactory.Create(config, transform);
+            var view = _viewFactory.Create(transform, config);
             return new GravitationAuraEffect(view, config);
         }
     }

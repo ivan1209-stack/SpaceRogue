@@ -67,7 +67,7 @@ namespace Gameplay.Installers
                 .AsSingle();
 
             Container
-                .BindFactory<GravitationAuraConfig, Transform, GravitationAuraEffectView, GravitationAuraViewFactory>()
+                .BindFactory<Transform, GravitationAuraConfig, GravitationAuraEffectView, GravitationAuraViewFactory>()
                 .AsSingle();
         }
 

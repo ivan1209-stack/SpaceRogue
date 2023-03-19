@@ -13,7 +13,8 @@ namespace Gameplay.Space.Factories
         private readonly GravitationAuraFactory _gravitationAuraFactory;
 
         public SpaceObjectEffectFactory(
-            PlanetSystemEffectFactory planetSystemEffectFactory, GravitationAuraFactory gravitationAuraFactory)
+            PlanetSystemEffectFactory planetSystemEffectFactory,
+            GravitationAuraFactory gravitationAuraFactory)
         {
             _planetSystemEffectFactory = planetSystemEffectFactory;
             _gravitationAuraFactory = gravitationAuraFactory;

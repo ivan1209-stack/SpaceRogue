@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 458fe88dffedd2040976413acbda2678, type: 3}
   m_Name: BlackHoleConfig
   m_EditorClassIdentifier: 
-  <Prefab>k__BackingField: {fileID: 0}
+  <Prefab>k__BackingField: {fileID: 4690818405407311363, guid: 2e9d083e43f755e4692ffe5b53cbb414, type: 3}
   <MinSize>k__BackingField: 20
-  <MaxSize>k__BackingField: 50
-  <Effects>k__BackingField: []
+  <MaxSize>k__BackingField: 40
+  <Effects>k__BackingField:
+  - {fileID: 11400000, guid: c262033dd5edd1e48bc8e220179edd61, type: 2}
