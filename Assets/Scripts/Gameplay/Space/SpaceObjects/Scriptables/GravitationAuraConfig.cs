@@ -10,6 +10,8 @@ namespace Gameplay.Space.SpaceObjects.Scriptables
         [field: SerializeField, Min(0.1f)] public float Radius { get; private set; } = 0.1f;
         [field: SerializeField, Min(0.1f)] public float GravityForce { get; private set; } = 0.1f;
         [field: SerializeField, Min(0.1f)] public float GravityVariation { get; private set; } = 0.1f;
+        [field: SerializeField, Min(0.1f)] public float GravityDistanceScale { get; private set; } = 0.1f;
+        [field: SerializeField] public GravitationModeType GravityMode { get; private set; }
 
         public GravitationAuraConfig() => Type = SpaceObjectEffectType.GravitationAura;
     }

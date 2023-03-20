@@ -11,13 +11,19 @@ namespace Gameplay.Space.Factories
     {
         private readonly PlanetSystemEffectFactory _planetSystemEffectFactory;
         private readonly GravitationAuraFactory _gravitationAuraFactory;
+        private readonly DamageAuraFactory _damageAuraFactory;
+        private readonly DamageOnTouchFactory _damageOnTouchFactory;
 
         public SpaceObjectEffectFactory(
             PlanetSystemEffectFactory planetSystemEffectFactory,
-            GravitationAuraFactory gravitationAuraFactory)
+            GravitationAuraFactory gravitationAuraFactory,
+            DamageAuraFactory damageAuraFactory,
+            DamageOnTouchFactory damageOnTouchFactory)
         {
             _planetSystemEffectFactory = planetSystemEffectFactory;
             _gravitationAuraFactory = gravitationAuraFactory;
+            _damageAuraFactory = damageAuraFactory;
+            _damageOnTouchFactory = damageOnTouchFactory;
             //TODO init other factories
         }
 
@@ -27,9 +33,9 @@ namespace Gameplay.Space.Factories
             {
                 SpaceObjectEffectType.None => new SpaceObjectEmptyEffect(),
                 SpaceObjectEffectType.PlanetSystem => _planetSystemEffectFactory.Create(spaceObjectTransform, config as PlanetSystemConfig),
-                SpaceObjectEffectType.DamageAura => new DamageAuraEffect(),
+                SpaceObjectEffectType.DamageAura => _damageAuraFactory.Create(spaceObjectTransform, config as DamageAuraConfig),
                 SpaceObjectEffectType.GravitationAura => _gravitationAuraFactory.Create(spaceObjectTransform, config as GravitationAuraConfig),
-                SpaceObjectEffectType.DamageOnTouch => new DamageOnTouchEffect(),
+                SpaceObjectEffectType.DamageOnTouch => _damageOnTouchFactory.Create(spaceObjectTransform, config as DamageOnTouchConfig),
                 _ => throw new ArgumentOutOfRangeException(nameof(config.Type), config.Type, "A not-existent game event type is provided")
             };
         }

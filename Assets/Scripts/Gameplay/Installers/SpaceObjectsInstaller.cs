@@ -18,7 +18,6 @@ namespace Gameplay.Installers
         public override void InstallBindings()
         {
             InstallSpaceObjectsPool();
-            InstallPlanetFactories();
             InstallSpaceObjectEffectFactories();
             InstallSpaceObjectFactories();
             InstallSpace();
@@ -49,7 +48,10 @@ namespace Gameplay.Installers
 
         private void InstallSpaceObjectEffectFactories()
         {
-            InstallGravitationFactories();
+            InstallGravitationAuraEffect();
+            InstallDamageAuraEffect();
+            InstallDamageOnTouchEffect();
+            InstallPlanetFactories();
 
             Container
                 .BindFactory<Transform, PlanetSystemConfig, PlanetSystemEffect, PlanetSystemEffectFactory>()
@@ -60,7 +62,7 @@ namespace Gameplay.Installers
                 .FromFactory<SpaceObjectEffectFactory>();
         }
 
-        private void InstallGravitationFactories()
+        private void InstallGravitationAuraEffect()
         {
             Container
                 .BindFactory<Transform, GravitationAuraConfig, GravitationAuraEffect, GravitationAuraFactory>()
@@ -68,6 +70,28 @@ namespace Gameplay.Installers
 
             Container
                 .BindFactory<Transform, GravitationAuraConfig, GravitationAuraEffectView, GravitationAuraViewFactory>()
+                .AsSingle();
+        }
+
+        private void InstallDamageAuraEffect()
+        {
+            Container
+                .BindFactory<Transform, DamageAuraConfig, DamageAuraEffect, DamageAuraFactory>()
+                .AsSingle();
+
+            Container
+                .BindFactory<Transform, DamageAuraConfig, DamageAuraView, DamageAuraViewFactory>()
+                .AsSingle();
+        }
+
+        public void InstallDamageOnTouchEffect()
+        {
+            Container
+                .BindFactory<Transform, DamageOnTouchConfig, DamageOnTouchEffect, DamageOnTouchFactory>()
+                .AsSingle();
+
+            Container
+                .BindFactory<Transform, DamageOnTouchConfig, DamageOnTouchView, DamageOnTouchViewFactory>()
                 .AsSingle();
         }
 
