@@ -1,19 +1,26 @@
+using Gameplay.Pooling;
+using Gameplay.Space.SpaceObjects;
 using Gameplay.Space.SpaceObjects.Scriptables;
 using Gameplay.Space.SpaceObjects.SpaceObjectsEffects;
+using UnityEngine;
+using Utilities.Mathematics;
 using Zenject;
 
 namespace Gameplay.Space.Factories
 {
-    public class DamageAuraFactory : PlaceholderFactory<DamageAuraConfig, DamageAuraEffect>
+    public class DamageAuraFactory : PlaceholderFactory<Transform, DamageAuraConfig, DamageAuraEffect>
     {
-        public DamageAuraFactory()
-        {
+        private readonly DamageAuraViewFactory _viewFactory;
 
+        public DamageAuraFactory(DamageAuraViewFactory viewFactory)
+        {
+            _viewFactory = viewFactory;
         }
 
-        public DamageAuraEffect CreateDamageAuraEffect(DamageAuraConfig config)
+        public override DamageAuraEffect Create(Transform transform, DamageAuraConfig config)
         {
-            return base.Create(config);
+            var view = _viewFactory.Create(transform, config);
+            return new DamageAuraEffect(view, config);
         }
     }
 }

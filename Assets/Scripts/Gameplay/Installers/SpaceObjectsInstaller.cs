@@ -18,7 +18,6 @@ namespace Gameplay.Installers
         public override void InstallBindings()
         {
             InstallSpaceObjectsPool();
-            InstallPlanetFactories();
             InstallSpaceObjectEffectFactories();
             InstallSpaceObjectFactories();
             InstallSpace();
@@ -35,27 +34,65 @@ namespace Gameplay.Installers
         private void InstallPlanetFactories()
         {
             Container
-                .BindFactory<Vector2, PlanetConfig, PlanetView, PlanetViewFactory>()
-                .AsSingle();
+               .BindFactory<Vector2, PlanetConfig, PlanetView, PlanetViewFactory>()
+               .AsSingle();
 
             Container
-                .BindFactory<PlanetView, PlanetMovement, PlanetMovementFactory>()
-                .AsSingle();
+               .BindFactory<PlanetView, PlanetMovement, PlanetMovementFactory>()
+               .AsSingle();
 
             Container
-                .BindFactory<Vector2, PlanetConfig, Planet, PlanetFactory>()
-                .AsSingle();
+               .BindFactory<Vector2, PlanetConfig, Planet, PlanetFactory>()
+               .AsSingle();
+
+            Container
+               .BindFactory<Transform, PlanetSystemConfig, PlanetSystemEffect, PlanetSystemEffectFactory>()
+               .AsSingle();
         }
 
         private void InstallSpaceObjectEffectFactories()
         {
-            Container
-                .BindFactory<Transform, PlanetSystemConfig, PlanetSystemEffect, PlanetSystemEffectFactory>()
-                .AsSingle();
-            
+            InstallGravitationAuraEffect();
+            InstallDamageAuraEffect();
+            InstallDamageOnTouchEffect();
+            InstallPlanetFactories();
+
             Container
                 .BindIFactory<Transform, SpaceObjectEffectConfig, SpaceObjectEffect>()
                 .FromFactory<SpaceObjectEffectFactory>();
+        }
+
+        private void InstallGravitationAuraEffect()
+        {
+            Container
+                .BindFactory<Transform, GravitationAuraConfig, GravitationAuraEffect, GravitationAuraFactory>()
+                .AsSingle();
+
+            Container
+                .BindFactory<Transform, GravitationAuraConfig, GravitationAuraEffectView, GravitationAuraViewFactory>()
+                .AsSingle();
+        }
+
+        private void InstallDamageAuraEffect()
+        {
+            Container
+                .BindFactory<Transform, DamageAuraConfig, DamageAuraEffect, DamageAuraFactory>()
+                .AsSingle();
+
+            Container
+                .BindFactory<Transform, DamageAuraConfig, DamageAuraView, DamageAuraViewFactory>()
+                .AsSingle();
+        }
+
+        public void InstallDamageOnTouchEffect()
+        {
+            Container
+                .BindFactory<Transform, DamageOnTouchConfig, DamageOnTouchEffect, DamageOnTouchFactory>()
+                .AsSingle();
+
+            Container
+                .BindFactory<Transform, DamageOnTouchConfig, DamageOnTouchView, DamageOnTouchViewFactory>()
+                .AsSingle();
         }
 
         private void InstallSpaceObjectFactories()
