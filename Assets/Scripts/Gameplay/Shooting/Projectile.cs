@@ -16,7 +16,7 @@ namespace Gameplay.Shooting
 
             _lifeTime = timerFactory.Create(config.LifeTime);
             _lifeTime.OnExpire += Dispose;
-            if (config.IsDestroyedOnHit) _projectileView.CollisionEnter += Dispose;
+            if (config.IsDestroyedOnHit) _projectileView.CollidedObject += Dispose;
             
             _lifeTime.Start();
         }
@@ -24,7 +24,7 @@ namespace Gameplay.Shooting
         public void Dispose()
         {
             _lifeTime.OnExpire -= Dispose;
-            _projectileView.CollisionEnter -= Dispose;
+            _projectileView.CollidedObject -= Dispose;
             _lifeTime.Dispose();
             Object.Destroy(_projectileView.gameObject);
         }

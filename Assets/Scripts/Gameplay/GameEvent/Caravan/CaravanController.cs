@@ -100,7 +100,7 @@ namespace Gameplay.GameEvent.Caravan
             }
 
             //_caravanView.Init(new(config.AddHealth, UnitType.Assistant));
-            _playerView.TakeDamage(_caravanView);
+            //_playerView.TakeDamage(_caravanView);
         }
 
         private void CaravanTrapDestroyed()

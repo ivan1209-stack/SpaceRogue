@@ -2,6 +2,7 @@ using System;
 using Gameplay.Damage;
 using Gameplay.Space.Planets;
 using Gameplay.Space.SpaceObjects;
+using Gameplay.Survival;
 using UnityEngine;
 
 namespace Gameplay.GameEvent.Comet
@@ -16,6 +17,11 @@ namespace Gameplay.GameEvent.Comet
         public void Init(DamageModel damageModel)
         {
             DamageModel = damageModel;
+        }
+
+        public void DealDamage(IDamageableView damageable)
+        {
+            damageable.TakeDamage(DamageModel);
         }
 
         public void OnCollisionEnter2D(Collision2D collision)

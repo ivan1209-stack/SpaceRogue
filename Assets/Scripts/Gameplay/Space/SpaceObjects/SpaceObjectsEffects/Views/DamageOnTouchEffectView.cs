@@ -1,4 +1,5 @@
 using Gameplay.Damage;
+using Gameplay.Survival;
 
 namespace Gameplay.Space.SpaceObjects.SpaceObjectsEffects.Views
 {
@@ -9,6 +10,11 @@ namespace Gameplay.Space.SpaceObjects.SpaceObjectsEffects.Views
         public void Init(DamageModel damageModel)
         {
             DamageModel = damageModel;
+        }
+
+        public void DealDamage(IDamageableView damageable)
+        {
+            damageable.TakeDamage(DamageModel);
         }
     }
 }
