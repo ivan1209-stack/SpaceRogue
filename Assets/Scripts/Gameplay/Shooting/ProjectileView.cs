@@ -22,12 +22,12 @@ namespace Gameplay.Shooting
             damageable.TakeDamage(DamageModel);
         }
         
-        public void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerEnter2D(Collider2D other)
         {   
             CollisionEnter(other.gameObject);
         }
 
-        public void OnCollisionEnter2D(Collision2D collision)
+        private void OnCollisionEnter2D(Collision2D collision)
         {
             CollisionEnter(collision.gameObject);
         }

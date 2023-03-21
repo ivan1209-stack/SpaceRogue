@@ -24,24 +24,34 @@ namespace Gameplay.Space.Planets
             damageable.TakeDamage(DamageModel);
         }
 
-        public void OnCollisionEnter2D(Collision2D collision)
-        {
-            if (collision.gameObject.TryGetComponent(out SpaceObjectView _))
-            {
-                CollidedSpaceObject();
-            }
-            
-            if (collision.gameObject.TryGetComponent(out PlanetView _))
-            {
-                CollidedPlanet();
-            }
+        private void OnTriggerEnter2D(Collider2D other)
+        {   
+            CollisionEnter(other.gameObject);
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject.TryGetComponent(out SpaceObjectView _))
+            CollisionEnter(collision.gameObject);
+        }
+        
+        private void CollisionEnter(GameObject go)
+        {
+            var damageable = go.GetComponent<IDamageableView>();
+            if (damageable is not null)
+            {
+                DealDamage(damageable);
+            }
+            
+            if (go.TryGetComponent(out SpaceObjectView _))
             {
                 CollidedSpaceObject();
+                return;
+            }
+            
+            if (go.TryGetComponent(out PlanetView _))
+            {
+                CollidedPlanet();
+                return;
             }
         }
     }
