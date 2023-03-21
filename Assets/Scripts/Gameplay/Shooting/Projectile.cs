@@ -25,6 +25,7 @@ namespace Gameplay.Shooting
         {
             _lifeTime.OnExpire -= Dispose;
             _projectileView.CollisionEnter -= Dispose;
+            _lifeTime.Dispose();
             Object.Destroy(_projectileView.gameObject);
         }
     }

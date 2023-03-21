@@ -23,9 +23,8 @@ namespace Gameplay.Space.Factories
         {
             var view = _diContainer.InstantiatePrefabForComponent<PlanetView>(config.Prefab, position, Quaternion.identity, _spaceObjectsPoolTransform);
             var planetSize = RandomPicker.PickRandomBetweenTwoValues(config.MinSize, config.MaxSize);
-            var planetDamage = RandomPicker.PickRandomBetweenTwoValues(config.MinDamage, config.MaxDamage);
             view.transform.localScale = new Vector3(planetSize, planetSize, 1);
-            view.Init(new DamageModel(planetDamage));
+            view.Init(new DamageModel(config.MinDamage, config.MaxDamage));
             return view;
         }
     }

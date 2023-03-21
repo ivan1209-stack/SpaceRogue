@@ -28,8 +28,8 @@ namespace Gameplay.GameEvent.Comet
             _speed = RandomPicker.PickRandomBetweenTwoValues(_config.MinSpeed, _config.MaxSpeed);
             _remainingLifeTime = config.LifeTimeInSeconds;
 
-            var damageModel = new DamageModel(config.Damage);
-            _view.Init(damageModel);
+            //var damageModel = new DamageModel(config.Damage);
+            //_view.Init(damageModel);
             _view.CollisionEnter += Dispose;
 
             EntryPoint.SubscribeToUpdate(Move);

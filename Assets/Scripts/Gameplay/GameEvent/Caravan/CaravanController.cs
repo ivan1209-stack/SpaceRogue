@@ -41,7 +41,7 @@ namespace Gameplay.GameEvent.Caravan
             _playerView = _playerController.View;
 
             _caravanView = caravanView;
-            _caravanView.Init(new(0));
+            //_caravanView.Init(new(0));
             AddGameObject(_caravanView.gameObject);
 
             AddCarnavalBehaviourController(_baseCaravanGameEvent.CaravanConfig.UnitMovement, targetPosition);
@@ -99,7 +99,7 @@ namespace Gameplay.GameEvent.Caravan
                 return;
             }
 
-            _caravanView.Init(new(config.AddHealth, UnitType.Assistant));
+            //_caravanView.Init(new(config.AddHealth, UnitType.Assistant));
             _playerView.TakeDamage(_caravanView);
         }
 

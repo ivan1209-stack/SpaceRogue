@@ -91,7 +91,7 @@ namespace Gameplay.GameEvent.Supernova
                 _spriteRenderer.color = _supernovaGameEventConfig.ShockwaveColor;
                 _currentColor = _spriteRenderer.color;
                 _starView.transform.localScale = Vector3.zero;
-                _starView.Init(new(_supernovaGameEventConfig.ShockwaveDamage));
+                //_starView.Init(new(_supernovaGameEventConfig.ShockwaveDamage));
                 _starCircleCollider.isTrigger = true;
                 _starCircleCollider.offset = Vector2.zero;
 
