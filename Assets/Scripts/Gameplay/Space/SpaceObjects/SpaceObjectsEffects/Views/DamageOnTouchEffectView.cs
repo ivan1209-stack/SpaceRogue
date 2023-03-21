@@ -2,7 +2,7 @@ using Gameplay.Damage;
 
 namespace Gameplay.Space.SpaceObjects.SpaceObjectsEffects.Views
 {
-    public sealed class DamageOnTouchView : AreaEffectView, IDamagingView
+    public sealed class DamageOnTouchEffectView : AreaEffectView, IDamagingView
     {
         public DamageModel DamageModel { get; private set; }
 

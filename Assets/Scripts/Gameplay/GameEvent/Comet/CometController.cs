@@ -30,15 +30,16 @@ namespace Gameplay.GameEvent.Comet
 
             //var damageModel = new DamageModel(config.Damage);
             //_view.Init(damageModel);
-            _view.CollisionEnter += Dispose;
+            _view.CollidedSpaceObject += Dispose;
+            _view.CollidedPlanet += Dispose;
 
             EntryPoint.SubscribeToUpdate(Move);
         }
 
         protected override void OnDispose()
         {
-            base.OnDispose();
-            _view.CollisionEnter -= Dispose;
+            _view.CollidedPlanet -= Dispose;
+            _view.CollidedSpaceObject -= Dispose;
             EntryPoint.UnsubscribeFromUpdate(Move);
             IsDestroyed = true;
         }

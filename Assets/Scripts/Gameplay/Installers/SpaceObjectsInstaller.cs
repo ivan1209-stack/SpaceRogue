@@ -92,7 +92,7 @@ namespace Gameplay.Installers
                 .AsSingle();
 
             Container
-                .BindFactory<Transform, DamageOnTouchConfig, DamageOnTouchView, DamageOnTouchViewFactory>()
+                .BindFactory<Transform, DamageOnTouchConfig, DamageOnTouchEffectView, DamageOnTouchViewFactory>()
                 .AsSingle();
         }
 

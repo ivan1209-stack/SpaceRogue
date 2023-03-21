@@ -1,8 +1,5 @@
-using System.Collections.Generic;
 using Gameplay.Player;
-using Gameplay.Space.Star;
 using Scriptables.GameEvent;
-using UnityEngine;
 
 namespace Gameplay.GameEvent.Supernova
 {
@@ -31,15 +28,15 @@ namespace Gameplay.GameEvent.Supernova
                 return true;
             }
 
-            if (!TryGetNearestStarView(_playerView.transform.position, _supernovaGameEventConfig.SearchRadius, out var starView))
+            /*if (!TryGetNearestStarView(_playerView.transform.position, _supernovaGameEventConfig.SearchRadius, out var starView))
             {
                 return false;
-            }
+            }*/
 
-            _supernovaController = new(_supernovaGameEventConfig, starView);
+            /*_supernovaController = new(_supernovaGameEventConfig, starView);
             _supernovaController.OnDestroy.Subscribe(DestroyController);
             AddController(_supernovaController);
-            AddGameEventObjectToUIController(starView.gameObject);
+            AddGameEventObjectToUIController(starView.gameObject);*/
             return true;
         }
 
@@ -62,7 +59,7 @@ namespace Gameplay.GameEvent.Supernova
             }
         }
 
-        private bool TryGetNearestStarView(Vector3 position, float radius, out StarView starView)
+        /*private bool TryGetNearestStarView(Vector3 position, float radius, out StarView starView)
         {
             starView = null;
             var colliders = Physics2D.OverlapCircleAll(position, radius);
@@ -107,6 +104,6 @@ namespace Gameplay.GameEvent.Supernova
             }
             view.InGameEvent = true;
             return view;
-        }
+        }*/
     }
 }

@@ -7,17 +7,17 @@ namespace Gameplay.Space.SpaceObjects.SpaceObjectsEffects
 {
     public sealed class DamageOnTouchEffect : SpaceObjectEffect
     {
-        private readonly DamageOnTouchView _view;
+        private readonly DamageOnTouchEffectView _effectView;
 
-        public DamageOnTouchEffect(DamageOnTouchView view, DamageOnTouchConfig config)
+        public DamageOnTouchEffect(DamageOnTouchEffectView effectView, DamageOnTouchConfig config)
         {
-            _view = view;
+            _effectView = effectView;
             //TODO damageOnTouch
         }
 
         public override void Dispose()
         {
-            Object.Destroy(_view.gameObject);
+            Object.Destroy(_effectView.gameObject);
         }
     }
 }
