@@ -1,11 +1,11 @@
 using Gameplay.Space.SpaceObjects.Scriptables;
-using Gameplay.Space.SpaceObjects.SpaceObjectsEffects;
+using Gameplay.Space.SpaceObjects.SpaceObjectsEffects.Views;
 using Object = UnityEngine.Object;
 
 
-namespace Gameplay.Space.SpaceObjects
+namespace Gameplay.Space.SpaceObjects.SpaceObjectsEffects
 {
-    public class DamageOnTouchEffect : SpaceObjectEffect
+    public sealed class DamageOnTouchEffect : SpaceObjectEffect
     {
         private readonly DamageOnTouchView _view;
 

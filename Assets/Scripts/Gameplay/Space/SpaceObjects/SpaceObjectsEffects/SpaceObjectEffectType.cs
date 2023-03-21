@@ -1,4 +1,4 @@
-namespace Gameplay.Space.SpaceObjects
+namespace Gameplay.Space.SpaceObjects.SpaceObjectsEffects
 {
     public enum SpaceObjectEffectType
     {

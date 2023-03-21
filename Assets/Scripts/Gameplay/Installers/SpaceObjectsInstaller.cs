@@ -7,6 +7,7 @@ using Gameplay.Space.Factories;
 using Gameplay.Space.Generator;
 using Gameplay.Space.Planets;
 using Gameplay.Space.SpaceObjects.SpaceObjectsEffects;
+using Gameplay.Space.SpaceObjects.SpaceObjectsEffects.Views;
 
 namespace Gameplay.Installers
 {

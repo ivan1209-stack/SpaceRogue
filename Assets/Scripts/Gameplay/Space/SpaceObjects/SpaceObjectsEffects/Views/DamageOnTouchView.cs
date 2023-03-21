@@ -1,16 +1,14 @@
 using Gameplay.Damage;
-using Gameplay.Survival;
-using System;
 
-namespace Gameplay.Space.SpaceObjects
+namespace Gameplay.Space.SpaceObjects.SpaceObjectsEffects.Views
 {
-    public class DamageOnTouchView : AreaEffectView, IDamageableView
+    public sealed class DamageOnTouchView : AreaEffectView, IDamagingView
     {
-        public event Action<DamageModel> DamageTaken;
+        public DamageModel DamageModel { get; private set; }
 
-        public void TakeDamage(IDamagingView damageComponent)
+        public void Init(DamageModel damageModel)
         {
-            throw new NotImplementedException();
+            DamageModel = damageModel;
         }
     }
 }

@@ -1,10 +1,10 @@
 using Gameplay.Space.SpaceObjects.Scriptables;
-using Gameplay.Space.SpaceObjects.SpaceObjectsEffects;
+using Gameplay.Space.SpaceObjects.SpaceObjectsEffects.Views;
 using Object = UnityEngine.Object;
 
-namespace Gameplay.Space.SpaceObjects
+namespace Gameplay.Space.SpaceObjects.SpaceObjectsEffects
 {
-    public class DamageAuraEffect : SpaceObjectEffect
+    public sealed class DamageAuraEffect : SpaceObjectEffect
     {
         private readonly DamageAuraView _view;
 

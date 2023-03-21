@@ -1,13 +1,11 @@
-using System;
-using System.Collections.Generic;
 using Gameplay.Space.SpaceObjects.Scriptables;
-using Gameplay.Space.SpaceObjects.SpaceObjectsEffects;
-using Object = UnityEngine.Object;
+using Gameplay.Space.SpaceObjects.SpaceObjectsEffects.Views;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
-namespace Gameplay.Space.SpaceObjects
+namespace Gameplay.Space.SpaceObjects.SpaceObjectsEffects
 {
-    public class GravitationAuraEffect : SpaceObjectEffect
+    public sealed class GravitationAuraEffect : SpaceObjectEffect
     {
         private readonly GravitationAuraEffectView _view;
 
