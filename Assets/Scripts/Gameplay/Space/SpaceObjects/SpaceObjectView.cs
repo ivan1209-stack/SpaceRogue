@@ -2,8 +2,8 @@ using UnityEngine;
 
 namespace Gameplay.Space.SpaceObjects
 {
-    public class SpaceObjectView : MonoBehaviour
+    public sealed class SpaceObjectView : MonoBehaviour
     {
-
+        [field: SerializeField] public SpriteRenderer MinimapIconSpriteRenderer { get; private set; }
     }
 }

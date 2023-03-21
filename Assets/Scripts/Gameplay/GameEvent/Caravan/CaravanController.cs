@@ -17,8 +17,6 @@ namespace Gameplay.GameEvent.Caravan
 {
     public sealed class CaravanController : BaseController
     {
-        private const byte MaxCountSpawnTries = 10;
-
         private readonly BaseCaravanGameEventConfig _baseCaravanGameEvent;
         private readonly PlayerController _playerController;
         private readonly PlayerView _playerView;
@@ -43,7 +41,7 @@ namespace Gameplay.GameEvent.Caravan
             _playerView = _playerController.View;
 
             _caravanView = caravanView;
-            _caravanView.Init(new(0));
+            //_caravanView.Init(new(0));
             AddGameObject(_caravanView.gameObject);
 
             AddCarnavalBehaviourController(_baseCaravanGameEvent.CaravanConfig.UnitMovement, targetPosition);
@@ -101,8 +99,8 @@ namespace Gameplay.GameEvent.Caravan
                 return;
             }
 
-            _caravanView.Init(new(config.AddHealth, UnitType.Assistant));
-            _playerView.TakeDamage(_caravanView);
+            //_caravanView.Init(new(config.AddHealth, UnitType.Assistant));
+            //_playerView.TakeDamage(_caravanView);
         }
 
         private void CaravanTrapDestroyed()
@@ -135,31 +133,16 @@ namespace Gameplay.GameEvent.Caravan
         private void AddEnemyGroup(BaseCaravanGameEventConfig config, Vector3 spawnPoint, 
             PlayerController playerController, Transform target)
         {
-            var enemyFactory = new EnemyFactory(config.LegacyEnemyConfig);
+            var enemyFactory = new LegacyEnemyFactory(config.LegacyEnemyConfig);
             var unitSize = config.LegacyEnemyConfig.Prefab.transform.localScale;
             
             var spawnCircleRadius = config.EnemyCount * 2;
             for (int i = 0; i < config.EnemyCount; i++)
             {
-                var unitSpawnPoint = GetEmptySpawnPoint(spawnPoint, unitSize, spawnCircleRadius);
+                var unitSpawnPoint = UnityHelper.GetEmptySpawnPoint(spawnPoint, unitSize, spawnCircleRadius);
                 var enemyController = enemyFactory.CreateEnemy(unitSpawnPoint, playerController, target);
                 AddController(enemyController);
             }
-        }
-
-        private Vector3 GetEmptySpawnPoint(Vector3 spawnPoint, Vector3 unitSize, int spawnCircleRadius)
-        {
-            var unitSpawnPoint = spawnPoint + (Vector3)(Random.insideUnitCircle * spawnCircleRadius);
-            var unitMaxSize = unitSize.MaxVector3CoordinateOnPlane();
-
-            var tryCount = 0;
-            while (UnityHelper.IsAnyObjectAtPosition(unitSpawnPoint, unitMaxSize) && tryCount <= MaxCountSpawnTries)
-            {
-                unitSpawnPoint = spawnPoint + (Vector3)(Random.insideUnitCircle * spawnCircleRadius);
-                tryCount++;
-            }
-
-            return unitSpawnPoint;
         }
     }
 }

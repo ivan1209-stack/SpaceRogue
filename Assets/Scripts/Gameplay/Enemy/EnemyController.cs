@@ -22,7 +22,6 @@ namespace Gameplay.Enemy
         private readonly Weapon _turret;
         private readonly EnemyBehaviourController _behaviourController;
         private readonly PlayerController _playerController;
-        private readonly System.Random _random = new();
 
         private readonly ResourcePath _enemyHealthStatusBarCanvasPath = 
             new(Constants.Prefabs.Canvas.Game.EnemyHealthStatusBarCanvas);

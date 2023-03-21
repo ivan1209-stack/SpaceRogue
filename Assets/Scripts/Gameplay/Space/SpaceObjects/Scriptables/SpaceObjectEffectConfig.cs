@@ -1,3 +1,4 @@
+using Gameplay.Space.SpaceObjects.SpaceObjectsEffects;
 using UnityEngine;
 
 namespace Gameplay.Space.SpaceObjects.Scriptables

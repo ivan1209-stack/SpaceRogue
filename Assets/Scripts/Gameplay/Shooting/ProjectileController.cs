@@ -22,14 +22,14 @@ namespace Gameplay.Shooting
             
             var damageModel = new DamageModel(config.DamageAmount, unitType);
             _view.Init(damageModel);
-            if (config.IsDestroyedOnHit) _view.CollisionEnter += Dispose;
+            if (config.IsDestroyedOnHit) _view.CollidedObject += Dispose;
 
             EntryPoint.SubscribeToUpdate(TickDown);
         }
 
         protected override void OnDispose()
         {
-            _view.CollisionEnter -= Dispose;
+            _view.CollidedObject -= Dispose;
             EntryPoint.UnsubscribeFromUpdate(TickDown);
         }
 

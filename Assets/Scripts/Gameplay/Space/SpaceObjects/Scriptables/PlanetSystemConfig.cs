@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Gameplay.Space.SpaceObjects.SpaceObjectsEffects;
 using Scriptables;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ namespace Gameplay.Space.SpaceObjects.Scriptables
         [field: SerializeField, Min(0.1f), Header("Planet Orbits")] public float MinOrbit { get; private set; } = 0.1f;
         [field: SerializeField, Min(1f)] public float MaxOrbit { get; private set; } = 1f;
 
-        [field: SerializeField] public List<WeightConfig<PlanetConfig>> WeightConfigs { get; private set; }
+        [field: SerializeField] public List<WeightConfig<PlanetConfig>> PlanetConfigs { get; private set; }
         
         public PlanetSystemConfig() => Type = SpaceObjectEffectType.PlanetSystem;
     }

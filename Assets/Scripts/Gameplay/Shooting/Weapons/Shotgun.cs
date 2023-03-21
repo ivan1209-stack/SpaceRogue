@@ -36,14 +36,13 @@ namespace Gameplay.Shooting.Weapons
         {
             var minimumAngle = -sprayAngle / 2;
             var singlePelletAngle = sprayAngle / count;
-            var r = new System.Random();
 
             for (int i = 0; i < count; i++)
             {
                 var minimumPelletAngle = minimumAngle + i * singlePelletAngle;
                 var maximumPelletAngle = minimumAngle + (i + 1) * singlePelletAngle;
 
-                var pelletAngle = RandomPicker.PickRandomBetweenTwoValues(minimumPelletAngle, maximumPelletAngle, r);
+                var pelletAngle = RandomPicker.PickRandomBetweenTwoValues(minimumPelletAngle, maximumPelletAngle);
                 Vector3 pelletVector = (pelletAngle + 90).ToVector3();
                 Quaternion pelletDirection = turretDirection * Quaternion.Euler(pelletVector.x, pelletVector.y, pelletVector.z);
                 

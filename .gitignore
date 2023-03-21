@@ -77,3 +77,6 @@ crashlytics-build.properties
 
 # Rider files
 .[Ii]dea/
+
+# Some conflicting files
+*Zenject.csproj.meta

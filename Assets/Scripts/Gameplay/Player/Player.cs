@@ -2,7 +2,6 @@ using System;
 using Gameplay.Player.Movement;
 using Gameplay.Player.Weapon;
 using Gameplay.Survival;
-using UnityEngine;
 
 namespace Gameplay.Player
 {
@@ -18,30 +17,33 @@ namespace Gameplay.Player
         public EntitySurvival Survival { get; }
 
         public Player(
-            Vector2 spawnPoint,
-            PlayerViewFactory playerViewFactory, 
-            PlayerMovementFactory playerMovementFactory, 
-            PlayerTurningFactory playerTurningFactory,
-            PlayerSurvivalFactory playerSurvivalFactory,
-            PlayerWeaponFactory playerWeaponFactory)
+            PlayerView playerView, 
+            PlayerMovement playerMovement, 
+            PlayerTurning playerTurning,
+            EntitySurvival playerSurvival,
+            PlayerWeapon playerWeapon)
         {
-            PlayerView = playerViewFactory.Create(spawnPoint);
-            _playerMovement = playerMovementFactory.Create(PlayerView);
-            _playerTurning = playerTurningFactory.Create(PlayerView);
-            _playerWeapon = playerWeaponFactory.Create(PlayerView);
+            PlayerView = playerView;
+            _playerMovement = playerMovement;
+            _playerTurning = playerTurning;
+            _playerWeapon = playerWeapon;
+            Survival = playerSurvival;
 
-            Survival = playerSurvivalFactory.Create();
+            Survival.EntityHealth.HealthReachedZero += OnDeath;
         }
 
         public void Dispose()
         {
+            Survival.EntityHealth.HealthReachedZero -= OnDeath;
+            
             PlayerDestroyed.Invoke();
             
+            Survival.Dispose();
             _playerMovement.Dispose();
             _playerTurning.Dispose();
             _playerWeapon.Dispose();
             
-            UnityEngine.Object.Destroy(PlayerView);
+            UnityEngine.Object.Destroy(PlayerView.gameObject);
         }
 
         private void OnDeath()

@@ -4,9 +4,6 @@ namespace Gameplay.Player
 {
     public sealed class PlayerView : UnitView
     {
-        public PlayerView()
-        {
-            UnitType = UnitType.Player;
-        }
+        public override UnitType UnitType => UnitType.Player;
     }
 }

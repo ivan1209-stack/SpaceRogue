@@ -1,4 +1,3 @@
-using Gameplay.Enemy.Scriptables;
 using Gameplay.LevelProgress;
 using Gameplay.Services;
 using Gameplay.Space.Factories;
@@ -7,6 +6,7 @@ using Gameplay.Space.Obstacle;
 using Gameplay.Space.SpaceObjects.Scriptables;
 using Scriptables;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using Zenject;
 
 namespace Gameplay.Installers
@@ -16,14 +16,11 @@ namespace Gameplay.Installers
         [field: SerializeField] public SpaceView SpaceViewPrefab { get; private set; }
         [field: SerializeField] public LevelPresetsConfig LevelPresetsConfig { get; private set; }
 
-        [field: SerializeField] public StarSpawnConfig StarSpawnConfig { get; private set; }
-        [field: SerializeField] public PlanetSpawnConfig PlanetSpawnConfig { get; private set; }
-        [field: SerializeField] public LegacyEnemySpawnConfig LegacyEnemySpawnConfig { get; private set; }
-
         public override void InstallBindings()
         {
             InstallSpaceView();
             InstallLevel();
+            InstallLevelGenerator();
             InstallSpaceObstacle();
             InstallLevelProgressService();
         }
@@ -33,7 +30,7 @@ namespace Gameplay.Installers
             Container
                 .Bind<SpaceView>()
                 .FromInstance(SpaceViewPrefab)
-                .WhenInjectedInto<SpaceViewFactory>();
+                .AsSingle();
 
             Container
                 .BindFactory<SpaceView, SpaceViewFactory>()
@@ -45,35 +42,35 @@ namespace Gameplay.Installers
             Container
                 .Bind<LevelPresetsConfig>()
                 .FromInstance(LevelPresetsConfig)
-                .WhenInjectedInto<Level>();
-
-            Container
-                .Bind<StarSpawnConfig>()
-                .FromInstance(StarSpawnConfig)
-                .WhenInjectedInto<Level>();
-
-            Container
-                .Bind<PlanetSpawnConfig>()
-                .FromInstance(PlanetSpawnConfig)
-                .WhenInjectedInto<Level>();
-            
-            Container
-                .Bind<LegacyEnemySpawnConfig>()
-                .FromInstance(LegacyEnemySpawnConfig)
-                .WhenInjectedInto<Level>();
+                .AsSingle();
 
             Container
                 .BindFactory<int, Level, LevelFactory>()
                 .AsSingle();
         }
 
+        private void InstallLevelGenerator()
+        {
+            Container
+                .BindFactory<SpaceConfig, MapGenerator, MapGeneratorFactory>()
+                .AsSingle();
+            
+            Container
+                .BindFactory<SpaceView, SpaceConfig, int[,], int[,], LevelMap, LevelMapFactory>()
+                .AsSingle();
+            
+            Container
+                .BindFactory<int[,], Tilemap, SpawnPointsFinder, SpawnPointsFinderFactory>()
+                .AsSingle();
+        }
+        
         private void InstallSpaceObstacle()
         {
             Container
                 .BindFactory<SpaceObstacleView, float, SpaceObstacle, SpaceObstacleFactory>()
                 .AsSingle();
         }
-        
+
         private void InstallLevelProgressService()
         {
             Container

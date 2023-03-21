@@ -25,20 +25,21 @@ namespace Gameplay.GameEvent.Comet
             _view = view;
             AddGameObject(_view.gameObject);
             _rigidbody = _view.GetComponent<Rigidbody2D>();
-            _speed = RandomPicker.PickRandomBetweenTwoValues(_config.MinSpeed, _config.MaxSpeed, new());
+            _speed = RandomPicker.PickRandomBetweenTwoValues(_config.MinSpeed, _config.MaxSpeed);
             _remainingLifeTime = config.LifeTimeInSeconds;
 
-            var damageModel = new DamageModel(config.Damage);
-            _view.Init(damageModel);
-            _view.CollisionEnter += Dispose;
+            //var damageModel = new DamageModel(config.Damage);
+            //_view.Init(damageModel);
+            _view.CollidedSpaceObject += Dispose;
+            _view.CollidedPlanet += Dispose;
 
             EntryPoint.SubscribeToUpdate(Move);
         }
 
         protected override void OnDispose()
         {
-            base.OnDispose();
-            _view.CollisionEnter -= Dispose;
+            _view.CollidedPlanet -= Dispose;
+            _view.CollidedSpaceObject -= Dispose;
             EntryPoint.UnsubscribeFromUpdate(Move);
             IsDestroyed = true;
         }

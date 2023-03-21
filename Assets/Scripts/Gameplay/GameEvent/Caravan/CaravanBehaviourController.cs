@@ -81,8 +81,8 @@ namespace Gameplay.GameEvent.Caravan
         {
             if (_distance < _view.transform.localScale.MaxVector3CoordinateOnPlane())
             {
-                _view.Init(new(FatalDamage));
-                _view.TakeDamage(_view);
+                /*_view.Init(new(FatalDamage));
+                _view.TakeDamage(_view);*/
                 Dispose();
                 return;
             }

@@ -6,7 +6,6 @@ namespace Gameplay.Survival
     public interface IDamageableView
     {
         public event Action<DamageModel> DamageTaken;
-        public void TakeDamage(IDamagingView damageComponent);
-        public void TakeDamage(DamageModel damageComponent);
+        public void TakeDamage(DamageModel damageModel);
     }
 }

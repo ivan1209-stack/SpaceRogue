@@ -23,7 +23,7 @@ namespace Gameplay.Space.Factories
         public override SpaceObjectView Create(Vector2 position, SpaceObjectConfig config)
         {
             var view = _diContainer.InstantiatePrefabForComponent<SpaceObjectView>(config.Prefab, position, Quaternion.identity, _spaceObjectsPool.transform);
-            var size = RandomPicker.PickRandomBetweenTwoValues(config.MinSize, config.MaxSize, _random);
+            var size = RandomPicker.PickRandomBetweenTwoValues(config.MinSize, config.MaxSize);
             view.transform.localScale = new Vector3(size, size, 1);
             return view;
         }

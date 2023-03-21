@@ -1,7 +1,7 @@
 using System;
 using Gameplay.Mechanics.Timer;
 using Gameplay.Shooting.Scriptables;
-using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Gameplay.Shooting
 {
@@ -10,13 +10,13 @@ namespace Gameplay.Shooting
         private readonly ProjectileView _projectileView;
         private readonly Timer _lifeTime;
         
-        public Projectile(ProjectileConfig config, ProjectileView projectileView, TimerFactory timerFactory) //TODO fix injection
+        public Projectile(ProjectileConfig config, ProjectileView projectileView, TimerFactory timerFactory)
         {
             _projectileView = projectileView;
 
             _lifeTime = timerFactory.Create(config.LifeTime);
             _lifeTime.OnExpire += Dispose;
-            if (config.IsDestroyedOnHit) _projectileView.CollisionEnter += Dispose;
+            if (config.IsDestroyedOnHit) _projectileView.CollidedObject += Dispose;
             
             _lifeTime.Start();
         }
@@ -24,8 +24,9 @@ namespace Gameplay.Shooting
         public void Dispose()
         {
             _lifeTime.OnExpire -= Dispose;
-            _projectileView.CollisionEnter -= Dispose;
-            UnityEngine.Object.Destroy(_projectileView);
+            _projectileView.CollidedObject -= Dispose;
+            _lifeTime.Dispose();
+            Object.Destroy(_projectileView.gameObject);
         }
     }
 }

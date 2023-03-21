@@ -69,9 +69,8 @@ namespace Gameplay.Shooting.Weapons
         private void FireSingleProjectile(Vector2 bulletPosition, Quaternion turretDirection)
         {
             float angle = _currentSprayAngle / 2;
-            var r = new System.Random();
 
-            float pelletAngle = RandomPicker.PickRandomBetweenTwoValues(-angle, angle, r);
+            float pelletAngle = RandomPicker.PickRandomBetweenTwoValues(-angle, angle);
             Vector3 pelletVector = (pelletAngle + 90).ToVector3();
             Quaternion pelletDirection = turretDirection * Quaternion.Euler(pelletVector.x, pelletVector.y, pelletVector.z);
             //TODO check 90 degrees turn

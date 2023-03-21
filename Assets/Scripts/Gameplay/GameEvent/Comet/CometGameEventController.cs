@@ -116,7 +116,7 @@ namespace Gameplay.GameEvent.Comet
 
         private Vector3 GetRandomCometPosition()
         {
-            var angleDirection = RandomPicker.PickRandomAngle(360, _random).normalized;
+            var angleDirection = RandomPicker.PickRandomAngle(360).normalized;
             var playerPosition = _playerView.transform.position;
             var offset = _orthographicSize * 2 + _cometGameEventConfig.CometConfig.Size + _cometGameEventConfig.CometConfig.Offset;
             var position = playerPosition + angleDirection * offset;

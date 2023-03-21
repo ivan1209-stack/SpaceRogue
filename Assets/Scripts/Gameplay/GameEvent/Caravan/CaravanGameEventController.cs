@@ -94,7 +94,7 @@ namespace Gameplay.GameEvent.Caravan
 
         private Vector3 GetRandomCaravanPosition()
         {
-            var angleDirection = RandomPicker.PickRandomAngle(360, _random).normalized;
+            var angleDirection = RandomPicker.PickRandomAngle(360).normalized;
             var playerPosition = _playerView.transform.position;
             var offset = _orthographicSize * 2 + _caravanSize + _baseCaravanGameEvent.SpawnOffset;
             var position = playerPosition + angleDirection * offset;
@@ -103,7 +103,7 @@ namespace Gameplay.GameEvent.Caravan
 
         private Vector3 GetRandomCaravanTargetPosition(Vector3 caravanPosition)
         {
-            var angleDirection = RandomPicker.PickRandomAngle(360, _random).normalized;
+            var angleDirection = RandomPicker.PickRandomAngle(360).normalized;
             var offset = _caravanSize + _baseCaravanGameEvent.PathDistance;
             var position = caravanPosition + angleDirection * offset;
             return position;

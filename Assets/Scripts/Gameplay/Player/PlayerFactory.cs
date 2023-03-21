@@ -1,5 +1,7 @@
 using System;
 using Gameplay.Events;
+using Gameplay.Player.Movement;
+using Gameplay.Player.Weapon;
 using UnityEngine;
 using Zenject;
 
@@ -7,16 +9,41 @@ namespace Gameplay.Player
 {
     public sealed class PlayerFactory : PlaceholderFactory<Vector2, Player>
     {
+        private readonly PlayerViewFactory _playerViewFactory;
+        private readonly PlayerMovementFactory _playerMovementFactory;
+        private readonly PlayerTurningFactory _playerTurningFactory;
+        private readonly PlayerSurvivalFactory _playerSurvivalFactory;
+        private readonly PlayerWeaponFactory _playerWeaponFactory;
         public event Action<PlayerSpawnedEventArgs> PlayerSpawned = _ => { };
+
+        public PlayerFactory(
+            PlayerViewFactory playerViewFactory, 
+            PlayerMovementFactory playerMovementFactory, 
+            PlayerTurningFactory playerTurningFactory,
+            PlayerSurvivalFactory playerSurvivalFactory,
+            PlayerWeaponFactory playerWeaponFactory)
+        {
+            _playerViewFactory = playerViewFactory;
+            _playerMovementFactory = playerMovementFactory;
+            _playerTurningFactory = playerTurningFactory;
+            _playerSurvivalFactory = playerSurvivalFactory;
+            _playerWeaponFactory = playerWeaponFactory;
+        }
 
         public override Player Create(Vector2 spawnPoint)
         {
-            var player = base.Create(spawnPoint);
+            var playerView = _playerViewFactory.Create(spawnPoint);
+            var playerMovement = _playerMovementFactory.Create(playerView);
+            var playerTurning = _playerTurningFactory.Create(playerView);
+            var playerWeapon = _playerWeaponFactory.Create(playerView);
+            var playerSurvival = _playerSurvivalFactory.Create();
+            
             PlayerSpawned.Invoke(new PlayerSpawnedEventArgs
             {
-                Transform = player.PlayerView.transform
+                Transform = playerView.transform
             });
-            return player;
+            
+            return new Player(playerView, playerMovement, playerTurning, playerSurvival, playerWeapon);
         }
     }
 }
