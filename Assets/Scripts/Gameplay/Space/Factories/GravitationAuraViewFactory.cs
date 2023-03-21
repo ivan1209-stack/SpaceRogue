@@ -18,10 +18,9 @@ namespace Gameplay.Space.Factories
 
         public override GravitationAuraEffectView Create(Transform transform, GravitationAuraConfig config)
         {
-            var size = transform.localScale.x + config.Radius;
-            var effectTransform = transform;
-            effectTransform.localScale = new Vector3(size, size, 1);
-            var view = _diContainer.InstantiatePrefabForComponent<GravitationAuraEffectView>(config.Prefab, effectTransform);
+            var view = _diContainer.InstantiatePrefabForComponent<GravitationAuraEffectView>(config.Prefab, transform);
+            var size =  transform.localScale.x; //TODO 
+            view.transform.localScale = new Vector3(size, size, 1);
             return view;
         }
     }

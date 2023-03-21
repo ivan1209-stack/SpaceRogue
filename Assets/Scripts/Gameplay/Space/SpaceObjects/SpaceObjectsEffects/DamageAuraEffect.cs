@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
 using Gameplay.Space.SpaceObjects.Scriptables;
 using Gameplay.Space.SpaceObjects.SpaceObjectsEffects;
 using Object = UnityEngine.Object;
-using UnityEngine;
 
 namespace Gameplay.Space.SpaceObjects
 {
@@ -14,7 +11,7 @@ namespace Gameplay.Space.SpaceObjects
         public DamageAuraEffect(DamageAuraView view, DamageAuraConfig config)
         {
             _view = view;
-            //TO DO damageAura
+            //TODO damageAura
         }
 
         public override void Dispose()

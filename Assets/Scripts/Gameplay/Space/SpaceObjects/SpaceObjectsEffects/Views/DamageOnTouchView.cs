@@ -1,10 +1,16 @@
-using UnityEngine;
+using Gameplay.Damage;
+using Gameplay.Survival;
+using System;
 
 namespace Gameplay.Space.SpaceObjects
 {
-    [RequireComponent(typeof(CircleCollider2D))]
-    public class DamageOnTouchView : MonoBehaviour
+    public class DamageOnTouchView : AreaEffectView, IDamageableView
     {
+        public event Action<DamageModel> DamageTaken;
 
+        public void TakeDamage(IDamagingView damageComponent)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

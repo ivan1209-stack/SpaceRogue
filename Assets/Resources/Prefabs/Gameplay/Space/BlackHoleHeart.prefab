@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3324942067371309693}
   - component: {fileID: 3826103721304913354}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Minipamicon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,7 +182,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.0007111132, y: 0.0017433167}

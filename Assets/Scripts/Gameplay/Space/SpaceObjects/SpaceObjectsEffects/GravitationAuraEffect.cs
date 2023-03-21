@@ -18,21 +18,7 @@ namespace Gameplay.Space.SpaceObjects
             _pointEffector.forceMagnitude = -config.GravityForce;
             _pointEffector.forceVariation = -config.GravityVariation;
             _pointEffector.distanceScale = config.GravityDistanceScale;
-            switch (config.GravityMode)
-            {
-                case GravitationModeType.None:
-                    _pointEffector.forceMode = EffectorForceMode2D.Constant;
-                    break;
-                case GravitationModeType.Linear:
-                    _pointEffector.forceMode = EffectorForceMode2D.InverseLinear;
-                    break;
-                case GravitationModeType.Squared:
-                    _pointEffector.forceMode = EffectorForceMode2D.InverseSquared;
-                    break;
-                default:
-                    Debug.Log("Uncorrect Type");
-                    break;       
-            }
+            _pointEffector.forceMode = config.GravityMode;
         }
 
         public override void Dispose()

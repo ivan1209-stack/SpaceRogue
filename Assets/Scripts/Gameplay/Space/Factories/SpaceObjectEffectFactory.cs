@@ -24,7 +24,6 @@ namespace Gameplay.Space.Factories
             _gravitationAuraFactory = gravitationAuraFactory;
             _damageAuraFactory = damageAuraFactory;
             _damageOnTouchFactory = damageOnTouchFactory;
-            //TODO init other factories
         }
 
         public SpaceObjectEffect Create(Transform spaceObjectTransform, SpaceObjectEffectConfig config)

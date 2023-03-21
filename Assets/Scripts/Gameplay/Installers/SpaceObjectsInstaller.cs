@@ -34,16 +34,20 @@ namespace Gameplay.Installers
         private void InstallPlanetFactories()
         {
             Container
-                .BindFactory<Vector2, PlanetConfig, PlanetView, PlanetViewFactory>()
-                .AsSingle();
+               .BindFactory<Vector2, PlanetConfig, PlanetView, PlanetViewFactory>()
+               .AsSingle();
 
             Container
-                .BindFactory<PlanetView, PlanetMovement, PlanetMovementFactory>()
-                .AsSingle();
+               .BindFactory<PlanetView, PlanetMovement, PlanetMovementFactory>()
+               .AsSingle();
 
             Container
-                .BindFactory<Vector2, PlanetConfig, Planet, PlanetFactory>()
-                .AsSingle();
+               .BindFactory<Vector2, PlanetConfig, Planet, PlanetFactory>()
+               .AsSingle();
+
+            Container
+               .BindFactory<Transform, PlanetSystemConfig, PlanetSystemEffect, PlanetSystemEffectFactory>()
+               .AsSingle();
         }
 
         private void InstallSpaceObjectEffectFactories()
@@ -53,10 +57,6 @@ namespace Gameplay.Installers
             InstallDamageOnTouchEffect();
             InstallPlanetFactories();
 
-            Container
-                .BindFactory<Transform, PlanetSystemConfig, PlanetSystemEffect, PlanetSystemEffectFactory>()
-                .AsSingle();
-            
             Container
                 .BindIFactory<Transform, SpaceObjectEffectConfig, SpaceObjectEffect>()
                 .FromFactory<SpaceObjectEffectFactory>();
