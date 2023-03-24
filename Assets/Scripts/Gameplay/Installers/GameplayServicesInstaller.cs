@@ -1,4 +1,5 @@
 using Gameplay.Background;
+using Gameplay.Enemy.Movement;
 using Gameplay.Input;
 using Gameplay.Mechanics.Meter;
 using Gameplay.Mechanics.Timer;
@@ -23,6 +24,7 @@ namespace Gameplay.Installers
             InstallCurrentGameState();
             InstallBackground();
             InstallPlayerInput();
+            InstallEnemyInput();
             InstallUnitMovement();
         }
 
@@ -77,6 +79,13 @@ namespace Gameplay.Installers
                 .BindInterfacesAndSelfTo<PlayerInput>()
                 .AsSingle()
                 .NonLazy();
+        }
+
+        private void InstallEnemyInput()
+        {
+            Container
+                .BindFactory<EnemyInput, EnemyInputFactory>()
+                .AsSingle();
         }
 
         private void InstallUnitMovement()

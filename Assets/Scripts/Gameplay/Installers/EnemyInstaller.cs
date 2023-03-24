@@ -4,6 +4,11 @@ using Gameplay.Space.Generator;
 using UnityEngine;
 using Zenject;
 using Gameplay.Pooling;
+using Gameplay.Movement;
+using Gameplay.Player.Movement;
+using Gameplay.Player;
+using Scriptables;
+using Gameplay.Enemy.Movement;
 
 namespace Gameplay.Installers
 {
@@ -15,9 +20,10 @@ namespace Gameplay.Installers
         public override void InstallBindings()
         {
             InstallEnemyPool();
-            InstallEnemyForces();
-            InstallEnemy();
             InstallEnemyView();
+            InstallEnemyForces();
+            InstallEnemyMovement();
+            InstallEnemy();
         }
 
         private void InstallEnemyPool()
@@ -25,6 +31,13 @@ namespace Gameplay.Installers
             Container
                 .Bind<EnemyPool>()
                 .FromInstance(EnemyPool)
+                .AsSingle();
+        }
+
+        private void InstallEnemyView()
+        {
+            Container
+                .BindFactory<Vector2, EnemyConfig, EnemyView, EnemyViewFactory>()
                 .AsSingle();
         }
 
@@ -40,17 +53,21 @@ namespace Gameplay.Installers
                 .AsSingle();
         }
 
+        private void InstallEnemyMovement()
+        {
+            Container
+                .BindFactory<EnemyView, UnitMovementConfig, EnemyMovement, EnemyMovementFactory>()
+                .AsSingle();
+
+            Container
+                .BindFactory<EnemyView, UnitMovementConfig, EnemyTurning, EnemyTurningFactory>()
+                .AsSingle();
+        }
+
         private void InstallEnemy()
         {
             Container
                 .BindFactory<Vector2, EnemyConfig, Enemy.Enemy, EnemyFactory>()
-                .AsSingle();
-        }
-
-        private void InstallEnemyView()
-        {
-            Container
-                .BindFactory<Vector2, EnemyConfig, EnemyView, EnemyViewFactory>()
                 .AsSingle();
         }
     }
