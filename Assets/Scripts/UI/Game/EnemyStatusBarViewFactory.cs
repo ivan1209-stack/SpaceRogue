@@ -21,7 +21,7 @@ namespace UI.Game
             if (survival.EntityShield != null)
             {
                 return _diContainer
-                    .InstantiatePrefabForComponent<HealthStatusBarView>(_healthShieldStatusBarView, barsView.transform);
+                    .InstantiatePrefabForComponent<HealthShieldStatusBarView>(_healthShieldStatusBarView, barsView.transform);
             }
 
             return _diContainer

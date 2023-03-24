@@ -1,5 +1,3 @@
-using Gameplay.Enemy.Scriptables;
-using Gameplay.Enemy;
 using UI.Game;
 using UnityEngine;
 using Zenject;
@@ -30,7 +28,9 @@ namespace UI.Installers
             BindPlayerInfo();
             BindLevelInfo();
             BindMinimap();
-            BindOtherUI();
+            BindFloatStatusBarFactory();
+            BindEnemyStatusBars();
+            BindGameEventIndicators();
         }
 
         private void BindGameUICanvas()
@@ -75,7 +75,14 @@ namespace UI.Installers
                 .NonLazy();
         }
         
-        private void BindOtherUI()
+        private void BindFloatStatusBarFactory()
+        {
+            Container
+                .BindFactory<HealthStatusBarView, Collider2D, EntitySurvival, FloatStatusBar, FloatStatusBarFactory>()
+                .AsSingle();
+        }
+        
+        private void BindEnemyStatusBars()
         {
             Container
                 .Bind<EnemyHealthBarsView>()
@@ -96,7 +103,10 @@ namespace UI.Installers
             Container
                 .BindFactory<EntitySurvival, EnemyHealthBarsView, HealthStatusBarView, EnemyStatusBarViewFactory>()
                 .AsSingle();
-
+        }
+        
+        private void BindGameEventIndicators()
+        {
             Container
                 .Bind<GameEventIndicatorsView>()
                 .FromInstance(GameEventIndicatorsView)
