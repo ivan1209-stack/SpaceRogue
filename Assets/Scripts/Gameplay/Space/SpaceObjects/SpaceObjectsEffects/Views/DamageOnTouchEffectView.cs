@@ -1,15 +1,11 @@
-using System;
 using Gameplay.Damage;
 using Gameplay.Survival;
 using UnityEngine;
 
-namespace Gameplay.Shooting
+namespace Gameplay.Space.SpaceObjects.SpaceObjectsEffects.Views
 {
-    [RequireComponent(typeof(Rigidbody2D))]
-    [RequireComponent(typeof(Collider))]
-    public sealed class ProjectileView : MonoBehaviour, IDamagingView
+    public sealed class DamageOnTouchEffectView : AreaEffectView, IDamagingView
     {
-        public event Action CollidedObject = () => { };
         public DamageModel DamageModel { get; private set; }
 
         public void Init(DamageModel damageModel)
@@ -39,8 +35,6 @@ namespace Gameplay.Shooting
             {
                 DealDamage(damageable);
             }
-
-            CollidedObject.Invoke();
         }
     }
 }

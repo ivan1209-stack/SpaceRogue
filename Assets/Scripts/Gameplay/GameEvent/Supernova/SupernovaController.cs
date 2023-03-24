@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Abstracts;
 using Gameplay.Mechanics.Timer;
-using Gameplay.Space.Star;
+using Gameplay.Space.SpaceObjects;
 using Scriptables.GameEvent;
 using Services;
 using UnityEngine;
@@ -17,7 +17,7 @@ namespace Gameplay.GameEvent.Supernova
 
         private readonly SupernovaGameEventConfig _supernovaGameEventConfig;
         private readonly Timer _explosionTimer;
-        private readonly StarView _starView;
+        private readonly SpaceObjectView _starView;
         private readonly CircleCollider2D _starCircleCollider;
         private readonly SpriteRenderer _spriteRenderer;
         private readonly Color _starViewColor;
@@ -29,7 +29,7 @@ namespace Gameplay.GameEvent.Supernova
 
         public SubscribedProperty<bool> OnDestroy = new();
 
-        public SupernovaController(SupernovaGameEventConfig config, StarView starView)
+        public SupernovaController(SupernovaGameEventConfig config, SpaceObjectView starView)
         {
             _supernovaGameEventConfig = config;
             _starView = starView;
@@ -91,7 +91,7 @@ namespace Gameplay.GameEvent.Supernova
                 _spriteRenderer.color = _supernovaGameEventConfig.ShockwaveColor;
                 _currentColor = _spriteRenderer.color;
                 _starView.transform.localScale = Vector3.zero;
-                _starView.Init(new(_supernovaGameEventConfig.ShockwaveDamage));
+                //_starView.Init(new(_supernovaGameEventConfig.ShockwaveDamage));
                 _starCircleCollider.isTrigger = true;
                 _starCircleCollider.offset = Vector2.zero;
 

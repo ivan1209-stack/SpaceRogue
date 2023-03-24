@@ -1,20 +1,26 @@
+using Gameplay.Pooling;
+using Gameplay.Space.SpaceObjects;
 using Gameplay.Space.SpaceObjects.Scriptables;
 using Gameplay.Space.SpaceObjects.SpaceObjectsEffects;
+using UnityEngine;
+using Utilities.Mathematics;
 using Zenject;
 
 namespace Gameplay.Space.Factories
 {
-    public class GravitationAuraFactory : PlaceholderFactory<GravitationAuraConfig, GravitationAuraEffect>
+    public class GravitationAuraFactory : PlaceholderFactory<Transform, GravitationAuraConfig, GravitationAuraEffect>
     {
-        public GravitationAuraFactory()
-        {
+        private readonly GravitationAuraViewFactory _viewFactory;
 
+        public GravitationAuraFactory(GravitationAuraViewFactory viewFactory)
+        {
+            _viewFactory = viewFactory;
         }
 
-        public GravitationAuraEffect CreateGravitationAuraEffect(GravitationAuraConfig config)
+        public override GravitationAuraEffect Create(Transform transform, GravitationAuraConfig config)
         {
-            return base.Create(config);
+            var view = _viewFactory.Create(transform, config);
+            return new GravitationAuraEffect(view, config);
         }
-
     }
 }

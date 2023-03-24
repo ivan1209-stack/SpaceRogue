@@ -1,19 +1,26 @@
+using Gameplay.Pooling;
+using Gameplay.Space.SpaceObjects;
 using Gameplay.Space.SpaceObjects.Scriptables;
 using Gameplay.Space.SpaceObjects.SpaceObjectsEffects;
+using UnityEngine;
+using Utilities.Mathematics;
 using Zenject;
 
 namespace Gameplay.Space.Factories
 {
-    public class DamageOnTouchFactory : PlaceholderFactory<DamageOnTouchConfig, DamageOnTouchEffect>
+    public class DamageOnTouchFactory : PlaceholderFactory<Transform, DamageOnTouchConfig, DamageOnTouchEffect>
     {
-        public DamageOnTouchFactory()
-        {
+        private readonly DamageOnTouchViewFactory _viewFactory;
 
+        public DamageOnTouchFactory(DamageOnTouchViewFactory viewFactory)
+        {
+            _viewFactory = viewFactory;
         }
 
-        public DamageOnTouchEffect CreateDamageOnTouchEffect(DamageOnTouchConfig config)
+        public override DamageOnTouchEffect Create(Transform transform, DamageOnTouchConfig config)
         {
-            return base.Create(config);
+            var view = _viewFactory.Create(transform, config);
+            return new DamageOnTouchEffect(view, config);
         }
     }
 }
