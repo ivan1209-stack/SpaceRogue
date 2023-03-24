@@ -33,7 +33,7 @@
 - Variables: camelCase
 - Private fields: _camelCase
 - Types: PascalCase
-- Interfaces: IPascalCase
+- Interfaces: PascalCase
 - Methods: PascalCase
 
 ### Code formatting & spacing
