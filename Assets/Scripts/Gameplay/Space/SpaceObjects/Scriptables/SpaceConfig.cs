@@ -17,6 +17,7 @@ namespace Gameplay.Space.SpaceObjects.Scriptables
         [field: SerializeField, Min(0)] public int SpaceObjectCount { get; private set; } = 20;
         [field: SerializeField, Min(0)] public int EnemyGroupCount { get; private set; } = 20;
         [field: SerializeField, Min(0)] public float ObstacleForce { get; private set; } = 1.5f;
+        [field: SerializeField, Min(0)] public int AsteroidsOnStartCount { get; private set; } = 50;
 
         [field: SerializeField, Min(1), Header("Generator Settings")] public int OuterBorder { get; private set; } = 3;
         [field: SerializeField, Min(0)] public int InnerBorder { get; private set; } = 4;

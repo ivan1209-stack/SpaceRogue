@@ -1,4 +1,5 @@
 using System;
+using Asteroids;
 using Gameplay.Enemy;
 using Gameplay.Space.Generator;
 
@@ -10,10 +11,12 @@ namespace Gameplay.Services
         private readonly Player.Player _player;
         private readonly EnemyForces _enemyForces;
         private readonly Space.Space _space;
+        private readonly AsteroidObjects _asteroids;
 
         public int CurrentLevelNumber { get; private set; }
         public int EnemiesCountToWin { get; private set; }
         public int EnemiesCreatedCount { get; private set; }
+        public int AsteroidsCreatedOnStart { get; private set; }
         public float MapCameraSize { get; private set; }
 
         public Level(
@@ -23,7 +26,8 @@ namespace Gameplay.Services
             float mapCameraSize,
             Player.Player player,
             EnemyForces enemyForces,
-            Space.Space space)
+            Space.Space space,
+            AsteroidObjects asteroids)
         {
             CurrentLevelNumber = currentLevelNumber;
             EnemiesCountToWin = enemiesCountToWin;
@@ -33,6 +37,8 @@ namespace Gameplay.Services
             _enemyForces = enemyForces;
             _space = space;
             EnemiesCreatedCount = _enemyForces.Enemies.Count;
+            _asteroids = asteroids;
+            AsteroidsCreatedOnStart = _asteroids.Asteroids.Count;
         }
 
         public void Dispose()
@@ -40,6 +46,7 @@ namespace Gameplay.Services
             _player.Dispose();
             _enemyForces.Dispose();
             _space.Dispose();
+            _asteroids.Dispose();
             UnityEngine.Object.Destroy(_spaceView.gameObject);
         }
     }
