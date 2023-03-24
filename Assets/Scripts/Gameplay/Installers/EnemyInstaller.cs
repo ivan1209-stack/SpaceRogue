@@ -5,9 +5,6 @@ using UnityEngine;
 using Zenject;
 using Gameplay.Pooling;
 using Gameplay.Movement;
-using Gameplay.Player.Movement;
-using Gameplay.Player;
-using Scriptables;
 using Gameplay.Enemy.Movement;
 
 namespace Gameplay.Installers
@@ -56,14 +53,14 @@ namespace Gameplay.Installers
         private void InstallEnemyMovement()
         {
             Container
-                .BindFactory<EnemyView, UnitMovementConfig, EnemyMovement, EnemyMovementFactory>()
+                .BindFactory<EnemyView, EnemyInput, UnitMovementModel, EnemyMovement, EnemyMovementFactory>()
                 .AsSingle();
 
             Container
-                .BindFactory<EnemyView, UnitMovementConfig, EnemyTurning, EnemyTurningFactory>()
+                .BindFactory<EnemyView, EnemyInput, UnitMovementModel, EnemyTurning, EnemyTurningFactory>()
                 .AsSingle();
         }
-
+        
         private void InstallEnemy()
         {
             Container
