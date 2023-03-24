@@ -4,7 +4,7 @@
 
 - Use good naming for functions and classes
   - Classes are named as a noun - what is it
-  - Functions are named as a verb - what does it do
+  - Methods are named as a verb - what does it do
   - Use as concrete naming as possible
   - Name length should be proportional to the item's scope
 
@@ -17,7 +17,8 @@
 
 - Explicit is better than implicit in almost any case
 - If the exact piece code is repeated at least twice, consider extracting repeating logic
-- Comments are not good unless they explain some hard or not explicit logic - in general, code should be written in such way that it shouldn't require explicit comments.
+- Comments are not good unless they explain some hard or not explicit logic 
+- In general, code should be written in such way that it shouldn't require explicit comments.
 
 # Project code style
 
@@ -28,7 +29,7 @@
 
 ### Item naming
 
-- Constants: UPPER_CASE or PascalCase
+- Constants: PascalCase
 - Variables: camelCase
 - Private fields: _camelCase
 - Types: PascalCase
