@@ -12,7 +12,7 @@ namespace Gameplay.Space.Factories
     {
         private readonly DiContainer _diContainer;
 
-        public GravitationAuraViewFactory(SpaceObjectsPool spaceObjectsPool, DiContainer diContainer)
+        public GravitationAuraViewFactory(DiContainer diContainer)
         {
             _diContainer = diContainer;
         }

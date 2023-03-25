@@ -12,20 +12,12 @@ namespace Gameplay.Space.SpaceObjects.SpaceObjectsEffects
         public DamageOnTouchEffect(DamageOnTouchEffectView effectView, DamageOnTouchConfig config)
         {
             _effectView = effectView;
-            _effectView.CollidedSpaceObjectEffect += OnSpaceObjectCollision;
             //TODO damageOnTouch
         }
 
         public override void Dispose()
         {
-            _effectView.CollidedSpaceObjectEffect -= OnSpaceObjectCollision;
             Object.Destroy(_effectView.gameObject);
-        }
-
-        private void OnSpaceObjectCollision()
-        {
-            //TODO 
-            Dispose();
         }
     }
 }
