@@ -1,3 +1,4 @@
+using System;
 using Gameplay.Damage;
 using Gameplay.Survival;
 using UnityEngine;
@@ -6,6 +7,8 @@ namespace Gameplay.Space.SpaceObjects.SpaceObjectsEffects.Views
 {
     public sealed class DamageOnTouchEffectView : AreaEffectView, IDamagingView
     {
+        public event Action CollidedSpaceObjectEffect = () => { };
+
         public DamageModel DamageModel { get; private set; }
 
         public void Init(DamageModel damageModel)
