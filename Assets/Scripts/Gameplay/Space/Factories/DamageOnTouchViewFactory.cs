@@ -5,7 +5,6 @@ using Gameplay.Space.SpaceObjects.SpaceObjectsEffects.Views;
 using UnityEngine;
 using Utilities.Mathematics;
 using Zenject;
-using Gameplay.Damage;
 
 namespace Gameplay.Space.Factories
 {
@@ -20,10 +19,9 @@ namespace Gameplay.Space.Factories
 
         public override DamageOnTouchEffectView Create(Transform transform, DamageOnTouchConfig config)
         {
-            var view = _diContainer.InstantiatePrefabForComponent<DamageOnTouchEffectView>(config.Prefab, transform.position, Quaternion.identity, transform);
-            var size = config.Radius;
+            var view = _diContainer.InstantiatePrefabForComponent<DamageOnTouchEffectView>(config.Prefab, transform);
+            var size = transform.localScale.x;
             view.transform.localScale = new Vector3(size, size, 1);
-            view.Init(new DamageModel(config.Damage));
             return view;
         }
     }

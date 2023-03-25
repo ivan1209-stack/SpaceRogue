@@ -12,15 +12,15 @@ namespace Gameplay.Space.Factories
     {
         private readonly DiContainer _diContainer;
 
-        public GravitationAuraViewFactory(SpaceObjectsPool spaceObjectsPool, DiContainer diContainer)
+        public GravitationAuraViewFactory(DiContainer diContainer)
         {
             _diContainer = diContainer;
         }
 
         public override GravitationAuraEffectView Create(Transform transform, GravitationAuraConfig config)
         {
-            var view = _diContainer.InstantiatePrefabForComponent<GravitationAuraEffectView>(config.Prefab, transform.position, Quaternion.identity, transform);
-            var size =  config.Radius;
+            var view = _diContainer.InstantiatePrefabForComponent<GravitationAuraEffectView>(config.Prefab, transform);
+            var size =  transform.localScale.x; //TODO 
             view.transform.localScale = new Vector3(size, size, 1);
             return view;
         }

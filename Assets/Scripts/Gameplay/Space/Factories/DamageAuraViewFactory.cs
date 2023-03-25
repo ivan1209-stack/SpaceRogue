@@ -19,8 +19,8 @@ namespace Gameplay.Space.Factories
 
         public override DamageAuraView Create(Transform transform, DamageAuraConfig config)
         {
-            var view = _diContainer.InstantiatePrefabForComponent<DamageAuraView>(config.Prefab, transform.position, Quaternion.identity, transform);
-            var size = config.Radius;
+            var view = _diContainer.InstantiatePrefabForComponent<DamageAuraView>(config.Prefab, transform);
+            var size = transform.localScale.x;
             view.transform.localScale = new Vector3(size, size, 1);
             return view;
         }

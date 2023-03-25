@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: BlackHoleGravity
   m_EditorClassIdentifier: 
   <Prefab>k__BackingField: {fileID: 6710753914627937974, guid: 53425d7042994e541840e2a49124a6e7, type: 3}
-  <Radius>k__BackingField: 2.25
+  <Radius>k__BackingField: 5
   <GravityForce>k__BackingField: 100
   <GravityVariation>k__BackingField: 1
-  <GravityDistanceScale>k__BackingField: 0.1
-  <GravityMode>k__BackingField: 1
