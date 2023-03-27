@@ -21,10 +21,9 @@ namespace Asteroids
         public override Asteroid Create(Vector2 spawnPoint, Vector2 basePoint, AsteroidConfig config)
         {
             var view = _asteroidViewFactory.Create(spawnPoint, config);
-            var movement = _asteroidMovementFactory.Create(config.AsteroidMoveConfig, view, basePoint);
+            var movement = _asteroidMovementFactory.Create(config.MoveConfig, view, basePoint);
             var survival = _entitySurvivalFactory.Create(config.SurvivalConfig);
-            var damage = new DamageModel(config.DamageConfig.DamageAmount);
-            return new(view, movement, survival, damage);
+            return new(view, movement, survival);
         }
     }
 }

@@ -25,13 +25,7 @@ namespace Asteroids
             _spawnPointsFinder = spawnPointsFinder;
             _asteroidFactory = asteroidFactory;
 
-            var tryCount = 0;
-            do
-            {
-                TrySpawnAsteroid(asteroidSpawnConfig);
-                tryCount++;
-            } 
-            while (Asteroids.Count < asteroidsOnStartCount || tryCount < MaxTriesToCreateStartAsteroids);
+            SpawnStartAsteroids(asteroidsOnStartCount, asteroidSpawnConfig);
         }
 
         public void Dispose()
@@ -40,15 +34,26 @@ namespace Asteroids
             Asteroids.Clear();
         }
 
+        private void SpawnStartAsteroids(int asteroidsOnStartCount, AsteroidSpawnConfig asteroidSpawnConfig)
+        {
+            var tryCount = 0;
+            do
+            {
+                TrySpawnAsteroid(asteroidSpawnConfig);
+                tryCount++;
+            }
+            while (Asteroids.Count < asteroidsOnStartCount || tryCount < MaxTriesToCreateStartAsteroids);
+        }
+
         private void TrySpawnAsteroid(AsteroidSpawnConfig config)
         {
             var newAsteroidConfig = RandomPicker.PickOneElementByWeights(config.AsteroidPrefabs);
-            var asteroidRadius = newAsteroidConfig.AsteroidPrefab.Collider.radius;
-            var asteroidOrbit = RandomPicker.PickRandomBetweenTwoValues(0, newAsteroidConfig.MaxAsteroidSpawnOrbit);
+            var asteroidRadius = newAsteroidConfig.Prefab.Collider.radius;
+            var asteroidSpawnOrbit = RandomPicker.PickRandomBetweenTwoValues(0, newAsteroidConfig.MaxSpawnOrbit);
             var spawnTries = 0;
             do
             {
-                if (_spawnPointsFinder.TryGetSpaceObjectSpawnPoint(asteroidRadius, asteroidOrbit, out var spawnPoint))
+                if (_spawnPointsFinder.TryGetSpaceObjectSpawnPoint(asteroidRadius, asteroidSpawnOrbit, out var spawnPoint))
                 {
                     var newAsteroid = _asteroidFactory.Create(spawnPoint, Vector2.zero, newAsteroidConfig);
                     Asteroids.Add(newAsteroid);
@@ -56,7 +61,7 @@ namespace Asteroids
                 }
                 else spawnTries++;
             } 
-            while (spawnTries <= MaxSpawnTriesPerAsteroid);
+            while (spawnTries < MaxSpawnTriesPerAsteroid);
         }
     }
 }

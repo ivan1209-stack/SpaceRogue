@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3248596991630113537}
   - component: {fileID: -855076941684117732}
   m_Layer: 0
-  m_Name: AsterMed1
+  m_Name: AsteroidMedium1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -11,16 +11,37 @@ namespace Asteroids
 
         public override void InstallBindings()
         {
-            Container.Bind<AsteroidsPool>().FromInstance(Pool).AsSingle();
+            InstallAsteroidsPool();
+            InstallAsteroidsFactory();
+            InstallAsteroidFactory();
+            InstallAsteroidViewFactory();
+            InstallAsteroidMovementFactory();
+        }
 
-            Container.Bind<AsteroidSpawnConfig>().FromInstance(AsteroidSpawnConfig).WhenInjectedInto<AsteroidObjectsFactory>();
-            Container.BindFactory<int, SpawnPointsFinder, AsteroidObjects, AsteroidObjectsFactory>().AsSingle();
-
-            Container.BindFactory<Vector2, Vector2, AsteroidConfig, Asteroid, AsteroidFactory>().AsSingle();
-
-            Container.BindFactory<Vector2, AsteroidConfig, AsteroidView, AsteroidViewFactory>().AsSingle();
-
+        private void InstallAsteroidMovementFactory()
+        {
             Container.BindFactory<AsteroidMoveConfig, AsteroidView, Vector2, AsteroidMovement, AsteroidMovementFactory>().AsSingle();
+        }
+
+        private void InstallAsteroidViewFactory()
+        {
+            Container.BindFactory<Vector2, AsteroidConfig, AsteroidView, AsteroidViewFactory>().AsSingle();
+        }
+
+        private void InstallAsteroidFactory()
+        {
+            Container.BindFactory<Vector2, Vector2, AsteroidConfig, Asteroid, AsteroidFactory>().AsSingle();
+        }
+
+        private void InstallAsteroidsFactory()
+        {
+            Container.Bind<AsteroidSpawnConfig>().FromInstance(AsteroidSpawnConfig).WhenInjectedInto<AsteroidsFactory>();
+            Container.BindFactory<int, SpawnPointsFinder, AsteroidObjects, AsteroidsFactory>().AsSingle();
+        }
+
+        private void InstallAsteroidsPool()
+        {
+            Container.Bind<AsteroidsPool>().FromInstance(Pool).AsSingle();
         }
     }
 }

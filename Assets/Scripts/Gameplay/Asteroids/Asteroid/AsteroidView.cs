@@ -1,7 +1,6 @@
 using Abstracts;
 using Gameplay.Damage;
 using Gameplay.Survival;
-using System;
 using UnityEngine;
 
 namespace Asteroids
@@ -11,13 +10,15 @@ namespace Asteroids
     {
         [field: SerializeField] public Rigidbody2D Rigidbody { get; private set; }
         [field: SerializeField] public CircleCollider2D Collider { get; private set; }
-        [field: SerializeField] public Sprite Sprite { get; private set; }
 
         public DamageModel DamageModel { get; private set; }
 
-        public override UnitType UnitType => UnitType.None;
+        public override UnitType UnitType => UnitType.Asteroid;
 
-        public void InitDamageModel(DamageModel damageModel) => DamageModel = damageModel;
+        public void InitDamageModel(float damage)
+        {
+            DamageModel = new(damage, UnitType);
+        }
 
         public void DealDamage(IDamageableView damageable)
         {

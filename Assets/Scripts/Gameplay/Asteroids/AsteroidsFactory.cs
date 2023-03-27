@@ -3,12 +3,12 @@ using Zenject;
 
 namespace Asteroids
 {
-    public class AsteroidObjectsFactory : PlaceholderFactory<int, SpawnPointsFinder, AsteroidObjects>
+    public class AsteroidsFactory : PlaceholderFactory<int, SpawnPointsFinder, AsteroidObjects>
     {
         private readonly AsteroidSpawnConfig _config;
         private readonly AsteroidFactory _asteroidFactory;
 
-        public AsteroidObjectsFactory(AsteroidSpawnConfig config, AsteroidFactory asteroidFactory)
+        public AsteroidsFactory(AsteroidSpawnConfig config, AsteroidFactory asteroidFactory)
         {
             _config = config;
             _asteroidFactory = asteroidFactory;

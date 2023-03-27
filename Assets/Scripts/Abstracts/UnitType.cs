@@ -5,6 +5,7 @@ namespace Abstracts
         None,
         Player,
         Enemy,
-        Assistant
+        Assistant,
+        Asteroid
     }
 }
