@@ -1,37 +1,39 @@
-using System;
+using Abstracts;
 using Gameplay.Camera;
-using Gameplay.Input;
-using Gameplay.Movement;
+using System;
 using UnityEngine;
 using Utilities.Unity;
 
-namespace Gameplay.Player.Movement
+namespace Gameplay.Movement
 {
-    public sealed class PlayerTurning : IDisposable
+    public sealed class UnitTurningMouse : IDisposable
     {
-        private readonly PlayerInput _playerInput;
-        private readonly UnitMovementModel _model;
-        private readonly Rigidbody2D _rigidbody;
-        private readonly Transform _transform;
         private readonly UnityEngine.Camera _camera;
-        
-        private Vector3 _currentDirection;
+        private readonly Transform _transform;
+        private readonly Rigidbody2D _rigidbody;
+        private readonly IUnitTurningMouseInput _turningMouseInput;
+        private readonly UnitMovementModel _model;
+
         private float _lastTurnRate;
 
-        public PlayerTurning(PlayerView playerView, PlayerInput playerInput, UnitMovementModelFactory movementModelFactory, UnitMovementConfig movementConfig, CameraView cameraView)
+        public UnitTurningMouse(
+            CameraView cameraView,
+            UnitView unitView,
+            IUnitTurningMouseInput turningMouseInput,
+            UnitMovementModel model)
         {
-            _playerInput = playerInput;
-            _model = movementModelFactory.Create(movementConfig);
-            _rigidbody = playerView.GetComponent<Rigidbody2D>();
-            _transform = playerView.transform;
             _camera = cameraView.GetComponent<UnityEngine.Camera>();
+            _transform = unitView.transform;
+            _rigidbody = unitView.GetComponent<Rigidbody2D>();
+            _turningMouseInput = turningMouseInput;
+            _model = model;
 
-            _playerInput.MousePositionInput += HandleHorizontalMouseInput;
+            _turningMouseInput.MousePositionInput += HandleHorizontalMouseInput;
         }
 
         public void Dispose()
         {
-            _playerInput.MousePositionInput -= HandleHorizontalMouseInput;
+            _turningMouseInput.MousePositionInput -= HandleHorizontalMouseInput;
         }
 
         private void HandleHorizontalMouseInput(Vector3 newMousePositionInput)
@@ -40,8 +42,8 @@ namespace Gameplay.Player.Movement
             mousePosition.z = 0;
 
             var direction = (mousePosition - _transform.position).normalized;
-            _currentDirection = _transform.TransformDirection(Vector3.up);
-            float angle = Vector2.SignedAngle(direction, _currentDirection);
+            var currentDirection = _transform.TransformDirection(Vector3.up);
+            float angle = Vector2.SignedAngle(direction, currentDirection);
 
             Quaternion newRotation;
             if (UnityHelper.Approximately(angle, 0, Mathf.Abs(_lastTurnRate)))
@@ -49,10 +51,10 @@ namespace Gameplay.Player.Movement
                 _model.StopTurning();
                 _lastTurnRate = _model.StartingTurnSpeed;
 
-                newRotation = angle > 0 
-                    ? GetNewRotation(-angle, Vector3.forward) 
+                newRotation = angle > 0
+                    ? GetNewRotation(-angle, Vector3.forward)
                     : GetNewRotation(angle, Vector3.back);
-                
+
                 _rigidbody.MoveRotation(newRotation);
                 _rigidbody.angularVelocity = 0;
                 return;

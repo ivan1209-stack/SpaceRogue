@@ -1,34 +1,34 @@
-using Gameplay.Movement;
+using Abstracts;
 using System;
 using UnityEngine;
 
-namespace Gameplay.Enemy.Movement
+namespace Gameplay.Movement
 {
-    public sealed class EnemyTurning : IDisposable
+    public sealed class UnitTurning : IDisposable
     {
         private readonly Transform _transform;
         private readonly Rigidbody2D _rigidbody;
-        private readonly EnemyInput _enemyInput;
+        private readonly IUnitTurningInput _turningInput;
         private readonly UnitMovementModel _model;
 
-        public EnemyTurning(
-            EnemyView enemyView,
-            EnemyInput enemyInput,
+        public UnitTurning(
+            UnitView unitView,
+            IUnitTurningInput turningInput,
             UnitMovementModel model)
         {
-            _transform = enemyView.transform;
-            _rigidbody = enemyView.GetComponent<Rigidbody2D>();
-            _enemyInput = enemyInput;
+            _transform = unitView.transform;
+            _rigidbody = unitView.GetComponent<Rigidbody2D>();
+            _turningInput = turningInput;
             _model = model;
 
-            _enemyInput.HorizontalAxisInput += HandleHorizontalInput;
+            _turningInput.HorizontalAxisInput += HandleHorizontalInput;
         }
 
         public void Dispose()
         {
-            _enemyInput.HorizontalAxisInput -= HandleHorizontalInput;
+            _turningInput.HorizontalAxisInput -= HandleHorizontalInput;
         }
-        
+
         private void HandleHorizontalInput(float newInputValue)
         {
             Quaternion newRotation = Quaternion.identity;

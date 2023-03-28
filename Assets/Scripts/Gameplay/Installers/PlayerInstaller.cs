@@ -1,8 +1,7 @@
+using Abstracts;
 using Gameplay.Movement;
 using Gameplay.Player;
-using Gameplay.Player.Movement;
 using Gameplay.Player.Weapon;
-using Gameplay.Shooting;
 using Gameplay.Shooting.Scriptables;
 using Gameplay.Survival;
 using Scriptables;
@@ -42,28 +41,11 @@ namespace Gameplay.Installers
             Container
                 .Bind<UnitMovementConfig>()
                 .FromInstance(PlayerConfig.UnitMovement)
-                .WhenInjectedInto<PlayerMovement>();
-            
-            Container
-                .Bind<UnitMovementConfig>()
-                .FromInstance(PlayerConfig.UnitMovement)
-                .WhenInjectedInto<PlayerTurning>();
-            
-            Container
-                .BindFactory<PlayerView, PlayerMovement, PlayerMovementFactory>()
-                .AsSingle();
-            
-            Container
-                .BindFactory<PlayerView, PlayerTurning, PlayerTurningFactory>()
-                .AsSingle();
-            
-            Container
-                .Bind<PlayerMovement>()
-                .AsCached();
+                .WhenInjectedInto<PlayerFactory>();
 
             Container
-                .Bind<PlayerTurning>()
-                .AsCached();
+                .BindFactory<PlayerView, IUnitMovementInput, UnitMovementModel, UnitMovement, PlayerMovementFactory>()
+                .AsSingle();
         }
 
         private void InstallPlayerHealth()

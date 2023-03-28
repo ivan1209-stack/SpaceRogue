@@ -1,17 +1,12 @@
+using Abstracts;
 using System;
 
 namespace Gameplay.Enemy.Movement
 {
-    public sealed class EnemyInput
+    public sealed class EnemyInput : IUnitMovementInput, IUnitTurningInput
     {
         public event Action<float> VerticalAxisInput = _ => { };
         public event Action<float> HorizontalAxisInput = _ => { };
-        
-        public EnemyInput()
-        {
-            VerticalAxisInput(0);
-            HorizontalAxisInput(0);
-        }
 
         public void Accelerate()
         {

@@ -13,8 +13,8 @@ namespace Gameplay.Enemy
         private readonly EnemyViewFactory _enemyViewFactory;
         private readonly EnemyInputFactory _enemyInputFactory;
         private readonly UnitMovementModelFactory _unitMovementModelFactory;
-        private readonly EnemyMovementFactory _enemyMovementFactory;
-        private readonly EnemyTurningFactory _enemyTurningFactory;
+        private readonly UnitMovementFactory _unitMovementFactory;
+        private readonly UnitTurningFactory _unitTurningFactory;
         private readonly EntitySurvivalFactory _entitySurvivalFactory;
 
         public event Action<Enemy> EnemyCreated = _ => { };
@@ -23,15 +23,15 @@ namespace Gameplay.Enemy
             EnemyViewFactory enemyViewFactory, 
             EnemyInputFactory enemyInputFactory,
             UnitMovementModelFactory unitMovementModelFactory,
-            EnemyMovementFactory enemyMovementFactory,
-            EnemyTurningFactory enemyTurningFactory,
+            UnitMovementFactory unitMovementFactory,
+            UnitTurningFactory unitTurningFactory,
             EntitySurvivalFactory entitySurvivalFactory)
         {
             _enemyViewFactory = enemyViewFactory;
             _enemyInputFactory = enemyInputFactory;
             _unitMovementModelFactory = unitMovementModelFactory;
-            _enemyMovementFactory = enemyMovementFactory;
-            _enemyTurningFactory = enemyTurningFactory;
+            _unitMovementFactory = unitMovementFactory;
+            _unitTurningFactory = unitTurningFactory;
             _entitySurvivalFactory = entitySurvivalFactory;
         }
 
@@ -40,10 +40,10 @@ namespace Gameplay.Enemy
             var enemyView = _enemyViewFactory.Create(spawnPoint, enemyConfig);
             var enemyInput = _enemyInputFactory.Create();
             var model = _unitMovementModelFactory.Create(enemyConfig.Movement);
-            var enemyMovement = _enemyMovementFactory.Create(enemyView, enemyInput, model);
-            var enemyTurning = _enemyTurningFactory.Create(enemyView, enemyInput, model);
+            var unitMovement = _unitMovementFactory.Create(enemyView, enemyInput, model);
+            var unitTurning = _unitTurningFactory.Create(enemyView, enemyInput, model);
             var enemySurvival = _entitySurvivalFactory.Create(enemyConfig.Survival);
-            var enemy = new Enemy(enemyView, enemyMovement, enemyTurning, enemySurvival);
+            var enemy = new Enemy(enemyView, unitMovement, unitTurning, enemySurvival);
             EnemyCreated.Invoke(enemy);
             return enemy;
         }

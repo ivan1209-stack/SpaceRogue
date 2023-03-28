@@ -1,4 +1,6 @@
+using Abstracts;
 using Gameplay.Background;
+using Gameplay.Enemy;
 using Gameplay.Enemy.Movement;
 using Gameplay.Input;
 using Gameplay.Mechanics.Meter;
@@ -26,6 +28,7 @@ namespace Gameplay.Installers
             InstallPlayerInput();
             InstallEnemyInput();
             InstallUnitMovement();
+            InstallPlayerLocator();
         }
 
         private void InstallGameplayMechanics()
@@ -93,6 +96,26 @@ namespace Gameplay.Installers
             Container
                 .BindFactory<UnitMovementConfig, UnitMovementModel, UnitMovementModelFactory>()
                 .AsSingle();
+
+            Container
+                .BindFactory<UnitView, IUnitMovementInput, UnitMovementModel, UnitMovement, UnitMovementFactory>()
+                .AsSingle();
+
+            Container
+                .BindFactory<UnitView, IUnitTurningInput, UnitMovementModel, UnitTurning, UnitTurningFactory>()
+                .AsSingle();
+            
+            Container
+                .BindFactory<UnitView, IUnitTurningMouseInput, UnitMovementModel, UnitTurningMouse, UnitTurningMouseFactory>()
+                .AsSingle();
+        }
+        
+        private void InstallPlayerLocator()
+        {
+            Container
+                .BindInterfacesAndSelfTo<PlayerLocator>()
+                .AsSingle()
+                .NonLazy();
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Gameplay.Enemy.Behaviour
         private readonly EnemyView _view;
         private readonly UnitMovementModel _unitMovementModel;
         private readonly EnemyInput _inputController;
-        private readonly EnemyMovement _movementController;
+        private readonly UnitMovement _movementController;
         private readonly Weapon _turretController;
         private readonly PlayerController _playerController;
         private readonly Transform _target;
