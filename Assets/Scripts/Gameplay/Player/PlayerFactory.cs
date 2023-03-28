@@ -14,7 +14,7 @@ namespace Gameplay.Player
         private readonly PlayerInput _playerInput;
         private readonly UnitMovementConfig _unitMovementConfig;
         private readonly UnitMovementModelFactory _unitMovementModelFactory;
-        private readonly UnitMovementFactory _unitMovementFactory;
+        private readonly PlayerMovementFactory _playerMovementFactory;
         private readonly UnitTurningFactory _unitTurningFactory;
         private readonly PlayerSurvivalFactory _playerSurvivalFactory;
         private readonly PlayerWeaponFactory _playerWeaponFactory;
@@ -25,7 +25,7 @@ namespace Gameplay.Player
             PlayerInput playerInput,
             UnitMovementConfig unitMovementConfig,
             UnitMovementModelFactory unitMovementModelFactory,
-            UnitMovementFactory unitMovementFactory,
+            PlayerMovementFactory playerMovementFactory,
             UnitTurningFactory unitTurningFactory,
             PlayerSurvivalFactory playerSurvivalFactory,
             PlayerWeaponFactory playerWeaponFactory)
@@ -34,7 +34,7 @@ namespace Gameplay.Player
             _playerInput = playerInput;
             _unitMovementConfig = unitMovementConfig;
             _unitMovementModelFactory = unitMovementModelFactory;
-            _unitMovementFactory = unitMovementFactory;
+            _playerMovementFactory = playerMovementFactory;
             _unitTurningFactory = unitTurningFactory;
             _playerSurvivalFactory = playerSurvivalFactory;
             _playerWeaponFactory = playerWeaponFactory;
@@ -44,7 +44,7 @@ namespace Gameplay.Player
         {
             var playerView = _playerViewFactory.Create(spawnPoint);
             var model = _unitMovementModelFactory.Create(_unitMovementConfig);
-            var unitMovement = _unitMovementFactory.Create(playerView, _playerInput, model);
+            var unitMovement = _playerMovementFactory.Create(playerView, _playerInput, model);
             var unitTurning = _unitTurningFactory.Create(playerView, _playerInput, model);
             var playerWeapon = _playerWeaponFactory.Create(playerView);
             var playerSurvival = _playerSurvivalFactory.Create();

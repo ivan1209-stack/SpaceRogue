@@ -1,3 +1,4 @@
+using Abstracts;
 using Gameplay.Movement;
 using Gameplay.Player;
 using Gameplay.Player.Weapon;
@@ -41,6 +42,10 @@ namespace Gameplay.Installers
                 .Bind<UnitMovementConfig>()
                 .FromInstance(PlayerConfig.UnitMovement)
                 .WhenInjectedInto<PlayerFactory>();
+
+            Container
+                .BindFactory<PlayerView, IUnitMovementInput, UnitMovementModel, UnitMovement, PlayerMovementFactory>()
+                .AsSingle();
         }
 
         private void InstallPlayerHealth()
