@@ -39,11 +39,8 @@ namespace Gameplay.Services
                 return;
             }
 
-            if (_timer.IsExpired)
-            {
-                _timer.Start();
-                PlayerPosition.Invoke(_playerTransform.position);
-            }
+            _timer.Start();
+            PlayerPosition.Invoke(_playerTransform.position);
         }
 
         private void OnPlayerSpawned(PlayerSpawnedEventArgs args)
