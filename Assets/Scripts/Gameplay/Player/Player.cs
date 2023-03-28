@@ -8,7 +8,7 @@ namespace Gameplay.Player
     public sealed class Player : IDisposable
     {
         private readonly UnitMovement _unitMovement;
-        private readonly UnitTurning _unitTurning;
+        private readonly UnitTurningMouse _unitTurningMouse;
         private readonly PlayerWeapon _playerWeapon;
 
         public event Action PlayerDestroyed = () => { };
@@ -19,13 +19,13 @@ namespace Gameplay.Player
         public Player(
             PlayerView playerView, 
             UnitMovement unitMovement, 
-            UnitTurning unitTurning,
+            UnitTurningMouse unitTurningMouse,
             EntitySurvival playerSurvival,
             PlayerWeapon playerWeapon)
         {
             PlayerView = playerView;
             _unitMovement = unitMovement;
-            _unitTurning = unitTurning;
+            _unitTurningMouse = unitTurningMouse;
             _playerWeapon = playerWeapon;
             Survival = playerSurvival;
 
@@ -40,7 +40,7 @@ namespace Gameplay.Player
             
             Survival.Dispose();
             _unitMovement.Dispose();
-            _unitTurning.Dispose();
+            _unitTurningMouse.Dispose();
             _playerWeapon.Dispose();
             
             UnityEngine.Object.Destroy(PlayerView.gameObject);

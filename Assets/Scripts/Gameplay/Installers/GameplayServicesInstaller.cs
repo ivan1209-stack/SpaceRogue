@@ -104,6 +104,10 @@ namespace Gameplay.Installers
             Container
                 .BindFactory<UnitView, IUnitTurningInput, UnitMovementModel, UnitTurning, UnitTurningFactory>()
                 .AsSingle();
+            
+            Container
+                .BindFactory<UnitView, IUnitTurningMouseInput, UnitMovementModel, UnitTurningMouse, UnitTurningMouseFactory>()
+                .AsSingle();
         }
         
         private void InstallPlayerLocator()

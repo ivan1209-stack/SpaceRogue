@@ -3,7 +3,7 @@ using System;
 
 namespace Gameplay.Enemy.Movement
 {
-    public sealed class EnemyInput : IUnitMovementInput, IUnitTurningHandleInput
+    public sealed class EnemyInput : IUnitMovementInput, IUnitTurningInput
     {
         public event Action<float> VerticalAxisInput = _ => { };
         public event Action<float> HorizontalAxisInput = _ => { };
