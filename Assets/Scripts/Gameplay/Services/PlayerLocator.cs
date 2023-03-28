@@ -2,14 +2,14 @@ using System;
 using Gameplay.Events;
 using Gameplay.Mechanics.Timer;
 using Gameplay.Player;
-using Services;
 using UnityEngine;
 
 namespace Gameplay.Services
 {
     public sealed class PlayerLocator : IDisposable
     {
-        private readonly Updater _updater;
+        private const float LocatorCooldown = 1;
+
         private readonly Timer _timer;
         private readonly PlayerFactory _playerFactory;
 
@@ -17,13 +17,9 @@ namespace Gameplay.Services
 
         public event Action<Vector3> PlayerPosition = _ => { };
 
-        public PlayerLocator(
-            Updater updater,
-            TimerFactory timerFactory,
-            PlayerFactory playerFactory)
+        public PlayerLocator(TimerFactory timerFactory, PlayerFactory playerFactory)
         {
-            _updater = updater;
-            _timer = timerFactory.Create(1);
+            _timer = timerFactory.Create(LocatorCooldown);
             _playerFactory = playerFactory;
 
             _playerFactory.PlayerSpawned += OnPlayerSpawned;
@@ -31,7 +27,7 @@ namespace Gameplay.Services
 
         public void Dispose()
         {
-            _updater.UnsubscribeFromUpdate(Locator);
+            _timer.OnExpire -= Locator;
             _playerFactory.PlayerSpawned -= OnPlayerSpawned;
         }
 
@@ -53,7 +49,8 @@ namespace Gameplay.Services
         private void OnPlayerSpawned(PlayerSpawnedEventArgs args)
         {
             _playerTransform = args.Transform;
-            _updater.SubscribeToUpdate(Locator);
+            _timer.Start();
+            _timer.OnExpire += Locator;
         }
     }
 }
