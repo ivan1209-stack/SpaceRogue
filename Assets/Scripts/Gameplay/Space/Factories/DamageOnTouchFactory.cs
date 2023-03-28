@@ -20,7 +20,7 @@ namespace Gameplay.Space.Factories
         public override DamageOnTouchEffect Create(Transform transform, DamageOnTouchConfig config)
         {
             var view = _viewFactory.Create(transform, config);
-            return new DamageOnTouchEffect(view, config);
+            return new DamageOnTouchEffect(view);
         }
     }
 }
