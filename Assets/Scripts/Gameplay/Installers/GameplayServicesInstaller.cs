@@ -28,6 +28,7 @@ namespace Gameplay.Installers
             InstallPlayerInput();
             InstallEnemyInput();
             InstallUnitMovement();
+            InstallPlayerLocator();
         }
 
         private void InstallGameplayMechanics()
@@ -103,6 +104,14 @@ namespace Gameplay.Installers
             Container
                 .BindFactory<UnitView, IUnitTurningInput, UnitMovementModel, UnitTurning, UnitTurningFactory>()
                 .AsSingle();
+        }
+        
+        private void InstallPlayerLocator()
+        {
+            Container
+                .BindInterfacesAndSelfTo<PlayerLocator>()
+                .AsSingle()
+                .NonLazy();
         }
     }
 }
