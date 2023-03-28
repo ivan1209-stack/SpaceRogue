@@ -1,4 +1,6 @@
+using Abstracts;
 using Gameplay.Background;
+using Gameplay.Enemy;
 using Gameplay.Enemy.Movement;
 using Gameplay.Input;
 using Gameplay.Mechanics.Meter;
@@ -92,6 +94,10 @@ namespace Gameplay.Installers
         {
             Container
                 .BindFactory<UnitMovementConfig, UnitMovementModel, UnitMovementModelFactory>()
+                .AsSingle();
+
+            Container
+                .BindFactory<UnitView, IUnitMovementInput, UnitMovementModel, UnitMovement, UnitMovementFactory>()
                 .AsSingle();
         }
     }

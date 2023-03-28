@@ -1,4 +1,4 @@
-using Gameplay.Player.Movement;
+using Gameplay.Movement;
 using Services;
 using System;
 using UI.Game;
@@ -10,11 +10,11 @@ namespace UI.Services
     {
         private readonly PlayerSpeedometerView _playerSpeedometerView;
         private readonly Updater _updater;
-        private readonly PlayerMovementFactory _movementFactory;
+        private readonly UnitMovementFactory _movementFactory;
 
-        private PlayerMovement _playerMovement;
+        private UnitMovement _playerMovement;
 
-        public PlayerSpeedometerService(Updater updater, PlayerInfoView playerInfoView, PlayerMovementFactory movementFactory)
+        public PlayerSpeedometerService(Updater updater, PlayerInfoView playerInfoView, UnitMovementFactory movementFactory)
         {
             _playerSpeedometerView = playerInfoView.PlayerSpeedometerView;
             _updater = updater;
@@ -31,7 +31,7 @@ namespace UI.Services
             _updater.UnsubscribeFromUpdate(UpdateSpeedometer);
         }
 
-        private void OnPlayerMovementCreated(PlayerMovement playerMovement)
+        private void OnPlayerMovementCreated(UnitMovement playerMovement)
         {
             _playerMovement = playerMovement;
 

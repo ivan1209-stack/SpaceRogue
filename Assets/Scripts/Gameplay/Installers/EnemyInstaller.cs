@@ -53,10 +53,6 @@ namespace Gameplay.Installers
         private void InstallEnemyMovement()
         {
             Container
-                .BindFactory<EnemyView, EnemyInput, UnitMovementModel, EnemyMovement, EnemyMovementFactory>()
-                .AsSingle();
-
-            Container
                 .BindFactory<EnemyView, EnemyInput, UnitMovementModel, EnemyTurning, EnemyTurningFactory>()
                 .AsSingle();
         }

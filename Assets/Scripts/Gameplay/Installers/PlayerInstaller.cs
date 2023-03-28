@@ -42,24 +42,18 @@ namespace Gameplay.Installers
             Container
                 .Bind<UnitMovementConfig>()
                 .FromInstance(PlayerConfig.UnitMovement)
-                .WhenInjectedInto<PlayerMovement>();
+                .WhenInjectedInto<PlayerFactory>();
             
             Container
                 .Bind<UnitMovementConfig>()
                 .FromInstance(PlayerConfig.UnitMovement)
                 .WhenInjectedInto<PlayerTurning>();
             
-            Container
-                .BindFactory<PlayerView, PlayerMovement, PlayerMovementFactory>()
-                .AsSingle();
             
             Container
                 .BindFactory<PlayerView, PlayerTurning, PlayerTurningFactory>()
                 .AsSingle();
             
-            Container
-                .Bind<PlayerMovement>()
-                .AsCached();
 
             Container
                 .Bind<PlayerTurning>()
