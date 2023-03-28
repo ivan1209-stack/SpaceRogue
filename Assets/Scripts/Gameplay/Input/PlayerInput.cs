@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Gameplay.Input
 {
-    public sealed class PlayerInput : IDisposable, IUnitMovementInput
+    public sealed class PlayerInput : IDisposable, IUnitMovementInput, IUnitTurningMouseInput
     {
         private readonly Updater _updater;
         private readonly PlayerInputConfig _playerInputConfig;

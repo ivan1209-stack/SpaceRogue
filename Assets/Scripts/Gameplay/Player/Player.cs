@@ -1,6 +1,5 @@
 using System;
 using Gameplay.Movement;
-using Gameplay.Player.Movement;
 using Gameplay.Player.Weapon;
 using Gameplay.Survival;
 
@@ -9,7 +8,7 @@ namespace Gameplay.Player
     public sealed class Player : IDisposable
     {
         private readonly UnitMovement _unitMovement;
-        private readonly PlayerTurning _playerTurning;
+        private readonly UnitTurning _unitTurning;
         private readonly PlayerWeapon _playerWeapon;
 
         public event Action PlayerDestroyed = () => { };
@@ -20,13 +19,13 @@ namespace Gameplay.Player
         public Player(
             PlayerView playerView, 
             UnitMovement unitMovement, 
-            PlayerTurning playerTurning,
+            UnitTurning unitTurning,
             EntitySurvival playerSurvival,
             PlayerWeapon playerWeapon)
         {
             PlayerView = playerView;
             _unitMovement = unitMovement;
-            _playerTurning = playerTurning;
+            _unitTurning = unitTurning;
             _playerWeapon = playerWeapon;
             Survival = playerSurvival;
 
@@ -41,7 +40,7 @@ namespace Gameplay.Player
             
             Survival.Dispose();
             _unitMovement.Dispose();
-            _playerTurning.Dispose();
+            _unitTurning.Dispose();
             _playerWeapon.Dispose();
             
             UnityEngine.Object.Destroy(PlayerView.gameObject);

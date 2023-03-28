@@ -1,5 +1,4 @@
 using System;
-using Gameplay.Enemy.Movement;
 using Gameplay.Movement;
 using Gameplay.Survival;
 
@@ -8,7 +7,7 @@ namespace Gameplay.Enemy
     public sealed class Enemy : IDisposable
     {
         private readonly UnitMovement _unitMovement;
-        private readonly EnemyTurning _enemyTurning;
+        private readonly UnitTurning _unitTurning;
 
         public EnemyView EnemyView { get; }
         public EntitySurvival Survival { get; }
@@ -16,12 +15,12 @@ namespace Gameplay.Enemy
         public Enemy(
             EnemyView enemyView, 
             UnitMovement unitMovement,
-            EnemyTurning enemyTurning,
+            UnitTurning unitTurning,
             EntitySurvival enemySurvival)
         {
             EnemyView = enemyView;
             _unitMovement = unitMovement;
-            _enemyTurning = enemyTurning;
+            _unitTurning = unitTurning;
             Survival = enemySurvival;
 
             Survival.EntityHealth.HealthReachedZero += OnDeath;
@@ -33,7 +32,7 @@ namespace Gameplay.Enemy
 
             Survival.Dispose();
             _unitMovement.Dispose();
-            _enemyTurning.Dispose();
+            _unitTurning.Dispose();
 
             UnityEngine.Object.Destroy(EnemyView.gameObject);
         }

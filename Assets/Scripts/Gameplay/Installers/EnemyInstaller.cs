@@ -19,7 +19,6 @@ namespace Gameplay.Installers
             InstallEnemyPool();
             InstallEnemyView();
             InstallEnemyForces();
-            InstallEnemyMovement();
             InstallEnemy();
         }
 
@@ -47,13 +46,6 @@ namespace Gameplay.Installers
 
             Container
                 .BindFactory<int, SpawnPointsFinder, EnemyForces, EnemyForcesFactory>()
-                .AsSingle();
-        }
-
-        private void InstallEnemyMovement()
-        {
-            Container
-                .BindFactory<EnemyView, EnemyInput, UnitMovementModel, EnemyTurning, EnemyTurningFactory>()
                 .AsSingle();
         }
         
