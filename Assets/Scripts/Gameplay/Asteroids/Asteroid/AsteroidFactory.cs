@@ -1,11 +1,10 @@
-using Gameplay.Damage;
 using Gameplay.Survival;
 using UnityEngine;
 using Zenject;
 
 namespace Asteroids
 {
-    public class AsteroidFactory : PlaceholderFactory<Vector2, Vector2, AsteroidConfig, Asteroid>
+    public class AsteroidFactory : PlaceholderFactory<Vector2, AsteroidConfig, Asteroid>
     {
         private readonly AsteroidViewFactory _asteroidViewFactory;
         private readonly AsteroidMovementFactory _asteroidMovementFactory;
@@ -18,10 +17,10 @@ namespace Asteroids
             _entitySurvivalFactory = entitySurvivalFactory;
         }
 
-        public override Asteroid Create(Vector2 spawnPoint, Vector2 basePoint, AsteroidConfig config)
+        public override Asteroid Create(Vector2 spawnPoint, AsteroidConfig config)
         {
             var view = _asteroidViewFactory.Create(spawnPoint, config);
-            var movement = _asteroidMovementFactory.Create(config.MoveConfig, view, basePoint);
+            var movement = _asteroidMovementFactory.Create(config.MoveConfig, view);
             var survival = _entitySurvivalFactory.Create(config.SurvivalConfig);
             return new(view, movement, survival);
         }

@@ -1,4 +1,3 @@
-using Gameplay.Damage;
 using Gameplay.Survival;
 using System;
 using Object = UnityEngine.Object;
@@ -7,38 +6,28 @@ namespace Asteroids
 {
     public class Asteroid : IDisposable
     {
-        private readonly AsteroidMovement _asteroidMovement;
+        private readonly IMovementBehaviour _asteroidMovement;
         private readonly EntitySurvival _survival;
+        private readonly AsteroidView _view;
 
-        private AsteroidView _view;
 
-        public Asteroid(AsteroidView asteroidView, AsteroidMovement asteroidMovement, EntitySurvival survival)
+        public Asteroid(AsteroidView view, IMovementBehaviour asteroidMovement, EntitySurvival survival)
         {
             _asteroidMovement = asteroidMovement;
             _survival = survival;
-            _view = asteroidView;
+            _view = view;
 
-            SubscribeEvents();
+            _survival.UnitDestroyed += Dispose;
         }
 
         public void Dispose()
         {
-            UnsubscribeEvents();
-
-            _asteroidMovement.Dispose();
+            _survival.UnitDestroyed -= Dispose;
             _survival.Dispose();
 
+            _asteroidMovement.Dispose();
+
             Object.Destroy(_view.gameObject);
-        }
-
-        private void SubscribeEvents()
-        {
-            _survival.UnitDestroyed += Dispose;
-        }
-
-        private void UnsubscribeEvents()
-        {
-            _survival.UnitDestroyed -= Dispose;
         }
     }
 }

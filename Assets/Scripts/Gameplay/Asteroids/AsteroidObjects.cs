@@ -10,53 +10,55 @@ namespace Asteroids
     {
         private readonly SpawnPointsFinder _spawnPointsFinder;
         private readonly AsteroidFactory _asteroidFactory;
+        private readonly int _asteroidsOnStartCount;
+        private readonly AsteroidSpawnConfig _spawnConfig;
+        private readonly List<Asteroid> _asteroids = new();
 
         private const int MaxSpawnTriesPerAsteroid = 5;
         private const int MaxTriesToCreateStartAsteroids = 100;
 
-        public List<Asteroid> Asteroids { get; private set; } = new();
 
         public AsteroidObjects(
             int asteroidsOnStartCount, 
-            AsteroidSpawnConfig asteroidSpawnConfig, 
+            AsteroidSpawnConfig SpawnConfig, 
             SpawnPointsFinder spawnPointsFinder, 
             AsteroidFactory asteroidFactory)
         {
+            _asteroidsOnStartCount = asteroidsOnStartCount;
+            _spawnConfig = SpawnConfig;
             _spawnPointsFinder = spawnPointsFinder;
             _asteroidFactory = asteroidFactory;
-
-            SpawnStartAsteroids(asteroidsOnStartCount, asteroidSpawnConfig);
         }
 
         public void Dispose()
         {
-            for (int i = 0; i < Asteroids.Count; i++) Asteroids[i].Dispose();
-            Asteroids.Clear();
+            foreach (var asteroid in _asteroids) asteroid.Dispose();
+            _asteroids.Clear();
         }
 
-        private void SpawnStartAsteroids(int asteroidsOnStartCount, AsteroidSpawnConfig asteroidSpawnConfig)
+        public void SpawnStartAsteroids()
         {
             var tryCount = 0;
             do
             {
-                TrySpawnAsteroid(asteroidSpawnConfig);
+                TrySpawnAsteroid(_spawnConfig);
                 tryCount++;
             }
-            while (Asteroids.Count < asteroidsOnStartCount || tryCount < MaxTriesToCreateStartAsteroids);
+            while (_asteroids.Count < _asteroidsOnStartCount || tryCount < MaxTriesToCreateStartAsteroids);
         }
 
         private void TrySpawnAsteroid(AsteroidSpawnConfig config)
         {
-            var newAsteroidConfig = RandomPicker.PickOneElementByWeights(config.AsteroidPrefabs);
-            var asteroidRadius = newAsteroidConfig.Prefab.Collider.radius;
-            var asteroidSpawnOrbit = RandomPicker.PickRandomBetweenTwoValues(0, newAsteroidConfig.MaxSpawnOrbit);
+            var newAsteroidConfig = RandomPicker.PickOneElementByWeights(config.AsteroidConfigs);
+            var asteroidRadius = newAsteroidConfig.Prefab.GetComponent<CircleCollider2D>().radius;
+            var asteroidSpawnOrbit = RandomPicker.PickRandomBetweenTwoValues(0, newAsteroidConfig.MaxSpawnRadius);
             var spawnTries = 0;
             do
             {
                 if (_spawnPointsFinder.TryGetSpaceObjectSpawnPoint(asteroidRadius, asteroidSpawnOrbit, out var spawnPoint))
                 {
-                    var newAsteroid = _asteroidFactory.Create(spawnPoint, Vector2.zero, newAsteroidConfig);
-                    Asteroids.Add(newAsteroid);
+                    var newAsteroid = _asteroidFactory.Create(spawnPoint, newAsteroidConfig);
+                    _asteroids.Add(newAsteroid);
                     return;
                 }
                 else spawnTries++;

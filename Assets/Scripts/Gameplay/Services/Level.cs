@@ -16,7 +16,6 @@ namespace Gameplay.Services
         public int CurrentLevelNumber { get; private set; }
         public int EnemiesCountToWin { get; private set; }
         public int EnemiesCreatedCount { get; private set; }
-        public int AsteroidsCreatedOnStart { get; private set; }
         public float MapCameraSize { get; private set; }
 
         public Level(
@@ -38,7 +37,6 @@ namespace Gameplay.Services
             _space = space;
             EnemiesCreatedCount = _enemyForces.Enemies.Count;
             _asteroids = asteroids;
-            AsteroidsCreatedOnStart = _asteroids.Asteroids.Count;
         }
 
         public void Dispose()

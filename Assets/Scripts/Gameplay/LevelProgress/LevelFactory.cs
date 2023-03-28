@@ -75,6 +75,7 @@ namespace Gameplay.LevelProgress
             var enemyForces = _enemyForcesFactory.Create(_currentLevelPreset.SpaceConfig.EnemyGroupCount, spawnPointsFinder);
 
             var asteroids = _asteroidsFactory.Create(_currentLevelPreset.SpaceConfig.AsteroidsOnStartCount, spawnPointsFinder);
+            asteroids.SpawnStartAsteroids();
 
             var level = new Level(levelNumber, _currentLevelPreset.EnemiesCountToWin, spaceView, mapCameraSize, player, enemyForces, space, asteroids);
             LevelCreated.Invoke(level);

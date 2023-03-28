@@ -7,6 +7,6 @@ namespace Asteroids
     [CreateAssetMenu(fileName = nameof(AsteroidSpawnConfig), menuName = "Configs/Asteroids/" + nameof(AsteroidSpawnConfig))]
     public class AsteroidSpawnConfig : ScriptableObject
     {
-        [field: SerializeField] public List<WeightConfig<AsteroidConfig>> AsteroidPrefabs { get; private set; }
+        [field: SerializeField] public List<WeightConfig<AsteroidConfig>> AsteroidConfigs { get; private set; }
     }
 }

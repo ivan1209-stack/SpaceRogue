@@ -3,16 +3,28 @@ using Utilities.Mathematics;
 
 namespace Asteroids
 {
-    public sealed class AsteroidRandomDirectedMovement : AsteroidMovement
+    public sealed class AsteroidRandomDirectedMovement : IMovementBehaviour
     {
-        public AsteroidRandomDirectedMovement(AsteroidView view, AsteroidMoveConfig config, Vector2 basePoint) : base(view, config, basePoint)
+        private readonly AsteroidView _view;
+
+        private AsteroidMoveConfig _config;
+
+        public AsteroidRandomDirectedMovement(AsteroidView view, AsteroidMoveConfig config)
         {
-            StartMovement(RandomPicker.PickRandomAngle(0, 360));
+            _view = view;
+            _config = config;
         }
 
-        protected override void StartMovement(Vector3 direction)
+        public void Dispose()
         {
-            View.Rigidbody.AddForce(direction * Config.StartingForce, ForceMode2D.Impulse);
+            _config = null;
+        }
+
+        public void StartMovement()
+        {
+            var rigidbody = _view.GetComponent<Rigidbody2D>();
+            var direction = RandomPicker.PickRandomAngle(0, 360);
+            rigidbody.AddForce(direction * _config.StartingSpeed, ForceMode2D.Impulse);
         }
     }
 }

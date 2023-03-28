@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 577d53651372e3e428b07b68b93d0a7c, type: 3}
   m_Name: AsteroidMoveConfig
   m_EditorClassIdentifier: 
-  <StartingForce>k__BackingField: 0
-  <MoveType>k__BackingField: 0
-  <RotationSpeed>k__BackingField: 0
+  <StartingSpeed>k__BackingField: 5
+  <MoveType>k__BackingField: 1

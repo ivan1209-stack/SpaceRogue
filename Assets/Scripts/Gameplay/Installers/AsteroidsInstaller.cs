@@ -18,19 +18,9 @@ namespace Asteroids
             InstallAsteroidMovementFactory();
         }
 
-        private void InstallAsteroidMovementFactory()
+        private void InstallAsteroidsPool()
         {
-            Container.BindFactory<AsteroidMoveConfig, AsteroidView, Vector2, AsteroidMovement, AsteroidMovementFactory>().AsSingle();
-        }
-
-        private void InstallAsteroidViewFactory()
-        {
-            Container.BindFactory<Vector2, AsteroidConfig, AsteroidView, AsteroidViewFactory>().AsSingle();
-        }
-
-        private void InstallAsteroidFactory()
-        {
-            Container.BindFactory<Vector2, Vector2, AsteroidConfig, Asteroid, AsteroidFactory>().AsSingle();
+            Container.Bind<AsteroidsPool>().FromInstance(Pool).AsSingle();
         }
 
         private void InstallAsteroidsFactory()
@@ -39,9 +29,19 @@ namespace Asteroids
             Container.BindFactory<int, SpawnPointsFinder, AsteroidObjects, AsteroidsFactory>().AsSingle();
         }
 
-        private void InstallAsteroidsPool()
+        private void InstallAsteroidFactory()
         {
-            Container.Bind<AsteroidsPool>().FromInstance(Pool).AsSingle();
+            Container.BindFactory<Vector2, AsteroidConfig, Asteroid, AsteroidFactory>().AsSingle();
+        }
+
+        private void InstallAsteroidMovementFactory()
+        {
+            Container.BindFactory<AsteroidMoveConfig, AsteroidView, AsteroidRandomDirectedMovement, AsteroidMovementFactory>().AsSingle();
+        }
+
+        private void InstallAsteroidViewFactory()
+        {
+            Container.BindFactory<Vector2, AsteroidConfig, AsteroidView, AsteroidViewFactory>().AsSingle();
         }
     }
 }
