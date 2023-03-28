@@ -15,7 +15,7 @@ namespace Gameplay.Enemy.Behaviour
         private const float TurnValueAtObstacle = 0.1f;
 
         private readonly UnitMovementModel _unitMovementModel;
-        private readonly EnemyInputController _inputController;
+        private readonly EnemyInput _inputController;
         private readonly Timer _timer;
         
         private Vector3 _targetDirection;
@@ -25,7 +25,7 @@ namespace Gameplay.Enemy.Behaviour
 
         public EnemyRoamingBehaviour(
             SubscribedProperty<EnemyState> enemyState, EnemyView view, PlayerController playerController,
-            UnitMovementModel unitMovementModel, EnemyInputController inputController, EnemyBehaviourConfig config) 
+            UnitMovementModel unitMovementModel, EnemyInput inputController, EnemyBehaviourConfig config) 
             : base(enemyState, view, playerController, config)
         {
             _unitMovementModel = unitMovementModel;

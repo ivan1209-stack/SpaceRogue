@@ -70,7 +70,7 @@ namespace Gameplay.LevelProgress
 
             var enemyForces = _enemyForcesFactory.Create(_currentLevelPreset.SpaceConfig.EnemyGroupCount, spawnPointsFinder);
 
-            var level = new Level(levelNumber, _currentLevelPreset.EnemiesCountToWin, spaceView, mapCameraSize, player, enemyForces, space);
+            var level = new Level(levelNumber, _currentLevelPreset.EnemiesCountToWin, mapCameraSize, player, enemyForces, space);
             LevelCreated.Invoke(level);
             return level;
         }

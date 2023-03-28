@@ -4,9 +4,8 @@ using Gameplay.Space.Generator;
 using UnityEngine;
 using Zenject;
 using Gameplay.Pooling;
-using Gameplay.Player;
-using Gameplay.Survival;
-using Scriptables;
+using Gameplay.Movement;
+using Gameplay.Enemy.Movement;
 
 namespace Gameplay.Installers
 {
@@ -18,10 +17,10 @@ namespace Gameplay.Installers
         public override void InstallBindings()
         {
             InstallEnemyPool();
-            InstallEnemyForces();
-            InstallEnemyHealth();
-            InstallEnemy();
             InstallEnemyView();
+            InstallEnemyForces();
+            InstallEnemyMovement();
+            InstallEnemy();
         }
 
         private void InstallEnemyPool()
@@ -29,6 +28,13 @@ namespace Gameplay.Installers
             Container
                 .Bind<EnemyPool>()
                 .FromInstance(EnemyPool)
+                .AsSingle();
+        }
+
+        private void InstallEnemyView()
+        {
+            Container
+                .BindFactory<Vector2, EnemyConfig, EnemyView, EnemyViewFactory>()
                 .AsSingle();
         }
 
@@ -44,24 +50,21 @@ namespace Gameplay.Installers
                 .AsSingle();
         }
 
-        private void InstallEnemyHealth()
+        private void InstallEnemyMovement()
         {
             Container
-                .BindFactory<EntitySurvivalConfig, EntitySurvival, EnemySurvivalFactory>()
+                .BindFactory<EnemyView, EnemyInput, UnitMovementModel, EnemyMovement, EnemyMovementFactory>()
+                .AsSingle();
+
+            Container
+                .BindFactory<EnemyView, EnemyInput, UnitMovementModel, EnemyTurning, EnemyTurningFactory>()
                 .AsSingle();
         }
-
+        
         private void InstallEnemy()
         {
             Container
                 .BindFactory<Vector2, EnemyConfig, Enemy.Enemy, EnemyFactory>()
-                .AsSingle();
-        }
-
-        private void InstallEnemyView()
-        {
-            Container
-                .BindFactory<Vector2, EnemyConfig, EnemyView, EnemyViewFactory>()
                 .AsSingle();
         }
     }
