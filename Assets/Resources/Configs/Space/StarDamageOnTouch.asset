@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: StarDamageOnTouch
   m_EditorClassIdentifier: 
   <Prefab>k__BackingField: {fileID: 8183256062684284712, guid: 6f50c7ae8175d5f43974b8890a3eda7e, type: 3}
-  <Radius>k__BackingField: 1.01
-  <Damage>k__BackingField: 1000
+  <Radius>k__BackingField: 1.05
+  <Damage>k__BackingField: 9999
