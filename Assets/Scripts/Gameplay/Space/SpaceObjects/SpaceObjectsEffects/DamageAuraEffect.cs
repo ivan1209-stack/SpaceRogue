@@ -1,28 +1,26 @@
-using Gameplay.Space.SpaceObjects.Scriptables;
 using Gameplay.Space.SpaceObjects.SpaceObjectsEffects.Views;
 using Object = UnityEngine.Object;
 using Gameplay.Mechanics.Timer;
 using Gameplay.Damage;
-using Services;
 
 namespace Gameplay.Space.SpaceObjects.SpaceObjectsEffects
 {
     public sealed class DamageAuraEffect : SpaceObjectEffect
     {
         private readonly DamageAuraView _view;
-        private Timer _cooldownTimer { get; set; }
+        private readonly Timer _cooldownTimer;
 
-        public DamageAuraEffect(DamageAuraView view, DamageAuraConfig config)
+        public DamageAuraEffect(DamageModel damageModel, DamageAuraView view, Timer cooldownTimer)
         {
-            _cooldownTimer = new(config.DamageInterval, new Updater());
+            _cooldownTimer = cooldownTimer;
             _view = view;
-            _view.Init(new DamageModel(config.Damage), _cooldownTimer);
+            _view.Init(damageModel, _cooldownTimer);
         }
 
         public override void Dispose()
         {
-            Object.Destroy(_view.gameObject);
             _cooldownTimer.Dispose();
+            Object.Destroy(_view.gameObject);
         }
     }
 }
