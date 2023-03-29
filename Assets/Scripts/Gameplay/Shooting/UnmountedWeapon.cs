@@ -1,4 +1,5 @@
 using Abstracts;
+using Gameplay.Abstracts;
 
 namespace Gameplay.Shooting
 {

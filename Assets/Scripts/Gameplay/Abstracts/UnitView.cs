@@ -3,12 +3,12 @@ using Gameplay.Damage;
 using Gameplay.Survival;
 using UnityEngine;
 
-namespace Abstracts
+namespace Gameplay.Abstracts
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public abstract class UnitView : MonoBehaviour, IDamageableView
     {
-        public abstract UnitType UnitType { get; }
+        public abstract EntityType EntityType { get; }
         public event Action<DamageModel> DamageTaken = _ => { };
 
         public void TakeDamage(DamageModel damageModel)

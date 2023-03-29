@@ -1,6 +1,7 @@
 using Abstracts;
 using Gameplay.Camera;
 using System;
+using Gameplay.Abstracts;
 using UnityEngine;
 using Utilities.Unity;
 

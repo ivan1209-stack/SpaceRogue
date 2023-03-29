@@ -1,5 +1,6 @@
 using Abstracts;
 using System;
+using Gameplay.Abstracts;
 using UnityEngine;
 
 namespace Gameplay.Space.Obstacle

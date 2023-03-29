@@ -1,6 +1,6 @@
-namespace Abstracts
+namespace Gameplay.Abstracts
 {
-    public enum UnitType
+    public enum EntityType
     {
         None,
         Player,

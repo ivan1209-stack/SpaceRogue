@@ -1,5 +1,6 @@
 using System;
 using Abstracts;
+using Gameplay.Abstracts;
 using Gameplay.Shooting.Scriptables;
 using Zenject;
 
@@ -7,11 +8,11 @@ namespace Gameplay.Shooting.Factories
 {
     public class MountedWeaponFactory : IFactory<MountedWeaponConfig, UnitView, MountedWeapon>
     {
-        private readonly IFactory<WeaponConfig, UnitType, Weapon> _weaponFactory;
+        private readonly IFactory<WeaponConfig, EntityType, Weapon> _weaponFactory;
         private readonly GunPointViewFactory _gunPointViewFactory;
         private readonly TurretViewFactory _turretViewFactory;
 
-        public MountedWeaponFactory(IFactory<WeaponConfig, UnitType, Weapon> weaponFactory, GunPointViewFactory gunPointViewFactory, TurretViewFactory turretViewFactory)
+        public MountedWeaponFactory(IFactory<WeaponConfig, EntityType, Weapon> weaponFactory, GunPointViewFactory gunPointViewFactory, TurretViewFactory turretViewFactory)
         {
             _weaponFactory = weaponFactory;
             _gunPointViewFactory = gunPointViewFactory;
@@ -29,6 +30,6 @@ namespace Gameplay.Shooting.Factories
             };
         }
         
-        private Weapon CreateWeapon(MountedWeaponConfig config, UnitView unitView) => _weaponFactory.Create(config.MountedWeapon, unitView.UnitType);
+        private Weapon CreateWeapon(MountedWeaponConfig config, UnitView unitView) => _weaponFactory.Create(config.MountedWeapon, unitView.EntityType);
     }
 }

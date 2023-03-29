@@ -1,5 +1,6 @@
 using Abstracts;
 using System;
+using Gameplay.Abstracts;
 
 namespace Gameplay.Enemy.Movement
 {

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Abstracts
+namespace Gameplay.Abstracts
 {
     public interface IUnitTurningInput
     {

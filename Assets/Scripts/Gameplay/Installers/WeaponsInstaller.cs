@@ -1,4 +1,5 @@
 using Abstracts;
+using Gameplay.Abstracts;
 using Gameplay.Pooling;
 using Gameplay.Shooting;
 using Gameplay.Shooting.Factories;
@@ -69,7 +70,7 @@ namespace Gameplay.Installers
         private void InstallWeaponFactories()
         {
             Container
-                .BindIFactory<WeaponConfig, UnitType, Weapon>()
+                .BindIFactory<WeaponConfig, EntityType, Weapon>()
                 .FromFactory<WeaponFactory>();
 
             Container

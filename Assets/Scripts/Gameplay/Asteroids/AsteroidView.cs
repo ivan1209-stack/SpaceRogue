@@ -1,4 +1,5 @@
 using Abstracts;
+using Gameplay.Abstracts;
 using Gameplay.Damage;
 using Gameplay.Survival;
 using UnityEngine;
@@ -10,11 +11,11 @@ namespace Gameplay.Asteroids
     {
         public DamageModel DamageModel { get; private set; }
 
-        public override UnitType UnitType => UnitType.Asteroid;
+        public override EntityType EntityType => EntityType.Asteroid;
 
         public void Init(float damage)
         {
-            DamageModel = new(damage, UnitType);
+            DamageModel = new(damage, EntityType);
         }
 
         public void DealDamage(IDamageableView damageable)

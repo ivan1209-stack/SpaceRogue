@@ -1,4 +1,5 @@
 using Abstracts;
+using Gameplay.Abstracts;
 using Zenject;
 
 namespace Gameplay.Movement

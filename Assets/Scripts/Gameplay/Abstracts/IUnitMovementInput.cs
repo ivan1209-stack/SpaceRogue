@@ -1,6 +1,6 @@
 using System;
 
-namespace Abstracts
+namespace Gameplay.Abstracts
 {
     public interface IUnitMovementInput
     {
