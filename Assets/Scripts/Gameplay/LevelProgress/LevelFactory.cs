@@ -1,5 +1,7 @@
 using System;
 using Asteroids;
+using Gameplay.Asteroids;
+using Gameplay.Asteroids.Factories;
 using Gameplay.Enemy;
 using Gameplay.Player;
 using Gameplay.Services;
@@ -22,7 +24,7 @@ namespace Gameplay.LevelProgress
         private readonly PlayerFactory _playerFactory;
         private readonly SpaceFactory _spaceFactory;
         private readonly EnemyForcesFactory _enemyForcesFactory;
-        private readonly AsteroidsFactory _asteroidsFactory;
+        private readonly AsteroidsInSpaceFactory _asteroidsInSpaceFactory;
         
         private LevelPreset _currentLevelPreset;
 
@@ -38,7 +40,7 @@ namespace Gameplay.LevelProgress
             PlayerFactory playerFactory,
             SpaceFactory spaceFactory,
             EnemyForcesFactory enemyForcesFactory,
-            AsteroidsFactory asteroidsFactory)
+            AsteroidsInSpaceFactory asteroidsInSpaceFactory)
         {
             _levelPresetsConfig = levelPresetsConfig;
             _spaceViewFactory = spaceViewFactory;
@@ -49,7 +51,7 @@ namespace Gameplay.LevelProgress
             _playerFactory = playerFactory;
             _spaceFactory = spaceFactory;
             _enemyForcesFactory = enemyForcesFactory;
-            _asteroidsFactory = asteroidsFactory;
+            _asteroidsInSpaceFactory = asteroidsInSpaceFactory;
         }
 
         public override Level Create(int levelNumber)
@@ -74,7 +76,7 @@ namespace Gameplay.LevelProgress
 
             var enemyForces = _enemyForcesFactory.Create(_currentLevelPreset.SpaceConfig.EnemyGroupCount, spawnPointsFinder);
 
-            var asteroids = _asteroidsFactory.Create(_currentLevelPreset.SpaceConfig.AsteroidsOnStartCount, spawnPointsFinder);
+            var asteroids = _asteroidsInSpaceFactory.Create(_currentLevelPreset.SpaceConfig.AsteroidsOnStartCount, spawnPointsFinder);
             asteroids.SpawnStartAsteroids();
 
             var level = new Level(levelNumber, _currentLevelPreset.EnemiesCountToWin, spaceView, mapCameraSize, player, enemyForces, space, asteroids);

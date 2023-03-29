@@ -1,4 +1,4 @@
-namespace Asteroids
+namespace Gameplay.Asteroids.Enums
 {
     public enum AsteroidType
     {

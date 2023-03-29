@@ -1,7 +1,9 @@
+using Asteroids;
+using Gameplay.Asteroids.Scriptables;
 using UnityEngine;
 using Zenject;
 
-namespace Asteroids
+namespace Gameplay.Asteroids.Factories
 {
     public class AsteroidViewFactory : PlaceholderFactory<Vector2, AsteroidConfig, AsteroidView>
     {

@@ -1,12 +1,14 @@
-using Gameplay.Space.Generator;
 using System;
 using System.Collections.Generic;
+using Gameplay.Asteroids.Factories;
+using Gameplay.Asteroids.Scriptables;
+using Gameplay.Space.Generator;
 using UnityEngine;
 using Utilities.Mathematics;
 
-namespace Asteroids
+namespace Gameplay.Asteroids
 {
-    public class AsteroidObjects : IDisposable
+    public class AsteroidsInSpace : IDisposable
     {
         private readonly SpawnPointsFinder _spawnPointsFinder;
         private readonly AsteroidFactory _asteroidFactory;
@@ -18,21 +20,24 @@ namespace Asteroids
         private const int MaxTriesToCreateStartAsteroids = 100;
 
 
-        public AsteroidObjects(
+        public AsteroidsInSpace(
             int asteroidsOnStartCount, 
-            AsteroidSpawnConfig SpawnConfig, 
+            AsteroidSpawnConfig spawnConfig, 
             SpawnPointsFinder spawnPointsFinder, 
             AsteroidFactory asteroidFactory)
         {
             _asteroidsOnStartCount = asteroidsOnStartCount;
-            _spawnConfig = SpawnConfig;
+            _spawnConfig = spawnConfig;
             _spawnPointsFinder = spawnPointsFinder;
             _asteroidFactory = asteroidFactory;
         }
 
         public void Dispose()
         {
-            foreach (var asteroid in _asteroids) asteroid.Dispose();
+            foreach (var asteroid in _asteroids)
+            {
+                asteroid.Dispose();
+            }
             _asteroids.Clear();
         }
 

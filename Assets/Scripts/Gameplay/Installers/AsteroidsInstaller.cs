@@ -1,8 +1,13 @@
+using Asteroids;
+using Gameplay.Asteroids;
+using Gameplay.Asteroids.Factories;
+using Gameplay.Asteroids.Movement;
+using Gameplay.Asteroids.Scriptables;
 using Gameplay.Space.Generator;
 using UnityEngine;
 using Zenject;
 
-namespace Asteroids
+namespace Gameplay.Installers
 {
     public class AsteroidsInstaller : MonoInstaller
     {
@@ -12,25 +17,31 @@ namespace Asteroids
         public override void InstallBindings()
         {
             InstallAsteroidsPool();
-            InstallAsteroidsFactory();
-            InstallAsteroidFactory();
             InstallAsteroidViewFactory();
             InstallAsteroidMovementFactory();
+            InstallAsteroidFactory();
+            InstallAsteroidsInSpaceFactory();
         }
 
         private void InstallAsteroidsPool()
         {
-            Container.Bind<AsteroidsPool>().FromInstance(Pool).AsSingle();
+            Container
+                .Bind<AsteroidsPool>()
+                .FromInstance(Pool)
+                .AsSingle();
         }
 
-        private void InstallAsteroidsFactory()
+        private void InstallAsteroidViewFactory()
         {
             Container
-                .Bind<AsteroidSpawnConfig>()
-                .FromInstance(AsteroidSpawnConfig)
-                .WhenInjectedInto<AsteroidsFactory>();
+                .BindFactory<Vector2, AsteroidConfig, AsteroidView, AsteroidViewFactory>()
+                .AsSingle();
+        }
+
+        private void InstallAsteroidMovementFactory()
+        {
             Container
-                .BindFactory<int, SpawnPointsFinder, AsteroidObjects, AsteroidsFactory>()
+                .BindFactory<float, AsteroidView, AsteroidRandomDirectedMovement, AsteroidMovementFactory>()
                 .AsSingle();
         }
 
@@ -41,17 +52,15 @@ namespace Asteroids
                 .AsSingle();
         }
 
-        private void InstallAsteroidMovementFactory()
+        private void InstallAsteroidsInSpaceFactory()
         {
             Container
-                .BindFactory<AsteroidMoveConfig, AsteroidView, AsteroidRandomDirectedMovement, AsteroidMovementFactory>()
-                .AsSingle();
-        }
-
-        private void InstallAsteroidViewFactory()
-        {
+                .Bind<AsteroidSpawnConfig>()
+                .FromInstance(AsteroidSpawnConfig)
+                .WhenInjectedInto<AsteroidsInSpaceFactory>();
+            
             Container
-                .BindFactory<Vector2, AsteroidConfig, AsteroidView, AsteroidViewFactory>()
+                .BindFactory<int, SpawnPointsFinder, AsteroidsInSpace, AsteroidsInSpaceFactory>()
                 .AsSingle();
         }
     }

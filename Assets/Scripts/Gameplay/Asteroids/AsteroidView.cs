@@ -3,7 +3,7 @@ using Gameplay.Damage;
 using Gameplay.Survival;
 using UnityEngine;
 
-namespace Asteroids
+namespace Gameplay.Asteroids
 {
     [RequireComponent(typeof(Rigidbody2D), typeof(CircleCollider2D))]
     public class AsteroidView : UnitView, IDamagingView
@@ -24,7 +24,8 @@ namespace Asteroids
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject.TryGetComponent(out IDamageableView victim)) DealDamage(victim); //TODO asteroid destroy on colision with non-IDamagebleView objects
+            if (collision.gameObject.TryGetComponent(out IDamageableView victim)) DealDamage(victim); 
+            //TODO asteroid destroy on collision with heavy objects
         }
     }
 }

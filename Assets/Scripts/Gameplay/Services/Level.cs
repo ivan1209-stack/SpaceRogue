@@ -1,5 +1,6 @@
 using System;
 using Asteroids;
+using Gameplay.Asteroids;
 using Gameplay.Enemy;
 using Gameplay.Space.Generator;
 
@@ -11,7 +12,7 @@ namespace Gameplay.Services
         private readonly Player.Player _player;
         private readonly EnemyForces _enemyForces;
         private readonly Space.Space _space;
-        private readonly AsteroidObjects _asteroids;
+        private readonly AsteroidsInSpace _asteroids;
 
         public int CurrentLevelNumber { get; private set; }
         public int EnemiesCountToWin { get; private set; }
@@ -26,7 +27,7 @@ namespace Gameplay.Services
             Player.Player player,
             EnemyForces enemyForces,
             Space.Space space,
-            AsteroidObjects asteroids)
+            AsteroidsInSpace asteroids)
         {
             CurrentLevelNumber = currentLevelNumber;
             EnemiesCountToWin = enemiesCountToWin;

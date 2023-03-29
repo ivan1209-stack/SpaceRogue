@@ -1,8 +1,8 @@
-using Scriptables;
 using System.Collections.Generic;
+using Scriptables;
 using UnityEngine;
 
-namespace Asteroids
+namespace Gameplay.Asteroids.Scriptables
 {
     [CreateAssetMenu(fileName = nameof(AsteroidSpawnConfig), menuName = "Configs/Asteroids/" + nameof(AsteroidSpawnConfig))]
     public class AsteroidSpawnConfig : ScriptableObject

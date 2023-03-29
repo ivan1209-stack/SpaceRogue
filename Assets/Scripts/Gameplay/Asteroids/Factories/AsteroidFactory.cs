@@ -1,8 +1,9 @@
+using Gameplay.Asteroids.Scriptables;
 using Gameplay.Survival;
 using UnityEngine;
 using Zenject;
 
-namespace Asteroids
+namespace Gameplay.Asteroids.Factories
 {
     public class AsteroidFactory : PlaceholderFactory<Vector2, AsteroidConfig, Asteroid>
     {
@@ -20,7 +21,7 @@ namespace Asteroids
         public override Asteroid Create(Vector2 spawnPoint, AsteroidConfig config)
         {
             var view = _asteroidViewFactory.Create(spawnPoint, config);
-            var movement = _asteroidMovementFactory.Create(config.MoveConfig, view);
+            var movement = _asteroidMovementFactory.Create(config.StartingSpeed, view);
             var survival = _entitySurvivalFactory.Create(config.SurvivalConfig);
             return new(view, movement, survival);
         }
