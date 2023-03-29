@@ -1,8 +1,10 @@
 using System;
 using Gameplay.Abstracts;
+using Gameplay.Damage;
 using Gameplay.Survival.DamageImmunityFrame;
 using Gameplay.Survival.Health;
 using Gameplay.Survival.Shield;
+using Utilities.Mathematics;
 
 namespace Gameplay.Survival
 {
@@ -23,15 +25,23 @@ namespace Gameplay.Survival
             _entityDamageImmunityFrame = entityDamageImmunityFrame;
 
             EntityHealth.HealthReachedZero += OnHealthReachedZero;
+            _entityView.DamageTaken += ReceiveDamage;
         }
 
         public void Dispose()
         {
+            _entityView.DamageTaken -= ReceiveDamage;
             EntityHealth.HealthReachedZero -= OnHealthReachedZero;
             
             EntityHealth.Dispose();
-            EntityShield.Dispose();
-            _entityDamageImmunityFrame.Dispose();
+            EntityShield?.Dispose();
+            _entityDamageImmunityFrame?.Dispose();
+        }
+
+        internal void ReceiveDamage(DamageModel damageModel)
+        {
+            var damage = RandomPicker.PickRandomBetweenTwoValues(damageModel.MinDamage, damageModel.MaxDamage);
+            TakeDamage(damage);
         }
 
         internal void TakeDamage(float damageAmount)
