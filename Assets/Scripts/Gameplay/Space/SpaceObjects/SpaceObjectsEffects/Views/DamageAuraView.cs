@@ -83,9 +83,9 @@ namespace Gameplay.Space.SpaceObjects.SpaceObjectsEffects.Views
                 return;
             }
 
-            foreach (var damageable in _damageablesInAura)
+            for (int i = 0; i < _damageablesInAura.Count; i++)
             {
-                damageable?.TakeDamage(DamageModel);
+                _damageablesInAura[i]?.TakeDamage(DamageModel);
             }
             
             _damageTimer.Start();
