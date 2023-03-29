@@ -9,7 +9,7 @@ namespace Gameplay.GameEvent.Caravan
     [RequireComponent(typeof(BoxCollider2D))]
     public sealed class CaravanView : UnitView, IDamagingView
     {
-        public override EntityType EntityType => EntityType.Assistant;
+        public override EntityType EntityType => EntityType.EnemyAssistant;
         public bool IsLastDamageFromPlayer { get; private set; }
         public DamageModel DamageModel { get; private set; }
 

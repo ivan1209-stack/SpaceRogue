@@ -5,7 +5,7 @@ namespace Gameplay.Abstracts
         None,
         Player,
         Enemy,
-        Assistant,
+        EnemyAssistant,
         Asteroid
     }
 }
