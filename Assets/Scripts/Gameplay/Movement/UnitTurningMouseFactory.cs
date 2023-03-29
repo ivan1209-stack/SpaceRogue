@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Gameplay.Movement
 {
-    public sealed class UnitTurningMouseFactory : PlaceholderFactory<UnitView, IUnitTurningMouseInput, UnitMovementModel, UnitTurningMouse>
+    public sealed class UnitTurningMouseFactory : PlaceholderFactory<EntityView, IUnitTurningMouseInput, UnitMovementModel, UnitTurningMouse>
     {
     }
 }

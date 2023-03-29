@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Gameplay.Movement
 {
-    public sealed class UnitMovementFactory : PlaceholderFactory<UnitView, IUnitMovementInput, UnitMovementModel, UnitMovement>
+    public sealed class UnitMovementFactory : PlaceholderFactory<EntityView, IUnitMovementInput, UnitMovementModel, UnitMovement>
     {
     }
 }

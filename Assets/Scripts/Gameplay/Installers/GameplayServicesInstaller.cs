@@ -99,15 +99,15 @@ namespace Gameplay.Installers
                 .AsSingle();
 
             Container
-                .BindFactory<UnitView, IUnitMovementInput, UnitMovementModel, UnitMovement, UnitMovementFactory>()
+                .BindFactory<EntityView, IUnitMovementInput, UnitMovementModel, UnitMovement, UnitMovementFactory>()
                 .AsSingle();
 
             Container
-                .BindFactory<UnitView, IUnitTurningInput, UnitMovementModel, UnitTurning, UnitTurningFactory>()
+                .BindFactory<EntityView, IUnitTurningInput, UnitMovementModel, UnitTurning, UnitTurningFactory>()
                 .AsSingle();
             
             Container
-                .BindFactory<UnitView, IUnitTurningMouseInput, UnitMovementModel, UnitTurningMouse, UnitTurningMouseFactory>()
+                .BindFactory<EntityView, IUnitTurningMouseInput, UnitMovementModel, UnitTurningMouse, UnitTurningMouseFactory>()
                 .AsSingle();
         }
         

@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Gameplay.Abstracts
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public abstract class UnitView : MonoBehaviour, IDamageableView
+    public abstract class EntityView : MonoBehaviour, IDamageableView
     {
         public abstract EntityType EntityType { get; }
         public event Action<DamageModel> DamageTaken = _ => { };

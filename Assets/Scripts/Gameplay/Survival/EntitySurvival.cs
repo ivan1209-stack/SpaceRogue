@@ -1,4 +1,5 @@
 using System;
+using Gameplay.Abstracts;
 using Gameplay.Survival.DamageImmunityFrame;
 using Gameplay.Survival.Health;
 using Gameplay.Survival.Shield;
@@ -7,16 +8,18 @@ namespace Gameplay.Survival
 {
     public sealed class EntitySurvival : IDisposable
     {
+        private readonly EntityView _entityView;
         private readonly EntityDamageImmunityFrame _entityDamageImmunityFrame;
 
         public EntityHealth EntityHealth { get; }
         public EntityShield EntityShield { get; }
         public event Action UnitDestroyed = () => { };
 
-        public EntitySurvival(EntityHealth entityHealth, EntityShield entityShield, EntityDamageImmunityFrame entityDamageImmunityFrame)
+        public EntitySurvival(EntityView entityView, EntityHealth entityHealth, EntityShield entityShield, EntityDamageImmunityFrame entityDamageImmunityFrame)
         {
             EntityHealth = entityHealth;
             EntityShield = entityShield;
+            _entityView = entityView;
             _entityDamageImmunityFrame = entityDamageImmunityFrame;
 
             EntityHealth.HealthReachedZero += OnHealthReachedZero;

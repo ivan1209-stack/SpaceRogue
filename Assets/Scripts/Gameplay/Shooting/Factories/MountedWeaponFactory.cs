@@ -6,7 +6,7 @@ using Zenject;
 
 namespace Gameplay.Shooting.Factories
 {
-    public class MountedWeaponFactory : IFactory<MountedWeaponConfig, UnitView, MountedWeapon>
+    public class MountedWeaponFactory : IFactory<MountedWeaponConfig, EntityView, MountedWeapon>
     {
         private readonly IFactory<WeaponConfig, EntityType, Weapon> _weaponFactory;
         private readonly GunPointViewFactory _gunPointViewFactory;
@@ -19,17 +19,17 @@ namespace Gameplay.Shooting.Factories
             _turretViewFactory = turretViewFactory;
         }
 
-        public MountedWeapon Create(MountedWeaponConfig config, UnitView unitView)
+        public MountedWeapon Create(MountedWeaponConfig config, EntityView entityView)
         {
             return config.WeaponMountType switch
             {
-                WeaponMountType.None => new UnmountedWeapon(CreateWeapon(config, unitView), unitView),
-                WeaponMountType.Frontal => new FrontalMountedWeapon(CreateWeapon(config, unitView), unitView, _gunPointViewFactory),
-                WeaponMountType.Turret => new TurretMountedWeapon(CreateWeapon(config, unitView), unitView, _turretViewFactory, _gunPointViewFactory),
+                WeaponMountType.None => new UnmountedWeapon(CreateWeapon(config, entityView), entityView),
+                WeaponMountType.Frontal => new FrontalMountedWeapon(CreateWeapon(config, entityView), entityView, _gunPointViewFactory),
+                WeaponMountType.Turret => new TurretMountedWeapon(CreateWeapon(config, entityView), entityView, _turretViewFactory, _gunPointViewFactory),
                 _ => throw new ArgumentOutOfRangeException(nameof(config), config, "A not-existent weapon mount type is provided")
             };
         }
         
-        private Weapon CreateWeapon(MountedWeaponConfig config, UnitView unitView) => _weaponFactory.Create(config.MountedWeapon, unitView.EntityType);
+        private Weapon CreateWeapon(MountedWeaponConfig config, EntityView entityView) => _weaponFactory.Create(config.MountedWeapon, entityView.EntityType);
     }
 }

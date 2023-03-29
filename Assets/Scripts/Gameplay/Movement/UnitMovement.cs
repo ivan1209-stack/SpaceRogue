@@ -16,12 +16,12 @@ namespace Gameplay.Movement
         public float MaxSpeed => _model.MaxSpeed;
 
         public UnitMovement(
-            UnitView unitView,
+            EntityView entityView,
             IUnitMovementInput movementInput,
             UnitMovementModel model)
         {
-            _rigidbody = unitView.GetComponent<Rigidbody2D>();
-            _transform = unitView.transform;
+            _rigidbody = entityView.GetComponent<Rigidbody2D>();
+            _transform = entityView.transform;
             _movementInput = movementInput;
             _model = model;
 

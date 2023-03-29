@@ -19,13 +19,13 @@ namespace Gameplay.Movement
 
         public UnitTurningMouse(
             CameraView cameraView,
-            UnitView unitView,
+            EntityView entityView,
             IUnitTurningMouseInput turningMouseInput,
             UnitMovementModel model)
         {
             _camera = cameraView.GetComponent<UnityEngine.Camera>();
-            _transform = unitView.transform;
-            _rigidbody = unitView.GetComponent<Rigidbody2D>();
+            _transform = entityView.transform;
+            _rigidbody = entityView.GetComponent<Rigidbody2D>();
             _turningMouseInput = turningMouseInput;
             _model = model;
 

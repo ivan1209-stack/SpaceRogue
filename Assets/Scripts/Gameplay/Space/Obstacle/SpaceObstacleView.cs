@@ -8,13 +8,13 @@ namespace Gameplay.Space.Obstacle
     [RequireComponent(typeof(Collider2D))]
     public sealed class SpaceObstacleView : MonoBehaviour
     {
-        public event Action<UnitView> OnTriggerEnter = (UnitView _) => {};
-        public event Action<UnitView> OnTriggerStay = (UnitView _) => { };
-        public event Action<UnitView> OnTriggerExit = (UnitView _) => { };
+        public event Action<EntityView> OnTriggerEnter = (EntityView _) => {};
+        public event Action<EntityView> OnTriggerStay = (EntityView _) => { };
+        public event Action<EntityView> OnTriggerExit = (EntityView _) => { };
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.TryGetComponent(out UnitView unitView))
+            if (collision.gameObject.TryGetComponent(out EntityView unitView))
             {
                 OnTriggerEnter(unitView);
             }
@@ -22,7 +22,7 @@ namespace Gameplay.Space.Obstacle
 
         private void OnTriggerStay2D(Collider2D collision)
         {
-            if(collision.gameObject.TryGetComponent(out UnitView unitView))
+            if(collision.gameObject.TryGetComponent(out EntityView unitView))
             {
                 OnTriggerStay(unitView);
             }
@@ -30,7 +30,7 @@ namespace Gameplay.Space.Obstacle
 
         private void OnTriggerExit2D(Collider2D collision)
         {
-            if (collision.gameObject.TryGetComponent(out UnitView unitView))
+            if (collision.gameObject.TryGetComponent(out EntityView unitView))
             {
                 OnTriggerExit(unitView);
             }

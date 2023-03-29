@@ -13,12 +13,12 @@ namespace Gameplay.Movement
         private readonly UnitMovementModel _model;
 
         public UnitTurning(
-            UnitView unitView,
+            EntityView entityView,
             IUnitTurningInput turningInput,
             UnitMovementModel model)
         {
-            _transform = unitView.transform;
-            _rigidbody = unitView.GetComponent<Rigidbody2D>();
+            _transform = entityView.transform;
+            _rigidbody = entityView.GetComponent<Rigidbody2D>();
             _turningInput = turningInput;
             _model = model;
 

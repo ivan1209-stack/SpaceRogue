@@ -56,7 +56,7 @@ namespace Gameplay.Installers
                 .WhenInjectedInto<PlayerSurvivalFactory>();
             
             Container
-                .BindFactory<EntitySurvival, PlayerSurvivalFactory>()
+                .BindFactory<EntityView, EntitySurvival, PlayerSurvivalFactory>()
                 .AsSingle();
         }
 

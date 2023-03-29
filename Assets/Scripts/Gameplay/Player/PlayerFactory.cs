@@ -47,7 +47,7 @@ namespace Gameplay.Player
             var unitMovement = _playerMovementFactory.Create(playerView, _playerInput, model);
             var unitTurningMouse = _unitTurningMouseFactory.Create(playerView, _playerInput, model);
             var playerWeapon = _playerWeaponFactory.Create(playerView);
-            var playerSurvival = _playerSurvivalFactory.Create();
+            var playerSurvival = _playerSurvivalFactory.Create(playerView);
             
             PlayerSpawned.Invoke(new PlayerSpawnedEventArgs
             {

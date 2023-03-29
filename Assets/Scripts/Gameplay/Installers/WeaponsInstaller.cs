@@ -74,7 +74,7 @@ namespace Gameplay.Installers
                 .FromFactory<WeaponFactory>();
 
             Container
-                .BindIFactory<MountedWeaponConfig, UnitView, MountedWeapon>()
+                .BindIFactory<MountedWeaponConfig, EntityView, MountedWeapon>()
                 .FromFactory<MountedWeaponFactory>();
         }
     }

@@ -42,7 +42,7 @@ namespace Gameplay.Enemy
             var model = _unitMovementModelFactory.Create(enemyConfig.Movement);
             var unitMovement = _unitMovementFactory.Create(enemyView, enemyInput, model);
             var unitTurning = _unitTurningFactory.Create(enemyView, enemyInput, model);
-            var enemySurvival = _entitySurvivalFactory.Create(enemyConfig.Survival);
+            var enemySurvival = _entitySurvivalFactory.Create(enemyView, enemyConfig.Survival);
             var enemy = new Enemy(enemyView, unitMovement, unitTurning, enemySurvival);
             EnemyCreated.Invoke(enemy);
             return enemy;
