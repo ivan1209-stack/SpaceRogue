@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 528327598525220824}
   - component: {fileID: 7325650567856342081}
-  m_Layer: 0
-  m_Name: minimapIcon
+  m_Layer: 8
+  m_Name: MinimapIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
