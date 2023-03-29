@@ -180,7 +180,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1341897908935250647}
   - component: {fileID: 8448350388064284482}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Minimapicon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

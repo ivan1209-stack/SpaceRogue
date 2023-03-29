@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: BlackHoleDamageAura
   m_EditorClassIdentifier: 
   <Prefab>k__BackingField: {fileID: 8828685623546728080, guid: 703bf5a5f56da924aa444a565fdc1aba, type: 3}
-  <Radius>k__BackingField: 4
+  <Radius>k__BackingField: 2.8
   <Damage>k__BackingField: 10
   <DamageInterval>k__BackingField: 0.3
