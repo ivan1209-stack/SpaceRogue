@@ -1,4 +1,6 @@
 using System;
+using Asteroids;
+using Gameplay.Asteroids;
 using Gameplay.Enemy;
 
 namespace Gameplay.Services
@@ -8,6 +10,7 @@ namespace Gameplay.Services
         private readonly Player.Player _player;
         private readonly EnemyForces _enemyForces;
         private readonly Space.Space _space;
+        private readonly AsteroidsInSpace _asteroids;
 
         public int CurrentLevelNumber { get; private set; }
         public int EnemiesCountToWin { get; private set; }
@@ -20,7 +23,8 @@ namespace Gameplay.Services
             float mapCameraSize,
             Player.Player player,
             EnemyForces enemyForces,
-            Space.Space space)
+            Space.Space space,
+            AsteroidsInSpace asteroids)
         {
             CurrentLevelNumber = currentLevelNumber;
             EnemiesCountToWin = enemiesCountToWin;
@@ -29,6 +33,7 @@ namespace Gameplay.Services
             _enemyForces = enemyForces;
             _space = space;
             EnemiesCreatedCount = _enemyForces.Enemies.Count;
+            _asteroids = asteroids;
         }
 
         public void Dispose()
@@ -36,6 +41,7 @@ namespace Gameplay.Services
             _player.Dispose();
             _enemyForces.Dispose();
             _space.Dispose();
+            _asteroids.Dispose();
         }
     }
 }

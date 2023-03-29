@@ -1,4 +1,7 @@
 using System;
+using Asteroids;
+using Gameplay.Asteroids;
+using Gameplay.Asteroids.Factories;
 using Gameplay.Enemy;
 using Gameplay.Player;
 using Gameplay.Services;
@@ -21,6 +24,7 @@ namespace Gameplay.LevelProgress
         private readonly PlayerFactory _playerFactory;
         private readonly SpaceFactory _spaceFactory;
         private readonly EnemyForcesFactory _enemyForcesFactory;
+        private readonly AsteroidsInSpaceFactory _asteroidsInSpaceFactory;
         
         private LevelPreset _currentLevelPreset;
 
@@ -35,7 +39,8 @@ namespace Gameplay.LevelProgress
             SpaceObstacleFactory spaceObstacleFactory,
             PlayerFactory playerFactory,
             SpaceFactory spaceFactory,
-            EnemyForcesFactory enemyForcesFactory)
+            EnemyForcesFactory enemyForcesFactory,
+            AsteroidsInSpaceFactory asteroidsInSpaceFactory)
         {
             _levelPresetsConfig = levelPresetsConfig;
             _spaceViewFactory = spaceViewFactory;
@@ -46,6 +51,7 @@ namespace Gameplay.LevelProgress
             _playerFactory = playerFactory;
             _spaceFactory = spaceFactory;
             _enemyForcesFactory = enemyForcesFactory;
+            _asteroidsInSpaceFactory = asteroidsInSpaceFactory;
         }
 
         public override Level Create(int levelNumber)
@@ -70,7 +76,10 @@ namespace Gameplay.LevelProgress
 
             var enemyForces = _enemyForcesFactory.Create(_currentLevelPreset.SpaceConfig.EnemyGroupCount, spawnPointsFinder);
 
-            var level = new Level(levelNumber, _currentLevelPreset.EnemiesCountToWin, mapCameraSize, player, enemyForces, space);
+            var asteroids = _asteroidsInSpaceFactory.Create(_currentLevelPreset.SpaceConfig.AsteroidsOnStartCount, spawnPointsFinder);
+            asteroids.SpawnStartAsteroids();
+
+            var level = new Level(levelNumber, _currentLevelPreset.EnemiesCountToWin, mapCameraSize, player, enemyForces, space, asteroids);
             LevelCreated.Invoke(level);
             return level;
         }

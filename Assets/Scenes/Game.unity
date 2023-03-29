@@ -162,6 +162,7 @@ Transform:
   - {fileID: 1654981486}
   - {fileID: 1176755960}
   - {fileID: 1973976291}
+  - {fileID: 1275334704}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -695,6 +696,50 @@ MonoBehaviour:
   <ProjectilePool>k__BackingField: {fileID: 1000889151}
   <TurretView>k__BackingField: {fileID: 8164695149620593358, guid: d6422591c11576341a9c2efd0cb9ff39, type: 3}
   <GunPoint>k__BackingField: {fileID: 9173480770074951107, guid: 4e10d3977de4e464996c9cd1f7ffaeb2, type: 3}
+--- !u!1 &787441249
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 787441251}
+  - component: {fileID: 787441250}
+  m_Layer: 0
+  m_Name: AsteroidsPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &787441250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787441249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58fb07395b1467f48be70f20a3e7d870, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &787441251
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787441249}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12.22578, y: -13.7599, z: -0.39068627}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &975368637
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1517,6 +1562,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MinimapCamera>k__BackingField: {fileID: 1998262877}
   <MinimapConfig>k__BackingField: {fileID: 11400000, guid: 81136bfea65e88c4aacddcd20930b12b, type: 2}
+--- !u!1 &1275334703
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1275334704}
+  - component: {fileID: 1275334705}
+  m_Layer: 0
+  m_Name: AsteroidsInstaller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1275334704
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275334703}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 273910148}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1275334705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275334703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d186dd5ebad3e64e8748430e7f57d28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <AsteroidSpawnConfig>k__BackingField: {fileID: 11400000, guid: 11e3f03003463c7408ffcfcd2e93ec96, type: 2}
+  <Pool>k__BackingField: {fileID: 787441250}
 --- !u!114 &1550631455 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5126202131307791797, guid: 6772579c4a9493d4a8eaa4fdc71c7217, type: 3}
@@ -1868,6 +1959,7 @@ MonoBehaviour:
   - {fileID: 1654981487}
   - {fileID: 1176755961}
   - {fileID: 1973976292}
+  - {fileID: 1275334705}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
