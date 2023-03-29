@@ -55,18 +55,19 @@ namespace Gameplay.Asteroids
         private void TrySpawnAsteroid(AsteroidSpawnConfig config)
         {
             var newAsteroidConfig = RandomPicker.PickOneElementByWeights(config.AsteroidConfigs);
-            var asteroidRadius = newAsteroidConfig.Prefab.GetComponent<CircleCollider2D>().radius;
-            var asteroidSpawnOrbit = RandomPicker.PickRandomBetweenTwoValues(0, newAsteroidConfig.MaxSpawnRadius);
+            var asteroidCollider = newAsteroidConfig.Prefab.GetComponent<CircleCollider2D>();
+            var asteroidRadius = asteroidCollider.radius;
+            var asteroidSpawnRadius = RandomPicker.PickRandomBetweenTwoValues(0, newAsteroidConfig.MaxSpawnRadius);
             var spawnTries = 0;
             do
             {
-                if (_spawnPointsFinder.TryGetSpaceObjectSpawnPoint(asteroidRadius, asteroidSpawnOrbit, out var spawnPoint))
+                if (_spawnPointsFinder.TryGetSpaceObjectSpawnPoint(asteroidRadius, asteroidSpawnRadius, out var spawnPoint))
                 {
                     var newAsteroid = _asteroidFactory.Create(spawnPoint, newAsteroidConfig);
                     _asteroids.Add(newAsteroid);
                     return;
                 }
-                else spawnTries++;
+                spawnTries++;
             } 
             while (spawnTries < MaxSpawnTriesPerAsteroid);
         }
