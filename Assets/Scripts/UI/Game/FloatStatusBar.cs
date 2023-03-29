@@ -53,10 +53,12 @@ namespace UI.Game
             if (_entitySurvival != null)
             {
                 _entitySurvival.EntityHealth.HealthChanged -= UpdateHealthBar;
+                UnityEngine.Object.Destroy(_statusBarView.gameObject);
 
                 if (_shieldStatusBarView != null)
                 {
                     _entitySurvival.EntityShield.ShieldChanged -= UpdateShieldBar;
+                    UnityEngine.Object.Destroy(_shieldStatusBarView.gameObject);
                 }
             }
         }
@@ -91,6 +93,7 @@ namespace UI.Game
         {
             if (_unitCollider == null)
             {
+                Dispose();
                 return;
             }
 
