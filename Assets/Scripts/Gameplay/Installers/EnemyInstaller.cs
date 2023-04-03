@@ -6,6 +6,7 @@ using Zenject;
 using Gameplay.Pooling;
 using Gameplay.Movement;
 using Gameplay.Enemy.Movement;
+using Gameplay.Enemy.Behaviour;
 
 namespace Gameplay.Installers
 {
@@ -19,6 +20,7 @@ namespace Gameplay.Installers
             InstallEnemyPool();
             InstallEnemyView();
             InstallEnemyForces();
+            InstallEnemyBehaviourSwitcherFactory();
             InstallEnemy();
         }
 
@@ -49,10 +51,25 @@ namespace Gameplay.Installers
                 .AsSingle();
         }
         
+        private void InstallEnemyBehaviourSwitcherFactory()
+        {
+            Container
+                .BindIFactory<EnemyStateInfo, EnemyView, EnemyInput, UnitMovementModel, EnemyBehaviourConfig, Transform, EnemyBehaviour>()
+                .FromFactory<EnemyBehaviourFactory>();
+
+            Container
+                .Bind<EnemyBehaviourFactory>()
+                .AsCached();
+
+            Container
+                .BindFactory<EnemyView, EnemyInput, UnitMovementModel, EnemyBehaviourConfig, EnemyBehaviourSwitcher, EnemyBehaviourSwitcherFactory>()
+                .AsSingle();
+        }
+        
         private void InstallEnemy()
         {
             Container
-                .BindFactory<Vector2, EnemyConfig, Enemy.Enemy, EnemyFactory>()
+                .BindFactory<int, Vector2, EnemyConfig, Enemy.Enemy, EnemyFactory>()
                 .AsSingle();
         }
     }

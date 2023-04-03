@@ -1,7 +1,9 @@
+using System;
 using Gameplay.Enemy.Movement;
-using Gameplay.Player;
-using Gameplay.Shooting;
-using Utilities.Reactive.SubscriptionProperty;
+using Gameplay.Movement;
+using Gameplay.Services;
+using Services;
+using UnityEngine;
 
 namespace Gameplay.Enemy.Behaviour
 {
@@ -10,28 +12,33 @@ namespace Gameplay.Enemy.Behaviour
         private readonly EnemyState _lastEnemyState;
 
         public EnemyCombatWithRetreatBehaviour(
-            SubscribedProperty<EnemyState> enemyState, EnemyView view, PlayerController playerController,
-            EnemyInput inputController, Weapon frontalTurret, EnemyBehaviourConfig config,
-            EnemyState lastEnemyState) 
-            : base(enemyState, view, playerController, inputController, frontalTurret, config)
+            Updater updater,
+            PlayerLocator playerLocator,
+            EnemiesAlarm enemiesAlarm,
+            EnemyState state,
+            Action<EnemyState> enemyStateChanged,
+            EnemyView view,
+            EnemyInput input,
+            UnitMovementModel model,
+            EnemyBehaviourConfig config,
+            Transform targetTransform,
+            EnemyState lastEnemyState)
+            : base(
+                  updater,
+                  playerLocator,
+                  enemiesAlarm,
+                  state,
+                  enemyStateChanged,
+                  view,
+                  input,
+                  model,
+                  config,
+                  targetTransform)
         {
             _lastEnemyState = lastEnemyState;
         }
 
-        protected override void DetectPlayer()
-        {
-            if (_distance > Config.PlayerDetectionRadius)
-            {
-                _inZone = false;
-                ExitCombat();
-            }
-            else
-            {
-                _inZone = true;
-            }
-        }
-
-        private void ExitCombat()
+        protected override void OnLosingTarget()
         {
             ChangeState(_lastEnemyState);
         }
