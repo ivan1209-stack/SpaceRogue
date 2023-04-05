@@ -1,5 +1,6 @@
 using System;
 using Object = UnityEngine.Object;
+using UnityEngine;
 
 namespace Gameplay.Space.Planets
 {
@@ -7,6 +8,8 @@ namespace Gameplay.Space.Planets
     {
         private readonly PlanetView _planetView;
         private readonly PlanetMovement _planetMovement;
+
+        public readonly Rigidbody2D PlanetRigidbody;
 
         public event Action<Planet> PlanetDestroyed = (_) => { };
 
@@ -17,6 +20,8 @@ namespace Gameplay.Space.Planets
 
             _planetView.CollidedSpaceObject += OnSpaceObjectCollision;
             _planetView.CollidedPlanet += OnPlanetCollision;
+
+            PlanetRigidbody = _planetView.GetComponent<Rigidbody2D>();
         }
 
         public void Dispose()

@@ -1,16 +1,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using Gameplay.Space.Planets;
+using UnityEngine;
+using Services;
 
 namespace Gameplay.Space.SpaceObjects.SpaceObjectsEffects
 {
     public sealed class PlanetSystemEffect : SpaceObjectEffect
     {
         private readonly List<Planet> _planets;
+        private readonly Transform _spaceObjectTransform;
+        private readonly Updater _updater;
 
-        public PlanetSystemEffect(List<Planet> planets)
+        public PlanetSystemEffect(List<Planet> planets, Transform spaceObjectTransform, Updater updater)
         {
+            _updater = updater;
             _planets = planets;
+            _spaceObjectTransform = spaceObjectTransform;
 
             foreach (var planet in planets)
             {

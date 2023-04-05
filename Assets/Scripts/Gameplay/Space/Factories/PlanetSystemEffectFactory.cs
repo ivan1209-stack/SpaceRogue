@@ -5,6 +5,7 @@ using Gameplay.Space.SpaceObjects.Scriptables;
 using Gameplay.Space.SpaceObjects.SpaceObjectsEffects;
 using UnityEngine;
 using Utilities.Mathematics;
+using Services;
 using Zenject;
 
 namespace Gameplay.Space.Factories
@@ -12,10 +13,11 @@ namespace Gameplay.Space.Factories
     public class PlanetSystemEffectFactory : PlaceholderFactory<Transform, PlanetSystemConfig, PlanetSystemEffect>
     {
         private readonly PlanetFactory _planetFactory;
-
-        public PlanetSystemEffectFactory(PlanetFactory planetFactory)
+        private readonly Updater _updater;
+        public PlanetSystemEffectFactory(PlanetFactory planetFactory, Updater updater)
         {
             _planetFactory = planetFactory;
+            _updater = updater;
         }
 
         public override PlanetSystemEffect Create(Transform spaceObjectTransform, PlanetSystemConfig config)
@@ -27,11 +29,11 @@ namespace Gameplay.Space.Factories
             {
                 var planetConfig = RandomPicker.PickOneElementByWeights(config.PlanetConfigs);
                 Vector2 planetPosition = GetPlanetPosition(spaceObjectTransform, planetOrbits[i], planetConfig);
-                var planet = _planetFactory.Create(planetPosition, planetConfig);
+                var planet = _planetFactory.Create(planetPosition, planetConfig, spaceObjectTransform);
                 planets.Add(planet);
             }
 
-            return new PlanetSystemEffect(planets);
+            return new PlanetSystemEffect(planets, spaceObjectTransform, _updater);
         }
 
         private float[] GetPlanetOrbitList(int planetCount, float minOrbit, float maxOrbit, Vector3 spaceObjectScale)
