@@ -9,14 +9,10 @@ namespace Gameplay.Space.SpaceObjects.SpaceObjectsEffects
     public sealed class PlanetSystemEffect : SpaceObjectEffect
     {
         private readonly List<Planet> _planets;
-        private readonly Transform _spaceObjectTransform;
-        private readonly Updater _updater;
 
-        public PlanetSystemEffect(List<Planet> planets, Transform spaceObjectTransform, Updater updater)
+        public PlanetSystemEffect(List<Planet> planets)
         {
-            _updater = updater;
             _planets = planets;
-            _spaceObjectTransform = spaceObjectTransform;
 
             foreach (var planet in planets)
             {

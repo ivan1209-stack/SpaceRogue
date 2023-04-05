@@ -33,7 +33,7 @@ namespace Gameplay.Space.Factories
                 planets.Add(planet);
             }
 
-            return new PlanetSystemEffect(planets, spaceObjectTransform, _updater);
+            return new PlanetSystemEffect(planets);
         }
 
         private float[] GetPlanetOrbitList(int planetCount, float minOrbit, float maxOrbit, Vector3 spaceObjectScale)
