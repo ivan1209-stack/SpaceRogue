@@ -34,6 +34,7 @@ namespace Services
         public void FixedTick()
         {
             OnFixedUpdate.Invoke();
+            OnDeltaTimeFixedUpdate.Invoke(Time.fixedDeltaTime);
         }
 
         public void LateTick()
