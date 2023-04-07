@@ -16,7 +16,7 @@ namespace Gameplay.Space.Planets
         private readonly Vector3 _rotationAxis;
          
         private readonly float _speed;
-        private const float SPEED_MULTIPLIER = 0.01f;
+        private const float SPEED_MULTIPLIER = 0.001f;
 
         public PlanetMovement(PlanetView view, Updater updater, PlanetConfig planetConfig, Transform spaceObjectTransform)
         {
@@ -34,9 +34,9 @@ namespace Gameplay.Space.Planets
 
             _updater.UnsubscribeFromFixedUpdate(Move);
         }
-        private void Move(float deltaTime)
+        private void Move()
         {
-            RotatePlanetAroundSpaceObject(_planetRigidbody, _spaceObjectTransform.position, _rotationAxis, _speed * deltaTime);
+            RotatePlanetAroundSpaceObject(_planetRigidbody, _spaceObjectTransform.position, _rotationAxis, _speed);
         }
         
         private void RotatePlanetAroundSpaceObject(Rigidbody2D planetRigidBody, Vector3 spaceObjectPosition, Vector3 rotationAxis, float speed)
