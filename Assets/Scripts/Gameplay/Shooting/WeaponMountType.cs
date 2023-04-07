@@ -5,6 +5,5 @@ namespace Gameplay.Shooting
         None,
         Frontal,
         Turret
-        //TODO AutomaticTurret
     }
 }
