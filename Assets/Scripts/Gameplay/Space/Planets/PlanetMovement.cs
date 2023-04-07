@@ -13,10 +13,10 @@ namespace Gameplay.Space.Planets
 
         private readonly Rigidbody2D _planetRigidbody;
         private readonly Transform _spaceObjectTransform;
-        private readonly Vector3 _axis;
+        private readonly Vector3 _rotationAxis;
          
         private readonly float _speed;
-        private const float _speedMultiplier = 0.001f;
+        private const float SPEED_MULTIPLIER = 0.01f;
 
         public PlanetMovement(PlanetView view, Updater updater, PlanetConfig planetConfig, Transform spaceObjectTransform)
         {
@@ -24,24 +24,24 @@ namespace Gameplay.Space.Planets
             _updater = updater;
             _spaceObjectTransform = spaceObjectTransform;
             _planetRigidbody = _view.GetComponent<Rigidbody2D>();
-            _speed = (RandomPicker.PickRandomBetweenTwoValues(planetConfig.MinSpeed, planetConfig.MaxSpeed)) * _speedMultiplier;
-            _axis = RandomPicker.TakeChance(planetConfig.RetrogradeMovementChance) ? Vector3.forward : Vector3.back;
-            _updater.SubscribeToUpdate(Move);
+            _speed = (RandomPicker.PickRandomBetweenTwoValues(planetConfig.MinSpeed, planetConfig.MaxSpeed)) * SPEED_MULTIPLIER;
+            _rotationAxis = RandomPicker.TakeChance(planetConfig.RetrogradeMovementChance) ? Vector3.forward : Vector3.back;
+            _updater.SubscribeToFixedUpdate(Move);
         }
        
         public void Dispose()
         {
-            _updater.UnsubscribeFromUpdate(Move);
-        }
 
-        private void Move()
+            _updater.UnsubscribeFromFixedUpdate(Move);
+        }
+        private void Move(float deltaTime)
         {
-            RotatePlanetAroundSpaceObject(_planetRigidbody, _spaceObjectTransform.position, _axis, _speed);
+            RotatePlanetAroundSpaceObject(_planetRigidbody, _spaceObjectTransform.position, _rotationAxis, _speed * deltaTime);
         }
         
-        private void RotatePlanetAroundSpaceObject(Rigidbody2D planetRigidBody, Vector3 spaceObjectPosition, Vector3 axis, float speed)
+        private void RotatePlanetAroundSpaceObject(Rigidbody2D planetRigidBody, Vector3 spaceObjectPosition, Vector3 rotationAxis, float speed)
         {
-            Quaternion q = Quaternion.AngleAxis(speed, axis);
+            Quaternion q = Quaternion.AngleAxis(speed, rotationAxis);
             planetRigidBody.MovePosition(q * (planetRigidBody.transform.position - spaceObjectPosition) + spaceObjectPosition);
             planetRigidBody.MoveRotation(planetRigidBody.transform.rotation * q);
         }

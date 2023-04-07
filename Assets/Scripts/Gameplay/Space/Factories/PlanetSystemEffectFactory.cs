@@ -13,11 +13,9 @@ namespace Gameplay.Space.Factories
     public class PlanetSystemEffectFactory : PlaceholderFactory<Transform, PlanetSystemConfig, PlanetSystemEffect>
     {
         private readonly PlanetFactory _planetFactory;
-        private readonly Updater _updater;
-        public PlanetSystemEffectFactory(PlanetFactory planetFactory, Updater updater)
+        public PlanetSystemEffectFactory(PlanetFactory planetFactory)
         {
             _planetFactory = planetFactory;
-            _updater = updater;
         }
 
         public override PlanetSystemEffect Create(Transform spaceObjectTransform, PlanetSystemConfig config)

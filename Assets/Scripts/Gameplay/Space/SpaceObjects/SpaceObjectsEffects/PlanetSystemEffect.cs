@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Gameplay.Space.Planets;
-using UnityEngine;
-using Services;
 
 namespace Gameplay.Space.SpaceObjects.SpaceObjectsEffects
 {

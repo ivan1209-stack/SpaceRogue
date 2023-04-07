@@ -1,6 +1,5 @@
 using System;
 using Object = UnityEngine.Object;
-using UnityEngine;
 
 namespace Gameplay.Space.Planets
 {
@@ -28,7 +27,6 @@ namespace Gameplay.Space.Planets
             _planetView.CollidedPlanet -= OnPlanetCollision;
             
             _planetMovement.Dispose();
-            
             Object.Destroy(_planetView.gameObject);
         }
         
