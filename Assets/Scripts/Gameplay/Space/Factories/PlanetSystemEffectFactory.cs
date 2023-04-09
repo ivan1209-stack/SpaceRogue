@@ -5,7 +5,6 @@ using Gameplay.Space.SpaceObjects.Scriptables;
 using Gameplay.Space.SpaceObjects.SpaceObjectsEffects;
 using UnityEngine;
 using Utilities.Mathematics;
-using Services;
 using Zenject;
 
 namespace Gameplay.Space.Factories
@@ -13,6 +12,7 @@ namespace Gameplay.Space.Factories
     public class PlanetSystemEffectFactory : PlaceholderFactory<Transform, PlanetSystemConfig, PlanetSystemEffect>
     {
         private readonly PlanetFactory _planetFactory;
+
         public PlanetSystemEffectFactory(PlanetFactory planetFactory)
         {
             _planetFactory = planetFactory;

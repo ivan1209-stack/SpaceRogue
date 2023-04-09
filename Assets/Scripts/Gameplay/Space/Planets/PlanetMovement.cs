@@ -16,7 +16,7 @@ namespace Gameplay.Space.Planets
         private readonly Vector3 _rotationAxis;
          
         private readonly float _speed;
-        private const float SPEED_MULTIPLIER = 0.001f;
+        private const float SpeedMultiplier = 0.001f;
 
         public PlanetMovement(PlanetView view, Updater updater, PlanetConfig planetConfig, Transform spaceObjectTransform)
         {
@@ -24,16 +24,17 @@ namespace Gameplay.Space.Planets
             _updater = updater;
             _spaceObjectTransform = spaceObjectTransform;
             _planetRigidbody = _view.GetComponent<Rigidbody2D>();
-            _speed = (RandomPicker.PickRandomBetweenTwoValues(planetConfig.MinSpeed, planetConfig.MaxSpeed)) * SPEED_MULTIPLIER;
+            _speed = (RandomPicker.PickRandomBetweenTwoValues(planetConfig.MinSpeed, planetConfig.MaxSpeed)) * SpeedMultiplier;
             _rotationAxis = RandomPicker.TakeChance(planetConfig.RetrogradeMovementChance) ? Vector3.forward : Vector3.back;
+
             _updater.SubscribeToFixedUpdate(Move);
         }
        
         public void Dispose()
         {
-
             _updater.UnsubscribeFromFixedUpdate(Move);
         }
+
         private void Move()
         {
             RotatePlanetAroundSpaceObject(_planetRigidbody, _spaceObjectTransform.position, _rotationAxis, _speed);
