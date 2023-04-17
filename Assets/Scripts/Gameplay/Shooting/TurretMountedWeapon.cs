@@ -7,16 +7,16 @@ namespace Gameplay.Shooting
 {
     public sealed class TurretMountedWeapon : MountedWeapon
     {
-        private readonly Transform _turretViewTransform;
+        private readonly TurretView _turretView;
         private readonly Transform _gunPointViewTransform;
         
         public TurretMountedWeapon(Weapon weapon, EntityView entityView, TurretViewFactory turretViewFactory, GunPointViewFactory gunPointViewFactory) : base(weapon, entityView)
         {
             var unitScale = UnitViewTransform.localScale;
             var gunPointPosition = UnitViewTransform.position + UnitViewTransform.TransformDirection(0.6f * Mathf.Max(unitScale.x, unitScale.y) * Vector3.up);
-            var turretView = turretViewFactory.Create(UnitViewTransform);
-            _turretViewTransform = turretView.transform;
-            var gunPoint = gunPointViewFactory.Create(gunPointPosition, UnitViewTransform.rotation, _turretViewTransform);
+            _turretView = turretViewFactory.Create(UnitViewTransform);
+            var turretViewTransform = _turretView.transform;
+            var gunPoint = gunPointViewFactory.Create(gunPointPosition, UnitViewTransform.rotation, turretViewTransform);
             _gunPointViewTransform = gunPoint.transform;
         }
 
