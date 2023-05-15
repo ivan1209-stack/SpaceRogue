@@ -1,4 +1,3 @@
-using Utilities.Mathematics;
 using Gameplay.Abstracts;
 using System;
 using Gameplay.Shooting.Factories;
@@ -7,33 +6,39 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Services;
+using Gameplay.Enemy;
 
 namespace Gameplay.Shooting
 {
     public sealed class TurretMountedWeapon : MountedWeapon, IDisposable
     {
+        private readonly Updater _updater;
+
         private readonly TurretView _turretView;
         private readonly Transform _gunPointViewTransform;
-        private Transform _currentTarget;
-        private List<Transform> _targets = new List<Transform>();
 
         private readonly float _rotationSpeed;
-        private readonly Updater _updater;
+
+        private readonly List<EnemyView> _targets;
+        private EnemyView _currentTarget;
 
         public TurretMountedWeapon(Weapon weapon, EntityView entityView, TurretViewFactory turretViewFactory, GunPointViewFactory gunPointViewFactory, TurretConfig config, Updater updater) : base(weapon, entityView)
         {
             _updater = updater;
+            
             var unitScale = UnitViewTransform.localScale;
             var gunPointPosition = UnitViewTransform.position + UnitViewTransform.TransformDirection(0.6f * Mathf.Max(unitScale.x, unitScale.y) * Vector3.up);
             var turretView = turretViewFactory.Create(UnitViewTransform, config);
+            _turretView = turretView;
             var gunPoint = gunPointViewFactory.Create(gunPointPosition, UnitViewTransform.rotation, _turretView.transform);
             _gunPointViewTransform = gunPoint.transform;
+            
+            _rotationSpeed = config.TurningSpeed;
+            
+            _targets = new List<EnemyView>();
 
-
-            _rotationSpeed = config.TurnigSpeed;
-            _turretView = turretView;
-            _turretView.OnTriggerEnterTarget += TargetOnCollision;
-            _turretView.OnTriggerExitTarget += TargetOutCollision;
+            _turretView.TargetEntersTrigger += OnTargetInRange;
+            _turretView.TargetExitsTrigger += OnTargetOutOfRange;
         }
 
         public override void CommenceFiring()
@@ -43,45 +48,54 @@ namespace Gameplay.Shooting
 
         private void RotateTurret()
         {
-            if (_currentTarget != null)
-            {
-                var lookPos = _currentTarget.transform.position - _turretView.transform.position;
-                float _angle = Mathf.Atan2(lookPos.y, lookPos.x) * Mathf.Rad2Deg;
-                _turretView.transform.rotation = Quaternion.Slerp(_turretView.transform.rotation, Quaternion.AngleAxis(_angle, Vector3.forward), _rotationSpeed * Time.deltaTime);
-            }
-        }
+            if (_currentTarget is null) return;
 
-        private Transform PickNewTarget()
+            var direction = _currentTarget.transform.position - _turretView.transform.position;
+            _turretView.Rotate(direction, _rotationSpeed);
+        }
+        
+
+        private EnemyView PickNewTarget()
         {
             if (!_targets.Any()) return null;
-            return _targets.MinBy(t => (_turretView.transform.position - t.transform.position).sqrMagnitude);
+            if (_targets.Count == 1) return _targets[0];
+            return _targets.OrderBy(t => (_turretView.transform.position - t.transform.position).sqrMagnitude).First();
         }
 
-        private void TargetOnCollision(Transform target)
+        private void OnTargetInRange(EnemyView target)
         {
             _targets.Add(target);
             if (_currentTarget is null)
             {
                 _currentTarget = target;
+                _currentTarget.EntityDestroyed += OnTargetIsDestioyed;
                 _updater.SubscribeToUpdate(RotateTurret);
             }
         }
 
-        private void TargetOutCollision(Transform target)
+        private void OnTargetOutOfRange(EnemyView target)
         {
             _targets.Remove(target);
             if (_currentTarget == target)
             {
+                _currentTarget.EntityDestroyed -= OnTargetIsDestioyed;
                 _currentTarget = PickNewTarget();
-                if (!_currentTarget) _updater.UnsubscribeFromUpdate(RotateTurret);
+                if (_currentTarget is null) _updater.UnsubscribeFromUpdate(RotateTurret);
+                else _currentTarget.EntityDestroyed += OnTargetIsDestioyed;
             }
         }
 
         public void Dispose()
         {
             _updater.UnsubscribeFromUpdate(RotateTurret);
-            _turretView.OnTriggerEnterTarget -= TargetOnCollision;
-            _turretView.OnTriggerExitTarget -= TargetOutCollision;
+            _turretView.TargetEntersTrigger -= OnTargetInRange;
+            _turretView.TargetExitsTrigger -= OnTargetOutOfRange;
+            _currentTarget.EntityDestroyed -= OnTargetIsDestioyed;
+        }
+
+        private void OnTargetIsDestioyed()
+        {
+            _updater.UnsubscribeFromUpdate(RotateTurret);
         }
     }
 }

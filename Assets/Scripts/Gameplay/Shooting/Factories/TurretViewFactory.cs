@@ -19,7 +19,8 @@ namespace Gameplay.Shooting.Factories
         {
             var view = _diContainer.InstantiatePrefabForComponent<TurretView>(_prefab, parentTransform);
             var size = config.Range;
-            view.transform.localScale = new Vector3(size, size, 1);
+            var collider = view.GetComponent<CircleCollider2D>();
+            collider.radius = size;
             return view;
         }
     }

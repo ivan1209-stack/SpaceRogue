@@ -49,7 +49,11 @@ namespace Gameplay.Installers
                 .Bind<TurretView>()
                 .FromInstance(TurretView)
                 .WhenInjectedInto<TurretViewFactory>();
-            
+
+            Container
+                .BindFactory<Weapon, EntityView, TurretViewFactory, GunPointViewFactory, TurretConfig, TurretMountedWeapon, TurretMountedWeaponFactory>()
+                .AsSingle();
+
             Container
                 .BindFactory<Transform, TurretConfig, TurretView, TurretViewFactory>()
                 .AsSingle();
