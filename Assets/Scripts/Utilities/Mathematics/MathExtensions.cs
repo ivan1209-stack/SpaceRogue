@@ -24,10 +24,5 @@ namespace Utilities.Mathematics
             float y = Mathf.Sin(radianAngle);
             return new Vector3(x, y, 0);
         }
-
-        public static TSource MinBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> selector)
-        {
-            return source.Select(x => new { Item = x, Value = selector(x) }).Min().Item;
-        }
     }
 }
