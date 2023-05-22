@@ -67,12 +67,10 @@ namespace Gameplay.Shooting
 
         private void OnTargetInRange(EntityView target)
         {
-            Debug.Log($"Поймана цель на прицел {_entityType}");
             if (_entityType == EntityType.Player)
             {
                 if (target.EntityType == EntityType.Enemy | target.EntityType == EntityType.EnemyAssistant)
                 {
-                    Debug.Log($"Поймана цель {target.EntityType}");
                     _targets.Add(target);
                     if (_currentTarget is null)
                     {
