@@ -21,10 +21,5 @@ namespace Gameplay.Abstracts
         {
             EntityDestroyed();
         }
-
-        public int CompareTo(object obj)
-        {
-            return EntityType.CompareTo(obj);
-        }
     }
 }

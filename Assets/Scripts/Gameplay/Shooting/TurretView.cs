@@ -1,4 +1,3 @@
-using Gameplay.Enemy;
 using UnityEngine;
 using System;
 using Gameplay.Abstracts;
@@ -14,17 +13,15 @@ namespace Gameplay.Shooting
         private void OnTriggerEnter2D(Collider2D collision)
         {
 
-            if (collision.TryGetComponent<EntityView>(out EntityView target))
+            if (collision.TryGetComponent(out EntityView target))
             {
                 TargetEntersTrigger(target);
             }
         }
 
-
-
         private void OnTriggerExit2D(Collider2D collision)
         {
-            if (collision.TryGetComponent<EntityView>(out EntityView target))
+            if (collision.TryGetComponent(out EntityView target))
             {
                 TargetExitsTrigger(target);
             }

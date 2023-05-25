@@ -6,8 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Services;
-using Gameplay.Enemy;
-using Gameplay.Player;
 
 namespace Gameplay.Shooting
 {
@@ -22,7 +20,7 @@ namespace Gameplay.Shooting
 
         private readonly List<EntityView> _targets;
         private EntityView _currentTarget;
-        private EntityType _entityType;
+        private readonly EntityType _entityType;
 
         public TurretMountedWeapon(Weapon weapon, EntityView entityView, TurretViewFactory turretViewFactory, GunPointViewFactory gunPointViewFactory, TurretConfig config, Updater updater) : base(weapon, entityView)
         {
@@ -41,7 +39,6 @@ namespace Gameplay.Shooting
 
             _turretView.TargetEntersTrigger += OnTargetInRange;
             _turretView.TargetExitsTrigger += OnTargetOutOfRange;
-
         }
 
         public override void CommenceFiring()
@@ -52,11 +49,9 @@ namespace Gameplay.Shooting
         private void RotateTurret()
         {
             if (_currentTarget is null) return;
-
             var direction = _currentTarget.transform.position - _turretView.transform.position;
             _turretView.Rotate(direction, _rotationSpeed);
         }
-
 
         private EntityView PickNewTarget()
         {
@@ -80,6 +75,7 @@ namespace Gameplay.Shooting
                     }
                 }
             }
+
             if (_entityType == EntityType.Enemy)
             {
                 if (target.EntityType == EntityType.Player)
