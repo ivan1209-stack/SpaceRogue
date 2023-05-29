@@ -48,8 +48,7 @@ namespace Gameplay.Enemy.Behaviour
 
             if (directionInsideAngle)
             {
-                //Input.Fire();
-                Debug.Log("Fire");
+                Input.Fire();
             }
         }
 

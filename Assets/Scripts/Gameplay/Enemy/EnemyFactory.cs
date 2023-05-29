@@ -2,6 +2,7 @@ using Gameplay.Enemy.Behaviour;
 using Gameplay.Enemy.Movement;
 using Gameplay.Enemy.Scriptables;
 using Gameplay.Movement;
+using Gameplay.Shooting;
 using Gameplay.Survival;
 using System;
 using UnityEngine;
@@ -16,6 +17,7 @@ namespace Gameplay.Enemy
         private readonly UnitMovementModelFactory _unitMovementModelFactory;
         private readonly UnitMovementFactory _unitMovementFactory;
         private readonly UnitTurningFactory _unitTurningFactory;
+        private readonly UnitWeaponFactory _unitWeaponFactory;
         private readonly EnemyBehaviourSwitcherFactory _enemyBehaviourSwitcherFactory;
         private readonly EntitySurvivalFactory _entitySurvivalFactory;
 
@@ -27,6 +29,7 @@ namespace Gameplay.Enemy
             UnitMovementModelFactory unitMovementModelFactory,
             UnitMovementFactory unitMovementFactory,
             UnitTurningFactory unitTurningFactory,
+            UnitWeaponFactory unitWeaponFactory,
             EnemyBehaviourSwitcherFactory enemyBehaviourSwitcherFactory,
             EntitySurvivalFactory entitySurvivalFactory)
         {
@@ -35,6 +38,7 @@ namespace Gameplay.Enemy
             _unitMovementModelFactory = unitMovementModelFactory;
             _unitMovementFactory = unitMovementFactory;
             _unitTurningFactory = unitTurningFactory;
+            _unitWeaponFactory = unitWeaponFactory;
             _enemyBehaviourSwitcherFactory = enemyBehaviourSwitcherFactory;
             _entitySurvivalFactory = entitySurvivalFactory;
         }
@@ -46,6 +50,7 @@ namespace Gameplay.Enemy
             var model = _unitMovementModelFactory.Create(enemyConfig.Movement);
             var unitMovement = _unitMovementFactory.Create(enemyView, enemyInput, model);
             var unitTurning = _unitTurningFactory.Create(enemyView, enemyInput, model);
+            var unitWeapon = _unitWeaponFactory.Create(enemyView, enemyConfig.MountedWeapon, enemyInput);
             var enemyBehaviourSwitcher = _enemyBehaviourSwitcherFactory.Create(
                 enemyView,
                 enemyInput,
@@ -57,6 +62,7 @@ namespace Gameplay.Enemy
                 enemyView,
                 unitMovement,
                 unitTurning,
+                unitWeapon,
                 enemyBehaviourSwitcher,
                 enemySurvival);
             EnemyCreated.Invoke(enemy);

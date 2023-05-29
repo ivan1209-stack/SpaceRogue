@@ -4,10 +4,13 @@ using Gameplay.Abstracts;
 
 namespace Gameplay.Enemy.Movement
 {
-    public sealed class EnemyInput : IUnitMovementInput, IUnitTurningInput
+    public sealed class EnemyInput : IUnitMovementInput, IUnitTurningInput, IUnitWeaponInput
     {
         public event Action<float> VerticalAxisInput = _ => { };
         public event Action<float> HorizontalAxisInput = _ => { };
+
+        public event Action<bool> PrimaryFireInput = _ => { };
+        public event Action<bool> ChangeWeaponInput = _ => { };
 
         public void Accelerate()
         {
@@ -37,6 +40,11 @@ namespace Gameplay.Enemy.Movement
         public void StopTurning()
         {
             HorizontalAxisInput(0);
+        }
+
+        public void Fire()
+        {
+            PrimaryFireInput.Invoke(true);
         }
     }
 }

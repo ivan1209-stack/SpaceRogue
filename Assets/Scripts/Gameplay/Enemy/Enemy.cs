@@ -1,6 +1,7 @@
 using System;
 using Gameplay.Enemy.Behaviour;
 using Gameplay.Movement;
+using Gameplay.Shooting;
 using Gameplay.Survival;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace Gameplay.Enemy
     {
         private readonly UnitMovement _unitMovement;
         private readonly UnitTurning _unitTurning;
+        private readonly UnitWeapon _unitWeapon;
         private readonly EnemyBehaviourSwitcher _behaviourSwitcher;
 
         public event Action<Enemy> EnemyDestroyed = _ => { };
@@ -21,12 +23,14 @@ namespace Gameplay.Enemy
             EnemyView enemyView, 
             UnitMovement unitMovement,
             UnitTurning unitTurning,
+            UnitWeapon unitWeapon,
             EnemyBehaviourSwitcher behaviourSwitcher,
             EntitySurvival enemySurvival)
         {
             EnemyView = enemyView;
             _unitMovement = unitMovement;
             _unitTurning = unitTurning;
+            _unitWeapon = unitWeapon;
             _behaviourSwitcher = behaviourSwitcher;
             Survival = enemySurvival;
 
@@ -42,6 +46,7 @@ namespace Gameplay.Enemy
             Survival.Dispose();
             _unitMovement.Dispose();
             _unitTurning.Dispose();
+            _unitWeapon.Dispose();
             _behaviourSwitcher.Dispose();
 
             UnityEngine.Object.Destroy(EnemyView.gameObject);
