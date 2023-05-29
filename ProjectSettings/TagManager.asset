@@ -16,8 +16,8 @@ TagManager:
   - Minimap
   - Obstacles
   - PlayerProjectile
-  - 
-  - 
+  - EnemyProjectile
+  - AllExceptProjectiles
   - 
   - 
   - 
