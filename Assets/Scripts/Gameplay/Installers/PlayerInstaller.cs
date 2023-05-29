@@ -2,6 +2,7 @@ using Abstracts;
 using Gameplay.Abstracts;
 using Gameplay.Movement;
 using Gameplay.Player;
+using Gameplay.Player.Movement;
 using Gameplay.Player.Weapon;
 using Gameplay.Shooting.Scriptables;
 using Gameplay.Survival;
@@ -47,6 +48,20 @@ namespace Gameplay.Installers
             Container
                 .BindFactory<PlayerView, IUnitMovementInput, UnitMovementModel, UnitMovement, PlayerMovementFactory>()
                 .AsSingle();
+            
+            Container
+                .Bind<UnitMovementConfig>()
+                .FromInstance(PlayerConfig.UnitMovement)
+                .WhenInjectedInto<PlayerDash>();
+
+            Container
+                .BindFactory<PlayerView, PlayerDash, PlayerDashFactory>()
+                .AsSingle();
+            
+            Container
+                .Bind<PlayerDash>()
+                .AsCached();
+
         }
 
         private void InstallPlayerHealth()

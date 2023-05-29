@@ -210,6 +210,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eed1d4940d7e4e27bc32b697c8d5003c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!198 &325831872 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 187937150, guid: 877ba34d8d1cc7e44ba588589010f05c, type: 3}
+  m_PrefabInstance: {fileID: 1653755400}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &331188001
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,6 +745,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!198 &864273323 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 599605802595639926, guid: 877ba34d8d1cc7e44ba588589010f05c, type: 3}
+  m_PrefabInstance: {fileID: 1653755400}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &975368637
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1619,6 +1629,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af8ddc91f08eca540ad73bfe5b7153dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!212 &1600317410 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 599605801072768242, guid: 877ba34d8d1cc7e44ba588589010f05c, type: 3}
+  m_PrefabInstance: {fileID: 1653755400}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1653755400
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1674,6 +1689,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameBackground
       objectReference: {fileID: 0}
+    - target: {fileID: 6839496687152643754, guid: 877ba34d8d1cc7e44ba588589010f05c, type: 3}
+      propertyPath: <MidSpriteRenderer>k__BackingField
+      value: 
+      objectReference: {fileID: 1926357289}
+    - target: {fileID: 6839496687152643754, guid: 877ba34d8d1cc7e44ba588589010f05c, type: 3}
+      propertyPath: <BackSpriteRenderer>k__BackingField
+      value: 
+      objectReference: {fileID: 2080181185}
+    - target: {fileID: 6839496687152643754, guid: 877ba34d8d1cc7e44ba588589010f05c, type: 3}
+      propertyPath: <ForeSpriteRenderer>k__BackingField
+      value: 
+      objectReference: {fileID: 1600317410}
+    - target: {fileID: 6839496687152643754, guid: 877ba34d8d1cc7e44ba588589010f05c, type: 3}
+      propertyPath: <NebulaBackParticleSystem>k__BackingField
+      value: 
+      objectReference: {fileID: 1668106518}
+    - target: {fileID: 6839496687152643754, guid: 877ba34d8d1cc7e44ba588589010f05c, type: 3}
+      propertyPath: <NebulaForeParticleSystem>k__BackingField
+      value: 
+      objectReference: {fileID: 864273323}
+    - target: {fileID: 6839496687152643754, guid: 877ba34d8d1cc7e44ba588589010f05c, type: 3}
+      propertyPath: <NebulaMaskParticleSystem>k__BackingField
+      value: 
+      objectReference: {fileID: 325831872}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 877ba34d8d1cc7e44ba588589010f05c, type: 3}
 --- !u!1 &1654981485
@@ -1722,6 +1761,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <SpaceObjectSpawnConfig>k__BackingField: {fileID: 11400000, guid: cc520d608852c1840a2ef511394a126d, type: 2}
   <SpaceObjectsPool>k__BackingField: {fileID: 647429411}
+--- !u!198 &1668106518 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 599605801405310916, guid: 877ba34d8d1cc7e44ba588589010f05c, type: 3}
+  m_PrefabInstance: {fileID: 1653755400}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1854316519 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6839496687152643754, guid: 877ba34d8d1cc7e44ba588589010f05c, type: 3}
@@ -1733,6 +1777,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44e2de67cdb1f843b95adadc9110aa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!212 &1926357289 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 599605802080037476, guid: 877ba34d8d1cc7e44ba588589010f05c, type: 3}
+  m_PrefabInstance: {fileID: 1653755400}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1973976290
 GameObject:
   m_ObjectHideFlags: 0
@@ -1857,6 +1906,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fc9744ae6e0f6446b4a847e744a0f33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!212 &2080181185 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 599605802365392138, guid: 877ba34d8d1cc7e44ba588589010f05c, type: 3}
+  m_PrefabInstance: {fileID: 1653755400}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2080335985
 GameObject:
   m_ObjectHideFlags: 0

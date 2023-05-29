@@ -1,25 +1,30 @@
 using UnityEngine;
-
 namespace Gameplay.Movement
 {
     public sealed class UnitMovementModel
     {
         private readonly UnitMovementConfig _config;
         private float TurnSpeedDifference => _config.maximumTurnSpeed - _config.startingTurnSpeed;
-
         public float MaxSpeed => _config.maximumSpeed;
         public float StoppingSpeed => _config.stoppingSpeed;
         public float StartingTurnSpeed => _config.startingTurnSpeed;
-
         public float CurrentSpeed { get; private set; }
         public float CurrentTurnRate { get; private set; }
-        
-        
+
+        public float DashLength { get; private set; }
+
+        public float DashCooldown { get; private set; }
+
+        public const float DashLengthMultiplier = 10000f;
+
+
         public UnitMovementModel(UnitMovementConfig config)
         {
             _config = config;
             CurrentSpeed = 0.0f;
             CurrentTurnRate = 0.0f;
+            DashLength = _config.dashLength;
+            DashCooldown = _config.dashCooldown;
         }
 
         public void Accelerate(bool movingForward)
@@ -27,7 +32,6 @@ namespace Gameplay.Movement
             float acceleration = CountAcceleration(_config.maximumSpeed, _config.accelerationTime);
             acceleration *= movingForward ? 1 : -1;
             float maxSpeed = movingForward ? _config.maximumSpeed : -1 * _config.maximumBackwardSpeed;
-
             switch (movingForward)
             {
                 case true when Mathf.Abs(CurrentSpeed) < Mathf.Abs(maxSpeed):
@@ -40,11 +44,9 @@ namespace Gameplay.Movement
                     break;
             }
         }
-
         public void Turn(bool turningLeft)
         {
             bool isContinuingTurn = CurrentTurnRate < 0 == turningLeft;
-
             if (!isContinuingTurn || CurrentTurnRate == 0)
             {
                 float startingTurnSpeed = turningLeft ? -1 * _config.startingTurnSpeed : _config.startingTurnSpeed;
@@ -53,7 +55,6 @@ namespace Gameplay.Movement
             }
             
             float turnAcceleration = CountAcceleration(TurnSpeedDifference, _config.turnAccelerationTime);
-
             if (Mathf.Abs(CurrentTurnRate) > _config.maximumTurnSpeed)
             {
                 CurrentTurnRate = turningLeft ? -1 * _config.maximumTurnSpeed : _config.maximumTurnSpeed;
@@ -74,7 +75,6 @@ namespace Gameplay.Movement
         
         public void StopTurning() => CurrentTurnRate = 0.0f;
         public void StopMoving() => CurrentSpeed = 0.0f;
-
         private static float CountAcceleration(float speedDifference, float accelerationTime)
         {
             float deltaTime = Time.deltaTime;
