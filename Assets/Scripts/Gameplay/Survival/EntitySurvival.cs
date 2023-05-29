@@ -40,6 +40,7 @@ namespace Gameplay.Survival
 
         internal void ReceiveDamage(DamageModel damageModel)
         {
+            if (damageModel.EntityType == _entityView.EntityType) return;
             var damage = RandomPicker.PickRandomBetweenTwoValues(damageModel.MinDamage, damageModel.MaxDamage);
             TakeDamage(damage);
         }
