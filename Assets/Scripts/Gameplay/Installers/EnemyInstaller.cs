@@ -19,6 +19,7 @@ namespace Gameplay.Installers
         {
             InstallEnemyPool();
             InstallEnemyView();
+            InstallEnemiesGroup();
             InstallEnemyForces();
             InstallEnemyBehaviourSwitcherFactory();
             InstallEnemy();
@@ -36,6 +37,13 @@ namespace Gameplay.Installers
         {
             Container
                 .BindFactory<Vector2, EnemyConfig, EnemyView, EnemyViewFactory>()
+                .AsSingle();
+        }
+
+        private void InstallEnemiesGroup()
+        {
+            Container
+                .BindFactory<EnemyGroupConfig, Vector2, EnemiesGroup, EnemiesGroupFactory>()
                 .AsSingle();
         }
 
@@ -69,7 +77,7 @@ namespace Gameplay.Installers
         private void InstallEnemy()
         {
             Container
-                .BindFactory<int, Vector2, EnemyConfig, Enemy.Enemy, EnemyFactory>()
+                .BindFactory<Vector2, EnemyConfig, Enemy.Enemy, EnemyFactory>()
                 .AsSingle();
         }
     }

@@ -1,6 +1,4 @@
 using System;
-using Asteroids;
-using Gameplay.Asteroids;
 using Gameplay.Asteroids.Factories;
 using Gameplay.Enemy;
 using Gameplay.Player;

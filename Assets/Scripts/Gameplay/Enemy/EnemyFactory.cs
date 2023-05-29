@@ -9,7 +9,7 @@ using Zenject;
 
 namespace Gameplay.Enemy
 {
-    public sealed class EnemyFactory : PlaceholderFactory<int, Vector2, EnemyConfig, Enemy>
+    public sealed class EnemyFactory : PlaceholderFactory<Vector2, EnemyConfig, Enemy>
     {
         private readonly EnemyViewFactory _enemyViewFactory;
         private readonly EnemyInputFactory _enemyInputFactory;
@@ -39,7 +39,7 @@ namespace Gameplay.Enemy
             _entitySurvivalFactory = entitySurvivalFactory;
         }
 
-        public override Enemy Create(int groupNumber, Vector2 spawnPoint, EnemyConfig enemyConfig)
+        public override Enemy Create(Vector2 spawnPoint, EnemyConfig enemyConfig)
         {
             var enemyView = _enemyViewFactory.Create(spawnPoint, enemyConfig);
             var enemyInput = _enemyInputFactory.Create();
@@ -54,7 +54,6 @@ namespace Gameplay.Enemy
             var enemySurvival = _entitySurvivalFactory.Create(enemyView, enemyConfig.Survival);
             
             var enemy = new Enemy(
-                groupNumber,
                 enemyView,
                 unitMovement,
                 unitTurning,

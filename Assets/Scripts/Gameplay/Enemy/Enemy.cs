@@ -14,19 +14,16 @@ namespace Gameplay.Enemy
 
         public event Action<Enemy> EnemyDestroyed = _ => { };
 
-        public int GroupNumber { get; }
         public EnemyView EnemyView { get; }
         public EntitySurvival Survival { get; }
 
         public Enemy(
-            int groupNumber,
             EnemyView enemyView, 
             UnitMovement unitMovement,
             UnitTurning unitTurning,
             EnemyBehaviourSwitcher behaviourSwitcher,
             EntitySurvival enemySurvival)
         {
-            GroupNumber = groupNumber;
             EnemyView = enemyView;
             _unitMovement = unitMovement;
             _unitTurning = unitTurning;
@@ -50,7 +47,7 @@ namespace Gameplay.Enemy
             UnityEngine.Object.Destroy(EnemyView.gameObject);
         }
 
-        public void SetMovementDirection(Vector3 direction)
+        public void SetGroupDirection(Vector3 direction)
         {
             _behaviourSwitcher.CurrentBehaviour.SetMovementDirection(direction);
         }

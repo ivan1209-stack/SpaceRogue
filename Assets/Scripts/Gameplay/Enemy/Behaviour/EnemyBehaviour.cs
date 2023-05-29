@@ -50,7 +50,7 @@ namespace Gameplay.Enemy.Behaviour
 
             if (targetTransform == null)
             {
-                ActiveTargetSearch();
+                ActivateTargetSearch();
             }
             else
             {
@@ -79,19 +79,16 @@ namespace Gameplay.Enemy.Behaviour
 
         protected virtual void OnTargetInZone()
         {
-            Debug.Log("OnTargetInZone");
             ChangeState(EnemyState.InCombat);
         }
         
         protected virtual void OnAcceptAlarm()
         {
-            Debug.Log("OnAcceptAlarm");
             ChangeState(EnemyState.InCombat);
         }
         
         protected virtual void OnLosingTarget()
         {
-            Debug.Log("OnLosingTarget");
             ChangeState(EnemyState.PassiveRoaming);
         }
 
@@ -106,15 +103,11 @@ namespace Gameplay.Enemy.Behaviour
 
         private void Update()
         {
-            if (View == null)
-            {
-                return;
-            }
-
+            if (View == null) return;
             OnUpdate();
         }
 
-        private void ActiveTargetSearch()
+        private void ActivateTargetSearch()
         {
             _updater.UnsubscribeFromUpdate(ContinuouslyCheckDistance);
             _playerLocator.PlayerTransform += CheckLocator;
@@ -133,14 +126,11 @@ namespace Gameplay.Enemy.Behaviour
         {
             if (TargetTransform == null)
             {
-                ActiveTargetSearch();
+                ActivateTargetSearch();
                 return;
             }
 
-            if (View == null)
-            {
-                return;
-            }
+            if (View == null) return;
 
             var inDetectionRadius = UnityHelper.InDetectionRadius(
                 View.transform.position,
@@ -159,10 +149,7 @@ namespace Gameplay.Enemy.Behaviour
 
         private void CheckLocator(Transform targetTransform)
         {
-            if (TargetTransform == targetTransform)
-            {
-                return;
-            }
+            if (TargetTransform == targetTransform) return;
 
             var inDetectionRadius = UnityHelper.InDetectionRadius(
                 View.transform.position,
@@ -171,7 +158,6 @@ namespace Gameplay.Enemy.Behaviour
 
             if (inDetectionRadius)
             {
-                Debug.Log("ALARM");
                 _enemiesAlarm.AlarmSignal(View, targetTransform, Config.CallToArmsRadius);
                 TargetDetected(targetTransform);
             }
@@ -179,15 +165,8 @@ namespace Gameplay.Enemy.Behaviour
 
         private void OnAlarm(EnemyView signalingEnemy, Transform targetTransform, float alarmRadius)
         {
-            if (View == signalingEnemy)
-            {
-                return;
-            }
-
-            if(TargetTransform == targetTransform)
-            {
-                return;
-            }
+            if (View == signalingEnemy) return;
+            if (TargetTransform == targetTransform) return;
 
             var inDetectionRadius = UnityHelper.InDetectionRadius(
                 View.transform.position,
@@ -196,7 +175,6 @@ namespace Gameplay.Enemy.Behaviour
 
             if (inDetectionRadius)
             {
-                Debug.Log("ACCEPT_ALARM");
                 TargetDetected(targetTransform);
                 OnAcceptAlarm();
             }

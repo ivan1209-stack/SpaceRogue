@@ -14,7 +14,7 @@ namespace Gameplay.Enemy.Behaviour
         private readonly EnemyBehaviourFactory _behaviourFactory;
         private readonly Transform _escortTarget;
 
-        private event Action<EnemyState> _enemyStateChanged = _ => {};
+        private event Action<EnemyState> _enemyStateChanged = _ => { };
         
         public EnemyBehaviour CurrentBehaviour { get; private set; }
 
