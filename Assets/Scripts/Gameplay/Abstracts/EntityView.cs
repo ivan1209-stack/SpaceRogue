@@ -10,10 +10,16 @@ namespace Gameplay.Abstracts
     {
         public abstract EntityType EntityType { get; }
         public event Action<DamageModel> DamageTaken = _ => { };
+        public event Action EntityDestroyed = () => { };
 
         public void TakeDamage(DamageModel damageModel)
         {
             DamageTaken(damageModel);
+        }
+
+        public void OnDestroy()
+        {
+            EntityDestroyed();
         }
     }
 }

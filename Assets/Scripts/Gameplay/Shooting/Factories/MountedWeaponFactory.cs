@@ -1,5 +1,4 @@
 using System;
-using Abstracts;
 using Gameplay.Abstracts;
 using Gameplay.Shooting.Scriptables;
 using Zenject;
@@ -8,15 +7,17 @@ namespace Gameplay.Shooting.Factories
 {
     public class MountedWeaponFactory : IFactory<MountedWeaponConfig, EntityView, MountedWeapon>
     {
-        private readonly IFactory<WeaponConfig, EntityType, Weapon> _weaponFactory;
+        private readonly WeaponFactory _weaponFactory;
         private readonly GunPointViewFactory _gunPointViewFactory;
         private readonly TurretViewFactory _turretViewFactory;
+        private readonly TurretMountedWeaponFactory _turretMountedWeaponFactory;
 
-        public MountedWeaponFactory(IFactory<WeaponConfig, EntityType, Weapon> weaponFactory, GunPointViewFactory gunPointViewFactory, TurretViewFactory turretViewFactory)
+        public MountedWeaponFactory(WeaponFactory weaponFactory, GunPointViewFactory gunPointViewFactory, TurretViewFactory turretViewFactory, TurretMountedWeaponFactory turretMountedWeaponFactory)
         {
             _weaponFactory = weaponFactory;
             _gunPointViewFactory = gunPointViewFactory;
             _turretViewFactory = turretViewFactory;
+            _turretMountedWeaponFactory = turretMountedWeaponFactory;
         }
 
         public MountedWeapon Create(MountedWeaponConfig config, EntityView entityView)
@@ -25,7 +26,8 @@ namespace Gameplay.Shooting.Factories
             {
                 WeaponMountType.None => new UnmountedWeapon(CreateWeapon(config, entityView), entityView),
                 WeaponMountType.Frontal => new FrontalMountedWeapon(CreateWeapon(config, entityView), entityView, _gunPointViewFactory),
-                WeaponMountType.Turret => new TurretMountedWeapon(CreateWeapon(config, entityView), entityView, _turretViewFactory, _gunPointViewFactory),
+                WeaponMountType.Turret when config.TurretConfig is not null => _turretMountedWeaponFactory.Create(CreateWeapon(config, entityView), entityView, _turretViewFactory, _gunPointViewFactory, config.TurretConfig),
+                WeaponMountType.Turret => new FrontalMountedWeapon(CreateWeapon(config, entityView), entityView, _gunPointViewFactory),
                 _ => throw new ArgumentOutOfRangeException(nameof(config), config, "A not-existent weapon mount type is provided")
             };
         }

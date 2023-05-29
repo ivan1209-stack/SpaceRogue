@@ -1,5 +1,4 @@
 using System;
-using Asteroids;
 using Gameplay.Asteroids;
 using Gameplay.Enemy;
 
@@ -32,7 +31,7 @@ namespace Gameplay.Services
             _player = player;
             _enemyForces = enemyForces;
             _space = space;
-            EnemiesCreatedCount = _enemyForces.Enemies.Count;
+            EnemiesCreatedCount = _enemyForces.GetEnemiesCount();
             _asteroids = asteroids;
         }
 

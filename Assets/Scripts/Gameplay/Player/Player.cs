@@ -1,7 +1,7 @@
 using System;
 using Gameplay.Movement;
 using Gameplay.Player.Movement;
-using Gameplay.Player.Weapon;
+using Gameplay.Shooting;
 using Gameplay.Survival;
 
 namespace Gameplay.Player
@@ -10,8 +10,7 @@ namespace Gameplay.Player
     {
         private readonly UnitMovement _unitMovement;
         private readonly UnitTurningMouse _unitTurningMouse;
-        private readonly PlayerWeapon _playerWeapon;
-        private readonly PlayerDash _playerDash;
+        private readonly UnitWeapon _unitWeapon;
 
         public event Action PlayerDestroyed = () => { };
 
@@ -23,13 +22,13 @@ namespace Gameplay.Player
             UnitMovement unitMovement, 
             UnitTurningMouse unitTurningMouse,
             EntitySurvival playerSurvival,
-            PlayerWeapon playerWeapon,
             PlayerDash playerDash)
+            UnitWeapon unitWeapon)
         {
             PlayerView = playerView;
             _unitMovement = unitMovement;
             _unitTurningMouse = unitTurningMouse;
-            _playerWeapon = playerWeapon;
+            _unitWeapon = unitWeapon;
             Survival = playerSurvival;
             _playerDash = playerDash;
 
@@ -45,8 +44,9 @@ namespace Gameplay.Player
             Survival.Dispose();
             _unitMovement.Dispose();
             _unitTurningMouse.Dispose();
-            _playerWeapon.Dispose();
             _playerDash.Dispose();
+            _unitWeapon.Dispose();
+
             
             UnityEngine.Object.Destroy(PlayerView.gameObject);
         }

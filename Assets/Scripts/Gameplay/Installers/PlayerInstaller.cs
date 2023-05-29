@@ -1,9 +1,9 @@
-using Abstracts;
 using Gameplay.Abstracts;
 using Gameplay.Movement;
 using Gameplay.Player;
 using Gameplay.Player.Movement;
 using Gameplay.Player.Weapon;
+using Gameplay.Shooting;
 using Gameplay.Shooting.Scriptables;
 using Gameplay.Survival;
 using Scriptables;
@@ -83,12 +83,8 @@ namespace Gameplay.Installers
                 .WhenInjectedInto<PlayerWeaponFactory>();
 
             Container
-                .BindFactory<PlayerView, PlayerWeapon, PlayerWeaponFactory>()
+                .BindFactory<PlayerView, UnitWeapon, PlayerWeaponFactory>()
                 .AsSingle();
-
-            Container
-                .Bind<PlayerWeapon>()
-                .AsCached();
         }
 
         private void InstallPlayer()

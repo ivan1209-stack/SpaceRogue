@@ -50,7 +50,7 @@ namespace Gameplay.Player
             var model = _unitMovementModelFactory.Create(_unitMovementConfig);
             var unitMovement = _playerMovementFactory.Create(playerView, _playerInput, model);
             var unitTurningMouse = _unitTurningMouseFactory.Create(playerView, _playerInput, model);
-            var playerWeapon = _playerWeaponFactory.Create(playerView);
+            var unitWeapon = _playerWeaponFactory.Create(playerView);
             var playerSurvival = _playerSurvivalFactory.Create(playerView);
             var playerDash = _playerDashFactory.Create(playerView);
             
@@ -59,7 +59,7 @@ namespace Gameplay.Player
                 Transform = playerView.transform
             });
             
-            return new Player(playerView, unitMovement, unitTurningMouse, playerSurvival, playerWeapon, playerDash);
+            return new Player(playerView, unitMovement, unitTurningMouse, playerSurvival, unitWeapon, playerDash);
         }
     }
 }
