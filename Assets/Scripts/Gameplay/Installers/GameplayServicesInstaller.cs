@@ -1,7 +1,5 @@
-using Abstracts;
 using Gameplay.Abstracts;
 using Gameplay.Background;
-using Gameplay.Enemy;
 using Gameplay.Enemy.Movement;
 using Gameplay.Input;
 using Gameplay.Mechanics.Meter;
@@ -30,6 +28,7 @@ namespace Gameplay.Installers
             InstallEnemyInput();
             InstallUnitMovement();
             InstallPlayerLocator();
+            InstallEnemiesAlarm();
         }
 
         private void InstallGameplayMechanics()
@@ -115,6 +114,14 @@ namespace Gameplay.Installers
         {
             Container
                 .BindInterfacesAndSelfTo<PlayerLocator>()
+                .AsSingle()
+                .NonLazy();
+        }
+        
+        private void InstallEnemiesAlarm()
+        {
+            Container
+                .Bind<EnemiesAlarm>()
                 .AsSingle()
                 .NonLazy();
         }

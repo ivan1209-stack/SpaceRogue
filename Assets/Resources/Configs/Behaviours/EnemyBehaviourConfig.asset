@@ -16,7 +16,6 @@ MonoBehaviour:
   <PlayerDetectionRadius>k__BackingField: 50
   <CallToArmsRadius>k__BackingField: 30
   <ApproachDistance>k__BackingField: 15
-  <TimeToPickNewAngle>k__BackingField: 5
   <FiringAngle>k__BackingField: 45
   <FrontCheckDistance>k__BackingField: 30
   <SideCheckDistance>k__BackingField: 5

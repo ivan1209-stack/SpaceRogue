@@ -1,20 +1,18 @@
 using System;
-using Abstracts;
 using Gameplay.Abstracts;
 using Gameplay.Shooting.Scriptables;
-using Services;
 using Zenject;
 
 namespace Gameplay.Shooting.Factories
 {
     public class MountedWeaponFactory : IFactory<MountedWeaponConfig, EntityView, MountedWeapon>
     {
-        private readonly IFactory<WeaponConfig, EntityType, Weapon> _weaponFactory;
+        private readonly WeaponFactory _weaponFactory;
         private readonly GunPointViewFactory _gunPointViewFactory;
         private readonly TurretViewFactory _turretViewFactory;
         private readonly TurretMountedWeaponFactory _turretMountedWeaponFactory;
 
-        public MountedWeaponFactory(IFactory<WeaponConfig, EntityType, Weapon> weaponFactory, GunPointViewFactory gunPointViewFactory, TurretViewFactory turretViewFactory, TurretMountedWeaponFactory turretMountedWeaponFactory)
+        public MountedWeaponFactory(WeaponFactory weaponFactory, GunPointViewFactory gunPointViewFactory, TurretViewFactory turretViewFactory, TurretMountedWeaponFactory turretMountedWeaponFactory)
         {
             _weaponFactory = weaponFactory;
             _gunPointViewFactory = gunPointViewFactory;

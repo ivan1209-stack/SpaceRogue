@@ -15,3 +15,4 @@ MonoBehaviour:
   <Squads>k__BackingField:
   - {fileID: 11400000, guid: 0f3986e4199c0484a8ba79c20ae3bccb, type: 2}
   - {fileID: 11400000, guid: 30e562f8052ae8c46962c42cf993084e, type: 2}
+  <TimeToPickNewDirectionInSeconds>k__BackingField: 5

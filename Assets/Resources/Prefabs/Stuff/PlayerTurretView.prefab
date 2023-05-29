@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3366300197271351661}
   - component: {fileID: 8164695149620593358}
   - component: {fileID: 8391022731614923333}
-  m_Layer: 3
+  m_Layer: 12
   m_Name: PlayerTurretView
   m_TagString: Untagged
   m_Icon: {fileID: 0}

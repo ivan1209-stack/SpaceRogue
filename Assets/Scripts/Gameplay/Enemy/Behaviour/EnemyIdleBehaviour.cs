@@ -1,31 +1,39 @@
-using Gameplay.Player;
+using System;
+using Gameplay.Enemy.Movement;
+using Gameplay.Movement;
+using Gameplay.Services;
+using Services;
 using UnityEngine;
-using Utilities.Reactive.SubscriptionProperty;
 
 namespace Gameplay.Enemy.Behaviour
 {
     public sealed class EnemyIdleBehaviour : EnemyBehaviour
     {
-        public EnemyIdleBehaviour(SubscribedProperty<EnemyState> enemyState,
+        public EnemyIdleBehaviour(
+            Updater updater,
+            PlayerLocator playerLocator,
+            EnemiesAlarm enemiesAlarm,
+            EnemyState state,
+            Action<EnemyState> enemyStateChanged,
             EnemyView view,
-            PlayerController playerController,
-            EnemyBehaviourConfig config) : base(enemyState, view, playerController, config)
+            EnemyInput input,
+            UnitMovementModel model,
+            EnemyBehaviourConfig config,
+            Transform targetTransform) 
+            : base(
+                  updater,
+                  playerLocator,
+                  enemiesAlarm,
+                  state,
+                  enemyStateChanged,
+                  view,
+                  input,
+                  model,
+                  config,
+                  targetTransform)
         {
         }
 
         protected override void OnUpdate() { }
-
-        protected override void DetectPlayer()
-        {
-            if (Vector3.Distance(View.transform.position, PlayerView.transform.position) < Config.PlayerDetectionRadius)
-            {
-                EnterCombat();
-            }
-        }
-
-        private void EnterCombat()
-        {
-            ChangeState(EnemyState.InCombat);
-        }
     }
 }
